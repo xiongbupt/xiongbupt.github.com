@@ -1,0 +1,145 @@
+---
+layout: post
+title: "learningpythonthehardway"
+category: 
+tags: []
+---
+{% include JB/setup %}
+
+python函数
+
+raw_input([prompt])
+在终端上显示prompt的提示符，在界面上输入东西之后，将输入的东西以string的形式返回到对应的变量中
+
+open()打开文件，括号中的文件应该使用引号来表达，使用字符串，不能单单的使用名字。open返回的是文件描述符，对文件描述符的操作可以使用pydoc2 file来查看对应的操作。
+
+python中的打印信息%r和%s的区别主要是%r是按照输入的来打印而%s是python采用的猜测用户想要看到的信息来进行输出
+
+假设使用file为使用open返回的描述符，下面是一些日常操作的函数
+close()将文件关闭并保存
+read()读取文件的内容(添加操作的权限，有'r''w''a'这三种权限，如下所示open("hello_world",'a')
+readline()仅仅读取文件内容的一行
+truncate()清空文件(需要对文件具有可写的权限，默认open的操作仅仅以读的方式打开)
+write(stuff)将stuff指定的内容写入文件
+
+python中以写的方式打开文件将会将文件的内容清空，无需使用truncate()再次将文件的内容清空
+
+python中使用def定义函数，如下所示
+def functiona(*args):
+test
+print()
+
+python函数书写检查步骤
+
+是否以def开始定义
+
+函数是否仅仅含有字母和下划线_
+
+是否在函数的名字后面紧跟了右小括号(
+
+是否将参数放置在小括号(后面，并且参数是使用逗号,分隔的
+
+是否每个参数都是唯一的
+
+是否在最后一个参数后面添加了小括号的右括号和冒号):
+
+是否在函数语句部分是以4个空格开始的，不多也不少
+
+是否在函数结束之后不再进行缩进了
+
+python函数调用检查步骤
+
+是否是通过函数名字调用的
+
+是否在名字后面使用了右小括号(
+
+是否在括号内使用了参数，参数用逗号分开
+
+是否在结束的时候使用了右小括号)结束函数的调用
+
+
+python中return可以连续返回多个值，以逗号分隔，多个数值可以按照顺序赋值给对应的变量，按照返回顺序如
+def function():
+    ruturn a, b, c
+
+a1, b1, c1 = function()
+
+python中似乎有全局变量这种东西
+
+
+python字符串操作函数
+
+string.split([sep[,maxsplit]])
+    以分隔符sep来分隔字符串string。若指定maxsplit，则返回maxsplit+1个字符最多
+
+sorted() 将字符串进行排序
+
+list.pop() 获取一个词然后将其从词组中删除，默认参数为-1，即为最后一个
+
+from ex25 import *
+引入ex25.py文件中的所有函数功能。
+
+import ex25
+在命令行中输入，引入ex25。
+
+python中的逻辑判断符号
+and
+or
+not
+!=
+==
+>=
+<=
+True
+False
+
+
+python中的if判断表达式后面的语句应该缩进4个空格来代表其所位于的缩进，if的条件后面需要添加冒号来告诉python这是一个新的代码块
+
+python中的if-else组合如下所示
+if statement:
+    if-code-part
+elif statement2:
+    elif-code-part
+else:
+    other-parts
+
+
+python中的range([start], stop[,step])
+    start若省略则为0，step若省略则为1。step不能是0，否则报错.返回的是从start开始，以step为间隔，小于stop的一个list
+
+python中list的操作函数包括
+list.append(x)最后的位置添加一个x
+list.extend(L)在list的最后的位置添加一个list，L为一个list.
+list.insert(i, x)在list的i位置添加x
+list.remove(x)在list中去除第一个等于x的项目
+list.pop([i])在list中去除第i个位置的值，并返回该值。若未提供i则默认校区最后一个
+list.index(x)返回列表中第一个值为x的下标
+list.count(x)返回列表中一共有多少个值等于x的项目，用于计数
+list.sort()对list就地进行排序，将会更改list
+list.reverse()对list进行翻转处理
+
+
+python Keywords
+and 逻辑与
+
+del 删除列表中的某项，使用索引来删除，也可以删除一个范围。比如：
+
+>>> a = [-1, 1, 66.25, 333, 333, 1234.5]
+>>> del a[0] #删除a列表中的第一个元素
+>>> a
+[1, 66.25, 333, 333, 1234.5]
+>>> del a[2:4] #删除a列表中的第2，3个元素
+>>> a
+[1, 66.25, 1234.5]
+>>> del a[:] #删除a列表中的所有元素
+>>> a
+[]
+
+from 从某些模块中引入一些功能
+
+not 逻辑非
+
+while while循环
+
+as 

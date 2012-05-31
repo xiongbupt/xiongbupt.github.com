@@ -2,7 +2,7 @@
 layout: post
 title: "Tomcat MySQL"
 category: 
-tags: [Tomcat, MySQL]
+tags: [Tomcat]
 ---
 {% include JB/setup %}
 {% highlight java %}

@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "Linux系统调用分类"
-category: 
-tags: [linux,os]
+category: [Linux]
+tags: [Linux,OS]
 ---
 {% include JB/setup %}
 ##进程管理

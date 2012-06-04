@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "在github上使用blog"
-category: [record,github]
-tags: [linux, github, git, jekyll]
+category: [Git]
+tags: [Linux, Git, jekyll]
 ---
 {% include JB/setup %}
 #在Linux上使用git

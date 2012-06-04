@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "linux进程学习"
-category: 
-tags: []
+category: [Linux]
+tags: [Linux, OS]
 ---
 {% include JB/setup %}
 ##linux进程调度与管理

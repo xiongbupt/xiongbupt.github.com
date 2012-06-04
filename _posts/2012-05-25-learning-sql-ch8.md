@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Learning SQL CH8"
-category: 
-tags: [MySQL]
+title: "Learning SQL Ch8"
+category: [Notes]
+tags: [MySQL, Learning]
 ---
 {% include JB/setup %}
 ##分组与聚集

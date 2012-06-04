@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "Learning SQL CH9"
-category: 
-tags: []
+category: [Notes]
+tags: [MySQL, Learning]
 ---
 {% include JB/setup %}
 #子查询

@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "learning SQL(ch1-ch3)"
-category:
-tags: [MySQL]
+title: "Learning SQL(ch1-ch3)"
+category: [Notes]
+tags: [MySQL, Learning]
 ---
 {% include JB/setup %}
 ##CH1 背景知识

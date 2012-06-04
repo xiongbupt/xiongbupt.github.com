@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "linux内核活动"
+title: "Linux内核活动"
 category: [Linux]
 tags: [Linux, OS]
 ---

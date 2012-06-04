@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "modern operating system: process"
-category: 
-tags: []
+title: "现代操作系统：进程（笔记）"
+category: [Notes]
+tags: [OS, Learning]
 ---
 {% include JB/setup %}
 ###进程

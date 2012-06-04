@@ -1,15 +1,15 @@
 ---
 layout: post
-title: "linux进程学习"
+title: "Linux进程学习"
 category: [Linux]
 tags: [Linux, OS]
 ---
 {% include JB/setup %}
-##linux进程调度与管理
+##Linux进程调度与管理
 
-###linux进程状态
+###Linux进程状态
 
-linux进程描述符使用的结构体为task_struct，结构体的定义位于include/linux/sched.h文件中。该结构体很复杂，包含了一个进程应该包含的所有信息。
+Linux进程描述符使用的结构体为task_struct，结构体的定义位于include/linux/sched.h文件中。该结构体很复杂，包含了一个进程应该包含的所有信息。
 
 进程可以处于的状态包括：
 

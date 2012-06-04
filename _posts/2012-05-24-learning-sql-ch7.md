@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "Learning SQL ch7"
-category: 
-tags: [MySQL]
+category: [Notes]
+tags: [MySQL, Learning]
 ---
 {% include JB/setup %}
 ##CH7 数据生成、转换和操作

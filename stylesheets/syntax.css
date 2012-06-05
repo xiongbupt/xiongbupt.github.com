@@ -39,8 +39,8 @@
 .ni { color: #ffffff } /* Name.Entity */
 .ne { color: #ffffff } /* Name.Exception */
 .nf { color: #ff0086; font-weight: bold } /* Name.Function */
-.nl { color: #ffffff } /* Name.Label */
-.nn { color: #ffffff } /* Name.Namespace */
+.nl { color: #fb660a; font-weight: bold } /* Name.Label */
+.nn { color: #ffffff; font-weight: bold } /* Name.Namespace */
 .nx { color: #ffffff } /* Name.Other */
 .py { color: #ffffff } /* Name.Property */
 .nt { color: #fb660a; font-weight: bold } /* Name.Tag */

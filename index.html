@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>My Octopress Blog</title>
-  <meta name="author" content="Your Name">
+  <title>Keep Learning</title>
+  <meta name="author" content="Xiongbupt">
 
   
-  <meta name="description" content=" Blog Archives Recent Posts ">
+  <meta name="description" content="VIM的查找命令与模式，这章节和正则表达式相关，可以重点查阅下。 大小写忽略 ignorecase 忽视大小写
+smartcase 若只有小写，可匹配大小写；若含有大写，则严格匹配 特定模式中的大小写可以使用\C来严格匹配，\c可以用来通用匹配，不区分大小写 无折返查找 :set &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -24,20 +25,32 @@
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="/javascripts/ender.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <link href="/atom.xml" rel="alternate" title="Keep Learning" type="application/atom+xml">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 
   
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', '32449808']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
 
 </head>
 
 <body   >
   <header role="banner"><hgroup>
-  <h1><a href="/">My Octopress Blog</a></h1>
+  <h1><a href="/">Keep Learning</a></h1>
   
-    <h2>A blogging framework for hackers.</h2>
+    <h2>伪程序员记录点滴</h2>
   
 </hgroup>
 
@@ -56,6 +69,7 @@
   
 <ul class="main-navigation">
   <li><a href="/">Blog</a></li>
+  <li><a href="/blog/categories">Categories</a></li>
   <li><a href="/blog/archives">Archives</a></li>
 </ul>
 
@@ -65,7 +79,1250 @@
       <div class="blog-index">
   
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/06/06/vim_help_read/">VIM用户手册27笔记</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-06T00:00:00+08:00" pubdate data-updated="true">Jun 6<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>VIM的查找命令与模式，这章节和正则表达式相关，可以重点查阅下。</p>
+
+<h1>大小写忽略</h1>
+
+<p>ignorecase  忽视大小写<br/>
+smartcase   若只有小写，可匹配大小写；若含有大写，则严格匹配  <br/>
+特定模式中的大小写可以使用\C来严格匹配，\c可以用来通用匹配，不区分大小写</p>
+
+<h1>无折返查找</h1>
+
+<p><code>:set nowrapscan</code>简单的说就是在查找到文件结束处后不再返回文件开始处重新查找。</p>
+
+<h1>查找偏移</h1>
+
+<p><code>/pattern/2</code>，这个查找将会在单词pattern的后两行。 <br/>
+* 匹配一个可选项，使用<code>\=</code>，比如</p>
+
+<blockquote><p>/folders\=</p></blockquote>
+
+<p>匹配的是&#8221;folder&#8221;和&#8221;folders&#8221;</p>
+
+<ul>
+<li><p>指定重复次数时，使用<code>\{n,m}</code>这样的形式。匹配n到m次，包括n和m，相当于一个闭区间。</p></li>
+<li><p>匹配尽可能少的字符使用&#8217;{-n,m}`。与上面的作用类似，区别在于尽可能少的匹配。</p></li>
+</ul>
+
+
+<h1>多选一</h1>
+
+<p>或的运算符是<code>\|</code>。</p>
+
+<h1>字符范围</h1>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="left">项    </th>
+<th align="left">匹配         </th>
+<th align="center">相当于 </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td align="left">\d </td>
+<td align="left">数位         </td>
+<td align="center">[0-9]</td>
+</tr>
+<tr>
+<td></td>
+<td align="left">\D </td>
+<td align="left">非数位          </td>
+<td align="center">[<sup>0-9]</sup></td>
+</tr>
+<tr>
+<td></td>
+<td align="left">\x </td>
+<td align="left">十六进制数位 </td>
+<td align="center">[0-9a-fA-F]</td>
+</tr>
+<tr>
+<td></td>
+<td align="left">\X </td>
+<td align="left">非十六进制数位  </td>
+<td align="center">[<sup>0-9a-fA-F]</sup></td>
+</tr>
+<tr>
+<td></td>
+<td align="left">\s </td>
+<td align="left">空白字符       </td>
+<td align="center">[  ]     (<Tab> 和 <Space>)</td>
+</tr>
+<tr>
+<td></td>
+<td align="left">\S </td>
+<td align="left">非空白字符        </td>
+<td align="center">[^     ]     (非 <Tab> 和 <Space>)</td>
+</tr>
+<tr>
+<td></td>
+<td align="left">\l </td>
+<td align="left">小写字母       </td>
+<td align="center">[a-z]</td>
+</tr>
+<tr>
+<td></td>
+<td align="left">\L </td>
+<td align="left">非小写字母        </td>
+<td align="center">[<sup>a-z]</sup></td>
+</tr>
+<tr>
+<td></td>
+<td align="left">\u </td>
+<td align="left">大写字母       </td>
+<td align="center">[A-Z]</td>
+</tr>
+<tr>
+<td></td>
+<td align="left">\U </td>
+<td align="left">非大写字母        </td>
+<td align="center">[<sup>A-Z]</sup></td>
+</tr>
+</tbody>
+</table>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/06/06/octopress_use/">Octopress尝试记录</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-06T00:00:00+08:00" pubdate data-updated="true">Jun 6<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>本文主要是参考Octopress的<a href="http://octopress.org/" title="OCTOPRESS 手册">官方网址</a>进行操作，之前使用了<a href="http://www.google.com/" title="GOOGLE">google</a>搜索了若干参考，但是操作之后出现了错误，推翻重来之后，写下这篇记录，方便自己以后使用。
+首先介绍下自己的环境Arch，由于之前已经使用了github的个人博客，但是之前使用的是jekyll的方式，自己不会调整那些主题，感觉有些不方便，上网找了下，发现似乎Octopress相对来说比较简单，于是在这种情况下尝试使用Octopress。至于在github上创建个人博客主页，在这里不做说明，在Octopress环境下，自己相当不清楚。</p>
+
+<p>由于Arch已经安装了ruby，且版本是1.9.3高于octopress要求的1.9.2，使用<code>pacman</code>的方式安装了ruby之后便没有必要再安装ruby了。按照<code>arch wiki</code>中所说的方式安装rvm即可。在这些基本工作完成之后，开始安装Octopress。</p>
+
+<h1>Octopress环境配置</h1>
+
+<p>git clone git://github.com/imathis/octopress.git octopress
+cd octopress    # If you use RVM, You&#8217;ll be asked if you trust the .rvmrc file (say yes).
+gem install bundler
+bundle install
+rake install</p>
+
+<h1>Github用户页面设置</h1>
+
+<p>参照Octopress上的将页面部署到github的<a href="http://octopress.org/docs/deploying/github/" title="OCTOPRESS Github介绍">手册</a>。<br/>
+Github Pages服务要求用户使用master分支作为Web服务器上的公共目录，当直接输入用户的web网址时，重定向的是master分支的目录。因此，可以创建一个source分支来工作，然后将生成的内容推送到master分支。Octopress可以通过使用下面的命令完成上面的任务：<br/>
+rake setup_github_pages<br/>
+上面的操作将会完成下面的操作：
+* 请求用户输入个人的Github可读可写地址，使用ssh的目录，如git@github.com:xiongbupt/xiongbupt.github.com.git这样的地址，在输入上面的命令之后，要求输入地址时输入这样一个地址即可。
+* 将本来octopress分支的远端分支有origin重命名为octopress，相当于工作目录内有两个远端分支。
+* 将个人的Github Pages作为默认的远程origin分支。
+* 将当前分支由master转换为source分支。
+* 根据之前自身输入的地址来配置个人博客的地址。
+* 在_deploy目录下创建一个master分支用于来布置。</p>
+
+<p>接下来使用<br/>
+rake generate
+rake deploy</p>
+
+<p>这两个操作将会完成下面的任务：生成网页内容，将将生成的网页内容拷贝到<code>_deploy/</code>文件夹内，将这些文件添加到git跟踪目录下，提交然后将这些文件推送到master分支。因此在完成内容编辑之后，简单使用上面的两个命令就将会本地完成的编辑内容推送到远程的服务器端。</p>
+
+<p><strong>不要忘记</strong>将源文件推送到自己的远程分支。使用下面的操作即可完成操作：
+git add .
+git commit -m &#8216;提交说明&#8217;
+git push origin source</p>
+
+<p><strong>注意：</strong>目前Github网站设置的默认分支是最新提交的分支，因此如果在网页显示有问题时，可以登录到Github网站上查看是否自己的版本库的默认分支是否为master分支，将默认分支调整为master即可在网页上显示内容。</p>
+
+<h1>Github工程页面设置</h1>
+
+<p>Github允许对于已存在的开源工程添加一个网页说明。Github会搜索工程目录下的gh-pages分支，然后将这些内容置于可以访问的类似于<code>http://username.github.com/project</code>。</p>
+
+<p>可以通过下面的方式来公布自己的工程<code>gh-pages</code>。<br/>
+rake setup_github_pages</p>
+
+<p>这个操作将会：
+* 请求工程目录库的网址url
+* 将当前的origin本来指向的远程仓库imathis/octopress重命名为octopress
+* 确定博客将被配置为一个子目录
+* 在工程下新建_deploy文件夹，在该文件夹下建立gh-pages分支，准备配置该分支</p>
+
+<p>接下来运行：  <br/>
+rake generate
+rake deploy</p>
+
+<p>这将会生成博客内容，将生成的文件拷贝到<code>_deploy/</code>文件夹内，将它们加入到git同步库中，提交并将这些文件推送到master分支。</p>
+
+<p>现在已经对网站的内容进行了一次提交，但是同样也应该对网站的博客的源代码进行提交。在添加了自己工程的网址作为远端仓库之后，可以进行提交，如下所示：      <br/>
+git remote add origin (your repo url)
+#set your new origin as the default branch
+git config.branch.master.remote origin</p>
+
+<p>在完成上述设置之后便可以使用<code>git push</code>进行推送了。</p>
+
+<h1>自定义域名</h1>
+
+<p>首先需要在<code>source</code>文件夹下创建一个名字为<code>CNAME</code>的文件，然后将自己的域名输入到该文件中，如下所示： <br/>
+echo &#8216;your-domain.com&#8217; >> source/CNAME</p>
+
+<p>接下来在域名的注册处添加域名记录。具体介绍参考[octopress][lab4]的介绍，此处不做详细描述。</p>
+
+<p>sed -n &#8216;s/(category:\ )([)(\w<em>)(])/\1\3/p&#8217; </em>.md</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/06/06/assemble_language_learn/">汇编语言学习</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-06T00:00:00+08:00" pubdate data-updated="true">Jun 6<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/06/05/vim_regex_learning/">VIM正则表达式学习</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-05T00:00:00+08:00" pubdate data-updated="true">Jun 5<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1>VIM正则表达式</h1>
+
+<p>之前粗略的看了正则表达式的一些内容，但是在VIM中一直用的很少，刚才无意间看到了使用VIM对词进行大小写转换，中间出现了一些正则表达式的内容，从网上找了些内容，觉得可以留下来做个笔记，供以后自己参考。<br/>
+文章的主要内容参考<a href="http://qianjigui.iteye.com/blog/368449" title="VIM中的正则表达式">该博客</a>。</p>
+
+<h2>量词</h2>
+
+<p>VIM中的量词与perl相比</p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="center">VIM    </th>
+<th align="center">Perl   </th>
+<th align="center">意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td align="center">*      </td>
+<td align="center">*      </td>
+<td align="center">0个或多个(匹配优先)</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">+     </td>
+<td align="center">+      </td>
+<td align="center">1个或多个(匹配优先)</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">\?或\= </td>
+<td align="center">?     </td>
+<td align="center">0个或1个(匹配优先)，\?不能在 ? 命令（逆向查找）中使用</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">{n,m} </td>
+<td align="center">{n,m}  </td>
+<td align="center">n个到m个(匹配优先)</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">{n,}  </td>
+<td align="center">{n,}   </td>
+<td align="center">最少n个(匹配优先)</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">{,m}  </td>
+<td align="center">{,m}   </td>
+<td align="center">最多m个(匹配优先)</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">{n}   </td>
+<td align="center">{n}    </td>
+<td align="center">恰好n个</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">{-n,m}</td>
+<td align="center">{n,m}? </td>
+<td align="center">n个到m个(忽略优先)</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">{-}   </td>
+<td align="center">*?     </td>
+<td align="center">0个或多个(忽略优先)</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">{-1,} </td>
+<td align="center">+?     </td>
+<td align="center">1个或多个(忽略优先)</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">{-,1} </td>
+<td align="center">??     </td>
+<td align="center">0个或1个(忽略优先)</td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>环视和固化分组</h2>
+
+<p>这个内容之前没有接触过，只是简单的摘抄下来，后面再进行研究了。</p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="center">vim        </th>
+<th align="center">Perl   </th>
+<th align="center">意义           </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td align="center">\@=        </td>
+<td align="center">(?=    </td>
+<td align="center">顺序环视</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">\@!        </td>
+<td align="center">(?!    </td>
+<td align="center">顺序否定环视</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">\@&lt;=       </td>
+<td align="center">(?&lt;=   </td>
+<td align="center">逆序环视</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">\@&lt;!       </td>
+<td align="center">(?&lt;!   </td>
+<td align="center">逆序否定环视</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">\@>        </td>
+<td align="center">(?>    </td>
+<td align="center">固化分组</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">\%(atom)  </td>
+<td align="center">(?:    </td>
+<td align="center">非捕获型括号</td>
+</tr>
+</tbody>
+</table>
+
+
+<p>和perl稍有不同的是，vim中的环视和固化分组的模式的位置与perl不同。例如，查找紧跟在 foo 之后的 bar，perl将模式写在环视的括号内，而vim将模式写在环视的元字符之前。</p>
+
+<p>Perl的写法</p>
+
+<blockquote><p>/(?&lt;=foo)bar/</p></blockquote>
+
+<p>vim的写法</p>
+
+<blockquote><p>/(foo)\@&lt;=bar</p></blockquote>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/06/05/vim_regex_case/">VIM使用正则表达式改变大小写</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-05T00:00:00+08:00" pubdate data-updated="true">Jun 5<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1>VIM使用正则表达式改变字符大小写</h1>
+
+<p>转载自<a href="http://vim.wikia.com/wiki/Changing_case_with_regular_expressions" title="VIM中使用正则表达式">vim_wiki</a><br/>
+在VIM中使用正则表达式来改变单词的大小写是已经很简单的事情。<br/>
+只需要简单的将\U或者\L放在想要更改的回溯引用的前面，将\E放置在回溯引用的后面，VIM就会将回溯应用中的大小写进行相应的转换。使用\u和\l（这时不需要在最后使用\E）将会仅仅改变回溯引用中的第一个字符。</p>
+
+<pre><code>回溯引用是正则表达式中的一部分，用来表明匹配前面的一个部分。最常用的回溯表达式有&amp;,\1,\2,\3,...,\9。
+</code></pre>
+
+<h1>示例</h1>
+
+<ul>
+<li>将整篇文档内容全部小写</li>
+</ul>
+
+
+<div class="highlight"><pre><code class="bash">:%s/.*/<span class="se">\L</span>&amp;/g
+</code></pre>
+</div>
+
+
+<pre><code>&amp;是一个用来表明匹配前面全部的回溯引用的记录符号。
+</code></pre>
+
+<ul>
+<li>将紧跟着&lt;后面的字符全部大写，比如在HTML标签中使用。</li>
+</ul>
+
+
+<div class="highlight"><pre><code class="bash">:%s/&lt;<span class="se">\(\w</span>*<span class="se">\)</span>/&lt;<span class="se">\U\1</span>/g
+</code></pre>
+</div>
+
+
+<h1>注释</h1>
+
+<p>注意使用<code>gu</code>和<code>gU</code>命令加上移动操作也可以实现大小写的转换。<br/>
+比如<code>ggguG</code>可以实现将全文全部小写，其中，<code>gg</code>代表到达文章的首部，<code>gu</code>代表将文字转换为小写，<code>G</code>代表到达文章末尾（EOF）。</p>
+
+<p>使用\0作为参考引用，而不是使用每个单独命名，比如（\1，\2等），下面的例子演示了\0的使用。</p>
+
+<blockquote><p>This regex upper cases an explicit set of words to uppercase in a file.</p>
+
+<p><code>:%s/\(select\)\|\(order)\|\(by\)\|\(from\)\|\(where\)/\U\0/g</code></p>
+
+<p>Not rocket science, but otherwise you&#8217;d have to do this:</p>
+
+<p><code>:%s/\(select\)\|\(order)\|\(by\)\|\(from\)\|\(where\)/\U\1\U\2\U\3\U\4\U\5/g</code></p>
+
+<p>[edit:  Much easier to just use this, where either 0 or 1 will work:]</p>
+
+<p><code>:%s/\(select\|order\|by\|from\|where\)/\U\1/g</code></p></blockquote>
+
+<p>上面的三个操作均是将一文中的几个关键词转换为大写操作，显然方法2显得很不合适，方法1和方法3要高明许多。</p>
+
+<p>将HTML标签全部大写</p>
+
+<blockquote><p>:%s/&lt;\/\=(\w+)>/\U&amp;/g</p></blockquote>
+
+<p>将HTML标签全部小写</p>
+
+<blockquote><p>:%s/&lt;\/\=(\w+)>/\L&amp;/g</p></blockquote>
+
+<p>上面的例子中的<code>\=</code>可以替换成为<code>\?</code>，两个符号的意思都是匹配0个或者1个。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/06/05/os_impletion/">一个操作系统的实现笔记</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-05T00:00:00+08:00" pubdate data-updated="true">Jun 5<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>下面的主要介绍的是Arch下面，对<a href="http://book.douban.com/subject/3735649/" title="一个操作系统的实现">Orange&#8217;S一个操作系统的实现</a>，这本书的笔记。</p>
+
+<h1>Arch下工具安装</h1>
+
+<p>文章介绍的汇编器为nasm，在arch下安装相当简单</p>
+
+<blockquote><p>pacman -S nasm</p></blockquote>
+
+<p>上面这条命令即可完成nasm汇编器的安装。对于虚拟机，使用的是bochs，在Arch下如果使用<code>pacman</code>安装的话，没有调试功能，对于后期的调试不方便。但是在Arch的AUR包中，已经有了bochs的调试版本，仅仅需要使用<code>yaourt -S bochs-with-debugger</code>即可将具有调试功能的bochs虚拟机安装上。</p>
+
+<p>在完成上述操作后，该书介绍的基本工具便已经完备了，接下来便是对bochs进行配置了。</p>
+
+<h1>bochs配置</h1>
+
+<p>bochs的示例配置文件位于<code>/usr/share/doc/bochs/bochsrc-sample.txt</code>，将该配置文件拷贝出来，位于自己工作目录下，并重新命名为bochsrc。这样在每次启动bochs时，便没有必要使用<code>-f</code>来指定使用的配置文件名。</p>
+
+<p>按照书中的推荐配置，bochsrc-sample.txt文件很大，上面有很多不需要的配置选项，按照书中的指示，将bochsrc文件中配置精简为如下所示：</p>
+
+<div class="highlight"><pre><code class="bash">megs:   32
+floppya: <span class="nv">1_44</span><span class="o">=</span>a.img, <span class="nv">status</span><span class="o">=</span>inserted
+romimage: <span class="nv">file</span><span class="o">=</span>/usr/share/bochs/BIOS-bochs-latest
+vgaromimage: <span class="nv">file</span><span class="o">=</span>/usr/share/bochs/VGABIOS-lgpl-latest
+boot: floppy
+log: bochsout.txt
+mouse: <span class="nv">enabled</span><span class="o">=</span>0
+keyboard_mapping: <span class="nv">enabled</span><span class="o">=</span>1, <span class="nv">map</span><span class="o">=</span>/usr/share/bochs/keymaps/x11-pc-us.map
+</code></pre>
+</div>
+
+
+<h1>汇编文件编译及制作启动软盘</h1>
+
+<p>按照书中第一章节中的介绍，将启动软盘的代码敲入，然后使用nasm编译，使用bximage生成一个虚拟的软盘，接着使用dd工具将对应的编译生成的文件拷贝到相应的软盘工具中。接下来的工作按照书中介绍的内容继续即可。</p>
+
+<h2>附录：汇编代码</h2>
+
+<div class="highlight"><pre><code class="nasm">    <span class="k">org</span>     <span class="mh">07c00h</span>
+    <span class="nf">mov</span>     <span class="nb">ax</span><span class="p">,</span> <span class="nb">cs</span>
+    <span class="nf">mov</span>     <span class="nb">ds</span><span class="p">,</span> <span class="nb">ax</span>
+    <span class="nf">mov</span>     <span class="nb">es</span><span class="p">,</span> <span class="nb">ax</span>
+    <span class="nf">call</span>    <span class="nb">Disp</span><span class="nv">Str</span>
+    <span class="nf">jmp</span>     <span class="kc">$</span>       <span class="c1">;jump to this line, be a dead loop</span>
+<span class="nl">DispStr:</span>
+    <span class="nf">mov</span>     <span class="nb">ax</span><span class="p">,</span> <span class="nv">BootMessage</span>
+    <span class="nf">mov</span>     <span class="nb">bp</span><span class="p">,</span> <span class="nb">ax</span>
+    <span class="nf">mov</span>     <span class="nb">cx</span><span class="p">,</span> <span class="mi">16</span>      <span class="c1">;the length of string</span>
+    <span class="nf">mov</span>     <span class="nb">ax</span><span class="p">,</span> <span class="mh">01301h</span>  <span class="c1">;make the font on the screen</span>
+    <span class="nf">mov</span>     <span class="nb">bx</span><span class="p">,</span> <span class="mh">000ch</span>
+    <span class="nf">mov</span>     <span class="nb">dl</span><span class="p">,</span> <span class="mi">0</span>
+    <span class="nf">int</span>     <span class="mh">10h</span>
+    <span class="nf">ret</span>
+<span class="nl">BootMessage:</span>        <span class="kd">db</span>      <span class="s">&quot;Hello, Os world!&quot;</span>
+<span class="kd">times</span>   <span class="mi">510</span><span class="o">-</span><span class="p">(</span><span class="kc">$</span><span class="o">-</span><span class="kc">$$</span><span class="p">)</span>  <span class="nv">db</span>  <span class="mi">0</span>
+<span class="kd">dw</span>      <span class="mh">0xaa55</span>
+</code></pre>
+</div>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/06/01/git-lab-use/">Git小项目基本操作</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-01T00:00:00+08:00" pubdate data-updated="true">Jun 1<span>st</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1>Git个人电脑操作</h1>
+
+<p>Git版本控制有三个区域，分别是工作目录、暂存区和git目录。
+<img src="/images/fig0101-tn.png" title="Git 本地操作" alt="Git的本地操作" /></p>
+
+<p>平时的工作都在工作目录中完成，在修改完代码之后，需要将修改的代码加入到暂存区，这个通过<code>git add</code>操作完成。当需要将暂存区域里的代码提交进入git工作目录时，需要使用<code>git commit</code>来完成。</p>
+
+<p>上面描述的两个命令<code>git add</code>和<code>git commit</code>是在本地目录工作中用到的主要命令。当需要删除文件时，使用的是<code>git rm</code>命令。</p>
+
+<p>在使用<code>git commit</code>将本地工作的内容提交到git工作目录之后，本地代码的修改工作便已经完成。</p>
+
+<h1>Git获取服务器端代码</h1>
+
+<p>使用git从服务器端下载最新的代码，目前服务器端的ip地址为10.117.6.138。使用</p>
+
+<pre><code>git clone git@10.117.6.138:/home/git/path_to_work
+</code></pre>
+
+<p>下载源代码之后，接下来便可以对代码进行修改了。每次修改之后，均使用<code>git add</code>和<code>git commit</code>在本地完成提交操作。这些操作与前面提到的在个人电脑上的操作类似。</p>
+
+<h1>在个人电脑上创建新分支</h1>
+
+<p>git创建分支的操作非常简单，而且代价也很小。</p>
+
+<pre><code>`git branch new_branch_name`
+</code></pre>
+
+<p>通过这样一条指令便可以创建一个名字为<code>new_branch_name</code>的分支。接下来，便可以切换到该分支上进行开发了，具体操作如下：</p>
+
+<pre><code>git checkout new_branch_name
+</code></pre>
+
+<p>完成上述操作之后，便已经将当前的代码分支移动到了<code>new_branch_name</code>这个分支。使用<code>git branch</code>指令可以查看当前一共有多少分支，以及当前处于哪个分支。<br/>
+上面的两条指令可以用一条指令代替</p>
+
+<pre><code>git checkout -b new_branch_name
+</code></pre>
+
+<p>这条命令即相当于连续执行了</p>
+
+<pre><code>git branch new_branch_name
+git checkout new_branch_name
+</code></pre>
+
+<h1>查看服务器端的分支</h1>
+
+<p>如果想要查看服务器端都有什么分支，可以使用如下：</p>
+
+<pre><code>git remote show origin
+</code></pre>
+
+<p>上面这条指令将会输出远端服务器端的分支，以及个人的电脑是否已经和这些分支同步。</p>
+
+<h1>推送代码至Git服务器端</h1>
+
+<p>当自己需要将代码推送到Git服务器端时，需要确保服务器端的代码与自己下载的代码是一致的，因此推荐每次在向服务器端推送代码之前，先使用<code>git pull</code>操作将服务器端的代码与本地的代码进行合并，完成合并之后再进行提交。若未进行此操作，将代码推送至服务器端将会失败，服务器端将会给出提示。<br/>
+从Git服务器端下载代码有两种方式，一种是<code>git pull</code>，另外一种是<code>git fetch</code>。其中<code>git pull</code>操作不仅仅执行了<code>git fetch</code>，同时，它还将远端仓库的版本与当前的版本进行了合并即<code>merge</code>操作。如果可以直接合并，将不需要在本地端手工合并，Git将会自动合并。<br/>
+因此，在需要将代码提交至远端的Git服务器之前，需要先将服务器端的最新代码下载下来，然后在本地合并之后，再提交到服务器端。<br/>
+具体操作如下：</p>
+
+<pre><code>git pull
+git mergetool
+git push origin branch_name
+</code></pre>
+
+<p>上面这三个操作是整个向服务器端推送的大致操作。其中最后一步<code>git push origin branch_name</code>将会把本地分支<code>branch_name</code>推送到服务器端，并且服务器端的分支的名字也为<code>branch_name</code>。若想在服务器端命名为不同的名字，则可以使用下面的指令</p>
+
+<pre><code>git push origin local_branch:remote_branch
+</code></pre>
+
+<p>其中<code>local_branch</code>是本地分支的名字，而<code>remote_branch</code>则为远端服务器的分支名字。</p>
+
+<h1>切换到远端Git服务器上分支</h1>
+
+<p>从服务器上使用<code>git fetch</code>下载代码之后，个人PC上的代码库便和服务端的代码库的版本是一致的。此时，如果个人PC希望切换到远端服务器的某个分支，必须在自己的代码库中再创建一个分支，建议将该分支的名字命名为与远端服务器的分支名字相同，这样在推送到服务器端时可以较为方便，防止再在远端服务器上创建一个新的分支。具体操作可以如下所示：</p>
+
+<pre><code>git pull
+git remote show origin
+git checkout -b branch_name origin/branch_name
+</code></pre>
+
+<p>上面的操作即在本地创建了一个分支名为branch_name，该分支与服务器端的分支是一样的名字。如果在该分支上进行修改之后，接下来使用推送命令将修改的分支推送到远端服务器即可。</p>
+
+<pre><code>git push origin branch_name
+</code></pre>
+
+<h1>开发流程简介</h1>
+
+<p>在创建项目之前，需要在服务器端创建一个版本库。这个操作需要有远端服务器的登录权限，可以在相应的目录下创建目录及文件，目前对服务器的登录为ssh的远程登录方式。在登录到服务器端后，使用<em><code>git init --bare</code></em> 创建一个空的仓库即可。也可以在本地创建仓库之后，使用如下命令将仓库拷贝到远端服务器。</p>
+
+<pre><code>scp -r local_folder name@remote_server:/path/to/work
+</code></pre>
+
+<p>这一步可以由管理人员完成。当将git的项目在远端服务器端生成之后接下来便是<code>git</code>的发挥作用了。</p>
+
+<p>假设现在项目组有三个人分别为A，B，C。他们共同从服务器下载了一份代码，并且开始开发。B下载代码之后，觉得自己有个新想法，于是使用</p>
+
+<pre><code>git branch branch_B_1
+</code></pre>
+
+<p>创建了一个新的分支，分支名为branch_B_1。然后B使用</p>
+
+<pre><code>git checkout branch_B_1
+</code></pre>
+
+<p>在这个分支上进行开发。同样，A也进行了类似的操作，不过他创建的分支版本为branch_A_1。在完成各自的想法之后，他们需要将自己的工作推送到服务器端。</p>
+
+<blockquote><p>在推送到服务器端时，需要记住git的一个原则，除非指定需要提交的本地分支，否则，git是不会将本地生成的分支提交到远端的服务器端的。因此，在创建分支进行开发后，当需要提交分支时，需要按照上面提到的<strong>推送代码到Git服务器端</strong>的说明将代码推送到服务器端。</p></blockquote>
+
+<p>现在，A和B都完成了各自的修改，需要按照下面的步骤将修改后的分支推送到服务器端。假设A先推送，其首先使用</p>
+
+<pre><code>git pull
+</code></pre>
+
+<p>的方式从服务器端下载最新的代码，然后按照</p>
+
+<pre><code>git push origin branch_A_1
+</code></pre>
+
+<p>的方式将分支代码提交到了Git服务器端。接下来，B也想提交自身修改的分支代码，于是B也首先使用<code>git pull</code>的方式从服务器端下载最新的代码，然后使用</p>
+
+<pre><code>git push origin branch_B_1
+</code></pre>
+
+<p>的方式提交分支代码。注意在B使用<code>git pull</code>的方式下载代码时，其将会下载服务器端由A提交的分支branch_A_1。如果B此时想查看A究竟做了什么工作时，可以使用</p>
+
+<pre><code>git checkout -b branch_A_1 origin/branch_A_1
+</code></pre>
+
+<p>的方式，先在本地创建一个同样名字为branch_A_1的分支，然后再切换到该分支进行查看。</p>
+
+<blockquote><p>git从服务器端下载的分支代码无法直接查看，必须在本地创建一个对应的分支，然后才可以查看该分支的代码。至于本地分支的名字则没有影响，但是为了与远端分支的一致性，推荐使用相同的分支名。</p></blockquote>
+
+<p>C使用<code>git pull</code>之后，在切换分支查看了A和B的想法之后，觉得A和B的想法都可以采纳，C想将A和B的想法合并到一起，于是便开始合并这两个分支。<br/>
+首先，C新创建了一个分支，名字为branch_C_1，接下来，C切换到该分支，然后使用</p>
+
+<pre><code>git merge branch_A_1
+</code></pre>
+
+<p>将分支branch_A_1与自己创建的分支合并，接着使用</p>
+
+<pre><code>git merge branch_B_1
+</code></pre>
+
+<p>将分支branch_B_1与自己创建的分支合并。这时，C创建的分支已经同时包含了A和B的想法。如果在合并的工程中出现了冲突，可以使用</p>
+
+<pre><code>git mergetool
+</code></pre>
+
+<p>这个工具将会打开这些冲突，选择解决这些问题。</p>
+
+<p>总之，git的提交分支的方式便是按照上面的一个简单的说明进行开发。</p>
+
+<h2>git版本回退</h2>
+
+<p>如果在开发过程中，发现出现了错误，想要将git的版本回退到某个时期，可以使用</p>
+
+<pre><code>git checkout hash_number
+</code></pre>
+
+<p>的方式回退到hash_number所代表的版本。在这上面再创建分支</p>
+
+<pre><code>git chekcout -b branch_test hash_number
+</code></pre>
+
+<p>这样可以以这个hash_number代表的历史版本。</p>
+
+<h2>git版本合并</h2>
+
+<p>从服务器端下载代码之后，如果出现了冲突，需要使用</p>
+
+<pre><code>git mergetool
+</code></pre>
+
+<p>来对代码进行合并。<br/>
+在本地分支下，使用</p>
+
+<pre><code>git pull
+</code></pre>
+
+<p>git将会尝试自动合并，如果合并失败，使用</p>
+
+<pre><code>git mergetool
+</code></pre>
+
+<p>再来尝试手动合并即可。</p>
+
+<h1>git基本命令介绍</h1>
+
+<p>从服务器端下载代码</p>
+
+<blockquote><p>git clone username@remote_server:/path/to/work</p></blockquote>
+
+<p>添加文件到暂存区</p>
+
+<blockquote><p>git add filename</p></blockquote>
+
+<p>将已经在版本库中但是在工作目录下修改的文件添加到暂存区</p>
+
+<blockquote><p>git add -u</p></blockquote>
+
+<p>从版本库中删除文件</p>
+
+<blockquote><p>git rm filename</p></blockquote>
+
+<p>将文件重命名</p>
+
+<blockquote><p>git mv oldname newname</p></blockquote>
+
+<p>将暂存区文件存储到版本库中</p>
+
+<blockquote><p>git commit</p></blockquote>
+
+<p>直接添加注释，不再进入界面编辑提交日志</p>
+
+<blockquote><p>git commit -m &#8216;Description of the commit&#8217;</p></blockquote>
+
+<p>从已经克隆的版本库中下载服务器端的代码到本地版本库中</p>
+
+<blockquote><p>git fetch</p></blockquote>
+
+<p>从已经克隆的版本库中下载服务器端的代码并合并分支</p>
+
+<blockquote><p>git pull</p></blockquote>
+
+<p>在本地创建一个名字为branch_name的分支</p>
+
+<blockquote><p>git branch branch_name</p></blockquote>
+
+<p>切换到本地名字为branch_name的分支</p>
+
+<blockquote><p>git checkout branch_name</p></blockquote>
+
+<p>在本地创建一个分支名为branch_name的分支并切换到该分支</p>
+
+<blockquote><p>git chekcout -b branch_name</p></blockquote>
+
+<p>将本地名字为branch_name的分支推送到服务器端，并且在服务器端的名字为branch_name</p>
+
+<blockquote><p>git push origin branch_name</p></blockquote>
+
+<p>将本地名字为branch_name的分支推送到服务器端，并且在服务器端的名字为branch_server</p>
+
+<blockquote><p>git push origin branch_name:branch_server</p></blockquote>
+
+<p>查看服务器端的分支状态</p>
+
+<blockquote><p>git remote show origin</p></blockquote>
+
+<p>查看本地分支状态</p>
+
+<blockquote><p>git branch</p></blockquote>
+
+<p>删除本地分支</p>
+
+<blockquote><p>git branch -d branch_name</p></blockquote>
+
+<p>合并分支</p>
+
+<blockquote><p>git merge</p></blockquote>
+
+<p>合并冲突解决</p>
+
+<blockquote><p>git mergetool</p></blockquote>
+
+<p>查看简明历史</p>
+
+<blockquote><p>git log</p></blockquote>
+
+<p>查看每次提交具体修改</p>
+
+<blockquote><p>git log -p</p></blockquote>
+
+<p>查看提交某个文件的修改历史</p>
+
+<blockquote><p>git log -p filename</p></blockquote>
+
+<p>显示文件的增减行数</p>
+
+<blockquote><p>git log &#8211;stat</p></blockquote>
+
+<p>git个人邮件配置</p>
+
+<blockquote><p>git config &#8211;global user.email username@web.com</p></blockquote>
+
+<p>git个人名字配置</p>
+
+<blockquote><p>git config &#8211;global user.name username</p></blockquote>
+
+<p>git简称配置，如chekcout简称为co，commit为ci，branch为br，status为st</p>
+
+<blockquote><p>git config &#8211;global alias.co checkout<br/>
+git config &#8211;global alias.ci commit<br/>
+git config &#8211;global alias.br branch<br/>
+git config &#8211;global alias.st status</p></blockquote>
+
+<p>git格式化与空格</p>
+
+<pre><code>由于linux系统和windows系统对行尾结束符处理方式不一致，windows下使用回车和换行两个字符来结束一行，而Linux系统仅仅使用一个换行字符，当跨平台在linux系统和windows系统下开发时，会出现较麻烦的现象。Git可以在提交时自动将结束符CRLF转换成LF，而在签出代码时将LF转换成为CRLF。在windows系统下，将autocrlf选项设置为true，这样在签出代码时，LF将会被换成CRLF；在Linux系统下，将autocrlf设置为input仅仅在签入代码时将CRLF转换为LF，在签出代码时，不进行转换，LF还是LF。此选项对跨平台开发具有较大作用，推荐使用。
+</code></pre>
+
+<blockquote><p>git config &#8211;global core.autocrlf true<em>（windows下使用）</em><br/>
+git config &#8211;global core.autocrlf input<em>(Linux下使用）</em></p>
+
+<h1>注意事项</h1>
+
+<ul>
+<li>Git的每次提交到服务器端的操作必须先从服务器端下载最新的提交代码，在本地完成合并冲突之后才可以完成提交。</li>
+<li>Git对于文件的合并有自动合并的功能，当已修改的版本与未修改的版本只是删减操作时，Git将会自动合并。</li>
+<li>Git在本地的提交操作不需要连接到服务器端。</li>
+<li>为了防止服务器版本库的差异过大，在每次完成一个完整的功能块时，建议将代码push推送到服务器端，不要多次未推送提交，一次改动过大。</li>
+<li>使用<code>git checkout filename</code>操作时，将会从暂存区中获取文件，替代本地文件。注意这种情况下，本地的所有修改都会丢失。因此，在使用此命令之前，需要确认本地的修改已经无用或者已经保存。</li>
+<li>尽量多使用<code>git status</code>查看当前状态，在这个命令的输出中可以获取很多帮助信息以及可以采取什么操作来实现哪些功能。</li>
+</ul>
+</blockquote>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/05/31/git-basic/">Git基本使用</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-31T00:00:00+08:00" pubdate data-updated="true">May 31<span>st</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><code>git log branch_a..branch_b</code><br/>
+显示branch_b有而branch_a没有的历史。<br/>
+<code>git log branch_b..branch_a</code><br/>
+显示branch_a有而branch_b没有的历史。</p>
+
+<p><code>git log origin/master..HEAD</code><br/>
+查看将会把什么推送到远端的master分支</p>
+
+<p><code>git show HEAD</code> <br/>
+<code>git show HEAD^</code><br/>
+<code>git show HEAD~</code><br/>
+^符号显示的是祖先，<sup>2显示的是第二父提交</sup></p>
+
+<p>~显示的是父提交，~2显示的是父提交的父提交</p>
+
+<p><code>git log reA..reB</code><br/>
+<code>git log ^reA reB</code><br/>
+<code>git log reB --not reA</code><br/>
+上述三个命令等价，均是指包含reB而不包含reA</p>
+
+<p><code>git log refA refB ^refC</code><br/>
+<code>git log refA refB --not refC</code><br/>
+<code>...</code>三点描述符，显示的是并集减去交集<br/>
+<code>git log --left-right master...experiment</code></p>
+
+<h3>交互式暂存</h3>
+
+<p><code>git add -i</code>进入交互界面，输入数字进行选择</p>
+
+<h3>存储</h3>
+
+<p><code>git statsh</code>
+当想切换分支，但是又不想将当前的工作提交到暂存区时，可以使用该指令。该指令将会把当前的工作状态暂存起来，采用堆栈的形式存储起来。当需要恢复暂存区的工作内容时，可以使用<code>git stash list</code>查看当前堆栈里面的暂存态。使用<code>git stash apply stash@{2}</code>将会恢复<code>git stash list</code>显示的第二个暂存。如果没有指明名字，直接使用<code>git stash apply</code>将会默认恢复最近的那次暂存。<br/>
+<code>git stash apply</code>只是会应用存储，而不会将存储删除，如果需要删除存储，需要使用<code>git stash drop stash@{2}</code>来将相应的存储进行删除。<br/>
+注意，<code>git stash apply</code>这个命令的使用不需要工作分支与当时使用<code>git stash</code>存储的分支在一个目录下，也就是说可以在分支a上存储，然后在分支b上使用<code>git stash apply</code>将在分支a上存储的内容应用到分支b上。git将会采用自动融合的机制，如果出现冲突，会要求解决冲突之后才能应用存储。</p>
+
+<h2>重写历史</h2>
+
+<h3>改变最近一次提交</h3>
+
+<p>修改最后一次的声明，输入下面的命令即可</p>
+
+<div class="highlight"><pre><code class="bash"><span class="nv">$git</span> commit --amend
+</code></pre>
+</div>
+
+
+<p>如果在依次提交之后，发现还有文件没有增加进来，可以使用git add。发现文件需要删除，使用git rm。在完成这些操作之后，使用git commit &#8211;amend操作来进行修正。这样，便会将这次更新合并到上次的更新上去。注意不要在推送之后再使用这个方法。</p>
+
+<h3>修改多次提交说明</h3>
+
+<h2>自定义GIT</h2>
+
+<pre><code>git config --global core.autocrlf true
+</code></pre>
+
+<p>根据不同平台，将换行符进行替换。
+开启该选项后，git可以在代码提交时，自动将行结束符CRLF替换为LF，而在签出代码时将LF替换为CRLF。该选项在windows平台和Linux平台的共同使用时使用。</p>
+
+<pre><code>git config --global core.autocrlf input
+</code></pre>
+
+<p>该选项将把git设置为在输入时将crlf转换为lf，而在输出时不转换。</p>
+
+<p>如果都在windows下开发，且仅仅在windows下运行，可以设置为false取消此功能，把回车符记录在库中。</p>
+
+<pre><code>git config --global core.autocrlf false
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/05/31/git/">Git Server</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-31T00:00:00+08:00" pubdate data-updated="true">May 31<span>st</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1>小型系统下GIT安装使用</h1>
+
+<p><a href="http://blog.prosight.me/index.php/2009/11/485">参考博客</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/05/29/tomcat-mysql/">Tomcat MySQL</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-29T00:00:00+08:00" pubdate data-updated="true">May 29<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">
+
+<div class="highlight"><pre><code class="java"><span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">jasper</span><span class="o">.</span><span class="na">JasperException</span><span class="o">:</span> <span class="n">javax</span><span class="o">.</span><span class="na">servlet</span><span class="o">.</span><span class="na">ServletException</span><span class="o">:</span> <span class="n">com</span><span class="o">.</span><span class="na">mysql</span><span class="o">.</span><span class="na">jdbc</span><span class="o">.</span><span class="na">CommunicationsException</span><span class="o">:</span> <span class="n">Communications</span> <span class="n">link</span> <span class="n">failure</span> <span class="n">due</span> <span class="n">to</span> <span class="n">underlying</span> <span class="nl">exception:</span> 
+
+<span class="o">**</span> <span class="n">BEGIN</span> <span class="n">NESTED</span> <span class="n">EXCEPTION</span> <span class="o">**</span> 
+
+<span class="n">java</span><span class="o">.</span><span class="na">net</span><span class="o">.</span><span class="na">SocketException</span>
+<span class="nl">MESSAGE:</span> <span class="n">java</span><span class="o">.</span><span class="na">net</span><span class="o">.</span><span class="na">ConnectException</span><span class="o">:</span> <span class="n">Connection</span> <span class="n">refused</span>
+
+<span class="nl">STACKTRACE:</span>
+
+<span class="n">java</span><span class="o">.</span><span class="na">net</span><span class="o">.</span><span class="na">SocketException</span><span class="o">:</span> <span class="n">java</span><span class="o">.</span><span class="na">net</span><span class="o">.</span><span class="na">ConnectException</span><span class="o">:</span> <span class="n">Connection</span> <span class="n">refused</span>
+    <span class="n">at</span> <span class="n">com</span><span class="o">.</span><span class="na">mysql</span><span class="o">.</span><span class="na">jdbc</span><span class="o">.</span><span class="na">StandardSocketFactory</span><span class="o">.</span><span class="na">connect</span><span class="o">(</span><span class="n">StandardSocketFactory</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">156</span><span class="o">)</span>
+    <span class="n">at</span> <span class="n">com</span><span class="o">.</span><span class="na">mysql</span><span class="o">.</span><span class="na">jdbc</span><span class="o">.</span><span class="na">MysqlIO</span><span class="o">.&lt;</span><span class="n">init</span><span class="o">&gt;(</span><span class="n">MysqlIO</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">276</span><span class="o">)</span>
+    <span class="n">at</span> <span class="n">com</span><span class="o">.</span><span class="na">mysql</span><span class="o">.</span><span class="na">jdbc</span><span class="o">.</span><span class="na">Connection</span><span class="o">.</span><span class="na">createNewIO</span><span class="o">(</span><span class="n">Connection</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">2641</span><span class="o">)</span>
+    <span class="n">at</span> <span class="n">com</span><span class="o">.</span><span class="na">mysql</span><span class="o">.</span><span class="na">jdbc</span><span class="o">.</span><span class="na">Connection</span><span class="o">.&lt;</span><span class="n">init</span><span class="o">&gt;(</span><span class="n">Connection</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">1531</span><span class="o">)</span>
+    <span class="n">at</span> <span class="n">com</span><span class="o">.</span><span class="na">mysql</span><span class="o">.</span><span class="na">jdbc</span><span class="o">.</span><span class="na">NonRegisteringDriver</span><span class="o">.</span><span class="na">connect</span><span class="o">(</span><span class="n">NonRegisteringDriver</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">266</span><span class="o">)</span>
+    <span class="n">at</span> <span class="n">java</span><span class="o">.</span><span class="na">sql</span><span class="o">.</span><span class="na">DriverManager</span><span class="o">.</span><span class="na">getConnection</span><span class="o">(</span><span class="n">DriverManager</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">579</span><span class="o">)</span>
+    <span class="n">at</span> <span class="n">java</span><span class="o">.</span><span class="na">sql</span><span class="o">.</span><span class="na">DriverManager</span><span class="o">.</span><span class="na">getConnection</span><span class="o">(</span><span class="n">DriverManager</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">243</span><span class="o">)</span>
+    <span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">jsp</span><span class="o">.</span><span class="na">testSQL1_jsp</span><span class="o">.</span><span class="na">_jspService</span><span class="o">(</span><span class="n">testSQL1_jsp</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">77</span><span class="o">)</span>
+    <span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">jasper</span><span class="o">.</span><span class="na">runtime</span><span class="o">.</span><span class="na">HttpJspBase</span><span class="o">.</span><span class="na">service</span><span class="o">(</span><span class="n">HttpJspBase</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">70</span><span class="o">)</span>
+    <span class="n">at</span> <span class="n">javax</span><span class="o">.</span><span class="na">servlet</span><span class="o">.</span><span class="na">http</span><span class="o">.</span><span class="na">HttpServlet</span><span class="o">.</span><span class="na">service</span><span class="o">(</span><span class="n">HttpServlet</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">722</span><span class="o">)</span>
+    <span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">jasper</span><span class="o">.</span><span class="na">servlet</span><span class="o">.</span><span class="na">JspServletWrapper</span><span class="o">.</span><span class="na">service</span><span class="o">(</span><span class="n">JspServletWrapper</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">432</span><span class="o">)</span>
+    <span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">jasper</span><span class="o">.</span><span class="na">servlet</span><span class="o">.</span><span class="na">JspServlet</span><span class="o">.</span><span class="na">serviceJspFile</span><span class="o">(</span><span class="n">JspServlet</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">390</span><span class="o">)</span>
+    <span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">jasper</span><span class="o">.</span><span class="na">servlet</span><span class="o">.</span><span class="na">JspServlet</span><span class="o">.</span><span class="na">service</span><span class="o">(</span><span class="n">JspServlet</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">334</span><span class="o">)</span>
+    <span class="n">at</span> <span class="n">javax</span><span class="o">.</span><span class="na">servlet</span><span class="o">.</span><span class="na">http</span><span class="o">.</span><span class="na">HttpServlet</span><span class="o">.</span><span class="na">service</span><span class="o">(</span><span class="n">HttpServlet</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">722</span><span class="o">)</span>
+    <span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">catalina</span><span class="o">.</span><span class="na">core</span><span class="o">.</span><span class="na">ApplicationFilterChain</span><span class="o">.</span><span class="na">internalDoFilter</span><span class="o">(</span><span class="n">ApplicationFilterChain</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">305</span><span class="o">)</span>
+    <span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">catalina</span><span class="o">.</span><span class="na">core</span><span class="o">.</span><span class="na">ApplicationFilterChain</span><span class="o">.</span><span class="na">doFilter</span><span class="o">(</span><span class="n">ApplicationFilterChain</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">210</span><span class="o">)</span>
+    <span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">catalina</span><span class="o">.</span><span class="na">core</span><span class="o">.</span><span class="na">StandardWrapperValve</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">StandardWrapperValve</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">224</span><span class="o">)</span>
+    <span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">catalina</span><span class="o">.</span><span class="na">core</span><span class="o">.</span><span class="na">StandardContextValve</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">StandardContextValve</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">169</span><span class="o">)</span>
+    <span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">catalina</span><span class="o">.</span><span class="na">authenticator</span><span class="o">.</span><span class="na">AuthenticatorBase</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">AuthenticatorBase</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">472</span><span class="o">)</span>
+    <span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">catalina</span><span class="o">.</span><span class="na">core</span><span class="o">.</span><span class="na">StandardHostValve</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">StandardHostValve</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">168</span><span class="o">)</span>
+    <span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">catalina</span><span class="o">.</span><span class="na">valves</span><span class="o">.</span><span class="na">ErrorReportValve</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">ErrorReportValve</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">98</span><span class="o">)</span>
+    <span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">catalina</span><span class="o">.</span><span class="na">valves</span><span class="o">.</span><span class="na">AccessLogValve</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">AccessLogValve</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">927</span><span class="o">)</span>
+    <span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">catalina</span><span class="o">.</span><span class="na">core</span><span class="o">.</span><span class="na">StandardEngineValve</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">StandardEngineValve</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">118</span><span class="o">)</span>
+    <span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">catalina</span><span class="o">.</span><span class="na">connector</span><span class="o">.</span><span class="na">CoyoteAdapter</span><span class="o">.</span><span class="na">service</span><span class="o">(</span><span class="n">CoyoteAdapter</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">407</span><span class="o">)</span>
+    <span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">coyote</span><span class="o">.</span><span class="na">http11</span><span class="o">.</span><span class="na">AbstractHttp11Processor</span><span class="o">.</span><span class="na">process</span><span class="o">(</span><span class="n">AbstractHttp11Processor</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">987</span><span class="o">)</span>
+    <span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">coyote</span><span class="o">.</span><span class="na">AbstractProtocol</span><span class="n">$AbstractConnectionHandler</span><span class="o">.</span><span class="na">process</span><span class="o">(</span><span class="n">AbstractProtocol</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">579</span><span class="o">)</span>
+    <span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">tomcat</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">net</span><span class="o">.</span><span class="na">JIoEndpoint</span><span class="n">$SocketProcessor</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">JIoEndpoint</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">309</span><span class="o">)</span>
+    <span class="n">at</span> <span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">concurrent</span><span class="o">.</span><span class="na">ThreadPoolExecutor</span><span class="o">.</span><span class="na">runWorker</span><span class="o">(</span><span class="n">ThreadPoolExecutor</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">1110</span><span class="o">)</span>
+    <span class="n">at</span> <span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">concurrent</span><span class="o">.</span><span class="na">ThreadPoolExecutor</span><span class="n">$Worker</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">ThreadPoolExecutor</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">603</span><span class="o">)</span>
+    <span class="n">at</span> <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">Thread</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">Thread</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">722</span><span class="o">)</span>
+
+
+<span class="o">**</span> <span class="n">END</span> <span class="n">NESTED</span> <span class="n">EXCEPTION</span> <span class="o">**</span>
+</code></pre>
+</div>
+
+
+<p>在使用tomcat与mysql时，出现了上述错误，原因是由于mysql中的配置中禁用了网络的连接。在arch环境下，通过编辑/etc/mysql/my.cnf文件，将<code>skip-networking</code>这个选项注释掉即可。</p>
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
+    
+      <a class="prev" href="/blog/page/2/">&larr; Older</a>
     
     <a href="/blog/archives">Blog Archives</a>
     
@@ -77,11 +1334,89 @@
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
     
+      <li class="post">
+        <a href="/blog/2012/06/06/vim_help_read/">VIM用户手册27笔记</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/06/octopress_use/">Octopress尝试记录</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/06/assemble_language_learn/">汇编语言学习</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/05/vim_regex_learning/">VIM正则表达式学习</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/05/vim_regex_case/">VIM使用正则表达式改变大小写</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/05/os_impletion/">一个操作系统的实现笔记</a>
+      </li>
+    
   </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/xiongbupt">@xiongbupt</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'xiongbupt',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("xiongbupt", 1, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/xiongbupt" class="twitter-follow-button" data-show-count="false">Follow @xiongbupt</a>
+  
 </section>
 
 
 
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/110480695522271115757?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
 
 
 
@@ -91,16 +1426,37 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - Your Name -
+  Copyright &copy; 2012 - Xiongbupt -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
 </footer>
   
 
+<script type="text/javascript">
+      var disqus_shortname = 'xiongbupt';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
 
 
 
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
 
 
 

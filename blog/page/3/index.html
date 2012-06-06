@@ -1,0 +1,819 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Keep Learning</title>
+  <meta name="author" content="Xiongbupt">
+
+  
+  <meta name="description" content="
+">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://xiongbupt.github.com/blog/page/3/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Keep Learning" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', '32449808']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Keep Learning</a></h1>
+  
+    <h2>伪程序员记录点滴</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:xiongbupt.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/categories">Categories</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/04/09/cpp-primer/">Cpp Primer</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-09T00:00:00+08:00" pubdate data-updated="true">Apr 9<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/04/01/debian/">Debian安装记录</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-01T00:00:00+08:00" pubdate data-updated="true">Apr 1<span>st</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1>添加用户至sudo用户组并去除密码</h1>
+
+<p>visudo修改为不需要密码，将</p>
+
+<blockquote><p>%sudo ALL=(ALL):ALL<br/>
+修改为
+%sudo ALL=(ALL) NOPASSWD: ALL<br/>
+将用户user_name添加至sudo用户组</p></blockquote>
+
+<div class="highlight"><pre><code class="bash">adduser user_name sudo
+</code></pre>
+</div>
+
+
+<p>重新登录后，user_name用户即已经位于sudo用户组中。</p>
+
+<h1>安装基本的软件</h1>
+
+<div class="highlight"><pre><code class="bash">sudo dpkg -i wireless-crda-1.14_i386.deb
+sudo dpkg -i linux-headers-2.6.30-02063010_2.6.30-02063010_all.deb
+sudo dpkg -i linux-headers-2.6.30-02063010-generic_2.6.30-02063010_all.deb
+sudo dpkg -i linux-image-2.6.30-***.deb
+</code></pre>
+</div>
+
+
+<p>参照<a href="http://bbs.byr.cn/#!article/Linux/82799">北邮人论坛的linux版块</a>，设置debian的源
+之后使用<code>sudo apt-get install</code>安装了
+* vim
+* ctags
+* cscope
+* vim-gtk
+* ibus
+* vim-doc
+* vim-scripts
+* gcc
+* locales
+* nautilus-open-terminal
+* make
+* build-essential</p>
+
+<h1>将默认编辑器由gedit转换为gvim</h1>
+
+<div class="highlight"><pre><code class="bash">sudo cp /etc/gnome/defaults.list /etc/gnome/defaults.list.backup
+sduo vim /etc/gnome/defaults.list
+</code></pre>
+</div>
+
+
+<p>将该文件中的<code>gedit.desktop</code>全部替换为<code>gvim.desktop</code></p>
+
+<h1>添加ifconfig等命令到普通用户</h1>
+
+<p>修改<code>/etc/profile</code>，将第7行的PATH中添加<code>/sbin</code></p>
+
+<h1>安装中文字体</h1>
+
+<ul>
+<li>tty-wqy-zenhei</li>
+<li>tty-wqy-microhei</li>
+<li>xfonts-intl-chinese</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/03/30/vim-cookbook/">VIM使用便签</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-30T00:00:00+08:00" pubdate data-updated="true">Mar 30<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>转载自<a href="http://www.oualline.com/vim-cook.html" title="vim_cook_book">vim_cook_book</a></p>
+
+<p>字符翻转</p>
+
+<blockquote><p>xp</p></blockquote>
+
+<p>可交换的替换单词</p>
+
+<div class="highlight"><pre><code class="bash">1G              <span class="c">#到第一行</span>
+/idiot&lt;enter&gt;   <span class="c">#搜索单词idiot</span>
+cwmanager       <span class="c">#将idiot替换为manager</span>
+n               <span class="c">#搜索下一个idiot</span>
+.               <span class="c">#重复上面的替换操作</span>
+</code></pre>
+</div>
+
+
+
+
+<div class="highlight"><pre><code class="bash">%s/<span class="se">\&lt;</span>idiot<span class="se">\&gt;</span>/manager/gc <span class="c">#直接在命令行模式下进行输入，使用全局替换的方式</span>
+</code></pre>
+</div>
+
+
+<p>/&lt;idiot>/</p>
+
+<blockquote><p>This text specifies the text we are looking for wand want. The &lt; tells Vim to match a word start and the > tells Vim to match the end of a word.<br/>
+&lt;表明匹配的是一个单词的开始，>表明匹配的是一个单词的结束。</p></blockquote>
+
+<p>检查Makefile错误的好方法，由于命令是以tab开始的，若是空格将有错误</p>
+
+<div class="highlight"><pre><code class="bash">:set list
+</code></pre>
+</div>
+
+
+<p>可以显示出空格和tab的区别，tab是<sup>I</sup></p>
+
+<p>vim读取man文件</p>
+
+<div class="highlight"><pre><code class="bash">man subject|ul -i|vim -
+</code></pre>
+</div>
+
+
+<p>vim移除行末的空格</p>
+
+<div class="highlight"><pre><code class="bash">:1,<span class="nv">$s</span>/<span class="o">[</span>tab<span class="o">]</span>*<span class="nv">$/</span>/
+</code></pre>
+</div>
+
+
+<p>将Last, First改为First Last</p>
+
+<div class="highlight"><pre><code class="bash">:1,<span class="nv">$s</span>/<span class="se">\(</span><span class="o">[</span>^,<span class="o">]</span>*<span class="se">\)</span>,<span class="se">\(</span>.*<span class="nv">$\</span><span class="o">)</span>/<span class="se">\2\1</span>/
+</code></pre>
+</div>
+
+
+<blockquote><p>The ( &#8230; ) delimiters are used to inform the editor that the text that matches the regular expression side is to be treated special.<br/>
+(&#8230;)分隔符告知编辑器将括号内的内容应该被当做正则表达式来对待（？？？）</p></blockquote>
+
+<p>操作示例</p>
+
+<pre><code>if ( x&gt;3 ) {
+  "Hello *world!"           ds"         Hello world!
+  [123+4*56]/2              cs])        (123+456)/2
+  "Look ma, I'm *HTML!"     cs"&lt;q&gt;      &lt;q&gt;Look ma, I'm HTML!&lt;/q&gt;
+  if *x&gt;3 {                 ysW(        if ( x&gt;3 ) {
+  my $str = *whee!;         vllllS'     my $str = 'whee!';
+</code></pre>
+
+<p>上述操作中，*代表的是光标所在位置，在普通模式下，输入中间的命令，将会得到后面的效果</p>
+
+<div class="highlight"><pre><code class="bash">vim --startuptime timefile the_file_you_want_to_edit
+</code></pre>
+</div>
+
+
+<p>查看vim启动时间所占用的时间比</p>
+
+<p>set list查看不可见字符</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/03/26/linux_timer/">Linux定时器</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-26T00:00:00+08:00" pubdate data-updated="true">Mar 26<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">
+
+<div class="highlight"><pre><code class="c"><span class="kt">int</span> <span class="n">mod_timer</span><span class="p">(</span><span class="k">struct</span> <span class="n">timer_list</span> <span class="o">*</span><span class="n">timer</span><span class="err">，</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">expires</span><span class="p">)</span>
+</code></pre>
+</div>
+
+
+<p>该函数负责修改内核定时器timer的超时字段expires。该函数可以修改激活和没有激活的内核定时器的超时时间，并把它们都设置为激活状态；返回值为0表示修改的内核定时器在修改之前处于未激活状态，返回值为1表示修改的内核定时器在修改之前处于已激活状态。</p>
+
+<div class="highlight"><pre><code class="c"><span class="n">del_timer</span><span class="p">(</span><span class="n">sturct</span> <span class="n">timer_list</span> <span class="o">*</span><span class="n">timer</span><span class="p">)</span>
+</code></pre>
+</div>
+
+
+<p>返回值为0表示修删的内核定时器在删除之前处于未激活状态，返回值为1表示删除的内核定时器在删除之前处于已激活状态。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/03/22/linux_cc2420_6lowpan/">6LoWPAN记录</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-22T00:00:00+08:00" pubdate data-updated="true">Mar 22<span>nd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>网络字节序为大端序。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/03/21/linux_tcp_ip/">Linux内核TCP/IP笔记</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-21T00:00:00+08:00" pubdate data-updated="true">Mar 21<span>st</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>内核其他模块和用户空间应用程序可能都想知道网络设备注册、注销、打开、关闭的时间，因此提供了两个产生事件通知的途径，即<code>netdev_chain</code>通知链和<code>netlink</code>的<code>RTMGRP_LINK</code>组播组。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/03/21/linux_inf/">取整操作</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-21T00:00:00+08:00" pubdate data-updated="true">Mar 21<span>st</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1>问题</h1>
+
+<p>A,B都是整数并且 A>1, B>1，求 ┌ A/B ┐ 即 A/B 的上取整。</p>
+
+<p>当A/B 整除，往上取整返回值 为 A/B。</p>
+
+<p>当不整除，返回值是 int(A/B) + 1</p>
+
+<p>这个算法的一个应用：如果你有一个动态增长的缓冲区，增长的步长是 B,某一次缓冲区申请的大小是 A，这个时候，就可以用这个算法，计算出缓冲区的一个合适大小了，正好可以容纳A，并且不会过于得多，多余部分不会比B多。</p>
+
+<h1>方法</h1>
+
+<p>int( (A+B-1)/B )</p>
+
+<h1>HUNTON的证明</h1>
+
+<p>上取整用UP表示。<br/>
+由于A>1、B>1，且A、B都是整数，所以可以设A=NB+M。 <br/>
+其中N为非负整数，M为0到B-1的数，则</p>
+
+<blockquote><p>A/B = N + M/B
+(A+B-1)/B = N + 1 + (M – 1)/B;</p></blockquote>
+
+<p>当M为0时</p>
+
+<blockquote><p>UP(A/B) = N，
+int((A+B-1)/B) = N + int(1 – 1/B) = N</p></blockquote>
+
+<p>当M为1到B-1的数时</p>
+
+<blockquote><p>0 &lt;= M-1 &lt;= B-2
+UP(A/B) = N + 1，
+int((A+B-1)/B) = N + 1 + int((M-1)/B) = N + 1</p></blockquote>
+
+<p>所以对A>1、B>1的整数A、B都有：</p>
+
+<blockquote><p>UP(A/B) = int((A+B-1)/B)</p></blockquote>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/03/21/ieee802154/">IEEE 802.15.4格式</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-21T00:00:00+08:00" pubdate data-updated="true">Mar 21<span>st</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>IEEE 802.15.4 MAC帧控制字段中帧类型的数值<br/>
+信标帧：000<br/>
+数据帧：001<br/>
+确认帧：010<br/>
+命令帧：011</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/03/19/moder_operation_system_process/">现代操作系统：进程（笔记）</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-19T00:00:00+08:00" pubdate data-updated="true">Mar 19<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>进程</h3>
+
+<h4>进程模型</h4>
+
+<p>一个进程就是一个正在执行的程序实例，包括程序计数器、寄存器和变量的当前值。一个进程就是某种类型的一个活动，它有程序、输入、输出以及状态。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/03/19/linux_kernel_notes/">Linux内核设计与实现笔记</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-19T00:00:00+08:00" pubdate data-updated="true">Mar 19<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>Linux内核等待队列</h3>
+
+<p>wait_queue_head_t<br/>
+init_waitqueue_head()<br/>
+DECLARE_WAIT_QUEUE_HEAD<br/>
+等待队列就是一个进程链表，其中包含了所有等待某个特定事件的进程。<br/>
+静态初始化一个等待队列头使用下面的宏</p>
+
+<blockquote><p>DECLARE_WAIT_QUEUE_HEAD(name)</p></blockquote>
+
+<p>动态初始化一个等待队列</p>
+
+<div class="highlight"><pre><code class="c"><span class="n">wait_queue_head_t</span> <span class="n">name</span><span class="p">;</span>
+<span class="n">init_waitqueue_head</span><span class="p">(</span><span class="o">&amp;</span><span class="n">name</span><span class="p">)</span>
+</code></pre>
+</div>
+
+
+<blockquote><p>add_wait_queue() <br/>
+用来将一个进程添加到等待队列，该函数在获得必要的自旋锁后，使用<code>__add_wait_queue()</code>函数来完成队列添加工作</p></blockquote>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/4/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/2/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/06/06/vim_help_read/">VIM用户手册27笔记</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/06/octopress_use/">Octopress尝试记录</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/06/assemble_language_learn/">汇编语言学习</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/05/vim_regex_learning/">VIM正则表达式学习</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/05/vim_regex_case/">VIM使用正则表达式改变大小写</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/05/os_impletion/">一个操作系统的实现笔记</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/xiongbupt">@xiongbupt</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'xiongbupt',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("xiongbupt", 1, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/xiongbupt" class="twitter-follow-button" data-show-count="false">Follow @xiongbupt</a>
+  
+</section>
+
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/110480695522271115757?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Xiongbupt -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'xiongbupt';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

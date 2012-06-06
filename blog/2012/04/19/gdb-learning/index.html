@@ -1,0 +1,489 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>gdb 学习 - Keep Learning</title>
+  <meta name="author" content="Xiongbupt">
+
+  
+  <meta name="description" content="GBD指令 backtrace 在程序出现错误之后，使用它可以看出出错的函数被哪个函数所调用。 查看内存地址存放的值 x 内存地址(examine) 查看代码。 list 如list 1,90用来查看1到90行的代码。 用来设置断点 break 设置到函数的断点,函数所在行也可以设置断点 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://xiongbupt.github.com/blog/2012/04/19/gdb-learning/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Keep Learning" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', '32449808']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Keep Learning</a></h1>
+  
+    <h2>伪程序员记录点滴</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:xiongbupt.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/categories">Categories</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Gdb 学习</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-19T00:00:00+08:00" pubdate data-updated="true">Apr 19<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h1>GBD指令</h1>
+
+<p>backtrace 在程序出现错误之后，使用它可以看出出错的函数被哪个函数所调用。</p>
+
+<p>查看内存地址存放的值</p>
+
+<blockquote><p>x 内存地址(examine)</p></blockquote>
+
+<p>查看代码。</p>
+
+<blockquote><p>list</p>
+
+<pre><code>如list 1,90用来查看1到90行的代码。
+</code></pre></blockquote>
+
+<p>用来设置断点</p>
+
+<blockquote><p>break</p></blockquote>
+
+<p>设置到函数的断点,函数所在行也可以设置断点</p>
+
+<blockquote><p>break 函数名</p></blockquote>
+
+<p>设置条件</p>
+
+<blockquote><p>condition</p></blockquote>
+
+<p>仅仅在var变量的值为some_value时使用断点，与断点一起使用，可以减少断点的量</p>
+
+<blockquote><p>condition 1 var==some_value</p></blockquote>
+
+<h1><a href="http://fanqiang.chinaunix.net/program/other/2006-07-14/4834.shtml">摘抄</a></h1>
+
+<h2>断点(breakpoint)</h2>
+
+<p>break命令（可以简写为b）可以用来在调试的程序中设置断点，该命令有如下四种形式：</p>
+
+<p>使程序恰好在执行给定行之前停止。</p>
+
+<blockquote><p>break line-number</p></blockquote>
+
+<p>使程序恰好在进入指定的函数之前停止。</p>
+
+<blockquote><p>break function-name</p></blockquote>
+
+<p>如果condition（条件）是真，程序到达指定行或函数时停止。</p>
+
+<blockquote><p>break line-or-function if condition</p></blockquote>
+
+<p>在指定例程的入口处设置断点</p>
+
+<blockquote><p>break routine-name</p></blockquote>
+
+<p>如果该程序是由很多原文件构成的，你可以在各个原文件中设置断点，而不是在当前的原文件中设置断点，其方法如下：</p>
+
+<blockquote><p>(gdb) break filename:line-number
+(gdb) break filename:function-name</p></blockquote>
+
+<p>要想设置一个条件断点，可以利用break if命令，如下所示：</p>
+
+<blockquote><p>(gdb) break line-or-function if expr</p></blockquote>
+
+<p>例：</p>
+
+<blockquote><p>(gdb) break 46 if testsize==100</p></blockquote>
+
+<p>从断点继续运行：countinue 命令</p>
+
+<h2>断点的管理</h2>
+
+<ol>
+<li>显示当前gdb的断点信息：
+
+<blockquote><p>(gdb) info break</p></blockquote></li>
+</ol>
+
+
+<p>他会以如下的形式显示所有的断点信息：</p>
+
+<pre><code>Num Type Disp Enb Address What
+1 breakpoint keep y 0x000028bc in init_random at qsort2.c:155
+2 breakpoint keep y 0x0000291c in init_organ at qsort2.c:168
+(gdb)
+</code></pre>
+
+<ol>
+<li>删除指定的某个断点：
+
+<blockquote><p>(gdb) delete breakpoint 1</p></blockquote></li>
+</ol>
+
+
+<p>上面的命令将会删除编号为1的断点，如果不带编号参数，将删除所有的断点</p>
+
+<blockquote><p>(gdb) delete breakpoint</p></blockquote>
+
+<ol>
+<li><p>禁止使用某个断点
+下面的命令将禁止断点 1,同时断点信息的 (Enb)域将变为 n</p>
+
+<blockquote><p>(gdb) disable breakpoint 1</p></blockquote></li>
+<li><p>允许使用某个断点
+命令将允许断点 1,同时断点信息的 (Enb)域将变为 y</p>
+
+<blockquote><p>(gdb) enable breakpoint 1</p></blockquote></li>
+<li><p>清除原文件中某一代码行上的所有断点</p>
+
+<blockquote><p>(gdb)clear number
+ 注：number 为原文件的某个代码行的行号</p></blockquote></li>
+</ol>
+
+
+<h2>变量的检查和赋值</h2>
+
+<ul>
+<li>whatis:识别数组或变量的类型</li>
+<li>ptype:比whatis的功能更强，他可以提供一个结构的定义</li>
+<li>set variable:将值赋予变量</li>
+<li>print 除了显示一个变量的值外，还可以用来赋值</li>
+</ul>
+
+
+<h2>单步执行</h2>
+
+<p>不进入的单步执行</p>
+
+<blockquote><p>next</p></blockquote>
+
+<p>进入的单步执行</p>
+
+<blockquote><p>step
+如果已经进入了某函数，而想退出该函数返回到它的调用函数中，可使用命令finish</p></blockquote>
+
+<h3>常用的gdb命令</h3>
+
+<ul>
+<li>backtrace 显示程序中的当前位置和表示如何到达当前位置的栈跟踪（同义词：where）</li>
+<li>breakpoint 在程序中设置一个断点</li>
+<li>cd 改变当前工作目录</li>
+<li>clear 删除刚才停止处的断点</li>
+<li>commands 命中断点时，列出将要执行的命令</li>
+<li>continue 从断点开始继续执行</li>
+<li>delete 删除一个断点或监测点；也可与其他命令一起使用</li>
+<li>display 程序停止时显示变量和表达时</li>
+<li>down 下移栈帧，使得另一个函数成为当前函数</li>
+<li>frame 选择下一条continue命令的帧</li>
+<li>info 显示与该程序有关的各种信息</li>
+<li>jump 在源程序中的另一点开始运行</li>
+<li>kill 异常终止在gdb 控制下运行的程序</li>
+<li>list 列出相应于正在执行的程序的原文件内容</li>
+<li>next 执行下一个源程序行，从而执行其整体中的一个函数</li>
+<li>print 显示变量或表达式的值</li>
+<li>pwd 显示当前工作目录</li>
+<li>pype 显示一个数据结构（如一个结构或C++类）的内容</li>
+<li>quit 退出gdb</li>
+<li>reverse-search 在源文件中反向搜索正规表达式</li>
+<li>run 执行该程序</li>
+<li>search 在源文件中搜索正规表达式</li>
+<li>set variable 给变量赋值</li>
+<li>signal 将一个信号发送到正在运行的进程</li>
+<li>step 执行下一个源程序行，必要时进入下一个函数</li>
+<li>undisplay display命令的反命令，不要显示表达式</li>
+<li>until 结束当前循环</li>
+<li>up 上移栈帧，使另一函数成为当前函数</li>
+<li>watch 在程序中设置一个监测点（即数据断点）</li>
+<li>whatis 显示变量或函数类型</li>
+</ul>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Xiongbupt</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-19T00:00:00+08:00" pubdate data-updated="true">Apr 19<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/notes/'>Notes</a>
+  
+</span>
+
+
+      
+
+<span class="tags">
+  
+    <a class='tag' href='//learning/'>Learning</a>, <a class='tag' href='//linux/'>Linux</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://xiongbupt.github.com/blog/2012/04/19/gdb-learning/" data-via="xiongbupt" data-counturl="http://xiongbupt.github.com/blog/2012/04/19/gdb-learning/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/04/09/cpp-primer/" title="Previous Post: cpp primer">&laquo; cpp primer</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/05/14/regex-learning/" title="Next Post: 正则表达式学习">正则表达式学习 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/06/06/vim_help_read/">VIM用户手册27笔记</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/06/octopress_use/">Octopress尝试记录</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/06/assemble_language_learn/">汇编语言学习</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/05/vim_regex_learning/">VIM正则表达式学习</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/05/vim_regex_case/">VIM使用正则表达式改变大小写</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/05/os_impletion/">一个操作系统的实现笔记</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/xiongbupt">@xiongbupt</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'xiongbupt',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("xiongbupt", 1, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/xiongbupt" class="twitter-follow-button" data-show-count="false">Follow @xiongbupt</a>
+  
+</section>
+
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/110480695522271115757?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Xiongbupt -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'xiongbupt';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

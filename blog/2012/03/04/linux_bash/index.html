@@ -1,0 +1,434 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Learing bash笔记 - Keep Learning</title>
+  <meta name="author" content="Xiongbupt">
+
+  
+  <meta name="description" content="第一章 cd - ：返回到之前的文件夹。用于工作路径的跳转。
+\ ' "引用键，可以取消特殊字符的含义，各个功能有强弱，其中'为强取消."为若取消，\仅仅取消一个字符的含义。使用上面这三个可以在命令过长时取消回车的含义，一般终端会提示>作为提示符号。
+ctrl+m在终端中相当于回车
+ctrl+d &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://xiongbupt.github.com/blog/2012/03/04/linux_bash/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Keep Learning" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', '32449808']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Keep Learning</a></h1>
+  
+    <h2>伪程序员记录点滴</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:xiongbupt.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/categories">Categories</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Learing Bash笔记</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-04T00:00:00+08:00" pubdate data-updated="true">Mar 4<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h3>第一章</h3>
+
+<p>cd - ：返回到之前的文件夹。用于工作路径的跳转。<br/>
+\ ' "引用键，可以取消特殊字符的含义，各个功能有强弱，其中'为强取消."为若取消，\仅仅取消一个字符的含义。使用上面这三个可以在命令过长时取消回车的含义，一般终端会提示>作为提示符号。<br/>
+ctrl+m在终端中相当于回车<br/>
+ctrl+d DELETE<br/>
+ctrl+j BACKSPACE<br/>
+stty --all查看当前终端的所有ctrl配置。<br/>
+在shell中，使用help中的通配符时，需要使用<code>''</code>将对应的通配符引用起来，如help 're*'; help 're??'等。</p>
+
+<h3>第二章 Command-Line Editing</h3>
+
+<p>改变shell的编辑模式使用set命名<br/>
+set -o emacs 或者 set -o vi<br/>
+vi模式编辑中的一些基本知识</p>
+
+<h4>字符移动</h4>
+
+<p>vi模式中有两种词的概念，一种是non-blank，这些就是所有的非空字符便是这种概念，另一种是word，这些是仅仅由字母数字以及_组成的，其他的均不算。<br/>
+h 左移一个字符<br/>
+l 右移一个字符<br/>
+w 右移一个词word<br/>
+b 左移一个词word<br/>
+W 下一个non-blank的开始<br/>
+B 前一个non-blank的开始<br/>
+e 当前词word的最后<br/>
+E 当前词non-blank的最后<br/>
+0 行的开始<br/>
+^ non-blank的开始<br/>
+$ 行的结束</p>
+
+<h4>插入改变文本</h4>
+
+<p>i<br/>
+a append<br/>
+I beginning<br/>
+A end of line<br/>
+R</p>
+
+<h4>删除指令</h4>
+
+<p>dh 向后删除一个字符<br/>
+dl 向前删除一个字符<br/>
+db 向后删除一个词<br/>
+dw 向前删除一个词<br/>
+dB 向后删除一个非空区域<br/>
+dW向前删除一个非空区域<br/>
+d$ 删除到行尾<br/>
+d0 删除到行首</p>
+
+<p>D d$<br/>
+dd 0d$<br/>
+C c$<br/>
+cc 0c$<br/>
+X dl<br/>
+x dh</p>
+
+<h4>历史中穿梭</h4>
+
+<p>k - backward<br/>
+j + forward<br/>
+G   move to line given by repeat count<br/>
+/string search backward<br/>
+?string search forward<br/>
+n       repeat the same as previous<br/>
+N       repeat in opposite direction of previous</p>
+
+<h4>字符寻找</h4>
+
+<p>fx move right <br/>
+Fx move left<br/>
+tx move right (until, back one space)<br/>
+Tx move left (until, forward one space)<br/>
+; redo last finding<br/>
+, redo last finding in opposite direction</p>
+
+<h4>文本补全</h4>
+
+<p>ESC \<br/>
+*</p>
+
+<h4>混杂命令</h4>
+
+<p>~ 翻转大小写<br/>
+- 将上一个命令的最后一个参数添加到当前行<br/>
+ctrl-l 清空屏幕<br/>
+# 注释符号<br/>
+注意上述命令均需在vi的命令模式下输入，不能在输入模式下输入</p>
+
+<h5>fc</h5>
+
+<p>fc -l列出之前的命令，带编号。</p>
+
+<h4>bash快捷键</h4>
+
+<p>C-A 行开始<br/>
+C-E 行结束<br/>
+C-F 右移<br/>
+C-B 左移<br/>
+C-K 整行删除<br/>
+C-P 向上翻阅历史命令<br/>
+C-N 向下翻阅历史命令<br/>
+C-R 搜索历史命令</p>
+
+<h4>bash自定义中最重要四种特征</h4>
+
+<p>特殊文件：.bashrc,.bash_log,.bash_profile<br/>
+别名：alias<br/>
+变量：var=value(等号两侧不能有空格）<br/>
+选项</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Xiongbupt</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-04T00:00:00+08:00" pubdate data-updated="true">Mar 4<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/linux/'>Linux</a>
+  
+</span>
+
+
+      
+
+<span class="tags">
+  
+    <a class='tag' href='//linux/'>Linux</a>, <a class='tag' href='//shell/'>Shell</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://xiongbupt.github.com/blog/2012/03/04/linux_bash/" data-via="xiongbupt" data-counturl="http://xiongbupt.github.com/blog/2012/03/04/linux_bash/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/03/02/linux_awk_study/" title="Previous Post: AWK语言学习">&laquo; AWK语言学习</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/03/06/vim_tips/" title="Next Post: vim_tips摘抄">vim_tips摘抄 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/06/06/vim_help_read/">VIM用户手册27笔记</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/06/octopress_use/">Octopress尝试记录</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/06/assemble_language_learn/">汇编语言学习</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/05/vim_regex_learning/">VIM正则表达式学习</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/05/vim_regex_case/">VIM使用正则表达式改变大小写</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/05/os_impletion/">一个操作系统的实现笔记</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/xiongbupt">@xiongbupt</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'xiongbupt',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("xiongbupt", 1, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/xiongbupt" class="twitter-follow-button" data-show-count="false">Follow @xiongbupt</a>
+  
+</section>
+
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/110480695522271115757?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Xiongbupt -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'xiongbupt';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

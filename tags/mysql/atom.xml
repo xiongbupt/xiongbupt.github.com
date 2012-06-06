@@ -1,0 +1,1595 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: MySQL | Keep Learning]]></title>
+  <link href="http://xiongbupt.github.com/tags/mysql/atom.xml" rel="self"/>
+  <link href="http://xiongbupt.github.com/"/>
+  <updated>2012-06-07T05:58:54+08:00</updated>
+  <id>http://xiongbupt.github.com/</id>
+  <author>
+    <name><![CDATA[Xiongbupt]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Learning SQL CH10]]></title>
+    <link href="http://xiongbupt.github.com/blog/2012/05/26/learning-sql-ch10/"/>
+    <updated>2012-05-26T00:00:00+08:00</updated>
+    <id>http://xiongbupt.github.com/blog/2012/05/26/learning-sql-ch10</id>
+    <content type="html"><![CDATA[<h1>再谈连接</h1>
+
+<p>conitnue</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Learning SQL CH9]]></title>
+    <link href="http://xiongbupt.github.com/blog/2012/05/25/learning-sql-ch9/"/>
+    <updated>2012-05-25T00:00:00+08:00</updated>
+    <id>http://xiongbupt.github.com/blog/2012/05/25/learning-sql-ch9</id>
+    <content type="html"><![CDATA[<h1>子查询</h1>
+
+<p>可以用于4种SQL语句中。</p>
+
+<h2>什么是子查询</h2>
+
+<p>子查询是包含在另一个SQL语句内部的查询。子查询总是由括号括起来，并且通常在包含语句之前执行。
+子查询可以返回的结果集为：</p>
+
+<ul>
+<li>单列单行</li>
+<li>单列多行</li>
+<li>多列多行</li>
+</ul>
+
+
+<p>当子查询的结果为单列单行时，它可以被用作等式的一个条件中的一个表达式，如果返回结果多于一行，它可以被比较，不能被用于等式判断）。</p>
+
+<h2>子查询类型</h2>
+
+<p>根据子查询是否独立可以分为非关联子查询（查询完全独立）和关联子查询（引用包含语句中的列）。</p>
+
+<h2>非关联子查询</h2>
+
+<p>可以独立执行。<br/>
+非关联的返回单行单列的子查询是<font color ="red">标量子查询。</font>
+子查询中可以使用各种查询语句（6个）。
+单一事务不能等于多个事务的集合。</p>
+
+<h3>多行单列子查询</h3>
+
+<h4>in和not in运算符</h4>
+
+<p><div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">branch_id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">city</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">FROM</span> <span class="n">branch</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">WHERE</span> <span class="n">name</span> <span class="k">IN</span> <span class="p">(</span><span class="s1">&#39;Headquarters&#39;</span><span class="p">,</span> <span class="s1">&#39;Quincy Branch&#39;</span><span class="p">);</span>
+<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;+</span><span class="c1">-----------+---------------+---------+</span>
+<span class="o">|</span> <span class="n">branch_id</span> <span class="o">|</span> <span class="n">name</span>          <span class="o">|</span> <span class="n">city</span>    <span class="o">|</span>
+<span class="o">+</span><span class="c1">-----------+---------------+---------+</span>
+<span class="o">|</span>         <span class="mi">1</span> <span class="o">|</span> <span class="n">Headquarters</span>  <span class="o">|</span> <span class="n">Waltham</span> <span class="o">|</span>
+<span class="o">|</span>         <span class="mi">3</span> <span class="o">|</span> <span class="n">Quincy</span> <span class="n">Branch</span> <span class="o">|</span> <span class="n">Quincy</span>  <span class="o">|</span>
+<span class="o">+</span><span class="c1">-----------+---------------+---------+</span>
+<span class="mi">2</span> <span class="k">rows</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">branch_id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">city</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">FROM</span> <span class="n">branch</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">WHERE</span> <span class="n">name</span> <span class="k">NOT</span> <span class="k">IN</span> <span class="p">(</span><span class="s1">&#39;Headquarters&#39;</span><span class="p">,</span> <span class="s1">&#39;Quincy Branch&#39;</span><span class="p">);</span>
+<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;+</span><span class="c1">-----------+---------------+--------+</span>
+<span class="o">|</span> <span class="n">branch_id</span> <span class="o">|</span> <span class="n">name</span>          <span class="o">|</span> <span class="n">city</span>   <span class="o">|</span>
+<span class="o">+</span><span class="c1">-----------+---------------+--------+</span>
+<span class="o">|</span>         <span class="mi">2</span> <span class="o">|</span> <span class="n">Woburn</span> <span class="n">Branch</span> <span class="o">|</span> <span class="n">Woburn</span> <span class="o">|</span>
+<span class="o">|</span>         <span class="mi">4</span> <span class="o">|</span> <span class="n">So</span><span class="p">.</span> <span class="n">NH</span> <span class="n">Branch</span> <span class="o">|</span> <span class="n">Salem</span>  <span class="o">|</span>
+<span class="o">+</span><span class="c1">-----------+---------------+--------+</span>
+<span class="mi">2</span> <span class="k">rows</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">emp_id</span><span class="p">,</span> <span class="n">fname</span><span class="p">,</span> <span class="n">lname</span><span class="p">,</span> <span class="n">title</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">FROM</span> <span class="n">employee</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">WHERE</span> <span class="n">emp_id</span> <span class="k">IN</span> <span class="p">(</span><span class="k">SELECT</span> <span class="k">DISTINCT</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">superior_emp_id</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">FROM</span> <span class="n">employee</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="p">);</span>
+<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;+</span><span class="c1">--------+---------+-----------+--------------------+</span>
+<span class="o">|</span> <span class="n">emp_id</span> <span class="o">|</span> <span class="n">fname</span>   <span class="o">|</span> <span class="n">lname</span>     <span class="o">|</span> <span class="n">title</span>              <span class="o">|</span>
+<span class="o">+</span><span class="c1">--------+---------+-----------+--------------------+</span>
+<span class="o">|</span>      <span class="mi">1</span> <span class="o">|</span> <span class="n">Michael</span> <span class="o">|</span> <span class="n">Smith</span>     <span class="o">|</span> <span class="n">President</span>          <span class="o">|</span>
+<span class="o">|</span>      <span class="mi">3</span> <span class="o">|</span> <span class="n">Robert</span>  <span class="o">|</span> <span class="n">Tyler</span>     <span class="o">|</span> <span class="n">Treasurer</span>          <span class="o">|</span>
+<span class="o">|</span>      <span class="mi">4</span> <span class="o">|</span> <span class="n">Susan</span>   <span class="o">|</span> <span class="n">Hawthorne</span> <span class="o">|</span> <span class="n">Operations</span> <span class="n">Manager</span> <span class="o">|</span>
+<span class="o">|</span>      <span class="mi">6</span> <span class="o">|</span> <span class="n">Helen</span>   <span class="o">|</span> <span class="n">Fleming</span>   <span class="o">|</span> <span class="n">Head</span> <span class="n">Teller</span>        <span class="o">|</span>
+<span class="o">|</span>     <span class="mi">10</span> <span class="o">|</span> <span class="n">Paula</span>   <span class="o">|</span> <span class="n">Roberts</span>   <span class="o">|</span> <span class="n">Head</span> <span class="n">Teller</span>        <span class="o">|</span>
+<span class="o">|</span>     <span class="mi">13</span> <span class="o">|</span> <span class="n">John</span>    <span class="o">|</span> <span class="n">Blake</span>     <span class="o">|</span> <span class="n">Head</span> <span class="n">Teller</span>        <span class="o">|</span>
+<span class="o">|</span>     <span class="mi">16</span> <span class="o">|</span> <span class="n">Theresa</span> <span class="o">|</span> <span class="n">Markham</span>   <span class="o">|</span> <span class="n">Head</span> <span class="n">Teller</span>        <span class="o">|</span>
+<span class="o">+</span><span class="c1">--------+---------+-----------+--------------------+</span>
+<span class="mi">7</span> <span class="k">rows</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">emp_id</span><span class="p">,</span> <span class="n">fname</span><span class="p">,</span> <span class="n">lname</span><span class="p">,</span> <span class="n">title</span> <span class="k">FROM</span> <span class="n">employee</span> <span class="k">WHERE</span> <span class="n">emp_id</span> <span class="k">NOT</span> <span class="k">IN</span> <span class="p">(</span><span class="k">SELECT</span> <span class="k">DISTINCT</span> <span class="n">superior_emp_id</span> <span class="k">FROM</span> <span class="n">employee</span> <span class="k">WHERE</span> <span class="n">superior_emp_id</span> <span class="k">IS</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">);</span>
+<span class="o">+</span><span class="c1">--------+----------+----------+----------------+</span>
+<span class="o">|</span> <span class="n">emp_id</span> <span class="o">|</span> <span class="n">fname</span>    <span class="o">|</span> <span class="n">lname</span>    <span class="o">|</span> <span class="n">title</span>          <span class="o">|</span>
+<span class="o">+</span><span class="c1">--------+----------+----------+----------------+</span>
+<span class="o">|</span>      <span class="mi">2</span> <span class="o">|</span> <span class="n">Susan</span>    <span class="o">|</span> <span class="n">Barker</span>   <span class="o">|</span> <span class="n">Vice</span> <span class="n">President</span> <span class="o">|</span>
+<span class="o">|</span>      <span class="mi">5</span> <span class="o">|</span> <span class="n">John</span>     <span class="o">|</span> <span class="n">Gooding</span>  <span class="o">|</span> <span class="n">Loan</span> <span class="n">Manager</span>   <span class="o">|</span>
+<span class="o">|</span>      <span class="mi">7</span> <span class="o">|</span> <span class="n">Chris</span>    <span class="o">|</span> <span class="n">Tucker</span>   <span class="o">|</span> <span class="n">Teller</span>         <span class="o">|</span>
+<span class="o">|</span>      <span class="mi">8</span> <span class="o">|</span> <span class="n">Sarah</span>    <span class="o">|</span> <span class="n">Parker</span>   <span class="o">|</span> <span class="n">Teller</span>         <span class="o">|</span>
+<span class="o">|</span>      <span class="mi">9</span> <span class="o">|</span> <span class="n">Jane</span>     <span class="o">|</span> <span class="n">Grossman</span> <span class="o">|</span> <span class="n">Teller</span>         <span class="o">|</span>
+<span class="o">|</span>     <span class="mi">11</span> <span class="o">|</span> <span class="n">Thomas</span>   <span class="o">|</span> <span class="n">Ziegler</span>  <span class="o">|</span> <span class="n">Teller</span>         <span class="o">|</span>
+<span class="o">|</span>     <span class="mi">12</span> <span class="o">|</span> <span class="n">Samantha</span> <span class="o">|</span> <span class="n">Jameson</span>  <span class="o">|</span> <span class="n">Teller</span>         <span class="o">|</span>
+<span class="o">|</span>     <span class="mi">14</span> <span class="o">|</span> <span class="n">Cindy</span>    <span class="o">|</span> <span class="n">Mason</span>    <span class="o">|</span> <span class="n">Teller</span>         <span class="o">|</span>
+<span class="o">|</span>     <span class="mi">15</span> <span class="o">|</span> <span class="n">Frank</span>    <span class="o">|</span> <span class="n">Portman</span>  <span class="o">|</span> <span class="n">Teller</span>         <span class="o">|</span>
+<span class="o">|</span>     <span class="mi">17</span> <span class="o">|</span> <span class="n">Beth</span>     <span class="o">|</span> <span class="n">Fowler</span>   <span class="o">|</span> <span class="n">Teller</span>         <span class="o">|</span>
+<span class="o">|</span>     <span class="mi">18</span> <span class="o">|</span> <span class="n">Rick</span>     <span class="o">|</span> <span class="n">Tulman</span>   <span class="o">|</span> <span class="n">Teller</span>         <span class="o">|</span>
+<span class="o">+</span><span class="c1">--------+----------+----------+----------------+</span>
+<span class="mi">11</span> <span class="k">rows</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<font color ="red">注意上面在使用<code>NOT IN</code>的时候该子句中的<code>WHERE superior_emp_id IS NOT NULL</code></font></p>
+
+<h4>all运算符</h4>
+
+<h4>any运算符</h4>
+
+<h3>多列子查询</h3>
+
+<h2>关联子查询</h2>
+
+<p>关联子查询为每一个候选行，即可能成为结果的行执行一遍。</p>
+
+<h3>exists运算符</h3>
+
+<p>exists运算符是构造包含关联子查询条件的最常用运算符。
+在使用select语句时，经常使用的是<code>select 1</code>或者<code>select \*</code></p>
+
+<h3>关联子查询操作数据</h3>
+
+<p><font color ="red"><strong>切记，在MySQL中delete语句使用关联子查询时，无论如何都不能使用表别名。</strong></font></p>
+
+<h2>何时使用子查询</h2>
+
+<h3>子查询作为数据源</h3>
+
+<h4>数据加工</h4>
+
+<h4>面向任务的子查询</h4>
+
+<h4>过滤条件 中的子查询</h4>
+
+<h4>子查询作为表达式生成器</h4>
+
+<h2>子查询总结</h2>
+
+<ul>
+<li>返回结果可以是单行单列，单列多行以及多列多行</li>
+<li>可以独立于包含语句（非关联子查询）</li>
+<li>可以引用包含语句中的一行或多行（关联子查询）</li>
+<li>可以用于条件中，这些条件使用比较运算符以及其他特殊目的的运算符（in，not in，exists和not exists）；</li>
+<li>它可以出现在select、update、delete和insert语句；</li>
+<li>它产生的结果集可以与其他表或子查询连接；</li>
+<li>它可以生成值来填充表或者查询结果集中的一些列；</li>
+<li>它可以用于查询中的select，from，where，having和order by子句。</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Learning SQL Ch8]]></title>
+    <link href="http://xiongbupt.github.com/blog/2012/05/25/learning-sql-ch8/"/>
+    <updated>2012-05-25T00:00:00+08:00</updated>
+    <id>http://xiongbupt.github.com/blog/2012/05/25/learning-sql-ch8</id>
+    <content type="html"><![CDATA[<h2>分组与聚集</h2>
+
+<p>使用<code>GROUP</code>来完成分组的功能，如下图所示：
+<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">open_emp_id</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">FROM</span> <span class="n">account</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">open_emp_id</span><span class="p">;</span>
+<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;+</span><span class="c1">-------------+</span>
+<span class="o">|</span> <span class="n">open_emp_id</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">-------------+</span>
+<span class="o">|</span>           <span class="mi">1</span> <span class="o">|</span>
+<span class="o">|</span>          <span class="mi">10</span> <span class="o">|</span>
+<span class="o">|</span>          <span class="mi">13</span> <span class="o">|</span>
+<span class="o">|</span>          <span class="mi">16</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">-------------+</span>
+<span class="mi">4</span> <span class="k">rows</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<code>COUNT()</code>称为聚集函数，可以计算每个分组的行数，如下面的例子所示。本例相对于上例来说仅仅添加了<code>COUNT()</code>函数来完成聚集功能。
+<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">open_emp_id</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="n">how_many</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">FROM</span> <span class="n">account</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">open_emp_id</span><span class="p">;</span>
+<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;+</span><span class="c1">-------------+----------+</span>
+<span class="o">|</span> <span class="n">open_emp_id</span> <span class="o">|</span> <span class="n">how_many</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">-------------+----------+</span>
+<span class="o">|</span>           <span class="mi">1</span> <span class="o">|</span>        <span class="mi">8</span> <span class="o">|</span>
+<span class="o">|</span>          <span class="mi">10</span> <span class="o">|</span>        <span class="mi">7</span> <span class="o">|</span>
+<span class="o">|</span>          <span class="mi">13</span> <span class="o">|</span>        <span class="mi">3</span> <span class="o">|</span>
+<span class="o">|</span>          <span class="mi">16</span> <span class="o">|</span>        <span class="mi">6</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">-------------+----------+</span>
+<span class="mi">4</span> <span class="k">rows</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</code></pre>
+</div>
+
+上例说明，通过联合使用<code>group by</code>子句和<code>count()</code>聚集函数，可以在不查看原始数据的情况下，精确满足业务问题对数据的需要。<br/>
+<font color ="red"><strong>使用group函数时，不应该在<code>WHERE</code>子句中使用聚集函数<code>COUNT()</code>。因为在评估<code>WHERE</code>子句时分组还没有被创建。因此必须在<code>HAVING()</code>子句中使用分组过滤条件。</strong></font>
+<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">open_emp_id</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="n">how_many</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">FROM</span> <span class="n">account</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">open_emp_id</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">HAVING</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span>
+<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;+</span><span class="c1">-------------+----------+</span>
+<span class="o">|</span> <span class="n">open_emp_id</span> <span class="o">|</span> <span class="n">how_many</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">-------------+----------+</span>
+<span class="o">|</span>           <span class="mi">1</span> <span class="o">|</span>        <span class="mi">8</span> <span class="o">|</span>
+<span class="o">|</span>          <span class="mi">10</span> <span class="o">|</span>        <span class="mi">7</span> <span class="o">|</span>
+<span class="o">|</span>          <span class="mi">16</span> <span class="o">|</span>        <span class="mi">6</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">-------------+----------+</span>
+<span class="mi">3</span> <span class="k">rows</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</code></pre>
+</div>
+</p>
+
+<h3>聚集函数</h3>
+
+<p>聚集函数对某个分组的所有行执行特定的操作。</p>
+
+<ul>
+<li><code>MAX()</code>返回集合中的最大值</li>
+<li><code>MIN()</code>返回集合中的最小值</li>
+<li><code>AVG()</code>返回集合中的平均值</li>
+<li><code>SUM()</code>返回集合中的所有值的和</li>
+<li><code>COUNT()</code>返回集合中值的个数</li>
+</ul>
+
+
+<h4>隐式分组或显示分组</h4>
+
+<p>隐式分组就是没有使用<code>GOURP BY</code>的查询语句，显示分组即是使用了<code>GROUP BY</code>子句的语句。</p>
+
+<h4>对独立值计数</h4>
+
+<p>即在<code>COUNT()</code>子句中不是使用<code>COUNT(*)</code>来进行聚集，而是使用<code>COUNT(name)</code>来记数。当需要去除重复的name时，需要在<code>COUNT()</code>中添加<code>DISTINCT</code>关键字。即<code>COUNT(DISTINCT NAME)</code>的方式来完成对应的计数统计。</p>
+
+<h4>使用表达式</h4>
+
+<p>在聚集函数中可以使用表达式</p>
+
+<h4>NULL值的处理</h4>
+
+<p>对于<code>MAX()</code>,<code>MIN()</code>,<code>AVG()</code>,<code>SUM()</code>中，没有什么影响。但是对于<code>COUNT()</code>而言，当使用<code>COUNT(*)</code>时，会有变化。但是使用<code>COUNT(NAME)</code>这种情况没有变化。</p>
+
+<h3>产生分组</h3>
+
+<h4>单列分组</h4>
+
+<p><code>GROUP BY</code>后面仅仅有一个条目</p>
+
+<h4>多列分组</h4>
+
+<p><code>GROUP BY</code>后面有多个条目</p>
+
+<h4>利用表达式分组</h4>
+
+<p><code>GROUP BY</code>后面跟着的是一个表达式</p>
+
+<h4>产生合计数</h4>
+
+<p>使用<code>WITH ROLLUP</code>，示例如下：
+<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">product_cd</span><span class="p">,</span> <span class="n">open_branch_id</span><span class="p">,</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">SUM</span><span class="p">(</span><span class="n">avail_balance</span><span class="p">)</span> <span class="n">avail_balance</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">FROM</span> <span class="n">account</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">product_cd</span><span class="p">,</span> <span class="n">open_branch_id</span> <span class="k">WITH</span> <span class="k">ROLLUP</span><span class="p">;</span>
+<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;+</span><span class="c1">------------+----------------+---------------+</span>
+<span class="o">|</span> <span class="n">product_cd</span> <span class="o">|</span> <span class="n">open_branch_id</span> <span class="o">|</span> <span class="n">avail_balance</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">------------+----------------+---------------+</span>
+<span class="o">|</span> <span class="n">BUS</span>        <span class="o">|</span>              <span class="mi">2</span> <span class="o">|</span>       <span class="mi">9345</span><span class="p">.</span><span class="mi">55</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">BUS</span>        <span class="o">|</span>              <span class="mi">4</span> <span class="o">|</span>          <span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">BUS</span>        <span class="o">|</span>           <span class="k">NULL</span> <span class="o">|</span>       <span class="mi">9345</span><span class="p">.</span><span class="mi">55</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">CD</span>         <span class="o">|</span>              <span class="mi">1</span> <span class="o">|</span>      <span class="mi">11500</span><span class="p">.</span><span class="mi">00</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">CD</span>         <span class="o">|</span>              <span class="mi">2</span> <span class="o">|</span>       <span class="mi">8000</span><span class="p">.</span><span class="mi">00</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">CD</span>         <span class="o">|</span>           <span class="k">NULL</span> <span class="o">|</span>      <span class="mi">19500</span><span class="p">.</span><span class="mi">00</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">CHK</span>        <span class="o">|</span>              <span class="mi">1</span> <span class="o">|</span>        <span class="mi">782</span><span class="p">.</span><span class="mi">16</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">CHK</span>        <span class="o">|</span>              <span class="mi">2</span> <span class="o">|</span>       <span class="mi">3315</span><span class="p">.</span><span class="mi">77</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">CHK</span>        <span class="o">|</span>              <span class="mi">3</span> <span class="o">|</span>       <span class="mi">1057</span><span class="p">.</span><span class="mi">75</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">CHK</span>        <span class="o">|</span>              <span class="mi">4</span> <span class="o">|</span>      <span class="mi">67852</span><span class="p">.</span><span class="mi">33</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">CHK</span>        <span class="o">|</span>           <span class="k">NULL</span> <span class="o">|</span>      <span class="mi">73008</span><span class="p">.</span><span class="mi">01</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">MM</span>         <span class="o">|</span>              <span class="mi">1</span> <span class="o">|</span>      <span class="mi">14832</span><span class="p">.</span><span class="mi">64</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">MM</span>         <span class="o">|</span>              <span class="mi">3</span> <span class="o">|</span>       <span class="mi">2212</span><span class="p">.</span><span class="mi">50</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">MM</span>         <span class="o">|</span>           <span class="k">NULL</span> <span class="o">|</span>      <span class="mi">17045</span><span class="p">.</span><span class="mi">14</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">SAV</span>        <span class="o">|</span>              <span class="mi">1</span> <span class="o">|</span>        <span class="mi">767</span><span class="p">.</span><span class="mi">77</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">SAV</span>        <span class="o">|</span>              <span class="mi">2</span> <span class="o">|</span>        <span class="mi">700</span><span class="p">.</span><span class="mi">00</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">SAV</span>        <span class="o">|</span>              <span class="mi">4</span> <span class="o">|</span>        <span class="mi">387</span><span class="p">.</span><span class="mi">99</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">SAV</span>        <span class="o">|</span>           <span class="k">NULL</span> <span class="o">|</span>       <span class="mi">1855</span><span class="p">.</span><span class="mi">76</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">SBL</span>        <span class="o">|</span>              <span class="mi">3</span> <span class="o">|</span>      <span class="mi">50000</span><span class="p">.</span><span class="mi">00</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">SBL</span>        <span class="o">|</span>           <span class="k">NULL</span> <span class="o">|</span>      <span class="mi">50000</span><span class="p">.</span><span class="mi">00</span> <span class="o">|</span>
+<span class="o">|</span> <span class="k">NULL</span>       <span class="o">|</span>           <span class="k">NULL</span> <span class="o">|</span>     <span class="mi">170754</span><span class="p">.</span><span class="mi">46</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">------------+----------------+---------------+</span>
+<span class="mi">21</span> <span class="k">rows</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</code></pre>
+</div>
+</p>
+
+<h3>分组过滤条件</h3>
+
+<p>当使用分组数据时，不能使用<code>WHERE</code>子句，过滤子句应该使用<code>HAVING</code>子句。在分组之后如果需要对数据应用过滤条件，可以在<code>HAVING</code>子句中放置这些条件。
+可以在<code>HAVING</code>子句中包含未在<code>SELECT</code>子句中出现的聚集函数。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Learning SQL ch7]]></title>
+    <link href="http://xiongbupt.github.com/blog/2012/05/24/learning-sql-ch7/"/>
+    <updated>2012-05-24T00:00:00+08:00</updated>
+    <id>http://xiongbupt.github.com/blog/2012/05/24/learning-sql-ch7</id>
+    <content type="html"><![CDATA[<h2>CH7 数据生成、转换和操作</h2>
+
+<h3>使用字符串数据</h3>
+
+<p>字符类型有CHAR，VARCHAR，TEXT类型，各种的范围不同，第二章中有详细的说明。
+创建一个仅仅包含字符的表如下所示：
+<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">string_tbl</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="p">(</span><span class="n">char_fld</span> <span class="nb">CHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">vchar_fld</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">text_fld</span> <span class="nb">TEXT</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="p">);</span>
+<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</code></pre>
+</div>
+</p>
+
+<h4>生成字符串</h4>
+
+<p>生成字符串最简单的方式是用一对单引号将需要使用的字符串括起来。在向表中插入字符串数据时，保证长度不会超过设定的最大值。
+<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">string_tbl</span> <span class="p">(</span><span class="n">char_fld</span><span class="p">,</span> <span class="n">vchar_fld</span><span class="p">,</span> <span class="n">text_fld</span><span class="p">)</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">&#39;This is char data&#39;</span><span class="p">,</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="s1">&#39;This is varchar data&#39;</span><span class="p">,</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="s1">&#39;This is text data&#39;</span><span class="p">);</span>
+<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</code></pre>
+</div>
+</p>
+
+<h5>包含单引号</h5>
+
+<p>通过在单引号前面添加一个单引号来转义该单引号。<em>在MySQL中可以使用反斜杠\来作为转义符。</em></p>
+
+<h5>包含特殊字符</h5>
+
+<p>通过使用MySQL中自带的<code>char</code>函数，可以将数字转成对应的字符。对于ASCII字符集，使用<code>CHAR(number)</code>可以返回ASCII的值为number的数所对应的字符。<br/>
+可以使用<code>concat()</code>函数来连接若干字符串，一些可以输入，另外一些可以通过<code>char()</code>函数生成。<br/>
+如果需要通过字符查询该字符的ASCII的值，可以通过调用<code>ascii</code>函数，该函数将会返回对应字符的ASCII值。</p>
+
+<h4>操作字符串</h4>
+
+<p>一共有两类操作字符串的函数，分别是返回<font color="red">数字</font>的和返回<font color="red">字符串</font>的。</p>
+
+<h5>返回数字的字符串函数</h5>
+
+<p><code>length()</code>函数，返回字符串的长度。
+<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">LENGTH</span><span class="p">(</span><span class="n">char_fld</span><span class="p">)</span> <span class="k">char_length</span><span class="p">,</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">LENGTH</span><span class="p">(</span><span class="n">vchar_fld</span><span class="p">)</span> <span class="n">varchar_length</span><span class="p">,</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">LENGTH</span><span class="p">(</span><span class="n">text_fld</span><span class="p">)</span> <span class="n">text_length</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">FROM</span> <span class="n">string_tbl</span><span class="p">;</span>
+<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</code></pre>
+</div>
+
+<code>position()</code>函数，返回子字符串在字符串的位置。
+<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">POSITION</span><span class="p">(</span><span class="s1">&#39;charcters&#39;</span> <span class="k">IN</span> <span class="n">vchar_fld</span><span class="p">)</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">FROM</span> <span class="n">string_tbl</span><span class="p">;</span>
+<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</code></pre>
+</div>
+
+上面这个<code>POSITION</code>函数的返回值，当没有匹配的时候，返回0，当匹配了的时候，返回匹配的位置。注意这个第一位置为1，不是0。</p>
+
+<p>如果希望指定搜索开始的位置，而不是默认的0那个位置，可以使用<code>locate</code>函数。与<code>position</code>类似，但是可以接受可选的第三个参数，指定开始的位置。
+<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">LOCATE</span><span class="p">(</span><span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="n">vchar_fld</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">FROM</span> <span class="n">string_tbl</span><span class="p">;</span>
+<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</code></pre>
+</div>
+</p>
+
+<p><code>strcmp()</code>函数，有三种返回值，</p>
+
+<ul>
+<li>-1，第一个字符串的排序位于第二个字符串之前；</li>
+<li>0，两个字符串相同；</li>
+<li>1，第一个字符串的排序位于第二个字符串之后。</li>
+</ul>
+
+
+<p><font color ="red">在<strong>MySQL中，<code>strcmp</code>对小写不区分，也因为这，会导致在比较的两个字符是对应的大小写时，会出现相应的结果
+</strong></font></p>
+
+<p>除了<code>strcmp</code>函数之外，对于比较还可以使用<code>like</code>或者<code>regex</code>操作符来比较字符串。这些比较的结果为1（true）或0（false）。</p>
+
+<p>ex1：
+<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> <span class="n">name</span> <span class="k">LIKE</span> <span class="ss">&quot;%ns&quot;</span> <span class="n">ends_in_ns</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">FROM</span> <span class="n">department</span><span class="p">;</span>
+<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;+</span><span class="c1">----------------+------------+</span>
+<span class="o">|</span> <span class="n">name</span>           <span class="o">|</span> <span class="n">ends_in_ns</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">----------------+------------+</span>
+<span class="o">|</span> <span class="n">Operations</span>     <span class="o">|</span>          <span class="mi">1</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">Loans</span>          <span class="o">|</span>          <span class="mi">1</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">Administration</span> <span class="o">|</span>          <span class="mi">0</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">----------------+------------+</span>
+<span class="mi">3</span> <span class="k">rows</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</code></pre>
+</div>
+</p>
+
+<p>ex2:
+<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">cust_id</span><span class="p">,</span> <span class="n">cust_type_cd</span><span class="p">,</span> <span class="n">fed_id</span><span class="p">,</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">fed_id</span> <span class="n">REGEXP</span> <span class="s1">&#39;.{3}-.{2}-.{4}&#39;</span> <span class="n">is_ss_no_format</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">FROM</span> <span class="n">customer</span><span class="p">;</span>
+<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;+</span><span class="c1">---------+--------------+-------------+-----------------+</span>
+<span class="o">|</span> <span class="n">cust_id</span> <span class="o">|</span> <span class="n">cust_type_cd</span> <span class="o">|</span> <span class="n">fed_id</span>      <span class="o">|</span> <span class="n">is_ss_no_format</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">---------+--------------+-------------+-----------------+</span>
+<span class="o">|</span>       <span class="mi">1</span> <span class="o">|</span> <span class="n">I</span>            <span class="o">|</span> <span class="mi">111</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">1111</span> <span class="o">|</span>               <span class="mi">1</span> <span class="o">|</span>
+<span class="o">|</span>       <span class="mi">2</span> <span class="o">|</span> <span class="n">I</span>            <span class="o">|</span> <span class="mi">222</span><span class="o">-</span><span class="mi">22</span><span class="o">-</span><span class="mi">2222</span> <span class="o">|</span>               <span class="mi">1</span> <span class="o">|</span>
+<span class="o">|</span>       <span class="mi">3</span> <span class="o">|</span> <span class="n">I</span>            <span class="o">|</span> <span class="mi">333</span><span class="o">-</span><span class="mi">33</span><span class="o">-</span><span class="mi">3333</span> <span class="o">|</span>               <span class="mi">1</span> <span class="o">|</span>
+<span class="o">|</span>       <span class="mi">4</span> <span class="o">|</span> <span class="n">I</span>            <span class="o">|</span> <span class="mi">444</span><span class="o">-</span><span class="mi">44</span><span class="o">-</span><span class="mi">4444</span> <span class="o">|</span>               <span class="mi">1</span> <span class="o">|</span>
+<span class="o">|</span>       <span class="mi">5</span> <span class="o">|</span> <span class="n">I</span>            <span class="o">|</span> <span class="mi">555</span><span class="o">-</span><span class="mi">55</span><span class="o">-</span><span class="mi">5555</span> <span class="o">|</span>               <span class="mi">1</span> <span class="o">|</span>
+<span class="o">|</span>       <span class="mi">6</span> <span class="o">|</span> <span class="n">I</span>            <span class="o">|</span> <span class="mi">666</span><span class="o">-</span><span class="mi">66</span><span class="o">-</span><span class="mi">6666</span> <span class="o">|</span>               <span class="mi">1</span> <span class="o">|</span>
+<span class="o">|</span>       <span class="mi">7</span> <span class="o">|</span> <span class="n">I</span>            <span class="o">|</span> <span class="mi">777</span><span class="o">-</span><span class="mi">77</span><span class="o">-</span><span class="mi">7777</span> <span class="o">|</span>               <span class="mi">1</span> <span class="o">|</span>
+<span class="o">|</span>       <span class="mi">8</span> <span class="o">|</span> <span class="n">I</span>            <span class="o">|</span> <span class="mi">888</span><span class="o">-</span><span class="mi">88</span><span class="o">-</span><span class="mi">8888</span> <span class="o">|</span>               <span class="mi">1</span> <span class="o">|</span>
+<span class="o">|</span>       <span class="mi">9</span> <span class="o">|</span> <span class="n">I</span>            <span class="o">|</span> <span class="mi">999</span><span class="o">-</span><span class="mi">99</span><span class="o">-</span><span class="mi">9999</span> <span class="o">|</span>               <span class="mi">1</span> <span class="o">|</span>
+<span class="o">|</span>      <span class="mi">10</span> <span class="o">|</span> <span class="n">B</span>            <span class="o">|</span> <span class="mi">04</span><span class="o">-</span><span class="mi">1111111</span>  <span class="o">|</span>               <span class="mi">0</span> <span class="o">|</span>
+<span class="o">|</span>      <span class="mi">11</span> <span class="o">|</span> <span class="n">B</span>            <span class="o">|</span> <span class="mi">04</span><span class="o">-</span><span class="mi">2222222</span>  <span class="o">|</span>               <span class="mi">0</span> <span class="o">|</span>
+<span class="o">|</span>      <span class="mi">12</span> <span class="o">|</span> <span class="n">B</span>            <span class="o">|</span> <span class="mi">04</span><span class="o">-</span><span class="mi">3333333</span>  <span class="o">|</span>               <span class="mi">0</span> <span class="o">|</span>
+<span class="o">|</span>      <span class="mi">13</span> <span class="o">|</span> <span class="n">B</span>            <span class="o">|</span> <span class="mi">04</span><span class="o">-</span><span class="mi">4444444</span>  <span class="o">|</span>               <span class="mi">0</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">---------+--------------+-------------+-----------------+</span>
+</code></pre>
+</div>
+</p>
+
+<h5>返回字符串的字符串函数</h5>
+
+<p>可以使用<code>concat()</code>来替换字符列所存储的数据。
+<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">DELETE</span> <span class="k">FROM</span> <span class="n">string_tbl</span><span class="p">;</span>
+<span class="n">Query</span> <span class="n">OK</span><span class="p">,</span> <span class="mi">1</span> <span class="k">row</span> <span class="n">affected</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">09</span> <span class="n">sec</span><span class="p">)</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">string_tbl</span> <span class="p">(</span><span class="n">text_fld</span><span class="p">)</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">&#39;This string was 29 characters&#39;</span><span class="p">);</span>
+<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Query</span> <span class="n">OK</span><span class="p">,</span> <span class="mi">1</span> <span class="k">row</span> <span class="n">affected</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">11</span> <span class="n">sec</span><span class="p">)</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">UPDATE</span> <span class="n">string_tbl</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">SET</span> <span class="n">text_fld</span> <span class="o">=</span> <span class="n">CONCAT</span><span class="p">(</span><span class="n">text_fld</span><span class="p">,</span> <span class="s1">&#39;, but now it is longer&#39;</span><span class="p">);</span>
+<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Query</span> <span class="n">OK</span><span class="p">,</span> <span class="mi">1</span> <span class="k">row</span> <span class="n">affected</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">10</span> <span class="n">sec</span><span class="p">)</span>
+<span class="k">Rows</span> <span class="n">matched</span><span class="p">:</span> <span class="mi">1</span>  <span class="n">Changed</span><span class="p">:</span> <span class="mi">1</span>  <span class="n">Warnings</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">text_fld</span> <span class="k">FROM</span> <span class="n">string_tbl</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">-----------------------------------------------------+</span>
+<span class="o">|</span> <span class="n">text_fld</span>                                            <span class="o">|</span>
+<span class="o">+</span><span class="c1">-----------------------------------------------------+</span>
+<span class="o">|</span> <span class="n">This</span> <span class="n">string</span> <span class="n">was</span> <span class="mi">29</span> <span class="n">characters</span><span class="p">,</span> <span class="n">but</span> <span class="n">now</span> <span class="n">it</span> <span class="k">is</span> <span class="n">longer</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">-----------------------------------------------------+</span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<code>insert()</code>函数接受四个参数：原始字符串、字符串操作开始的位置、需要替换的字符数以及替换字符串。<br/>
+ex1：
+<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">INSERT</span><span class="p">(</span><span class="s1">&#39;goodbye world&#39;</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;cruel &#39;</span><span class="p">)</span> <span class="n">string</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">---------------------+</span>
+<span class="o">|</span> <span class="n">string</span>              <span class="o">|</span>
+<span class="o">+</span><span class="c1">---------------------+</span>
+<span class="o">|</span> <span class="n">goodbye</span> <span class="n">cruel</span> <span class="n">world</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">---------------------+</span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</code></pre>
+</div>
+
+如上所示，若第三个参数为0，则不会发生替换，第二个位置开始的字符将会向右移动，相当于插入操作了。<br/>
+如果第三个操作数不为0，则从第二个操作数指定的位置开始，延续第三个操作数那么长的字符均将会被抹去，替换成为第四个字符串指定的内容。如下所示：<br/>
+<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">INSERT</span><span class="p">(</span><span class="s1">&#39;goodbye world&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;hello &#39;</span><span class="p">)</span> <span class="n">string</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">--------------+</span>
+<span class="o">|</span> <span class="n">string</span>       <span class="o">|</span>
+<span class="o">+</span><span class="c1">--------------+</span>
+<span class="o">|</span> <span class="n">hello</span>  <span class="n">world</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">--------------+</span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">INSERT</span><span class="p">(</span><span class="s1">&#39;goodbye world&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;hello &#39;</span><span class="p">)</span> <span class="n">string</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">-------------------+</span>
+<span class="o">|</span> <span class="n">string</span>            <span class="o">|</span>
+<span class="o">+</span><span class="c1">-------------------+</span>
+<span class="o">|</span> <span class="n">hello</span> <span class="n">odbye</span> <span class="n">world</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">-------------------+</span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">INSERT</span><span class="p">(</span><span class="s1">&#39;goodbye world&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;hello &#39;</span><span class="p">)</span> <span class="n">string</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">--------------------+</span>
+<span class="o">|</span> <span class="n">string</span>             <span class="o">|</span>
+<span class="o">+</span><span class="c1">--------------------+</span>
+<span class="o">|</span> <span class="n">hello</span> <span class="n">oodbye</span> <span class="n">world</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">--------------------+</span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<code>replace()</code>函数完成替换功能，但是它是全部替换。如下所示：
+<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">REPLACE</span><span class="p">(</span><span class="s1">&#39;goodbye world&#39;</span><span class="p">,</span> <span class="s1">&#39;goodbye&#39;</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">)</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">FROM</span> <span class="n">dual</span><span class="p">;</span>
+<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;+</span><span class="c1">----------------------------------------------+</span>
+<span class="o">|</span> <span class="k">REPLACE</span><span class="p">(</span><span class="s1">&#39;goodbye world&#39;</span><span class="p">,</span> <span class="s1">&#39;goodbye&#39;</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">)</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">----------------------------------------------+</span>
+<span class="o">|</span> <span class="n">hello</span> <span class="n">world</span>                                  <span class="o">|</span>
+<span class="o">+</span><span class="c1">----------------------------------------------+</span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">REPLACE</span><span class="p">(</span><span class="s1">&#39;goodbye goodbye hello world&#39;</span><span class="p">,</span> <span class="s1">&#39;goodbye&#39;</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">)</span> <span class="n">string</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">-------------------------+</span>
+<span class="o">|</span> <span class="n">string</span>                  <span class="o">|</span>
+<span class="o">+</span><span class="c1">-------------------------+</span>
+<span class="o">|</span> <span class="n">hello</span> <span class="n">hello</span> <span class="n">hello</span> <span class="n">world</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">-------------------------+</span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</code></pre>
+</div>
+</p>
+
+<h3>使用数值数据</h3>
+
+<h4>执行算术函数</h4>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="center">函数名</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td align="center">Acos(x)</td>
+<td align="center">反余弦</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">Asin(x)</td>
+<td align="center">反正弦</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">Atan(x)</td>
+<td align="center">反正切</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">Cos(x)</td>
+<td align="center">余弦</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">Cot(x)</td>
+<td align="center">余切</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">Exp(x)</td>
+<td align="center">e的x次方</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">Ln(x)</td>
+<td align="center">x的自然对数</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">Sin(x)</td>
+<td align="center">正弦</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">Sqrt(x)</td>
+<td align="center">x的平方根</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">Tan(x)</td>
+<td align="center">正切</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><code>mod(x,y)</code>用于取余操作，如下所示：
+<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">MOD</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+<span class="o">+</span><span class="c1">------------+</span>
+<span class="o">|</span> <span class="k">MOD</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">------------+</span>
+<span class="o">|</span>          <span class="mi">2</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">------------+</span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</code></pre>
+</div>
+</p>
+
+<p><code>POW(x,y)</code>用于求幂操作，如下所示：
+<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">POWER</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+<span class="o">+</span><span class="c1">--------------+</span>
+<span class="o">|</span> <span class="n">POWER</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">--------------+</span>
+<span class="o">|</span>         <span class="mi">1024</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">--------------+</span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</code></pre>
+</div>
+</p>
+
+<h4>控制数字的精度</h4>
+
+<ul>
+<li><code>ceil()</code>向上取整。</li>
+<li><code>floor()</code>向下取整。</li>
+<li><code>round()</code>四舍五入。</li>
+<li><code>truncate()</code>小数点后长度截短，不进行进位。</li>
+</ul>
+
+
+<p>例子如下所示：
+<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">CEIL</span><span class="p">(</span><span class="mi">72</span><span class="p">.</span><span class="mi">445</span><span class="p">),</span> <span class="n">FLOOR</span><span class="p">(</span><span class="mi">72</span><span class="p">.</span><span class="mi">445</span><span class="p">);</span>
+<span class="o">+</span><span class="c1">--------------+---------------+</span>
+<span class="o">|</span> <span class="n">CEIL</span><span class="p">(</span><span class="mi">72</span><span class="p">.</span><span class="mi">445</span><span class="p">)</span> <span class="o">|</span> <span class="n">FLOOR</span><span class="p">(</span><span class="mi">72</span><span class="p">.</span><span class="mi">445</span><span class="p">)</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">--------------+---------------+</span>
+<span class="o">|</span>           <span class="mi">73</span> <span class="o">|</span>            <span class="mi">72</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">--------------+---------------+</span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">ROUND</span><span class="p">(</span><span class="mi">72</span><span class="p">.</span><span class="mi">449</span><span class="p">),</span> <span class="n">ROUND</span><span class="p">(</span><span class="mi">72</span><span class="p">.</span><span class="mi">5001</span><span class="p">),</span>  <span class="n">ROUND</span><span class="p">(</span><span class="mi">72</span><span class="p">.</span><span class="mi">500</span><span class="p">);</span>
+<span class="o">+</span><span class="c1">---------------+----------------+---------------+</span>
+<span class="o">|</span> <span class="n">ROUND</span><span class="p">(</span><span class="mi">72</span><span class="p">.</span><span class="mi">449</span><span class="p">)</span> <span class="o">|</span> <span class="n">ROUND</span><span class="p">(</span><span class="mi">72</span><span class="p">.</span><span class="mi">5001</span><span class="p">)</span> <span class="o">|</span> <span class="n">ROUND</span><span class="p">(</span><span class="mi">72</span><span class="p">.</span><span class="mi">500</span><span class="p">)</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">---------------+----------------+---------------+</span>
+<span class="o">|</span>            <span class="mi">72</span> <span class="o">|</span>             <span class="mi">73</span> <span class="o">|</span>            <span class="mi">73</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">---------------+----------------+---------------+</span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">ROUND</span><span class="p">(</span><span class="mi">72</span><span class="p">.</span><span class="mi">909</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">ROUND</span><span class="p">(</span><span class="mi">72</span><span class="p">.</span><span class="mi">909</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>  <span class="n">ROUND</span><span class="p">(</span><span class="mi">72</span><span class="p">.</span><span class="mi">909</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+<span class="o">+</span><span class="c1">------------------+------------------+------------------+</span>
+<span class="o">|</span> <span class="n">ROUND</span><span class="p">(</span><span class="mi">72</span><span class="p">.</span><span class="mi">909</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">|</span> <span class="n">ROUND</span><span class="p">(</span><span class="mi">72</span><span class="p">.</span><span class="mi">909</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">|</span> <span class="n">ROUND</span><span class="p">(</span><span class="mi">72</span><span class="p">.</span><span class="mi">909</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">------------------+------------------+------------------+</span>
+<span class="o">|</span>             <span class="mi">72</span><span class="p">.</span><span class="mi">9</span> <span class="o">|</span>            <span class="mi">72</span><span class="p">.</span><span class="mi">91</span> <span class="o">|</span>           <span class="mi">72</span><span class="p">.</span><span class="mi">909</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">------------------+------------------+------------------+</span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">TRUNCATE</span><span class="p">(</span><span class="mi">72</span><span class="p">.</span><span class="mi">909</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="k">TRUNCATE</span><span class="p">(</span><span class="mi">72</span><span class="p">.</span><span class="mi">909</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>  <span class="k">TRUNCATE</span><span class="p">(</span><span class="mi">72</span><span class="p">.</span><span class="mi">909</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+<span class="o">+</span><span class="c1">---------------------+---------------------+---------------------+</span>
+<span class="o">|</span> <span class="k">TRUNCATE</span><span class="p">(</span><span class="mi">72</span><span class="p">.</span><span class="mi">909</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">|</span> <span class="k">TRUNCATE</span><span class="p">(</span><span class="mi">72</span><span class="p">.</span><span class="mi">909</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">|</span> <span class="k">TRUNCATE</span><span class="p">(</span><span class="mi">72</span><span class="p">.</span><span class="mi">909</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">---------------------+---------------------+---------------------+</span>
+<span class="o">|</span>                <span class="mi">72</span><span class="p">.</span><span class="mi">9</span> <span class="o">|</span>               <span class="mi">72</span><span class="p">.</span><span class="mi">90</span> <span class="o">|</span>              <span class="mi">72</span><span class="p">.</span><span class="mi">909</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">---------------------+---------------------+---------------------+</span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</code></pre>
+</div>
+</p>
+
+<h4>处理有符号数</h4>
+
+<p><code>SIGN()</code>函数根据正负数返回值。正数返回1，负数返回-1，零返回0。如下所示：
+<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">SIGN</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">),</span> <span class="n">SIGN</span><span class="p">(</span><span class="mi">10</span><span class="p">.</span><span class="mi">1</span><span class="p">),</span> <span class="n">SIGN</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="o">+</span><span class="c1">-----------+------------+---------+</span>
+<span class="o">|</span> <span class="n">SIGN</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">)</span> <span class="o">|</span> <span class="n">SIGN</span><span class="p">(</span><span class="mi">10</span><span class="p">.</span><span class="mi">1</span><span class="p">)</span> <span class="o">|</span> <span class="n">SIGN</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">-----------+------------+---------+</span>
+<span class="o">|</span>        <span class="o">-</span><span class="mi">1</span> <span class="o">|</span>          <span class="mi">1</span> <span class="o">|</span>       <span class="mi">0</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">-----------+------------+---------+</span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<code>ABS()</code>函数返回绝对值，如下所示：
+<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">ABS</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">),</span> <span class="k">ABS</span><span class="p">(</span><span class="mi">10</span><span class="p">.</span><span class="mi">1</span><span class="p">),</span> <span class="k">ABS</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="o">+</span><span class="c1">----------+-----------+--------+</span>
+<span class="o">|</span> <span class="k">ABS</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">)</span> <span class="o">|</span> <span class="k">ABS</span><span class="p">(</span><span class="mi">10</span><span class="p">.</span><span class="mi">1</span><span class="p">)</span> <span class="o">|</span> <span class="k">ABS</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">----------+-----------+--------+</span>
+<span class="o">|</span>       <span class="mi">10</span> <span class="o">|</span>      <span class="mi">10</span><span class="p">.</span><span class="mi">1</span> <span class="o">|</span>      <span class="mi">0</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">----------+-----------+--------+</span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</code></pre>
+</div>
+</p>
+
+<h3>使用时间数据</h3>
+
+<h4>处理时区</h4>
+
+<p>查看当前系统时区以及会话所取的时区如下所示：
+<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="o">@@</span><span class="k">global</span><span class="p">.</span><span class="n">time_zone</span><span class="p">,</span> <span class="o">@@</span><span class="k">session</span><span class="p">.</span><span class="n">time_zone</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">--------------------+---------------------+</span>
+<span class="o">|</span> <span class="o">@@</span><span class="k">global</span><span class="p">.</span><span class="n">time_zone</span> <span class="o">|</span> <span class="o">@@</span><span class="k">session</span><span class="p">.</span><span class="n">time_zone</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">--------------------+---------------------+</span>
+<span class="o">|</span> <span class="k">SYSTEM</span>             <span class="o">|</span> <span class="k">SYSTEM</span>              <span class="o">|</span>
+<span class="o">+</span><span class="c1">--------------------+---------------------+</span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</code></pre>
+</div>
+</p>
+
+<h4>生成时间数据</h4>
+
+<p>可以使用下面任意一种方法产生时间数据：
+* 从已有的date、datetime和time列中复制数据；
+* 执行返回date、datetime和time型数据的内建函数；
+* 构建可以被服务器识别的代表日期的字符串。</p>
+
+<h5>从字符串到日期的转换</h5>
+
+<p><code>cast()</code>函数
+<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">CAST</span><span class="p">(</span><span class="s1">&#39;2012-05-24 18:40:00&#39;</span> <span class="k">AS</span> <span class="n">DATETIME</span><span class="p">);</span>
+<span class="o">+</span><span class="c1">-----------------------------------------+</span>
+<span class="o">|</span> <span class="k">CAST</span><span class="p">(</span><span class="s1">&#39;2012-05-24 18:40:00&#39;</span> <span class="k">AS</span> <span class="n">DATETIME</span><span class="p">)</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">-----------------------------------------+</span>
+<span class="o">|</span> <span class="mi">2012</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">24</span> <span class="mi">18</span><span class="p">:</span><span class="mi">40</span><span class="p">:</span><span class="mi">00</span>                     <span class="o">|</span>
+<span class="o">+</span><span class="c1">-----------------------------------------+</span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">CAST</span><span class="p">(</span><span class="s1">&#39;2012-05-24 18:40:00&#39;</span> <span class="k">AS</span> <span class="n">TIME</span><span class="p">);</span>
+<span class="o">+</span><span class="c1">-------------------------------------+</span>
+<span class="o">|</span> <span class="k">CAST</span><span class="p">(</span><span class="s1">&#39;2012-05-24 18:40:00&#39;</span> <span class="k">AS</span> <span class="n">TIME</span><span class="p">)</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">-------------------------------------+</span>
+<span class="o">|</span> <span class="mi">18</span><span class="p">:</span><span class="mi">40</span><span class="p">:</span><span class="mi">00</span>                            <span class="o">|</span>
+<span class="o">+</span><span class="c1">-------------------------------------+</span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">CAST</span><span class="p">(</span><span class="s1">&#39;2012-05-24 18:40:00&#39;</span> <span class="k">AS</span> <span class="nb">DATE</span><span class="p">);</span>
+<span class="o">+</span><span class="c1">-------------------------------------+</span>
+<span class="o">|</span> <span class="k">CAST</span><span class="p">(</span><span class="s1">&#39;2012-05-24 18:40:00&#39;</span> <span class="k">AS</span> <span class="nb">DATE</span><span class="p">)</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">-------------------------------------+</span>
+<span class="o">|</span> <span class="mi">2012</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">24</span>                          <span class="o">|</span>
+<span class="o">+</span><span class="c1">-------------------------------------+</span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</code></pre>
+</div>
+</p>
+
+<h5>产生日期的函数</h5>
+
+<p>当提供的字符串不满足<code>CAST()</code>函数操作的字符串时，需要将对应的字符串进行转换，可以使用<code>str_to_date()</code>函数。该函数的使用之后生成的字符串将可以被<code>CAST()</code>函数使用。
+<code>str_to_date()</code>
+<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">STR_TO_DATE</span><span class="p">(</span><span class="s1">&#39;September 17, 2012&#39;</span><span class="p">,</span> <span class="s1">&#39;%M %d, %Y&#39;</span><span class="p">);</span>
+<span class="o">+</span><span class="c1">------------------------------------------------+</span>
+<span class="o">|</span> <span class="n">STR_TO_DATE</span><span class="p">(</span><span class="s1">&#39;September 17, 2012&#39;</span><span class="p">,</span> <span class="s1">&#39;%M %d, %Y&#39;</span><span class="p">)</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">------------------------------------------------+</span>
+<span class="o">|</span> <span class="mi">2012</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">17</span>                                     <span class="o">|</span>
+<span class="o">+</span><span class="c1">------------------------------------------------+</span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">CAST</span><span class="p">(</span><span class="n">STR_TO_DATE</span><span class="p">(</span><span class="s1">&#39;September 17, 2012&#39;</span><span class="p">,</span> <span class="s1">&#39;%M %d, %Y&#39;</span><span class="p">)</span> <span class="k">AS</span> <span class="nb">DATE</span><span class="p">);</span>
+<span class="o">+</span><span class="c1">--------------------------------------------------------------+</span>
+<span class="o">|</span> <span class="k">CAST</span><span class="p">(</span><span class="n">STR_TO_DATE</span><span class="p">(</span><span class="s1">&#39;September 17, 2012&#39;</span><span class="p">,</span> <span class="s1">&#39;%M %d, %Y&#39;</span><span class="p">)</span> <span class="k">AS</span> <span class="nb">DATE</span><span class="p">)</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">--------------------------------------------------------------+</span>
+<span class="o">|</span> <span class="mi">2012</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">17</span>                                                   <span class="o">|</span>
+<span class="o">+</span><span class="c1">--------------------------------------------------------------+</span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</code></pre>
+</div>
+</p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="center">日期格式部件</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td align="center">%M</td>
+<td align="center">月名称（1~12）</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">%m</td>
+<td align="center">月序号（01-12）</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">%d</td>
+<td align="center">日序号（01-31）</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">%j</td>
+<td align="center">日在一年中的序号（01-366）</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">%W</td>
+<td align="center">星期名称</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">%Y</td>
+<td align="center">4位数表示年份</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">%y</td>
+<td align="center">两位数字表示年份</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">%H</td>
+<td align="center">小时（00～23）</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">%h</td>
+<td align="center">小时（01～12）</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">%i</td>
+<td align="center">分钟（00～59）</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">%s</td>
+<td align="center">秒钟（00～59）</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">%f</td>
+<td align="center">微妙（000000～999999）</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">%p</td>
+<td align="center">A.M.或P.M.</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><code>str_to_date</code>根据字符串内容返回<code>datetime</code>、<code>date</code>、或者<code>time</code>类型值，如果格式字符串只包含%H，%i或%s，将会返回<code>TIME</code>值。</p>
+
+<p>如果需要产生当前日期/时间，可以调用内建函数，<code>CURRENT_DATE()</code>，<code>CURRENT_TIME()</code>，<code>CURRENT_TIMESTAMP()</code>
+<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">CURRENT_DATE</span><span class="p">(),</span> <span class="k">CURRENT_TIME</span><span class="p">(),</span> <span class="k">CURRENT_TIMESTAMP</span><span class="p">();</span>
+<span class="o">+</span><span class="c1">----------------+----------------+---------------------+</span>
+<span class="o">|</span> <span class="k">CURRENT_DATE</span><span class="p">()</span> <span class="o">|</span> <span class="k">CURRENT_TIME</span><span class="p">()</span> <span class="o">|</span> <span class="k">CURRENT_TIMESTAMP</span><span class="p">()</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">----------------+----------------+---------------------+</span>
+<span class="o">|</span> <span class="mi">2012</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">25</span>     <span class="o">|</span> <span class="mi">02</span><span class="p">:</span><span class="mi">56</span><span class="p">:</span><span class="mi">43</span>       <span class="o">|</span> <span class="mi">2012</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">25</span> <span class="mi">02</span><span class="p">:</span><span class="mi">56</span><span class="p">:</span><span class="mi">43</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">----------------+----------------+---------------------+</span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</code></pre>
+</div>
+</p>
+
+<h4>操作时间数据</h4>
+
+<h5>返回日期的函数</h5>
+
+<p><code>DATE_ADD()</code>，接收一个日期型的值作为参数，返回另一个日期，如下所示：
+<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">DATE_ADD</span><span class="p">(</span><span class="k">CURRENT_DATE</span><span class="p">(),</span> <span class="nb">INTERVAL</span> <span class="mi">5</span> <span class="k">DAY</span><span class="p">);</span>
+<span class="o">+</span><span class="c1">------------------------------------------+</span>
+<span class="o">|</span> <span class="n">DATE_ADD</span><span class="p">(</span><span class="k">CURRENT_DATE</span><span class="p">(),</span> <span class="nb">INTERVAL</span> <span class="mi">5</span> <span class="k">DAY</span><span class="p">)</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">------------------------------------------+</span>
+<span class="o">|</span> <span class="mi">2012</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">30</span>                               <span class="o">|</span>
+<span class="o">+</span><span class="c1">------------------------------------------+</span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</code></pre>
+</div>
+
+其中第二个参数包含了3个元素：<font color ="red"><code>INTERVAL</code>关键字、所需要增加的数量以及时间间隔类型</font></p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="center">间隔名称</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td align="center">Second</td>
+<td align="center">秒</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">Minute</td>
+<td align="center">分钟</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">Hour</td>
+<td align="center">小时</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">Day</td>
+<td align="center">天数</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">Month</td>
+<td align="center">月份</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">Year</td>
+<td align="center">年份</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">Minute_second</td>
+<td align="center">分钟数和秒钟数，中间用":"隔开</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">Hour_second</td>
+<td align="center">小时、分钟和秒钟数，中间用":"隔开</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">Year_month</td>
+<td align="center">年份和月份，中间用"-"隔开</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><code>last_day()</code>函数返回当前月份的最后一天。
+<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">LAST_DAY</span><span class="p">(</span><span class="k">CURRENT_DATE</span><span class="p">());</span>
+<span class="o">+</span><span class="c1">--------------------------+</span>
+<span class="o">|</span> <span class="n">LAST_DAY</span><span class="p">(</span><span class="k">CURRENT_DATE</span><span class="p">())</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">--------------------------+</span>
+<span class="o">|</span> <span class="mi">2012</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">31</span>               <span class="o">|</span>
+<span class="o">+</span><span class="c1">--------------------------+</span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">LAST_DAY</span><span class="p">(</span><span class="k">CAST</span><span class="p">(</span><span class="k">CURRENT_DATE</span><span class="p">()</span> <span class="k">AS</span> <span class="n">DATETIME</span><span class="p">));</span>
+<span class="o">+</span><span class="c1">--------------------------------------------+</span>
+<span class="o">|</span> <span class="n">LAST_DAY</span><span class="p">(</span><span class="k">CAST</span><span class="p">(</span><span class="k">CURRENT_DATE</span><span class="p">()</span> <span class="k">AS</span> <span class="n">DATETIME</span><span class="p">))</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">--------------------------------------------+</span>
+<span class="o">|</span> <span class="mi">2012</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">31</span>                                 <span class="o">|</span>
+<span class="o">+</span><span class="c1">--------------------------------------------+</span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span> <span class="n">sec</span><span class="p">)</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">LAST_DAY</span><span class="p">(</span><span class="k">CAST</span><span class="p">(</span><span class="k">CURRENT_DATE</span><span class="p">()</span> <span class="k">AS</span> <span class="nb">DATE</span><span class="p">));</span>
+<span class="o">+</span><span class="c1">----------------------------------------+</span>
+<span class="o">|</span> <span class="n">LAST_DAY</span><span class="p">(</span><span class="k">CAST</span><span class="p">(</span><span class="k">CURRENT_DATE</span><span class="p">()</span> <span class="k">AS</span> <span class="nb">DATE</span><span class="p">))</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">----------------------------------------+</span>
+<span class="o">|</span> <span class="mi">2012</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">31</span>                             <span class="o">|</span>
+<span class="o">+</span><span class="c1">----------------------------------------+</span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">LAST_DAY</span><span class="p">(</span><span class="k">CAST</span><span class="p">(</span><span class="k">CURRENT_DATE</span><span class="p">()</span> <span class="k">AS</span> <span class="n">TIME</span><span class="p">));</span>
+<span class="o">+</span><span class="c1">----------------------------------------+</span>
+<span class="o">|</span> <span class="n">LAST_DAY</span><span class="p">(</span><span class="k">CAST</span><span class="p">(</span><span class="k">CURRENT_DATE</span><span class="p">()</span> <span class="k">AS</span> <span class="n">TIME</span><span class="p">))</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">----------------------------------------+</span>
+<span class="o">|</span> <span class="k">NULL</span>                                   <span class="o">|</span>
+<span class="o">+</span><span class="c1">----------------------------------------+</span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span><span class="p">,</span> <span class="mi">2</span> <span class="n">warnings</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</code></pre>
+</div>
+</p>
+
+<p><code>convert_tz()</code>函数将一个时区的datetime值转换为另一个时区的datetime值。</p>
+
+<h5>返回字符串的时间函数</h5>
+
+<p>返回字符串的函数大多用于提取日期或时间的一部分。<code>dayname()</code>可以确定某一日是星期几：
+<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">DAYNAME</span><span class="p">(</span><span class="k">CURRENT_DATE</span><span class="p">());</span>
+<span class="o">+</span><span class="c1">-------------------------+</span>
+<span class="o">|</span> <span class="n">DAYNAME</span><span class="p">(</span><span class="k">CURRENT_DATE</span><span class="p">())</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">-------------------------+</span>
+<span class="o">|</span> <span class="n">Friday</span>                  <span class="o">|</span>
+<span class="o">+</span><span class="c1">-------------------------+</span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</code></pre>
+</div>
+
+推荐使用<code>EXTRACT()</code>函数从时间中获取当前的年月日等。
+<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">EXTRACT</span><span class="p">(</span><span class="k">YEAR</span> <span class="k">FROM</span> <span class="k">CURRENT_DATE</span><span class="p">());</span>
+<span class="o">+</span><span class="c1">-----------------------------------+</span>
+<span class="o">|</span> <span class="k">EXTRACT</span><span class="p">(</span><span class="k">YEAR</span> <span class="k">FROM</span> <span class="k">CURRENT_DATE</span><span class="p">())</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">-----------------------------------+</span>
+<span class="o">|</span>                              <span class="mi">2012</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">-----------------------------------+</span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">EXTRACT</span><span class="p">(</span><span class="k">MINUTE</span> <span class="k">FROM</span> <span class="k">CURRENT_TIMESTAMP</span><span class="p">());</span>
+<span class="o">+</span><span class="c1">------------------------------------------+</span>
+<span class="o">|</span> <span class="k">EXTRACT</span><span class="p">(</span><span class="k">MINUTE</span> <span class="k">FROM</span> <span class="k">CURRENT_TIMESTAMP</span><span class="p">())</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">------------------------------------------+</span>
+<span class="o">|</span>                                       <span class="mi">36</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">------------------------------------------+</span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</code></pre>
+</div>
+</p>
+
+<h5>返回数字的时间函数</h5>
+
+<p><code>datediff()</code>计算两个日期的相差天数。</p>
+
+<h3>转换函数</h3>
+
+<p>使用'CAST()`函数完成转换功能。
+<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">CAST</span><span class="p">(</span><span class="s1">&#39;1456328&#39;</span> <span class="k">AS</span> <span class="n">SIGNED</span> <span class="nb">INTEGER</span><span class="p">);</span>
+<span class="o">+</span><span class="c1">-----------------------------------+</span>
+<span class="o">|</span> <span class="k">CAST</span><span class="p">(</span><span class="s1">&#39;1456328&#39;</span> <span class="k">AS</span> <span class="n">SIGNED</span> <span class="nb">INTEGER</span><span class="p">)</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">-----------------------------------+</span>
+<span class="o">|</span>                           <span class="mi">1456328</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">-----------------------------------+</span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">CAST</span><span class="p">(</span><span class="s1">&#39;-1456328&#39;</span> <span class="k">AS</span> <span class="n">SIGNED</span> <span class="nb">INTEGER</span><span class="p">);</span>
+<span class="o">+</span><span class="c1">------------------------------------+</span>
+<span class="o">|</span> <span class="k">CAST</span><span class="p">(</span><span class="s1">&#39;-1456328&#39;</span> <span class="k">AS</span> <span class="n">SIGNED</span> <span class="nb">INTEGER</span><span class="p">)</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">------------------------------------+</span>
+<span class="o">|</span>                           <span class="o">-</span><span class="mi">1456328</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">------------------------------------+</span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</code></pre>
+</div>
+</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Learning SQL(ch4-ch6)]]></title>
+    <link href="http://xiongbupt.github.com/blog/2012/05/23/learning-sql/"/>
+    <updated>2012-05-23T00:00:00+08:00</updated>
+    <id>http://xiongbupt.github.com/blog/2012/05/23/learning-sql</id>
+    <content type="html"><![CDATA[<h2>CH4 过滤</h2>
+
+<p>在所有的SQL数据处理语句中（insert语句除外）都包含了可选的where子句，其中的过滤条件限制了SQL语句所需要的行数。select子句中包含的having子句也可以对分组数据进行条件过滤。</p>
+
+<h3>条件评估</h3>
+
+<h4>使用圆括号</h4>
+
+<p>当含有多个条件时，各个条件应该使用圆括号括起来。</p>
+
+<h4>使用not操作符</h4>
+
+<p>一般用的较少，相当于取反的操作。</p>
+
+<h3>构建条件</h3>
+
+<p>条件通常是由1个或多个包含1个到多个操作符的表达式构成。
+表达式的组成包括：</p>
+
+<ul>
+<li>数字</li>
+<li>表或视图中的列</li>
+<li>字符串</li>
+<li>内建函数，比如函数concat('Learning', 'SQL')</li>
+<li>子查询</li>
+<li>表达式列表</li>
+<li>比较操作符，比如=, !=, &lt;, >, &lt;>, LIKE, IN 和BEWEEN。</li>
+<li>算术操作符，比如+, -, *和/</li>
+</ul>
+
+
+<h3>条件类型</h3>
+
+<h4>相等条件</h4>
+
+<p><div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span><span class="k">SELECT</span> <span class="n">pt</span><span class="p">.</span><span class="n">name</span> <span class="n">product_type</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">name</span> <span class="n">product</span>
+<span class="o">-&gt;</span><span class="k">FROM</span> <span class="n">product</span> <span class="n">p</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">product_type</span> <span class="n">pt</span>
+<span class="o">-&gt;</span><span class="k">ON</span> <span class="n">p</span><span class="p">.</span><span class="n">product_type_cd</span> <span class="o">=</span> <span class="n">pt</span><span class="p">.</span><span class="n">product_type_cd</span>
+<span class="o">-&gt;</span><span class="k">WHERE</span> <span class="n">pt</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Customer Accounts&#39;</span><span class="p">;</span>
+</code></pre>
+</div>
+</p>
+
+<h4>不等条件</h4>
+
+<p>构造不等条件时，可以从<code>!=</code>或者<code>&lt;&gt;</code>中任选一个
+<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span><span class="k">SELECT</span> <span class="n">pt</span><span class="p">.</span><span class="n">name</span> <span class="n">product_type</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">name</span> <span class="n">product</span>
+<span class="o">-&gt;</span><span class="k">FROM</span> <span class="n">product</span> <span class="n">p</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">product_type</span> <span class="n">pt</span>
+<span class="o">-&gt;</span><span class="k">ON</span> <span class="n">p</span><span class="p">.</span><span class="n">product_type_cd</span> <span class="o">=</span> <span class="n">pt</span><span class="p">.</span><span class="n">product_type_cd</span>
+<span class="o">-&gt;</span><span class="k">WHERE</span> <span class="n">pt</span><span class="p">.</span><span class="n">name</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">&gt;</span> <span class="s1">&#39;Customer Accounts&#39;</span><span class="p">;</span>
+</code></pre>
+</div>
+</p>
+
+<h4>范围条件</h4>
+
+<p>使用&lt;，>等来构造范围
+<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">emp_id</span><span class="p">,</span> <span class="n">fname</span><span class="p">,</span> <span class="n">lname</span><span class="p">,</span> <span class="n">start_date</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">FROM</span> <span class="n">employee</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">WHERE</span> <span class="n">start_date</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="s1">&#39;2007-01-01&#39;</span><span class="p">;</span>
+<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</code></pre>
+</div>
+</p>
+
+<p><div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">emp_id</span><span class="p">,</span> <span class="n">fname</span><span class="p">,</span> <span class="n">lname</span><span class="p">,</span> <span class="n">start_date</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">FROM</span> <span class="n">employee</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">WHERE</span> <span class="n">start_date</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="s1">&#39;2007-01-01&#39;</span><span class="p">;</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">AND</span> <span class="n">start_date</span> <span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="s1">&#39;2005-01-01&#39;</span><span class="p">;</span>
+<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</code></pre>
+</div>
+</p>
+
+<h5>使用BETWEEN条件符</h5>
+
+<p><div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">emp_id</span><span class="p">,</span> <span class="n">fname</span><span class="p">,</span> <span class="n">lname</span><span class="p">,</span> <span class="n">start_date</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">FROM</span> <span class="n">employee</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">WHERE</span> <span class="n">start_date</span> <span class="k">BETWEEN</span> <span class="s1">&#39;2005-01-01&#39;</span> <span class="k">AND</span> <span class="s1">&#39;2007-01-01&#39;</span><span class="p">;</span>
+<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</code></pre>
+</div>
+
+注意BETWEEN后面的数的取值，紧接着的那个数应该小于AND后面的那个数，同时，这是一个闭区间。比如BETWEEN a AND b，则取值范围为[a,b]。</p>
+
+<p>使用BEWTEEN可以查询日期范围、数字范围，同时也可以查询字符串的范围。</p>
+
+<p><div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">account_id</span> <span class="p">,</span> <span class="n">product_cd</span><span class="p">,</span> <span class="n">cust_id</span> <span class="p">,</span> <span class="n">avail_balance</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">FROM</span> <span class="n">account</span> 
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">WHERE</span> <span class="n">avail_balance</span> <span class="k">BETWEEN</span> <span class="mi">3000</span> <span class="k">AND</span> <span class="mi">5000</span><span class="p">;</span>
+<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</code></pre>
+</div>
+</p>
+
+<h4>成员条件</h4>
+
+<p><div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">account_id</span><span class="p">,</span> <span class="n">product_cd</span><span class="p">,</span> <span class="n">cust_id</span><span class="p">,</span> <span class="n">avail_balance</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">FROM</span> <span class="n">account</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">WHERE</span> <span class="n">product_cd</span> <span class="o">=</span> <span class="s1">&#39;CHK&#39;</span> <span class="k">OR</span> <span class="n">product_cd</span> <span class="o">=</span> <span class="s1">&#39;SAV&#39;</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">OR</span> <span class="n">product_cd</span> <span class="o">=</span> <span class="s1">&#39;CD&#39;</span> <span class="k">OR</span> <span class="n">product_cd</span> <span class="o">=</span> <span class="s1">&#39;MM&#39;</span><span class="p">;</span>
+<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</code></pre>
+</div>
+
+使用in来代替上面的多个输入
+<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">account_id</span><span class="p">,</span> <span class="n">product_cd</span><span class="p">,</span> <span class="n">cust_id</span><span class="p">,</span> <span class="n">avail_balance</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">FROM</span> <span class="n">account</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">WHERE</span> <span class="n">product_cd</span> <span class="k">IN</span> <span class="p">(</span><span class="s1">&#39;CHK&#39;</span><span class="p">,</span> <span class="s1">&#39;SAV&#39;</span><span class="p">,</span> <span class="s1">&#39;CD&#39;</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">);</span>
+<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</code></pre>
+</div>
+</p>
+
+<p>使用子查询</p>
+
+<p>使用not in</p>
+
+<h5>匹配条件</h5>
+
+<p>使用通配符</p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="center">通配符</th>
+<th align="center">匹配</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td align="center">_</td>
+<td align="center">正好一个字符</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">%</td>
+<td align="center">任意数字字符（包括0）</td>
+</tr>
+</tbody>
+</table>
+
+
+<p>使用正则表达式<br/>
+REGEXP</p>
+
+<h3>null关键字</h3>
+
+<p>null的使用场合包括如下几种</p>
+
+<ul>
+<li><strong>没有合适的值</strong></li>
+<li><strong>值未确定</strong></li>
+<li><strong>值未定义</strong></li>
+</ul>
+
+
+<p>当使用null时必须牢记以下两点</p>
+
+<ul>
+<li>表达式可以为null，但是不能等于null;</li>
+<li>两个null值彼此不能判断为相等。</li>
+</ul>
+
+
+<h2>CH5 多表查询</h2>
+
+<p>将位于两个表中的数据通过一个相同的关键字整合到一起的机制便是连接（<strong>join</strong>）。本章主要描述的是内连接（<strong>INNER JOIN</strong>）。</p>
+
+<h3>什么是连接</h3>
+
+<p>使用两个不同表中的列，这两个列的值是对应的，即这两个表中该列的值是相同的。通过使用这一列，从而实现在同一查询的结果集中包含来自两个表的列，这个操作被称为连接。</p>
+
+<h4>笛卡尔积</h4>
+
+<p>在<code>FROM</code>子句中包含两个表，并且使用<code>JOIN</code>隔开。如下所示：
+<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">e</span><span class="p">.</span><span class="n">fname</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">lname</span><span class="p">,</span> <span class="n">d</span><span class="p">.</span><span class="n">name</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">FROM</span> <span class="n">employee</span> <span class="n">e</span> <span class="k">JOIN</span> <span class="n">department</span> <span class="n">d</span><span class="p">;</span>
+<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</code></pre>
+</div>
+
+上面将会将这两个表中选出的东西做交叉乘积，类似于笛卡尔积的方式将返回结果。</p>
+
+<pre><code> &gt;笛卡尔积基本概念
+ 有两个集合A,B，对于任意元素a属于A，元素b属于B。这两个集合的笛卡尔积表示的是C{c=(a,b)|a属于A，b属于B}
+</code></pre>
+
+<p>因此上述的结果与笛卡尔积的结果类似，不属于同一个表的两个结果返回。上面这种连接被称为交叉连接（<code>cross join</code>），在实际中用的较少。</p>
+
+<h4>内连接</h4>
+
+<p>为了将表的结果返回一个对应的值，需要使用内连接（<code>INNER JOIN</code>）。通过添加<code>ON</code>子句并可以达到这个目的。在使用内连接（<code>INNER JOIN</code>）时，如果两个表中出现了一个表中有而另一个表中对应的元素是缺失的情况下，将会把该对应的行去除。如果需要显示，需要使用外连接（<code>OUTER JOIN</code>），在后面会进行详细描述。
+下面是个例子
+<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">e</span><span class="p">.</span><span class="n">fname</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">lname</span><span class="p">,</span> <span class="n">d</span><span class="p">.</span><span class="n">name</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">FROM</span> <span class="n">employee</span> <span class="n">e</span> <span class="k">JOIN</span> <span class="n">department</span> <span class="n">d</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">ON</span> <span class="n">e</span><span class="p">.</span><span class="n">dept_id</span> <span class="o">=</span> <span class="n">d</span><span class="p">.</span><span class="n">dept_id</span><span class="p">;</span>
+<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</code></pre>
+</div>
+
+在上面的例子中，没有显示的指明是否为内连接，在默认的情况下是内连接，但是最好增加关键词<code>INNER</code>。如下所示：
+<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">e</span><span class="p">.</span><span class="n">fname</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">lname</span><span class="p">,</span> <span class="n">d</span><span class="p">.</span><span class="n">name</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">FROM</span> <span class="n">employee</span> <span class="n">e</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">department</span> <span class="n">d</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">ON</span> <span class="n">e</span><span class="p">.</span><span class="n">dept_id</span> <span class="o">=</span> <span class="n">d</span><span class="p">.</span><span class="n">dept_id</span><span class="p">;</span>
+<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</code></pre>
+</div>
+
+如果连接的两个表的列名是相同的，可以使用<code>USING</code>子句来代替<code>ON</code>子句，如下所示：</p>
+
+<p><div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">e</span><span class="p">.</span><span class="n">fname</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">lname</span><span class="p">,</span> <span class="n">d</span><span class="p">.</span><span class="n">name</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">FROM</span> <span class="n">employee</span> <span class="n">e</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">department</span> <span class="n">d</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">USING</span> <span class="p">(</span><span class="n">dept_id</span><span class="p">);</span>
+<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</code></pre>
+</div>
+</p>
+
+<h4>ANSI连接语法</h4>
+
+<p>下面是一个使用旧语法的例子，在这个例子中没有<code>ON</code>子句，在<code>FROM</code>子句中定义各表的别名，并使用逗号隔开，然后在<code>WHERE</code>子句中包含连接条件。
+<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">e</span><span class="p">.</span><span class="n">fname</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">lname</span><span class="p">,</span> <span class="n">d</span><span class="p">.</span><span class="n">name</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">FROM</span> <span class="n">employee</span> <span class="n">e</span><span class="p">,</span> <span class="n">department</span> <span class="n">d</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">WHERE</span> <span class="n">e</span><span class="p">.</span><span class="n">dept_id</span> <span class="o">=</span> <span class="n">d</span><span class="p">.</span><span class="n">dept_id</span><span class="p">;</span>
+<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</code></pre>
+</div>
+
+但是ANSI连接语法的优势如下：</p>
+
+<ul>
+<li>连接条件和过滤条件被分隔到两个子句（<code>ON</code>子句和<code>WHERE</code>子句），使查询语句更易理解；</li>
+<li>每两个表之间的连接条件都在它们自己的<code>ON</code>子句中列出，这样不容易错误地忽略了某些连接条件；</li>
+<li>使用SQL92连接语法的查询语句具有通用性。</li>
+</ul>
+
+
+<p>例子如下所示：
+<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">a</span><span class="p">.</span><span class="n">account_id</span><span class="p">,</span> <span class="n">a</span><span class="p">.</span><span class="n">cust_id</span><span class="p">,</span> <span class="n">a</span><span class="p">.</span><span class="n">open_date</span><span class="p">,</span> <span class="n">a</span><span class="p">.</span><span class="n">product_cd</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">FROM</span> <span class="n">account</span> <span class="n">a</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">employee</span> <span class="n">e</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">ON</span> <span class="n">a</span><span class="p">.</span><span class="n">open_emp_id</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">emp_id</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">branch</span> <span class="n">b</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">ON</span> <span class="n">e</span><span class="p">.</span><span class="n">assigned_branch_id</span> <span class="o">=</span> <span class="n">b</span><span class="p">.</span><span class="n">branch_id</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">WHERE</span> <span class="n">e</span><span class="p">.</span><span class="n">start_date</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="s1">&#39;2007-01-01&#39;</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">AND</span> <span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Teller&#39;</span> <span class="k">OR</span> <span class="n">e</span><span class="p">.</span><span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Head Teller&#39;</span><span class="p">)</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">AND</span> <span class="n">b</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Woburn Branch&#39;</span><span class="p">;</span>
+<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</code></pre>
+</div>
+</p>
+
+<h3>连接3个或更多的表</h3>
+
+<p>两个表的连接中，<code>FROM</code>子句中包含了两个表名和一种连接类型，<code>ON</code>子句中指定两表是怎么连接的。
+对于三个表的连接中，<code>FROM</code>子句中包含了三个表名和两种连接类型，以及两个<code>ON</code>子句。
+两个表的例子：
+<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">select</span> <span class="n">a</span><span class="p">.</span><span class="n">account_id</span><span class="p">,</span> <span class="k">c</span><span class="p">.</span><span class="n">fed_id</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">FROM</span> <span class="n">account</span> <span class="n">a</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">customer</span> <span class="k">c</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">ON</span> <span class="n">a</span><span class="p">.</span><span class="n">cust_id</span> <span class="o">=</span> <span class="k">c</span><span class="p">.</span><span class="n">cust_id</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">WHERE</span> <span class="k">c</span><span class="p">.</span><span class="n">cust_type_cd</span> <span class="o">=</span> <span class="s1">&#39;B&#39;</span><span class="p">;</span>
+<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</code></pre>
+</div>
+
+三个表的例子
+<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">a</span><span class="p">.</span><span class="n">account_id</span><span class="p">,</span> <span class="k">c</span><span class="p">.</span><span class="n">fed_id</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">fname</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">lname</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">FROM</span> <span class="n">account</span> <span class="n">a</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">customer</span> <span class="k">c</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">ON</span> <span class="n">a</span><span class="p">.</span><span class="n">cust_id</span> <span class="o">=</span> <span class="k">c</span><span class="p">.</span><span class="n">cust_id</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">employee</span> <span class="n">e</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">ON</span> <span class="n">a</span><span class="p">.</span><span class="n">open_emp_id</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">emp_id</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">WHERE</span> <span class="k">c</span><span class="p">.</span><span class="n">cust_type_cd</span> <span class="o">=</span> <span class="s1">&#39;B&#39;</span><span class="p">;</span>
+<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</code></pre>
+</div>
+
+SQL是一种非过程化的语言，因此表的顺序不重要。如果需要对表的顺序进行强制规定，对于MySQL可以使用<code>STRAIGHT_JOIN</code>进行强制的规定。如下所示：
+<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">STRAIGHT_JOIN</span> <span class="n">a</span><span class="p">.</span><span class="n">account_id</span><span class="p">,</span> <span class="k">c</span><span class="p">.</span><span class="n">fed_id</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">fname</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">lname</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">FROM</span> <span class="n">account</span> <span class="n">a</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">customer</span> <span class="k">c</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">ON</span> <span class="n">a</span><span class="p">.</span><span class="n">cust_id</span> <span class="o">=</span> <span class="k">c</span><span class="p">.</span><span class="n">cust_id</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">employee</span> <span class="n">e</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">ON</span> <span class="n">a</span><span class="p">.</span><span class="n">open_emp_id</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">emp_id</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">WHERE</span> <span class="k">c</span><span class="p">.</span><span class="n">cust_type_cd</span> <span class="o">=</span> <span class="s1">&#39;B&#39;</span><span class="p">;</span>
+<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</code></pre>
+</div>
+</p>
+
+<h4>将子查询结果作为查询表</h4>
+
+<p>在使用这种方式的时候，将子<code>SELECT</code>语句返回的结果使用一个括号括起来，然后在后面添加一个别名，在前面使用<code>INNER JOIN</code>与该表连接，在后面使用<code>ON</code>子句进行连接。</p>
+
+<h4>连续两次使用同一表</h4>
+
+<p>在这种情况下，对同一个表使用两个不同的别名即可解决问题，其他的处理方式与两个不同的表的处理方式一样。</p>
+
+<h3>自连接</h3>
+
+<p>同样是表的别名，其他与多张不同的表一样。</p>
+
+<h3>相等连接和不等连接</h3>
+
+<p>除了可以使用等于号（=）之外还可以使用范围描述符。</p>
+
+<h3>连接条件和过滤条件</h3>
+
+<h2>CH6 使用集合</h2>
+
+<h3>集合理论</h3>
+
+<p>交（intersect)
+并（union）
+差（except）</p>
+
+<h3>示例</h3>
+
+<p><div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="mi">1</span> <span class="n">num</span><span class="p">,</span> <span class="s1">&#39;abc&#39;</span> <span class="n">str</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">UNION</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">SELECT</span> <span class="mi">9</span> <span class="n">num</span><span class="p">,</span> <span class="s1">&#39;efg&#39;</span> <span class="n">str</span><span class="p">;</span>
+<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</code></pre>
+</div>
+
+使用<code>SELECT</code>语句显示语句，然后使用<code>UNION</code>操作符将两个<code>SELECT</code>语句的内容进行并操作，在最终的结果中将会显示两行。</p>
+
+<h3>集合操作符</h3>
+
+<p>集合操作符包含两种修饰符，一个表示包含重复项，另一个表示去除重复项。</p>
+
+<h4><code>UNION</code>操作符</h4>
+
+<p><code>UNION ALL</code>保留重复项，<code>UNION</code>去除重复项。
+示例
+<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="s1">&#39;IND&#39;</span> <span class="n">type_cd</span><span class="p">,</span> <span class="n">cust_id</span><span class="p">,</span> <span class="n">lname</span> <span class="n">name</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">FROM</span> <span class="n">individual</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">UNION</span> <span class="k">ALL</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">SELECT</span> <span class="s1">&#39;BUS&#39;</span> <span class="n">type_cd</span><span class="p">,</span> <span class="n">cust_id</span><span class="p">,</span> <span class="n">name</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">FROM</span> <span class="n">business</span><span class="p">;</span>
+<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</code></pre>
+</div>
+
+示例2
+<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="s1">&#39;IND&#39;</span> <span class="n">type_cd</span><span class="p">,</span> <span class="n">cust_id</span><span class="p">,</span> <span class="n">lname</span> <span class="n">name</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">FROM</span> <span class="n">individual</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">UNION</span> <span class="k">ALL</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">SELECT</span> <span class="s1">&#39;BUS&#39;</span> <span class="n">type_cd</span><span class="p">,</span> <span class="n">cust_id</span><span class="p">,</span> <span class="n">name</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">FROM</span> <span class="n">business</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">UNION</span> <span class="k">ALL</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">SELECT</span> <span class="s1">&#39;BUS&#39;</span> <span class="n">type_cd</span><span class="p">,</span> <span class="n">cust_id</span><span class="p">,</span> <span class="n">name</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">FROM</span> <span class="n">business</span><span class="p">;</span>
+<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</code></pre>
+</div>
+
+示例3
+<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">emp_id</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">FROM</span> <span class="n">employee</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">WHERE</span> <span class="n">assigned_branch_id</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">AND</span> <span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="ss">&quot;Teller&quot;</span> <span class="k">OR</span> <span class="n">title</span> <span class="o">=</span> <span class="ss">&quot;Header Teller&quot;</span><span class="p">)</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">UNION</span> <span class="k">ALL</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">SELECT</span> <span class="k">DISTINCT</span> <span class="n">open_emp_id</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">FROM</span> <span class="n">account</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">WHERE</span> <span class="n">open_branch_id</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</code></pre>
+</div>
+</p>
+
+<p>示例4
+<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">emp_id</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">FROM</span> <span class="n">employee</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">WHERE</span> <span class="n">assigned_branch_id</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">AND</span> <span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="ss">&quot;Teller&quot;</span> <span class="k">OR</span> <span class="n">title</span> <span class="o">=</span> <span class="ss">&quot;Header Teller&quot;</span><span class="p">)</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">UNION</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">SELECT</span> <span class="k">DISTINCT</span> <span class="n">open_emp_id</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">FROM</span> <span class="n">account</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">WHERE</span> <span class="n">open_branch_id</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</code></pre>
+</div>
+</p>
+
+<h4>intersect操作符</h4>
+
+<p>在MySQL中，没有实现intersect的操作。
+<div class="highlight"><pre><code class="sql"><span class="k">SELECT</span> <span class="n">emp_id</span><span class="p">,</span> <span class="n">fname</span><span class="p">,</span> <span class="n">lname</span>
+<span class="k">FROM</span> <span class="n">employee</span>
+<span class="k">INTERSECT</span>
+<span class="k">SELECT</span> <span class="n">cust_id</span><span class="p">,</span> <span class="n">fname</span><span class="p">,</span> <span class="n">lname</span>
+<span class="k">FROM</span> <span class="n">individual</span>
+</code></pre>
+</div>
+</p>
+
+<h4>except操作符</h4>
+
+<p>MySQL中没有该操作符。</p>
+
+<h3>集合操作规则</h3>
+
+<h4>对复合查询结果排序</h4>
+
+<p>通常情况下，复合查询中两个查询对应列的名字是相同的，但是不是强制的，如下所示：
+<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">emp_id</span><span class="p">,</span> <span class="n">assigned_branch_id</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">FROM</span> <span class="n">employee</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">WHERE</span> <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Teller&#39;</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">UNION</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">SELECT</span> <span class="n">open_emp_id</span><span class="p">,</span> <span class="n">open_branch_id</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">FROM</span> <span class="n">account</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">WHERE</span> <span class="n">product_cd</span> <span class="o">=</span> <span class="s1">&#39;SAV&#39;</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">emp_id</span><span class="p">;</span>
+<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</code></pre>
+</div>
+
+如果这两个列的名字不同，但是指定的是后面列的名字的话，会出错，如下所示：
+<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">emp_id</span><span class="p">,</span> <span class="n">assigned_branch_id</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">FROM</span> <span class="n">employee</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">WHERE</span> <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Teller&#39;</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">UNION</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">SELECT</span> <span class="n">open_emp_id</span><span class="p">,</span> <span class="n">open_branch_id</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">FROM</span> <span class="n">account</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">WHERE</span> <span class="n">product_cd</span> <span class="o">=</span> <span class="s1">&#39;SAV&#39;</span>
+<span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">open_emp_id</span><span class="p">;</span>
+<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">ERROR</span> <span class="mi">1054</span> <span class="p">(</span><span class="mi">42</span><span class="n">S22</span><span class="p">):</span> <span class="k">Unknown</span> <span class="k">column</span> <span class="s1">&#39;open_emp_id&#39;</span> <span class="k">in</span> <span class="s1">&#39;order clause&#39;</span>
+</code></pre>
+</div>
+</p>
+
+<h4>集合操作符优先级</h4>
+
+<p>用不同的集合操作符构建复合查询时会产生不同的查询结果。当复合查询包含3个或3个以上的查询语句，它们以自顶向下的顺序被解析和执行。注意以下两点</p>
+
+<ul>
+<li>根据ANSI SQL标准，在调用集合操作时，intersect操作符比其他操作符具有更高的优先级；</li>
+<li>可以用圆括号对多个查询进行封装，以明确指定它们的执行顺序。</li>
+</ul>
+
+
+<p>但是需要注意的是<strong>在MySQL中还没有实现intersect操作符，并且也不允许在复合查询时使用括号。</strong></p>
+]]></content>
+  </entry>
+  
+</feed>

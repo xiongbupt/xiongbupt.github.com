@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: WSN | Keep Learning]]></title>
+  <link href="http://xiongbupt.github.com/blog/categories/wsn/atom.xml" rel="self"/>
+  <link href="http://xiongbupt.github.com/"/>
+  <updated>2012-06-07T05:58:54+08:00</updated>
+  <id>http://xiongbupt.github.com/</id>
+  <author>
+    <name><![CDATA[Xiongbupt]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[IEEE 802.15.4格式]]></title>
+    <link href="http://xiongbupt.github.com/blog/2012/03/21/ieee802154/"/>
+    <updated>2012-03-21T00:00:00+08:00</updated>
+    <id>http://xiongbupt.github.com/blog/2012/03/21/ieee802154</id>
+    <content type="html"><![CDATA[<p>IEEE 802.15.4 MAC帧控制字段中帧类型的数值<br/>
+信标帧：000<br/>
+数据帧：001<br/>
+确认帧：010<br/>
+命令帧：011</p>
+]]></content>
+  </entry>
+  
+</feed>

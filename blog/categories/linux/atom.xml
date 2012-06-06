@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Linux | Keep Learning]]></title>
+  <link href="http://xiongbupt.github.com/blog/categories/linux/atom.xml" rel="self"/>
+  <link href="http://xiongbupt.github.com/"/>
+  <updated>2012-06-07T05:58:54+08:00</updated>
+  <id>http://xiongbupt.github.com/</id>
+  <author>
+    <name><![CDATA[Xiongbupt]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Octopress尝试记录]]></title>
+    <link href="http://xiongbupt.github.com/blog/2012/06/06/octopress_use/"/>
+    <updated>2012-06-06T00:00:00+08:00</updated>
+    <id>http://xiongbupt.github.com/blog/2012/06/06/octopress_use</id>
+    <content type="html"><![CDATA[<p>本文主要是参考Octopress的<a href="http://octopress.org/" title="OCTOPRESS 手册">官方网址</a>进行操作，之前使用了<a href="http://www.google.com/" title="GOOGLE">google</a>搜索了若干参考，但是操作之后出现了错误，推翻重来之后，写下这篇记录，方便自己以后使用。
+首先介绍下自己的环境Arch，由于之前已经使用了github的个人博客，但是之前使用的是jekyll的方式，自己不会调整那些主题，感觉有些不方便，上网找了下，发现似乎Octopress相对来说比较简单，于是在这种情况下尝试使用Octopress。至于在github上创建个人博客主页，在这里不做说明，在Octopress环境下，自己相当不清楚。</p>
+
+<p>由于Arch已经安装了ruby，且版本是1.9.3高于octopress要求的1.9.2，使用<code>pacman</code>的方式安装了ruby之后便没有必要再安装ruby了。按照<code>arch wiki</code>中所说的方式安装rvm即可。在这些基本工作完成之后，开始安装Octopress。</p>
+
+<h1>Octopress环境配置</h1>
+
+<p>git clone git://github.com/imathis/octopress.git octopress
+cd octopress    # If you use RVM, You'll be asked if you trust the .rvmrc file (say yes).
+gem install bundler
+bundle install
+rake install</p>
+
+<h1>Github用户页面设置</h1>
+
+<p>参照Octopress上的将页面部署到github的<a href="http://octopress.org/docs/deploying/github/" title="OCTOPRESS Github介绍">手册</a>。<br/>
+Github Pages服务要求用户使用master分支作为Web服务器上的公共目录，当直接输入用户的web网址时，重定向的是master分支的目录。因此，可以创建一个source分支来工作，然后将生成的内容推送到master分支。Octopress可以通过使用下面的命令完成上面的任务：<br/>
+rake setup_github_pages<br/>
+上面的操作将会完成下面的操作：
+* 请求用户输入个人的Github可读可写地址，使用ssh的目录，如git@github.com:xiongbupt/xiongbupt.github.com.git这样的地址，在输入上面的命令之后，要求输入地址时输入这样一个地址即可。
+* 将本来octopress分支的远端分支有origin重命名为octopress，相当于工作目录内有两个远端分支。
+* 将个人的Github Pages作为默认的远程origin分支。
+* 将当前分支由master转换为source分支。
+* 根据之前自身输入的地址来配置个人博客的地址。
+* 在_deploy目录下创建一个master分支用于来布置。</p>
+
+<p>接下来使用<br/>
+rake generate
+rake deploy</p>
+
+<p>这两个操作将会完成下面的任务：生成网页内容，将将生成的网页内容拷贝到<code>_deploy/</code>文件夹内，将这些文件添加到git跟踪目录下，提交然后将这些文件推送到master分支。因此在完成内容编辑之后，简单使用上面的两个命令就将会本地完成的编辑内容推送到远程的服务器端。</p>
+
+<p><strong>不要忘记</strong>将源文件推送到自己的远程分支。使用下面的操作即可完成操作：
+git add .
+git commit -m '提交说明'
+git push origin source</p>
+
+<p><strong>注意：</strong>目前Github网站设置的默认分支是最新提交的分支，因此如果在网页显示有问题时，可以登录到Github网站上查看是否自己的版本库的默认分支是否为master分支，将默认分支调整为master即可在网页上显示内容。</p>
+
+<h1>Github工程页面设置</h1>
+
+<p>Github允许对于已存在的开源工程添加一个网页说明。Github会搜索工程目录下的gh-pages分支，然后将这些内容置于可以访问的类似于<code>http://username.github.com/project</code>。</p>
+
+<p>可以通过下面的方式来公布自己的工程<code>gh-pages</code>。<br/>
+rake setup_github_pages</p>
+
+<p>这个操作将会：
+* 请求工程目录库的网址url
+* 将当前的origin本来指向的远程仓库imathis/octopress重命名为octopress
+* 确定博客将被配置为一个子目录
+* 在工程下新建_deploy文件夹，在该文件夹下建立gh-pages分支，准备配置该分支</p>
+
+<p>接下来运行：  <br/>
+rake generate
+rake deploy</p>
+
+<p>这将会生成博客内容，将生成的文件拷贝到<code>_deploy/</code>文件夹内，将它们加入到git同步库中，提交并将这些文件推送到master分支。</p>
+
+<p>现在已经对网站的内容进行了一次提交，但是同样也应该对网站的博客的源代码进行提交。在添加了自己工程的网址作为远端仓库之后，可以进行提交，如下所示：      <br/>
+git remote add origin (your repo url)
+#set your new origin as the default branch
+git config.branch.master.remote origin</p>
+
+<p>在完成上述设置之后便可以使用<code>git push</code>进行推送了。</p>
+
+<h1>自定义域名</h1>
+
+<p>首先需要在<code>source</code>文件夹下创建一个名字为<code>CNAME</code>的文件，然后将自己的域名输入到该文件中，如下所示： <br/>
+echo 'your-domain.com' >> source/CNAME</p>
+
+<p>接下来在域名的注册处添加域名记录。具体介绍参考[octopress][lab4]的介绍，此处不做详细描述。</p>
+
+<p>sed -n 's/(category:\ )([)(\w<em>)(])/\1\3/p' </em>.md</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Debian安装记录]]></title>
+    <link href="http://xiongbupt.github.com/blog/2012/04/01/debian/"/>
+    <updated>2012-04-01T00:00:00+08:00</updated>
+    <id>http://xiongbupt.github.com/blog/2012/04/01/debian</id>
+    <content type="html"><![CDATA[<h1>添加用户至sudo用户组并去除密码</h1>
+
+<p>visudo修改为不需要密码，将</p>
+
+<blockquote><p>%sudo ALL=(ALL):ALL<br/>
+修改为
+%sudo ALL=(ALL) NOPASSWD: ALL<br/>
+将用户user_name添加至sudo用户组<br/>
+<div class="highlight"><pre><code class="bash">adduser user_name sudo
+</code></pre>
+</div>
+
+重新登录后，user_name用户即已经位于sudo用户组中。</p>
+
+<h1>安装基本的软件</h1>
+
+<p><div class="highlight"><pre><code class="bash">sudo dpkg -i wireless-crda-1.14_i386.deb
+sudo dpkg -i linux-headers-2.6.30-02063010_2.6.30-02063010_all.deb
+sudo dpkg -i linux-headers-2.6.30-02063010-generic_2.6.30-02063010_all.deb
+sudo dpkg -i linux-image-2.6.30-***.deb
+</code></pre>
+</div>
+</p></blockquote>
+
+<p>参照<a href="http://bbs.byr.cn/#!article/Linux/82799">北邮人论坛的linux版块</a>，设置debian的源
+之后使用<code>sudo apt-get install</code>安装了
+* vim
+* ctags
+* cscope
+* vim-gtk
+* ibus
+* vim-doc
+* vim-scripts
+* gcc
+* locales
+* nautilus-open-terminal
+* make
+* build-essential</p>
+
+<h1>将默认编辑器由gedit转换为gvim</h1>
+
+<p><div class="highlight"><pre><code class="bash">sudo cp /etc/gnome/defaults.list /etc/gnome/defaults.list.backup
+sduo vim /etc/gnome/defaults.list
+</code></pre>
+</div>
+
+将该文件中的<code>gedit.desktop</code>全部替换为<code>gvim.desktop</code></p>
+
+<h1>添加ifconfig等命令到普通用户</h1>
+
+<p>修改<code>/etc/profile</code>，将第7行的PATH中添加<code>/sbin</code></p>
+
+<h1>安装中文字体</h1>
+
+<ul>
+<li>tty-wqy-zenhei</li>
+<li>tty-wqy-microhei</li>
+<li>xfonts-intl-chinese</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[VIM使用便签]]></title>
+    <link href="http://xiongbupt.github.com/blog/2012/03/30/vim-cookbook/"/>
+    <updated>2012-03-30T00:00:00+08:00</updated>
+    <id>http://xiongbupt.github.com/blog/2012/03/30/vim-cookbook</id>
+    <content type="html"><![CDATA[<p>转载自<a href="http://www.oualline.com/vim-cook.html" title="vim_cook_book">vim_cook_book</a></p>
+
+<p>字符翻转</p>
+
+<blockquote><p>xp</p></blockquote>
+
+<p>可交换的替换单词
+<div class="highlight"><pre><code class="bash">1G              <span class="c">#到第一行</span>
+/idiot&lt;enter&gt;   <span class="c">#搜索单词idiot</span>
+cwmanager       <span class="c">#将idiot替换为manager</span>
+n               <span class="c">#搜索下一个idiot</span>
+.               <span class="c">#重复上面的替换操作</span>
+</code></pre>
+</div>
+</p>
+
+<p><div class="highlight"><pre><code class="bash">%s/&amp;lt;idiot&gt;/manager/gc <span class="c">#直接在命令行模式下进行输入，使用全局替换的方式</span>
+</code></pre>
+</div>
+
+/&lt;idiot>/</p>
+
+<blockquote><p>This text specifies the text we are looking for wand want. The &lt; tells Vim to match a word start and the > tells Vim to match the end of a word.<br/>
+&lt;表明匹配的是一个单词的开始，>表明匹配的是一个单词的结束。</p></blockquote>
+
+<p>检查Makefile错误的好方法，由于命令是以tab开始的，若是空格将有错误
+<div class="highlight"><pre><code class="bash">:set list
+</code></pre>
+</div>
+
+可以显示出空格和tab的区别，tab是<sup>I</sup></p>
+
+<p>vim读取man文件
+<div class="highlight"><pre><code class="bash">man subject|ul -i|vim -
+</code></pre>
+</div>
+</p>
+
+<p>vim移除行末的空格
+<div class="highlight"><pre><code class="bash">:1,<span class="nv">$s</span>/<span class="o">[</span>tab<span class="o">]</span>*<span class="nv">$/</span>/
+</code></pre>
+</div>
+</p>
+
+<p>将Last, First改为First Last
+<div class="highlight"><pre><code class="bash">:1,<span class="nv">$s</span>/<span class="o">([</span>&lt;sup&gt;,<span class="o">]</span>&lt;em&gt;<span class="o">)</span>,<span class="o">(</span>.&lt;/em&gt;<span class="nv">$)</span>/<span class="se">\2\1</span>/&lt;/sup&gt;
+</code></pre>
+</div>
+</p>
+
+<blockquote><p>The ( ... ) delimiters are used to inform the editor that the text that matches the regular expression side is to be treated special.<br/>
+(...)分隔符告知编辑器将括号内的内容应该被当做正则表达式来对待（？？？）</p></blockquote>
+
+<p>操作示例</p>
+
+<pre><code>if ( x&gt;3 ) {
+  "Hello *world!"           ds"         Hello world!
+  [123+4*56]/2              cs])        (123+456)/2
+  "Look ma, I'm *HTML!"     cs"&lt;q&gt;      &lt;q&gt;Look ma, I'm HTML!&lt;/q&gt;
+  if *x&gt;3 {                 ysW(        if ( x&gt;3 ) {
+  my $str = *whee!;         vllllS'     my $str = 'whee!';
+</code></pre>
+
+<p>上述操作中，*代表的是光标所在位置，在普通模式下，输入中间的命令，将会得到后面的效果</p>
+
+<p><div class="highlight"><pre><code class="bash">vim --startuptime timefile the_file_you_want_to_edit
+</code></pre>
+</div>
+
+查看vim启动时间所占用的时间比</p>
+
+<p>set list查看不可见字符</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Linux定时器]]></title>
+    <link href="http://xiongbupt.github.com/blog/2012/03/26/linux_timer/"/>
+    <updated>2012-03-26T00:00:00+08:00</updated>
+    <id>http://xiongbupt.github.com/blog/2012/03/26/linux_timer</id>
+    <content type="html"><![CDATA[<p><div class="highlight"><pre><code class="c"><span class="kt">int</span> <span class="n">mod_timer</span><span class="p">(</span><span class="k">struct</span> <span class="n">timer_list</span> <span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">timer</span><span class="err">，</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">expires</span><span class="p">)</span>
+</code></pre>
+</div>
+
+该函数负责修改内核定时器timer的超时字段expires。该函数可以修改激活和没有激活的内核定时器的超时时间，并把它们都设置为激活状态；返回值为0表示修改的内核定时器在修改之前处于未激活状态，返回值为1表示修改的内核定时器在修改之前处于已激活状态。
+<div class="highlight"><pre><code class="c"><span class="n">del_timer</span><span class="p">(</span><span class="n">sturct</span> <span class="n">timer_list</span> <span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;</span><span class="n">timer</span><span class="p">)</span>
+</code></pre>
+</div>
+
+返回值为0表示修删的内核定时器在删除之前处于未激活状态，返回值为1表示删除的内核定时器在删除之前处于已激活状态。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Linux内核活动]]></title>
+    <link href="http://xiongbupt.github.com/blog/2012/03/07/linux_kernel_activity/"/>
+    <updated>2012-03-07T00:00:00+08:00</updated>
+    <id>http://xiongbupt.github.com/blog/2012/03/07/linux_kernel_activity</id>
+    <content type="html"><![CDATA[<h3>中断</h3>
+
+<h4>中断类型</h4>
+
+<p>同步中断和异常<br/>
+异步中断：一般由硬件产生<br/>
+硬件IRQ，中断控制器</p>
+]]></content>
+  </entry>
+  
+</feed>

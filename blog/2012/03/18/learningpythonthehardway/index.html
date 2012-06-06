@@ -1,0 +1,472 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Learning Python The Hard Way笔记 - Keep Learning</title>
+  <meta name="author" content="Xiongbupt">
+
+  
+  <meta name="description" content="python函数 raw_input([prompt]) 在终端上显示prompt的提示符，在界面上输入东西之后，将输入的东西以string的形式返回到对应的变量中 open() 打开文件，括号中的文件应该使用引号来表达，使用字符串，不能单单的使用名字。open返回的是文件描述符， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://xiongbupt.github.com/blog/2012/03/18/learningpythonthehardway/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Keep Learning" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', '32449808']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Keep Learning</a></h1>
+  
+    <h2>伪程序员记录点滴</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:xiongbupt.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/categories">Categories</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Learning Python the Hard Way笔记</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-18T00:00:00+08:00" pubdate data-updated="true">Mar 18<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h2>python函数</h2>
+
+<blockquote><p>raw_input([prompt])</p></blockquote>
+
+<p>在终端上显示prompt的提示符，在界面上输入东西之后，将输入的东西以string的形式返回到对应的变量中</p>
+
+<blockquote><p>open()</p></blockquote>
+
+<p>打开文件，括号中的文件应该使用引号来表达，使用字符串，不能单单的使用名字。open返回的是文件描述符，对文件描述符的操作可以使用pydoc2 file来查看对应的操作。</p>
+
+<p>python中的打印信息%r和%s的区别主要是%r是按照输入的来打印，而%s是python采用的猜测用户想要看到的信息来进行输出</p>
+
+<p>假设使用file为使用open返回的描述符，下面是一些日常操作的函数
+* close()将文件关闭并保存
+* read()读取文件的内容(添加操作的权限，有'r''w''a'这三种权限，如下所示open("hello_world",'a')
+* readline()仅仅读取文件内容的一行
+* truncate()清空文件(需要对文件具有可写的权限，默认open的操作仅仅以读的方式打开)
+* write(stuff)将stuff指定的内容写入文件</p>
+
+<p>python中以写的方式打开文件将会将文件的内容清空，无需使用truncate()再次将文件的内容清空</p>
+
+<p>python中使用def定义函数，如下所示</p>
+
+<div class="highlight"><pre><code class="python"><span class="k">def</span> <span class="nf">functiona</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+<span class="n">test</span>
+<span class="k">print</span><span class="p">()</span>
+</code></pre>
+</div>
+
+
+<h3>python函数书写检查步骤</h3>
+
+<ul>
+<li>是否以def开始定义</li>
+<li>函数是否仅仅含有字母和下划线_</li>
+<li>是否在函数的名字后面紧跟了右小括号(</li>
+<li>是否将参数放置在小括号(后面，并且参数是使用逗号,分隔的</li>
+<li>是否每个参数都是唯一的</li>
+<li>是否在最后一个参数后面添加了小括号的右括号和冒号):</li>
+<li>是否在函数语句部分是以4个空格开始的，不多也不少</li>
+<li>是否在函数结束之后不再进行缩进了</li>
+</ul>
+
+
+<p>python函数调用检查步骤</p>
+
+<ul>
+<li>是否是通过函数名字调用的</li>
+<li>是否在名字后面使用了右小括号(</li>
+<li>是否在括号内使用了参数，参数用逗号分开</li>
+<li>是否在结束的时候使用了右小括号)结束函数的调用</li>
+</ul>
+
+
+<p>python中return可以连续返回多个值，以逗号分隔，多个数值可以按照顺序赋值给对应的变量，按照返回顺序如</p>
+
+<div class="highlight"><pre><code class="python"><span class="k">def</span> <span class="nf">function</span><span class="p">():</span>
+    <span class="n">ruturn</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span>
+
+<span class="n">a1</span><span class="p">,</span> <span class="n">b1</span><span class="p">,</span> <span class="n">c1</span> <span class="o">=</span> <span class="n">function</span><span class="p">()</span>
+</code></pre>
+</div>
+
+
+<p>python中似乎有全局变量这种东西</p>
+
+<h3>python字符串操作函数</h3>
+
+<p>string.split([sep[,maxsplit]])</p>
+
+<pre><code>以分隔符sep来分隔字符串string。若指定maxsplit，则返回maxsplit+1个字符最多
+</code></pre>
+
+<p>sorted() 将字符串进行排序</p>
+
+<p>list.pop() 获取一个词然后将其从词组中删除，默认参数为-1，即为最后一个</p>
+
+<p>from ex25 import *<br/>
+引入ex25.py文件中的所有函数功能。</p>
+
+<p>import ex25<br/>
+在命令行中输入，引入ex25。</p>
+
+<p>python中的逻辑判断符号
+* and
+* or
+* not
+* !=
+* ==
+* >=
+* &lt;=
+* True
+* False</p>
+
+<p>python中的if判断表达式后面的语句应该缩进4个空格来代表其所位于的缩进，if的条件后面需要添加冒号来告诉python这是一个新的代码块</p>
+
+<p>python中的if-else组合如下所示</p>
+
+<div class="highlight"><pre><code class="python"><span class="k">if</span> <span class="n">statement</span><span class="p">:</span>
+    <span class="k">if</span><span class="o">-</span><span class="n">code</span><span class="o">-</span><span class="n">part</span>
+<span class="k">elif</span> <span class="n">statement2</span><span class="p">:</span>
+    <span class="k">elif</span><span class="o">-</span><span class="n">code</span><span class="o">-</span><span class="n">part</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">other</span><span class="o">-</span><span class="n">parts</span>
+</code></pre>
+</div>
+
+
+<p>python中的range([start], stop[,step])</p>
+
+<pre><code>start若省略则为0，step若省略则为1。step不能是0，否则报错.返回的是从start开始，以step为间隔，小于stop的一个list
+</code></pre>
+
+<p>python中list的操作函数包括
+* list.append(x)最后的位置添加一个x
+* list.extend(L)在list的最后的位置添加一个list，L为一个list.
+* list.insert(i, x)在list的i位置添加x
+* list.remove(x)在list中去除第一个等于x的项目
+* list.pop([i])在list中去除第i个位置的值，并返回该值。若未提供i则默认校区最后一个
+* list.index(x)返回列表中第一个值为x的下标
+* list.count(x)返回列表中一共有多少个值等于x的项目，用于计数
+* list.sort()对list就地进行排序，将会更改list
+* list.reverse()对list进行翻转处理</p>
+
+<h3>python Keywords</h3>
+
+<p>and 逻辑与</p>
+
+<p>del 删除列表中的某项，使用索引来删除，也可以删除一个范围。比如：</p>
+
+<div class="highlight"><pre><code class="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">66.25</span><span class="p">,</span> <span class="mi">333</span><span class="p">,</span> <span class="mi">333</span><span class="p">,</span> <span class="mf">1234.5</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">del</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c">#删除a列表中的第一个元素</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">66.25</span><span class="p">,</span> <span class="mi">333</span><span class="p">,</span> <span class="mi">333</span><span class="p">,</span> <span class="mf">1234.5</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">del</span> <span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span> <span class="c">#删除a列表中的第2，3个元素</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">66.25</span><span class="p">,</span> <span class="mf">1234.5</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">del</span> <span class="n">a</span><span class="p">[:]</span> <span class="c">#删除a列表中的所有元素</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a</span>
+<span class="p">[]</span>
+</code></pre>
+</div>
+
+
+<p>from 从某些模块中引入一些功能</p>
+
+<p>not 逻辑非</p>
+
+<p>while while循环</p>
+
+<p>as</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Xiongbupt</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-18T00:00:00+08:00" pubdate data-updated="true">Mar 18<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/python/'>Python</a>
+  
+</span>
+
+
+      
+
+<span class="tags">
+  
+    <a class='tag' href='//learning/'>Learning</a>, <a class='tag' href='//python/'>Python</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://xiongbupt.github.com/blog/2012/03/18/learningpythonthehardway/" data-via="xiongbupt" data-counturl="http://xiongbupt.github.com/blog/2012/03/18/learningpythonthehardway/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/03/07/linux_kernel_activity/" title="Previous Post: Linux内核活动">&laquo; Linux内核活动</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/03/19/c_language_notes/" title="Next Post: c语言笔记">c语言笔记 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/06/06/vim_help_read/">VIM用户手册27笔记</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/06/octopress_use/">Octopress尝试记录</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/06/assemble_language_learn/">汇编语言学习</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/05/vim_regex_learning/">VIM正则表达式学习</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/05/vim_regex_case/">VIM使用正则表达式改变大小写</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/05/os_impletion/">一个操作系统的实现笔记</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/xiongbupt">@xiongbupt</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'xiongbupt',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("xiongbupt", 1, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/xiongbupt" class="twitter-follow-button" data-show-count="false">Follow @xiongbupt</a>
+  
+</section>
+
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/110480695522271115757?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Xiongbupt -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'xiongbupt';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

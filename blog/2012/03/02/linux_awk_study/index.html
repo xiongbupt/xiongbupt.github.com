@@ -1,0 +1,468 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>AWK语言学习 - Keep Learning</title>
+  <meta name="author" content="Xiongbupt">
+
+  
+  <meta name="description" content="awk awk以花括号分隔命令，命令以'{}'围起来？ 其中print与print $0的作用相同，都是打印整整一行。print $1 $2则是打印改行的第1个和第2个内容。 -F用来标志分隔符是什么，如下面 $awk -F &quot;:&quot; &#39;{print $1 $2}&#39 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://xiongbupt.github.com/blog/2012/03/02/linux_awk_study/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Keep Learning" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', '32449808']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Keep Learning</a></h1>
+  
+    <h2>伪程序员记录点滴</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:xiongbupt.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/categories">Categories</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">AWK语言学习</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-02T00:00:00+08:00" pubdate data-updated="true">Mar 2<span>nd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h2>awk</h2>
+
+<p>awk以花括号分隔命令，命令以'{}'围起来？</p>
+
+<p>其中<code>print</code>与<code>print $0</code>的作用相同，都是打印整整一行。<code>print $1 $2</code>则是打印改行的第1个和第2个内容。</p>
+
+<p>-F用来标志分隔符是什么，如下面</p>
+
+<div class="highlight"><pre><code class="bash"><span class="nv">$awk</span> -F <span class="s2">&quot;:&quot;</span> <span class="s1">&#39;{print $1 $2}&#39;</span> /etc/passwd
+</code></pre>
+</div>
+
+
+<p>意味着以:（冒号）为分隔符，打印/etc/passwd每行的第一个和第二个字符。</p>
+
+<p>在外部脚本中使用FS这个参量来设置分隔符。</p>
+
+<p>BEGIN和END区域</p>
+
+<p>BEGIN区域可以用于设置在awk进行文本处理之前处理，如初始化FS（字段分隔符）变量，打印页眉等。<br/>
+END区域可以用于设置awk在处理文本完之后进行汇总处理。</p>
+
+<h3>使用正则表达式</h3>
+
+<div class="highlight"><pre><code class="bash">awk <span class="s1">&#39;/xiong/ {print }&#39;</span> a
+</code></pre>
+</div>
+
+
+<p>打印文件a中含有xiong的一整行，这个可以与正则表达式紧密的结合。如下行，打印含有浮点数的整行。</p>
+
+<div class="highlight"><pre><code class="bash">awk <span class="s1">&#39;/\[0-9\]+\\.\[0-9\]\*/ {print}&#39;</span> a
+</code></pre>
+</div>
+
+
+<h3>使用判断符号</h3>
+
+<p>awk支持==，>，&lt;，>=，&lt;=，!=同时它还支持~(包含),!~(不包含)。可以使用这些条件符号进行判断，来进行输出处理。如下行：</p>
+
+<div class="highlight"><pre><code class="bash">awk <span class="s1">&#39;$1 == &quot;xiong&quot; {print $3}&#39;</span> a
+</code></pre>
+</div>
+
+
+<p>仅仅在a文件的第一个字符为xiong时输出该行的第3个变量。</p>
+
+<div class="highlight"><pre><code class="bash">awk <span class="s1">&#39;$5 ~ /root/ {print $3}&#39;</span> a
+</code></pre>
+</div>
+
+
+<p>仅仅在a文件的第5个参数含有root时输出第3个参量。</p>
+
+<p>awk也支持类似于c语言的条件判断处理，如上面的那条语句可以写成下面的判断形式</p>
+
+<div class="highlight"><pre><code class="bash"><span class="o">{</span>
+    <span class="k">if</span><span class="o">(</span> <span class="nv">$5</span> ~ /root/<span class="o">)</span> <span class="o">{</span>
+        print <span class="nv">$3</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+
+<h3>awk算术支持</h3>
+
+<p>awk支持+,-,*,/,%,<sup>,++,--,+=,-=,*=,/=。<br/></sup>
+甚至还支持<sup>=,%=</sup></p>
+
+<h3>awk的分隔符</h3>
+
+<p>awk的分隔符支持正则表达式，使用FS这个变量表明分隔符为什么。</p>
+
+<p>如下面，表明分隔符为多个tab键</p>
+
+<blockquote><p>FS="\t+"</p></blockquote>
+
+<h3>awk符号设置</h3>
+
+<ul>
+<li>FS：输入分隔符，在单行的时候和RS可以认为为相同的</li>
+<li>RS：记录分隔符</li>
+<li>OFS：输出分隔符号，默认为空白</li>
+<li>ORS：输出记录分隔符，默认为换行</li>
+<li>NF：区域数，当前记录的区域数目。由RS来决定一条记录区域数目有多少。</li>
+<li>RS：记录数，在每个记录都是单行时，RS与行数是相等的，但是在多行的记录时，这两个值就不等了。</li>
+</ul>
+
+
+<h3>awk循环设置</h3>
+
+<p>awk拥有while，do...while,for循环，与c语言类似。同时awk也拥有break和continue的语句，可以进行循环的退出。</p>
+
+<h3>awk指针与数组</h3>
+
+<p>awk的数组从下标1开始。</p>
+
+<p>如下所示：</p>
+
+<div class="highlight"><pre><code class="bash"><span class="k">for</span> <span class="o">(</span> x in myarray <span class="o">)</span> <span class="o">{</span>
+    print myarray<span class="o">[</span>x<span class="o">]</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+
+<p>上述的输出不知道哪个会放在前面，即无法判断是myarray[1]先出现还是myarray[2]先出现，它是无序的。</p>
+
+<p>awk的数组下标可以是字符串，比如</p>
+
+<blockquote><p>myarr["1"]="abc"<br/>
+print myarr[1]<br/>
+print myarr["1"]</p></blockquote>
+
+<p>这两个的输出结果一致，都是abc。</p>
+
+<blockquote><p>myarr["hello"] = "abc"</p></blockquote>
+
+<p>数组也可以这样定义，即数组的下标可以是字符串，不一定得是数字。</p>
+
+<p>使用delete可以删除一个数组中的元素，比如</p>
+
+<blockquote><p>delete fooarray[1]</p></blockquote>
+
+<p>将会删除fooarray[1]这个数组元素。</p>
+
+<h3>awk格式化输出</h3>
+
+<p>awk含有类似c语言的printf和sprintf</p>
+
+<h3>awk字符串处理</h3>
+
+<ul>
+<li><p>length(mystring) 输出字符串的长度</p></li>
+<li><p>index(mystring, substring) 输出substring在mystring中出现的位置值，若未找到匹配则返回0</p></li>
+<li><p>tolower(mystring) 将mystring的字母变成小写</p></li>
+<li><p>toupper(mystring) 将mystring的字母变为大写</p></li>
+<li><p>substr(mystring, startpos, maxlen) 输出mystring中的从startpos位置开始的maxlen个字符。注意startpos+maxlen的值应该小于length(mystring)。</p></li>
+<li><p>mach(mystring,/substring/) 与index类似，但是它可以使用正则表达式，同时它会返回RSTART和RLENGTH这两个值用来表明开始位置以及匹配的长度。若没有匹配的则RSTART为0，RLENGTH的大小为-1.</p></li>
+<li><p>sub(regexp, replstring, mystring)查找mystring中首先出现的匹配regexp的字符串，并且替换为repstring。</p></li>
+<li><p>gsub(regexp, replstring, mystring)功能与sub()类似，但是它完成全局的替代，不仅仅替代第一个出现的字符串。</p></li>
+<li><p>split(mystring,myarray,"splitor")字符的分隔，将mystring中的字符按照"splitor"的要求进行分割，存储到myarray的数组中，这个数组是一个以整形数为下标的数组，split的返回值为最终形成的数组的长度。</p></li>
+</ul>
+
+
+<p>在调用length(),sub(),gsub()函数时，可以省略最后的一个参数，awk将会默认使用$0代替。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Xiongbupt</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-02T00:00:00+08:00" pubdate data-updated="true">Mar 2<span>nd</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/linux/'>Linux</a>
+  
+</span>
+
+
+      
+
+<span class="tags">
+  
+    <a class='tag' href='//awk/'>AWK</a>, <a class='tag' href='//linux/'>Linux</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://xiongbupt.github.com/blog/2012/03/02/linux_awk_study/" data-via="xiongbupt" data-counturl="http://xiongbupt.github.com/blog/2012/03/02/linux_awk_study/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/03/01/linux_process/" title="Previous Post: Linux进程学习">&laquo; Linux进程学习</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/03/04/linux_bash/" title="Next Post: Learing bash笔记">Learing bash笔记 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/06/06/vim_help_read/">VIM用户手册27笔记</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/06/octopress_use/">Octopress尝试记录</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/06/assemble_language_learn/">汇编语言学习</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/05/vim_regex_learning/">VIM正则表达式学习</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/05/vim_regex_case/">VIM使用正则表达式改变大小写</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/05/os_impletion/">一个操作系统的实现笔记</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/xiongbupt">@xiongbupt</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'xiongbupt',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("xiongbupt", 1, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/xiongbupt" class="twitter-follow-button" data-show-count="false">Follow @xiongbupt</a>
+  
+</section>
+
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/110480695522271115757?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Xiongbupt -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'xiongbupt';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

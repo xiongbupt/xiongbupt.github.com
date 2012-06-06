@@ -1,0 +1,636 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Git小项目基本操作 - Keep Learning</title>
+  <meta name="author" content="Xiongbupt">
+
+  
+  <meta name="description" content="Git个人电脑操作 Git版本控制有三个区域，分别是工作目录、暂存区和git目录。 平时的工作都在工作目录中完成，在修改完代码之后，需要将修改的代码加入到暂存区，这个通过git add操作完成。当需要将暂存区域里的代码提交进入git工作目录时，需要使用git commit来完成。 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://xiongbupt.github.com/blog/2012/06/01/git-lab-use/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Keep Learning" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', '32449808']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Keep Learning</a></h1>
+  
+    <h2>伪程序员记录点滴</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:xiongbupt.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/categories">Categories</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Git小项目基本操作</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-01T00:00:00+08:00" pubdate data-updated="true">Jun 1<span>st</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h1>Git个人电脑操作</h1>
+
+<p>Git版本控制有三个区域，分别是工作目录、暂存区和git目录。
+<img src="/images/fig0101-tn.png" title="Git 本地操作" alt="Git的本地操作" /></p>
+
+<p>平时的工作都在工作目录中完成，在修改完代码之后，需要将修改的代码加入到暂存区，这个通过<code>git add</code>操作完成。当需要将暂存区域里的代码提交进入git工作目录时，需要使用<code>git commit</code>来完成。</p>
+
+<p>上面描述的两个命令<code>git add</code>和<code>git commit</code>是在本地目录工作中用到的主要命令。当需要删除文件时，使用的是<code>git rm</code>命令。</p>
+
+<p>在使用<code>git commit</code>将本地工作的内容提交到git工作目录之后，本地代码的修改工作便已经完成。</p>
+
+<h1>Git获取服务器端代码</h1>
+
+<p>使用git从服务器端下载最新的代码，目前服务器端的ip地址为10.117.6.138。使用</p>
+
+<pre><code>git clone git@10.117.6.138:/home/git/path_to_work
+</code></pre>
+
+<p>下载源代码之后，接下来便可以对代码进行修改了。每次修改之后，均使用<code>git add</code>和<code>git commit</code>在本地完成提交操作。这些操作与前面提到的在个人电脑上的操作类似。</p>
+
+<h1>在个人电脑上创建新分支</h1>
+
+<p>git创建分支的操作非常简单，而且代价也很小。</p>
+
+<pre><code>`git branch new_branch_name`
+</code></pre>
+
+<p>通过这样一条指令便可以创建一个名字为<code>new_branch_name</code>的分支。接下来，便可以切换到该分支上进行开发了，具体操作如下：</p>
+
+<pre><code>git checkout new_branch_name
+</code></pre>
+
+<p>完成上述操作之后，便已经将当前的代码分支移动到了<code>new_branch_name</code>这个分支。使用<code>git branch</code>指令可以查看当前一共有多少分支，以及当前处于哪个分支。<br/>
+上面的两条指令可以用一条指令代替</p>
+
+<pre><code>git checkout -b new_branch_name
+</code></pre>
+
+<p>这条命令即相当于连续执行了</p>
+
+<pre><code>git branch new_branch_name
+git checkout new_branch_name
+</code></pre>
+
+<h1>查看服务器端的分支</h1>
+
+<p>如果想要查看服务器端都有什么分支，可以使用如下：</p>
+
+<pre><code>git remote show origin
+</code></pre>
+
+<p>上面这条指令将会输出远端服务器端的分支，以及个人的电脑是否已经和这些分支同步。</p>
+
+<h1>推送代码至Git服务器端</h1>
+
+<p>当自己需要将代码推送到Git服务器端时，需要确保服务器端的代码与自己下载的代码是一致的，因此推荐每次在向服务器端推送代码之前，先使用<code>git pull</code>操作将服务器端的代码与本地的代码进行合并，完成合并之后再进行提交。若未进行此操作，将代码推送至服务器端将会失败，服务器端将会给出提示。<br/>
+从Git服务器端下载代码有两种方式，一种是<code>git pull</code>，另外一种是<code>git fetch</code>。其中<code>git pull</code>操作不仅仅执行了<code>git fetch</code>，同时，它还将远端仓库的版本与当前的版本进行了合并即<code>merge</code>操作。如果可以直接合并，将不需要在本地端手工合并，Git将会自动合并。<br/>
+因此，在需要将代码提交至远端的Git服务器之前，需要先将服务器端的最新代码下载下来，然后在本地合并之后，再提交到服务器端。<br/>
+具体操作如下：</p>
+
+<pre><code>git pull
+git mergetool
+git push origin branch_name
+</code></pre>
+
+<p>上面这三个操作是整个向服务器端推送的大致操作。其中最后一步<code>git push origin branch_name</code>将会把本地分支<code>branch_name</code>推送到服务器端，并且服务器端的分支的名字也为<code>branch_name</code>。若想在服务器端命名为不同的名字，则可以使用下面的指令</p>
+
+<pre><code>git push origin local_branch:remote_branch
+</code></pre>
+
+<p>其中<code>local_branch</code>是本地分支的名字，而<code>remote_branch</code>则为远端服务器的分支名字。</p>
+
+<h1>切换到远端Git服务器上分支</h1>
+
+<p>从服务器上使用<code>git fetch</code>下载代码之后，个人PC上的代码库便和服务端的代码库的版本是一致的。此时，如果个人PC希望切换到远端服务器的某个分支，必须在自己的代码库中再创建一个分支，建议将该分支的名字命名为与远端服务器的分支名字相同，这样在推送到服务器端时可以较为方便，防止再在远端服务器上创建一个新的分支。具体操作可以如下所示：</p>
+
+<pre><code>git pull
+git remote show origin
+git checkout -b branch_name origin/branch_name
+</code></pre>
+
+<p>上面的操作即在本地创建了一个分支名为branch_name，该分支与服务器端的分支是一样的名字。如果在该分支上进行修改之后，接下来使用推送命令将修改的分支推送到远端服务器即可。</p>
+
+<pre><code>git push origin branch_name
+</code></pre>
+
+<h1>开发流程简介</h1>
+
+<p>在创建项目之前，需要在服务器端创建一个版本库。这个操作需要有远端服务器的登录权限，可以在相应的目录下创建目录及文件，目前对服务器的登录为ssh的远程登录方式。在登录到服务器端后，使用<em><code>git init --bare</code></em> 创建一个空的仓库即可。也可以在本地创建仓库之后，使用如下命令将仓库拷贝到远端服务器。</p>
+
+<pre><code>scp -r local_folder name@remote_server:/path/to/work
+</code></pre>
+
+<p>这一步可以由管理人员完成。当将git的项目在远端服务器端生成之后接下来便是<code>git</code>的发挥作用了。</p>
+
+<p>假设现在项目组有三个人分别为A，B，C。他们共同从服务器下载了一份代码，并且开始开发。B下载代码之后，觉得自己有个新想法，于是使用</p>
+
+<pre><code>git branch branch_B_1
+</code></pre>
+
+<p>创建了一个新的分支，分支名为branch_B_1。然后B使用</p>
+
+<pre><code>git checkout branch_B_1
+</code></pre>
+
+<p>在这个分支上进行开发。同样，A也进行了类似的操作，不过他创建的分支版本为branch_A_1。在完成各自的想法之后，他们需要将自己的工作推送到服务器端。</p>
+
+<blockquote><p>在推送到服务器端时，需要记住git的一个原则，除非指定需要提交的本地分支，否则，git是不会将本地生成的分支提交到远端的服务器端的。因此，在创建分支进行开发后，当需要提交分支时，需要按照上面提到的<strong>推送代码到Git服务器端</strong>的说明将代码推送到服务器端。</p></blockquote>
+
+<p>现在，A和B都完成了各自的修改，需要按照下面的步骤将修改后的分支推送到服务器端。假设A先推送，其首先使用</p>
+
+<pre><code>git pull
+</code></pre>
+
+<p>的方式从服务器端下载最新的代码，然后按照</p>
+
+<pre><code>git push origin branch_A_1
+</code></pre>
+
+<p>的方式将分支代码提交到了Git服务器端。接下来，B也想提交自身修改的分支代码，于是B也首先使用<code>git pull</code>的方式从服务器端下载最新的代码，然后使用</p>
+
+<pre><code>git push origin branch_B_1
+</code></pre>
+
+<p>的方式提交分支代码。注意在B使用<code>git pull</code>的方式下载代码时，其将会下载服务器端由A提交的分支branch_A_1。如果B此时想查看A究竟做了什么工作时，可以使用</p>
+
+<pre><code>git checkout -b branch_A_1 origin/branch_A_1
+</code></pre>
+
+<p>的方式，先在本地创建一个同样名字为branch_A_1的分支，然后再切换到该分支进行查看。</p>
+
+<blockquote><p>git从服务器端下载的分支代码无法直接查看，必须在本地创建一个对应的分支，然后才可以查看该分支的代码。至于本地分支的名字则没有影响，但是为了与远端分支的一致性，推荐使用相同的分支名。</p></blockquote>
+
+<p>C使用<code>git pull</code>之后，在切换分支查看了A和B的想法之后，觉得A和B的想法都可以采纳，C想将A和B的想法合并到一起，于是便开始合并这两个分支。<br/>
+首先，C新创建了一个分支，名字为branch_C_1，接下来，C切换到该分支，然后使用</p>
+
+<pre><code>git merge branch_A_1
+</code></pre>
+
+<p>将分支branch_A_1与自己创建的分支合并，接着使用</p>
+
+<pre><code>git merge branch_B_1
+</code></pre>
+
+<p>将分支branch_B_1与自己创建的分支合并。这时，C创建的分支已经同时包含了A和B的想法。如果在合并的工程中出现了冲突，可以使用</p>
+
+<pre><code>git mergetool
+</code></pre>
+
+<p>这个工具将会打开这些冲突，选择解决这些问题。</p>
+
+<p>总之，git的提交分支的方式便是按照上面的一个简单的说明进行开发。</p>
+
+<h2>git版本回退</h2>
+
+<p>如果在开发过程中，发现出现了错误，想要将git的版本回退到某个时期，可以使用</p>
+
+<pre><code>git checkout hash_number
+</code></pre>
+
+<p>的方式回退到hash_number所代表的版本。在这上面再创建分支</p>
+
+<pre><code>git chekcout -b branch_test hash_number
+</code></pre>
+
+<p>这样可以以这个hash_number代表的历史版本。</p>
+
+<h2>git版本合并</h2>
+
+<p>从服务器端下载代码之后，如果出现了冲突，需要使用</p>
+
+<pre><code>git mergetool
+</code></pre>
+
+<p>来对代码进行合并。<br/>
+在本地分支下，使用</p>
+
+<pre><code>git pull
+</code></pre>
+
+<p>git将会尝试自动合并，如果合并失败，使用</p>
+
+<pre><code>git mergetool
+</code></pre>
+
+<p>再来尝试手动合并即可。</p>
+
+<h1>git基本命令介绍</h1>
+
+<p>从服务器端下载代码</p>
+
+<blockquote><p>git clone username@remote_server:/path/to/work</p></blockquote>
+
+<p>添加文件到暂存区</p>
+
+<blockquote><p>git add filename</p></blockquote>
+
+<p>将已经在版本库中但是在工作目录下修改的文件添加到暂存区</p>
+
+<blockquote><p>git add -u</p></blockquote>
+
+<p>从版本库中删除文件</p>
+
+<blockquote><p>git rm filename</p></blockquote>
+
+<p>将文件重命名</p>
+
+<blockquote><p>git mv oldname newname</p></blockquote>
+
+<p>将暂存区文件存储到版本库中</p>
+
+<blockquote><p>git commit</p></blockquote>
+
+<p>直接添加注释，不再进入界面编辑提交日志</p>
+
+<blockquote><p>git commit -m 'Description of the commit'</p></blockquote>
+
+<p>从已经克隆的版本库中下载服务器端的代码到本地版本库中</p>
+
+<blockquote><p>git fetch</p></blockquote>
+
+<p>从已经克隆的版本库中下载服务器端的代码并合并分支</p>
+
+<blockquote><p>git pull</p></blockquote>
+
+<p>在本地创建一个名字为branch_name的分支</p>
+
+<blockquote><p>git branch branch_name</p></blockquote>
+
+<p>切换到本地名字为branch_name的分支</p>
+
+<blockquote><p>git checkout branch_name</p></blockquote>
+
+<p>在本地创建一个分支名为branch_name的分支并切换到该分支</p>
+
+<blockquote><p>git chekcout -b branch_name</p></blockquote>
+
+<p>将本地名字为branch_name的分支推送到服务器端，并且在服务器端的名字为branch_name</p>
+
+<blockquote><p>git push origin branch_name</p></blockquote>
+
+<p>将本地名字为branch_name的分支推送到服务器端，并且在服务器端的名字为branch_server</p>
+
+<blockquote><p>git push origin branch_name:branch_server</p></blockquote>
+
+<p>查看服务器端的分支状态</p>
+
+<blockquote><p>git remote show origin</p></blockquote>
+
+<p>查看本地分支状态</p>
+
+<blockquote><p>git branch</p></blockquote>
+
+<p>删除本地分支</p>
+
+<blockquote><p>git branch -d branch_name</p></blockquote>
+
+<p>合并分支</p>
+
+<blockquote><p>git merge</p></blockquote>
+
+<p>合并冲突解决</p>
+
+<blockquote><p>git mergetool</p></blockquote>
+
+<p>查看简明历史</p>
+
+<blockquote><p>git log</p></blockquote>
+
+<p>查看每次提交具体修改</p>
+
+<blockquote><p>git log -p</p></blockquote>
+
+<p>查看提交某个文件的修改历史</p>
+
+<blockquote><p>git log -p filename</p></blockquote>
+
+<p>显示文件的增减行数</p>
+
+<blockquote><p>git log --stat</p></blockquote>
+
+<p>git个人邮件配置</p>
+
+<blockquote><p>git config --global user.email username@web.com</p></blockquote>
+
+<p>git个人名字配置</p>
+
+<blockquote><p>git config --global user.name username</p></blockquote>
+
+<p>git简称配置，如chekcout简称为co，commit为ci，branch为br，status为st</p>
+
+<blockquote><p>git config --global alias.co checkout<br/>
+git config --global alias.ci commit<br/>
+git config --global alias.br branch<br/>
+git config --global alias.st status</p></blockquote>
+
+<p>git格式化与空格</p>
+
+<pre><code>由于linux系统和windows系统对行尾结束符处理方式不一致，windows下使用回车和换行两个字符来结束一行，而Linux系统仅仅使用一个换行字符，当跨平台在linux系统和windows系统下开发时，会出现较麻烦的现象。Git可以在提交时自动将结束符CRLF转换成LF，而在签出代码时将LF转换成为CRLF。在windows系统下，将autocrlf选项设置为true，这样在签出代码时，LF将会被换成CRLF；在Linux系统下，将autocrlf设置为input仅仅在签入代码时将CRLF转换为LF，在签出代码时，不进行转换，LF还是LF。此选项对跨平台开发具有较大作用，推荐使用。
+</code></pre>
+
+<blockquote><p>git config --global core.autocrlf true<em>（windows下使用）</em><br/>
+git config --global core.autocrlf input<em>(Linux下使用）</em></p>
+
+<h1>注意事项</h1>
+
+<ul>
+<li>Git的每次提交到服务器端的操作必须先从服务器端下载最新的提交代码，在本地完成合并冲突之后才可以完成提交。</li>
+<li>Git对于文件的合并有自动合并的功能，当已修改的版本与未修改的版本只是删减操作时，Git将会自动合并。</li>
+<li>Git在本地的提交操作不需要连接到服务器端。</li>
+<li>为了防止服务器版本库的差异过大，在每次完成一个完整的功能块时，建议将代码push推送到服务器端，不要多次未推送提交，一次改动过大。</li>
+<li>使用<code>git checkout filename</code>操作时，将会从暂存区中获取文件，替代本地文件。注意这种情况下，本地的所有修改都会丢失。因此，在使用此命令之前，需要确认本地的修改已经无用或者已经保存。</li>
+<li>尽量多使用<code>git status</code>查看当前状态，在这个命令的输出中可以获取很多帮助信息以及可以采取什么操作来实现哪些功能。</li>
+</ul>
+</blockquote>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Xiongbupt</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-01T00:00:00+08:00" pubdate data-updated="true">Jun 1<span>st</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/git/'>Git</a>
+  
+</span>
+
+
+      
+
+<span class="tags">
+  
+    <a class='tag' href='//git/'>Git</a>, <a class='tag' href='//linux/'>Linux</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://xiongbupt.github.com/blog/2012/06/01/git-lab-use/" data-via="xiongbupt" data-counturl="http://xiongbupt.github.com/blog/2012/06/01/git-lab-use/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/05/31/git-basic/" title="Previous Post: Git基本使用">&laquo; Git基本使用</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/06/05/os_impletion/" title="Next Post: 一个操作系统的实现笔记">一个操作系统的实现笔记 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/06/06/vim_help_read/">VIM用户手册27笔记</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/06/octopress_use/">Octopress尝试记录</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/06/assemble_language_learn/">汇编语言学习</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/05/vim_regex_learning/">VIM正则表达式学习</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/05/vim_regex_case/">VIM使用正则表达式改变大小写</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/05/os_impletion/">一个操作系统的实现笔记</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/xiongbupt">@xiongbupt</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'xiongbupt',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("xiongbupt", 1, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/xiongbupt" class="twitter-follow-button" data-show-count="false">Follow @xiongbupt</a>
+  
+</section>
+
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/110480695522271115757?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Xiongbupt -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'xiongbupt';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

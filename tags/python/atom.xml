@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: Python | Keep Learning]]></title>
+  <link href="http://xiongbupt.github.com/tags/python/atom.xml" rel="self"/>
+  <link href="http://xiongbupt.github.com/"/>
+  <updated>2012-06-07T05:58:54+08:00</updated>
+  <id>http://xiongbupt.github.com/</id>
+  <author>
+    <name><![CDATA[Xiongbupt]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Learning Python The Hard Way笔记]]></title>
+    <link href="http://xiongbupt.github.com/blog/2012/03/18/learningpythonthehardway/"/>
+    <updated>2012-03-18T00:00:00+08:00</updated>
+    <id>http://xiongbupt.github.com/blog/2012/03/18/learningpythonthehardway</id>
+    <content type="html"><![CDATA[<h2>python函数</h2>
+
+<blockquote><p>raw_input([prompt])</p></blockquote>
+
+<p>在终端上显示prompt的提示符，在界面上输入东西之后，将输入的东西以string的形式返回到对应的变量中</p>
+
+<blockquote><p>open()</p></blockquote>
+
+<p>打开文件，括号中的文件应该使用引号来表达，使用字符串，不能单单的使用名字。open返回的是文件描述符，对文件描述符的操作可以使用pydoc2 file来查看对应的操作。</p>
+
+<p>python中的打印信息%r和%s的区别主要是%r是按照输入的来打印，而%s是python采用的猜测用户想要看到的信息来进行输出</p>
+
+<p>假设使用file为使用open返回的描述符，下面是一些日常操作的函数
+* close()将文件关闭并保存
+* read()读取文件的内容(添加操作的权限，有'r''w''a'这三种权限，如下所示open("hello_world",'a')
+* readline()仅仅读取文件内容的一行
+* truncate()清空文件(需要对文件具有可写的权限，默认open的操作仅仅以读的方式打开)
+* write(stuff)将stuff指定的内容写入文件</p>
+
+<p>python中以写的方式打开文件将会将文件的内容清空，无需使用truncate()再次将文件的内容清空</p>
+
+<p>python中使用def定义函数，如下所示
+<div class="highlight"><pre><code class="python"><span class="k">def</span> <span class="nf">functiona</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+<span class="n">test</span>
+<span class="k">print</span><span class="p">()</span>
+</code></pre>
+</div>
+</p>
+
+<h3>python函数书写检查步骤</h3>
+
+<ul>
+<li>是否以def开始定义</li>
+<li>函数是否仅仅含有字母和下划线_</li>
+<li>是否在函数的名字后面紧跟了右小括号(</li>
+<li>是否将参数放置在小括号(后面，并且参数是使用逗号,分隔的</li>
+<li>是否每个参数都是唯一的</li>
+<li>是否在最后一个参数后面添加了小括号的右括号和冒号):</li>
+<li>是否在函数语句部分是以4个空格开始的，不多也不少</li>
+<li>是否在函数结束之后不再进行缩进了</li>
+</ul>
+
+
+<p>python函数调用检查步骤</p>
+
+<ul>
+<li>是否是通过函数名字调用的</li>
+<li>是否在名字后面使用了右小括号(</li>
+<li>是否在括号内使用了参数，参数用逗号分开</li>
+<li>是否在结束的时候使用了右小括号)结束函数的调用</li>
+</ul>
+
+
+<p>python中return可以连续返回多个值，以逗号分隔，多个数值可以按照顺序赋值给对应的变量，按照返回顺序如
+<div class="highlight"><pre><code class="python"><span class="k">def</span> <span class="nf">function</span><span class="p">():</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">ruturn</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span>
+<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">a1</span><span class="p">,</span> <span class="n">b1</span><span class="p">,</span> <span class="n">c1</span> <span class="o">=</span> <span class="n">function</span><span class="p">()</span>
+</code></pre>
+</div>
+</p>
+
+<p>python中似乎有全局变量这种东西</p>
+
+<h3>python字符串操作函数</h3>
+
+<p>string.split([sep[,maxsplit]])</p>
+
+<pre><code>以分隔符sep来分隔字符串string。若指定maxsplit，则返回maxsplit+1个字符最多
+</code></pre>
+
+<p>sorted() 将字符串进行排序</p>
+
+<p>list.pop() 获取一个词然后将其从词组中删除，默认参数为-1，即为最后一个</p>
+
+<p>from ex25 import *<br/>
+引入ex25.py文件中的所有函数功能。</p>
+
+<p>import ex25<br/>
+在命令行中输入，引入ex25。</p>
+
+<p>python中的逻辑判断符号
+* and
+* or
+* not
+* !=
+* ==
+* >=
+* &lt;=
+* True
+* False</p>
+
+<p>python中的if判断表达式后面的语句应该缩进4个空格来代表其所位于的缩进，if的条件后面需要添加冒号来告诉python这是一个新的代码块</p>
+
+<p>python中的if-else组合如下所示</p>
+
+<p><div class="highlight"><pre><code class="python"><span class="k">if</span> <span class="n">statement</span><span class="p">:</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">if</span><span class="o">-</span><span class="n">code</span><span class="o">-</span><span class="n">part</span>
+<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">elif</span> <span class="n">statement2</span><span class="p">:</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">elif</span><span class="o">-</span><span class="n">code</span><span class="o">-</span><span class="n">part</span>
+<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">else</span><span class="p">:</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">other</span><span class="o">-</span><span class="n">parts</span>
+<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</code></pre>
+</div>
+</p>
+
+<p>python中的range([start], stop[,step])</p>
+
+<pre><code>start若省略则为0，step若省略则为1。step不能是0，否则报错.返回的是从start开始，以step为间隔，小于stop的一个list
+</code></pre>
+
+<p>python中list的操作函数包括
+* list.append(x)最后的位置添加一个x
+* list.extend(L)在list的最后的位置添加一个list，L为一个list.
+* list.insert(i, x)在list的i位置添加x
+* list.remove(x)在list中去除第一个等于x的项目
+* list.pop([i])在list中去除第i个位置的值，并返回该值。若未提供i则默认校区最后一个
+* list.index(x)返回列表中第一个值为x的下标
+* list.count(x)返回列表中一共有多少个值等于x的项目，用于计数
+* list.sort()对list就地进行排序，将会更改list
+* list.reverse()对list进行翻转处理</p>
+
+<h3>python Keywords</h3>
+
+<p>and 逻辑与</p>
+
+<p>del 删除列表中的某项，使用索引来删除，也可以删除一个范围。比如：</p>
+
+<p><div class="highlight"><pre><code class="python"><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">blockquote</span><span class="o">&gt;&lt;</span><span class="n">blockquote</span><span class="o">&gt;&lt;</span><span class="n">blockquote</span><span class="o">&gt;&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">66.25</span><span class="p">,</span> <span class="mi">333</span><span class="p">,</span> <span class="mi">333</span><span class="p">,</span> <span class="mf">1234.5</span><span class="p">]</span>
+<span class="k">del</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c">#删除a列表中的第一个元素</span>
+<span class="n">a</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">66.25</span><span class="p">,</span> <span class="mi">333</span><span class="p">,</span> <span class="mi">333</span><span class="p">,</span> <span class="mf">1234.5</span><span class="p">]</span>
+<span class="k">del</span> <span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span> <span class="c">#删除a列表中的第2，3个元素</span>
+<span class="n">a</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">66.25</span><span class="p">,</span> <span class="mf">1234.5</span><span class="p">]</span>
+<span class="k">del</span> <span class="n">a</span><span class="p">[:]</span> <span class="c">#删除a列表中的所有元素</span>
+<span class="n">a</span>
+<span class="p">[]</span>
+</code></pre>
+</div>
+</p></blockquote></blockquote></blockquote>
+
+<p>from 从某些模块中引入一些功能</p>
+
+<p>not 逻辑非</p>
+
+<p>while while循环</p>
+
+<p>as</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,465 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Learning SQL Ch8 - Keep Learning</title>
+  <meta name="author" content="Xiongbupt">
+
+  
+  <meta name="description" content="分组与聚集 使用GROUP来完成分组的功能，如下图所示： mysql&gt; SELECT open_emp_id -&gt; FROM account -&gt; GROUP BY open_emp_id;
++-------------+
+| open_emp_id &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://xiongbupt.github.com/blog/2012/05/25/learning-sql-ch8/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Keep Learning" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', '32449808']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Keep Learning</a></h1>
+  
+    <h2>伪程序员记录点滴</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:xiongbupt.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/categories">Categories</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Learning SQL Ch8</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-25T00:00:00+08:00" pubdate data-updated="true">May 25<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h2>分组与聚集</h2>
+
+<p>使用<code>GROUP</code>来完成分组的功能，如下图所示：</p>
+
+<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">open_emp_id</span>
+    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">account</span>
+    <span class="o">-&gt;</span> <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">open_emp_id</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">-------------+</span>
+<span class="o">|</span> <span class="n">open_emp_id</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">-------------+</span>
+<span class="o">|</span>           <span class="mi">1</span> <span class="o">|</span>
+<span class="o">|</span>          <span class="mi">10</span> <span class="o">|</span>
+<span class="o">|</span>          <span class="mi">13</span> <span class="o">|</span>
+<span class="o">|</span>          <span class="mi">16</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">-------------+</span>
+<span class="mi">4</span> <span class="k">rows</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</code></pre>
+</div>
+
+
+<p><code>COUNT()</code>称为聚集函数，可以计算每个分组的行数，如下面的例子所示。本例相对于上例来说仅仅添加了<code>COUNT()</code>函数来完成聚集功能。</p>
+
+<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">open_emp_id</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="n">how_many</span>
+    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">account</span>
+    <span class="o">-&gt;</span> <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">open_emp_id</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">-------------+----------+</span>
+<span class="o">|</span> <span class="n">open_emp_id</span> <span class="o">|</span> <span class="n">how_many</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">-------------+----------+</span>
+<span class="o">|</span>           <span class="mi">1</span> <span class="o">|</span>        <span class="mi">8</span> <span class="o">|</span>
+<span class="o">|</span>          <span class="mi">10</span> <span class="o">|</span>        <span class="mi">7</span> <span class="o">|</span>
+<span class="o">|</span>          <span class="mi">13</span> <span class="o">|</span>        <span class="mi">3</span> <span class="o">|</span>
+<span class="o">|</span>          <span class="mi">16</span> <span class="o">|</span>        <span class="mi">6</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">-------------+----------+</span>
+<span class="mi">4</span> <span class="k">rows</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</code></pre>
+</div>
+
+
+<p>上例说明，通过联合使用<code>group by</code>子句和<code>count()</code>聚集函数，可以在不查看原始数据的情况下，精确满足业务问题对数据的需要。<br/>
+<font color ="red"><strong>使用group函数时，不应该在<code>WHERE</code>子句中使用聚集函数<code>COUNT()</code>。因为在评估<code>WHERE</code>子句时分组还没有被创建。因此必须在<code>HAVING()</code>子句中使用分组过滤条件。</strong></font></p>
+
+<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">open_emp_id</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="n">how_many</span>
+    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">account</span>
+    <span class="o">-&gt;</span> <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">open_emp_id</span>
+    <span class="o">-&gt;</span> <span class="k">HAVING</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">-------------+----------+</span>
+<span class="o">|</span> <span class="n">open_emp_id</span> <span class="o">|</span> <span class="n">how_many</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">-------------+----------+</span>
+<span class="o">|</span>           <span class="mi">1</span> <span class="o">|</span>        <span class="mi">8</span> <span class="o">|</span>
+<span class="o">|</span>          <span class="mi">10</span> <span class="o">|</span>        <span class="mi">7</span> <span class="o">|</span>
+<span class="o">|</span>          <span class="mi">16</span> <span class="o">|</span>        <span class="mi">6</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">-------------+----------+</span>
+<span class="mi">3</span> <span class="k">rows</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</code></pre>
+</div>
+
+
+<h3>聚集函数</h3>
+
+<p>聚集函数对某个分组的所有行执行特定的操作。</p>
+
+<ul>
+<li><code>MAX()</code>返回集合中的最大值</li>
+<li><code>MIN()</code>返回集合中的最小值</li>
+<li><code>AVG()</code>返回集合中的平均值</li>
+<li><code>SUM()</code>返回集合中的所有值的和</li>
+<li><code>COUNT()</code>返回集合中值的个数</li>
+</ul>
+
+
+<h4>隐式分组或显示分组</h4>
+
+<p>隐式分组就是没有使用<code>GOURP BY</code>的查询语句，显示分组即是使用了<code>GROUP BY</code>子句的语句。</p>
+
+<h4>对独立值计数</h4>
+
+<p>即在<code>COUNT()</code>子句中不是使用<code>COUNT(*)</code>来进行聚集，而是使用<code>COUNT(name)</code>来记数。当需要去除重复的name时，需要在<code>COUNT()</code>中添加<code>DISTINCT</code>关键字。即<code>COUNT(DISTINCT NAME)</code>的方式来完成对应的计数统计。</p>
+
+<h4>使用表达式</h4>
+
+<p>在聚集函数中可以使用表达式</p>
+
+<h4>NULL值的处理</h4>
+
+<p>对于<code>MAX()</code>,<code>MIN()</code>,<code>AVG()</code>,<code>SUM()</code>中，没有什么影响。但是对于<code>COUNT()</code>而言，当使用<code>COUNT(*)</code>时，会有变化。但是使用<code>COUNT(NAME)</code>这种情况没有变化。</p>
+
+<h3>产生分组</h3>
+
+<h4>单列分组</h4>
+
+<p><code>GROUP BY</code>后面仅仅有一个条目</p>
+
+<h4>多列分组</h4>
+
+<p><code>GROUP BY</code>后面有多个条目</p>
+
+<h4>利用表达式分组</h4>
+
+<p><code>GROUP BY</code>后面跟着的是一个表达式</p>
+
+<h4>产生合计数</h4>
+
+<p>使用<code>WITH ROLLUP</code>，示例如下：</p>
+
+<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">product_cd</span><span class="p">,</span> <span class="n">open_branch_id</span><span class="p">,</span>
+    <span class="o">-&gt;</span> <span class="k">SUM</span><span class="p">(</span><span class="n">avail_balance</span><span class="p">)</span> <span class="n">avail_balance</span>
+    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">account</span>
+    <span class="o">-&gt;</span> <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">product_cd</span><span class="p">,</span> <span class="n">open_branch_id</span> <span class="k">WITH</span> <span class="k">ROLLUP</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">------------+----------------+---------------+</span>
+<span class="o">|</span> <span class="n">product_cd</span> <span class="o">|</span> <span class="n">open_branch_id</span> <span class="o">|</span> <span class="n">avail_balance</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">------------+----------------+---------------+</span>
+<span class="o">|</span> <span class="n">BUS</span>        <span class="o">|</span>              <span class="mi">2</span> <span class="o">|</span>       <span class="mi">9345</span><span class="p">.</span><span class="mi">55</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">BUS</span>        <span class="o">|</span>              <span class="mi">4</span> <span class="o">|</span>          <span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">BUS</span>        <span class="o">|</span>           <span class="k">NULL</span> <span class="o">|</span>       <span class="mi">9345</span><span class="p">.</span><span class="mi">55</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">CD</span>         <span class="o">|</span>              <span class="mi">1</span> <span class="o">|</span>      <span class="mi">11500</span><span class="p">.</span><span class="mi">00</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">CD</span>         <span class="o">|</span>              <span class="mi">2</span> <span class="o">|</span>       <span class="mi">8000</span><span class="p">.</span><span class="mi">00</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">CD</span>         <span class="o">|</span>           <span class="k">NULL</span> <span class="o">|</span>      <span class="mi">19500</span><span class="p">.</span><span class="mi">00</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">CHK</span>        <span class="o">|</span>              <span class="mi">1</span> <span class="o">|</span>        <span class="mi">782</span><span class="p">.</span><span class="mi">16</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">CHK</span>        <span class="o">|</span>              <span class="mi">2</span> <span class="o">|</span>       <span class="mi">3315</span><span class="p">.</span><span class="mi">77</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">CHK</span>        <span class="o">|</span>              <span class="mi">3</span> <span class="o">|</span>       <span class="mi">1057</span><span class="p">.</span><span class="mi">75</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">CHK</span>        <span class="o">|</span>              <span class="mi">4</span> <span class="o">|</span>      <span class="mi">67852</span><span class="p">.</span><span class="mi">33</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">CHK</span>        <span class="o">|</span>           <span class="k">NULL</span> <span class="o">|</span>      <span class="mi">73008</span><span class="p">.</span><span class="mi">01</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">MM</span>         <span class="o">|</span>              <span class="mi">1</span> <span class="o">|</span>      <span class="mi">14832</span><span class="p">.</span><span class="mi">64</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">MM</span>         <span class="o">|</span>              <span class="mi">3</span> <span class="o">|</span>       <span class="mi">2212</span><span class="p">.</span><span class="mi">50</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">MM</span>         <span class="o">|</span>           <span class="k">NULL</span> <span class="o">|</span>      <span class="mi">17045</span><span class="p">.</span><span class="mi">14</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">SAV</span>        <span class="o">|</span>              <span class="mi">1</span> <span class="o">|</span>        <span class="mi">767</span><span class="p">.</span><span class="mi">77</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">SAV</span>        <span class="o">|</span>              <span class="mi">2</span> <span class="o">|</span>        <span class="mi">700</span><span class="p">.</span><span class="mi">00</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">SAV</span>        <span class="o">|</span>              <span class="mi">4</span> <span class="o">|</span>        <span class="mi">387</span><span class="p">.</span><span class="mi">99</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">SAV</span>        <span class="o">|</span>           <span class="k">NULL</span> <span class="o">|</span>       <span class="mi">1855</span><span class="p">.</span><span class="mi">76</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">SBL</span>        <span class="o">|</span>              <span class="mi">3</span> <span class="o">|</span>      <span class="mi">50000</span><span class="p">.</span><span class="mi">00</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">SBL</span>        <span class="o">|</span>           <span class="k">NULL</span> <span class="o">|</span>      <span class="mi">50000</span><span class="p">.</span><span class="mi">00</span> <span class="o">|</span>
+<span class="o">|</span> <span class="k">NULL</span>       <span class="o">|</span>           <span class="k">NULL</span> <span class="o">|</span>     <span class="mi">170754</span><span class="p">.</span><span class="mi">46</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">------------+----------------+---------------+</span>
+<span class="mi">21</span> <span class="k">rows</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</code></pre>
+</div>
+
+
+<h3>分组过滤条件</h3>
+
+<p>当使用分组数据时，不能使用<code>WHERE</code>子句，过滤子句应该使用<code>HAVING</code>子句。在分组之后如果需要对数据应用过滤条件，可以在<code>HAVING</code>子句中放置这些条件。
+可以在<code>HAVING</code>子句中包含未在<code>SELECT</code>子句中出现的聚集函数。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Xiongbupt</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-25T00:00:00+08:00" pubdate data-updated="true">May 25<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/notes/'>Notes</a>
+  
+</span>
+
+
+      
+
+<span class="tags">
+  
+    <a class='tag' href='//learning/'>Learning</a>, <a class='tag' href='//mysql/'>MySQL</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://xiongbupt.github.com/blog/2012/05/25/learning-sql-ch8/" data-via="xiongbupt" data-counturl="http://xiongbupt.github.com/blog/2012/05/25/learning-sql-ch8/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/05/24/learning-sql-ch7/" title="Previous Post: Learning SQL ch7">&laquo; Learning SQL ch7</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/05/25/learning-sql-ch9/" title="Next Post: Learning SQL CH9">Learning SQL CH9 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/06/06/vim_help_read/">VIM用户手册27笔记</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/06/octopress_use/">Octopress尝试记录</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/06/assemble_language_learn/">汇编语言学习</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/05/vim_regex_learning/">VIM正则表达式学习</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/05/vim_regex_case/">VIM使用正则表达式改变大小写</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/05/os_impletion/">一个操作系统的实现笔记</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/xiongbupt">@xiongbupt</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'xiongbupt',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("xiongbupt", 1, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/xiongbupt" class="twitter-follow-button" data-show-count="false">Follow @xiongbupt</a>
+  
+</section>
+
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/110480695522271115757?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Xiongbupt -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'xiongbupt';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

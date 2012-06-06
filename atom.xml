@@ -4,7 +4,7 @@
   <title><![CDATA[Keep Learning]]></title>
   <link href="http://xiongbupt.github.com/atom.xml" rel="self"/>
   <link href="http://xiongbupt.github.com/"/>
-  <updated>2012-06-07T05:58:54+08:00</updated>
+  <updated>2012-06-07T06:52:06+08:00</updated>
   <id>http://xiongbupt.github.com/</id>
   <author>
     <name><![CDATA[Xiongbupt]]></name>
@@ -12,6 +12,78 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Octopress增加Tag标签]]></title>
+    <link href="http://xiongbupt.github.com/blog/2012/06/07/octopress-add-tag/"/>
+    <updated>2012-06-07T06:23:00+08:00</updated>
+    <id>http://xiongbupt.github.com/blog/2012/06/07/octopress-add-tag</id>
+    <content type="html"><![CDATA[<h2>前因</h2>
+
+<p>由于之前参考中文的搜索，结果都不理想，推翻重来，直接使用<a href="http://www.google.com/">google</a>使用<code>octopress tag</code>关键词搜索到的<a href="http://aijazansari.com/2012/01/07/tag-clouds-with-octopress/">第一个返回结果</a>来修改，下面记录如下。</p>
+
+<h3>显示所有的便签列表</h3>
+
+<p>修改<code>source/_layouts/post.html</code>文件，使它们include一个名字为<code>tags.html</code>的新文件。
+&#8230;</p>
+
+<pre><code>   {% include post/author.html %}
+   {% include post/date.html %}{% if updated %}{{ updated }}{% else %}{{ time }}{% endif %}
+   {% include post/categories.html %}
+</code></pre>
+
+<ul>
+<li>   {% include post/tags.html %}
+ </p>
+ {% unless page.sharing == false %}
+   {% include post/sharing.html %}
+&#8230;
+创建一个新文件<code>source/_includes/post/tags.html</code>，整个文件的内容如下所示：</li>
+</ul>
+
+
+<div id="tag_list">
+    Tags:
+    <ul id="tags_ul">
+{% for t in page.tags  %}
+        <li><a href="http://xiongbupt.github.com/tags/{{t}}/">{{t}}</a></li>
+{% endfor %}
+    </ul>
+</div>
+
+
+<p>在sass/custom/_styles.css文件中添加如下内容：</p>
+
+<pre><code>div#tag_list {
+    font-size: 12pt;
+}
+
+#tags_ul {
+    display: inline;
+}
+
+#tags_ul li:last-child:after {
+  content: "";
+}
+
+#tags_ul li:after {
+  content: ", ";
+}
+
+#tags_ul li {
+    display: inline;
+}
+</code></pre>
+
+<h3>创建tag文件和tag云</h3>
+
+<p>使用作者提供的perl脚本文件。</p>
+
+<h3>显示tag云标签</h3>
+
+<p>为了在右侧显示云标签，需要修改<code>_config.yaml</code>文件，添加</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[VIM用户手册27笔记]]></title>
@@ -3916,182 +3988,6 @@ example:</p>
 ?(backreferrenc)true-regex|false-regex)</p>
 
 <h2>前后查找条件</h2></blockquote>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[gdb 学习]]></title>
-    <link href="http://xiongbupt.github.com/blog/2012/04/19/gdb-learning/"/>
-    <updated>2012-04-19T00:00:00+08:00</updated>
-    <id>http://xiongbupt.github.com/blog/2012/04/19/gdb-learning</id>
-    <content type="html"><![CDATA[<h1>GBD指令</h1>
-
-<p>backtrace 在程序出现错误之后，使用它可以看出出错的函数被哪个函数所调用。</p>
-
-<p>查看内存地址存放的值</p>
-
-<blockquote><p>x 内存地址(examine)</p></blockquote>
-
-<p>查看代码。</p>
-
-<blockquote><p>list</p>
-
-<pre><code>如list 1,90用来查看1到90行的代码。
-</code></pre></blockquote>
-
-<p>用来设置断点</p>
-
-<blockquote><p>break</p></blockquote>
-
-<p>设置到函数的断点,函数所在行也可以设置断点</p>
-
-<blockquote><p>break 函数名</p></blockquote>
-
-<p>设置条件</p>
-
-<blockquote><p>condition</p></blockquote>
-
-<p>仅仅在var变量的值为some_value时使用断点，与断点一起使用，可以减少断点的量</p>
-
-<blockquote><p>condition 1 var==some_value</p></blockquote>
-
-<h1><a href="http://fanqiang.chinaunix.net/program/other/2006-07-14/4834.shtml">摘抄</a></h1>
-
-<h2>断点(breakpoint)</h2>
-
-<p>break命令（可以简写为b）可以用来在调试的程序中设置断点，该命令有如下四种形式：</p>
-
-<p>使程序恰好在执行给定行之前停止。</p>
-
-<blockquote><p>break line-number</p></blockquote>
-
-<p>使程序恰好在进入指定的函数之前停止。</p>
-
-<blockquote><p>break function-name</p></blockquote>
-
-<p>如果condition（条件）是真，程序到达指定行或函数时停止。</p>
-
-<blockquote><p>break line-or-function if condition</p></blockquote>
-
-<p>在指定例程的入口处设置断点</p>
-
-<blockquote><p>break routine-name</p></blockquote>
-
-<p>如果该程序是由很多原文件构成的，你可以在各个原文件中设置断点，而不是在当前的原文件中设置断点，其方法如下：</p>
-
-<blockquote><p>(gdb) break filename:line-number
-(gdb) break filename:function-name</p></blockquote>
-
-<p>要想设置一个条件断点，可以利用break if命令，如下所示：</p>
-
-<blockquote><p>(gdb) break line-or-function if expr</p></blockquote>
-
-<p>例：</p>
-
-<blockquote><p>(gdb) break 46 if testsize==100</p></blockquote>
-
-<p>从断点继续运行：countinue 命令</p>
-
-<h2>断点的管理</h2>
-
-<ol>
-<li>显示当前gdb的断点信息：
-
-<blockquote><p>(gdb) info break</p></blockquote></li>
-</ol>
-
-
-<p>他会以如下的形式显示所有的断点信息：</p>
-
-<pre><code>Num Type Disp Enb Address What
-1 breakpoint keep y 0x000028bc in init_random at qsort2.c:155
-2 breakpoint keep y 0x0000291c in init_organ at qsort2.c:168
-(gdb)
-</code></pre>
-
-<ol>
-<li>删除指定的某个断点：
-
-<blockquote><p>(gdb) delete breakpoint 1</p></blockquote></li>
-</ol>
-
-
-<p>上面的命令将会删除编号为1的断点，如果不带编号参数，将删除所有的断点</p>
-
-<blockquote><p>(gdb) delete breakpoint</p></blockquote>
-
-<ol>
-<li><p>禁止使用某个断点
-下面的命令将禁止断点 1,同时断点信息的 (Enb)域将变为 n</p>
-
-<blockquote><p>(gdb) disable breakpoint 1</p></blockquote></li>
-<li><p>允许使用某个断点
-命令将允许断点 1,同时断点信息的 (Enb)域将变为 y</p>
-
-<blockquote><p>(gdb) enable breakpoint 1</p></blockquote></li>
-<li><p>清除原文件中某一代码行上的所有断点</p>
-
-<blockquote><p>(gdb)clear number
- 注：number 为原文件的某个代码行的行号</p></blockquote></li>
-</ol>
-
-
-<h2>变量的检查和赋值</h2>
-
-<ul>
-<li>whatis:识别数组或变量的类型</li>
-<li>ptype:比whatis的功能更强，他可以提供一个结构的定义</li>
-<li>set variable:将值赋予变量</li>
-<li>print 除了显示一个变量的值外，还可以用来赋值</li>
-</ul>
-
-
-<h2>单步执行</h2>
-
-<p>不进入的单步执行</p>
-
-<blockquote><p>next</p></blockquote>
-
-<p>进入的单步执行</p>
-
-<blockquote><p>step
-如果已经进入了某函数，而想退出该函数返回到它的调用函数中，可使用命令finish</p></blockquote>
-
-<h3>常用的gdb命令</h3>
-
-<ul>
-<li>backtrace 显示程序中的当前位置和表示如何到达当前位置的栈跟踪（同义词：where）</li>
-<li>breakpoint 在程序中设置一个断点</li>
-<li>cd 改变当前工作目录</li>
-<li>clear 删除刚才停止处的断点</li>
-<li>commands 命中断点时，列出将要执行的命令</li>
-<li>continue 从断点开始继续执行</li>
-<li>delete 删除一个断点或监测点；也可与其他命令一起使用</li>
-<li>display 程序停止时显示变量和表达时</li>
-<li>down 下移栈帧，使得另一个函数成为当前函数</li>
-<li>frame 选择下一条continue命令的帧</li>
-<li>info 显示与该程序有关的各种信息</li>
-<li>jump 在源程序中的另一点开始运行</li>
-<li>kill 异常终止在gdb 控制下运行的程序</li>
-<li>list 列出相应于正在执行的程序的原文件内容</li>
-<li>next 执行下一个源程序行，从而执行其整体中的一个函数</li>
-<li>print 显示变量或表达式的值</li>
-<li>pwd 显示当前工作目录</li>
-<li>pype 显示一个数据结构（如一个结构或C++类）的内容</li>
-<li>quit 退出gdb</li>
-<li>reverse-search 在源文件中反向搜索正规表达式</li>
-<li>run 执行该程序</li>
-<li>search 在源文件中搜索正规表达式</li>
-<li>set variable 给变量赋值</li>
-<li>signal 将一个信号发送到正在运行的进程</li>
-<li>step 执行下一个源程序行，必要时进入下一个函数</li>
-<li>undisplay display命令的反命令，不要显示表达式</li>
-<li>until 结束当前循环</li>
-<li>up 上移栈帧，使另一函数成为当前函数</li>
-<li>watch 在程序中设置一个监测点（即数据断点）</li>
-<li>whatis 显示变量或函数类型</li>
-</ul>
-
 ]]></content>
   </entry>
   

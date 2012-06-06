@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Tag: Arch - Keep Learning</title>
+  <title>Octopress增加Tag标签 - Keep Learning</title>
   <meta name="author" content="Xiongbupt">
 
   
-  <meta name="description" content="Tag: Arch">
+  <meta name="description" content="前因 由于之前参考中文的搜索，结果都不理想，推翻重来，直接使用google使用octopress tag关键词搜索到的第一个返回结果来修改，下面记录如下。 显示所有的便签列表 修改source/_layouts/post.html文件，使它们include一个名字为tags.html的新文件 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://xiongbupt.github.comtags/arch/">
+  <link rel="canonical" href="http://xiongbupt.github.com/blog/2012/06/07/octopress-add-tag/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -32,7 +32,7 @@
   
   <script type="text/javascript">
     var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', '32449808']);
+    _gaq.push(['_setAccount', 'UA-32449808-1']);
     _gaq.push(['_trackPageview']);
 
     (function() {
@@ -68,50 +68,171 @@
   
 <ul class="main-navigation">
   <li><a href="/">Blog</a></li>
-  <li><a href="/blog/categories">Categories</a></li>
   <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/blog/tags">Tags</a></li>
 </ul>
 
 </nav>
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Tag: Arch</h1>
+    
+      <h1 class="entry-title">Octopress增加Tag标签</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-07T06:23:00+08:00" pubdate data-updated="true">Jun 7<span>th</span>, 2012</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="tag">
 
 
+<div class="entry-content"><h2>前因</h2>
 
-  
-  <h2>2012</h2>
+<p>由于之前参考中文的搜索，结果都不理想，推翻重来，直接使用<a href="http://www.google.com/">google</a>使用<code>octopress tag</code>关键词搜索到的<a href="http://aijazansari.com/2012/01/07/tag-clouds-with-octopress/">第一个返回结果</a>来修改，下面记录如下。</p>
 
-<article>
-  
+<h3>显示所有的便签列表</h3>
 
-<h1><a href="/blog/2012/02/29/linux-alipay/">Linux下支付宝插件的安装</a></h1>
-<time datetime="2012-02-29T00:00:00+08:00" pubdate><span class='month'>Feb</span> <span class='day'>29</span> <span class='year'>2012</span></time>
+<p>修改<code>source/_layouts/post.html</code>文件，使它们include一个名字为<code>tags.html</code>的新文件。
+&#8230;</p>
 
-<footer>
+<pre><code>   {% include post/author.html %}
+   {% include post/date.html %}{% if updated %}{{ updated }}{% else %}{{ time }}{% endif %}
+   {% include post/categories.html %}
+</code></pre>
 
-  <span class="categories">posted in <a class='category' href='/blog/categories/linux/'>Linux</a></span>
+<ul>
+<li>   {% include post/tags.html %}
+ </p>
+ {% unless page.sharing == false %}
+   {% include post/sharing.html %}
+&#8230;
+创建一个新文件<code>source/_includes/post/tags.html</code>，整个文件的内容如下所示：</li>
+</ul>
 
 
-  <span class="tags">tagged with <a class='tag' href='//arch/'>Arch</a>, <a class='tag' href='//linux/'>Linux</a></span>
-
-</footer>
-
-
-</article>
-
+<div id="tag_list">
+    Tags:
+    <ul id="tags_ul">
+{% for t in page.tags  %}
+        <li><a href="/tags/{{t}}/">{{t}}</a></li>
+{% endfor %}
+    </ul>
 </div>
 
+
+<p>在sass/custom/_styles.css文件中添加如下内容：</p>
+
+<pre><code>div#tag_list {
+    font-size: 12pt;
+}
+
+#tags_ul {
+    display: inline;
+}
+
+#tags_ul li:last-child:after {
+  content: "";
+}
+
+#tags_ul li:after {
+  content: ", ";
+}
+
+#tags_ul li {
+    display: inline;
+}
+</code></pre>
+
+<h3>创建tag文件和tag云</h3>
+
+<p>使用作者提供的perl脚本文件。</p>
+
+<h3>显示tag云标签</h3>
+
+<p>为了在右侧显示云标签，需要修改<code>_config.yaml</code>文件，添加</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Xiongbupt</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-07T06:23:00+08:00" pubdate data-updated="true">Jun 7<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/octopress/'>Octopress</a>
+  
+</span>
+
+
+      <div id="tag_list">
+    Tags:
+    <ul id="tags_ul">
+
+    </ul>
+</div>
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://xiongbupt.github.com/blog/2012/06/07/octopress-add-tag/" data-via="xiongbupt" data-counturl="http://xiongbupt.github.com/blog/2012/06/07/octopress-add-tag/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/06/06/vim_help_read/" title="Previous Post: VIM用户手册27笔记">&laquo; VIM用户手册27笔记</a>
+      
+      
+    </p>
+  </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -120,6 +241,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/06/07/octopress-add-tag/">Octopress增加Tag标签</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/06/06/vim_help_read/">VIM用户手册27笔记</a>
@@ -139,10 +264,6 @@
     
       <li class="post">
         <a href="/blog/2012/06/05/vim_regex_case/">VIM使用正则表达式改变大小写</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/05/os_impletion/">一个操作系统的实现笔记</a>
       </li>
     
   </ul>
@@ -225,7 +346,10 @@
       var disqus_shortname = 'xiongbupt';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://xiongbupt.github.com/blog/2012/06/07/octopress-add-tag/';
+        var disqus_url = 'http://xiongbupt.github.com/blog/2012/06/07/octopress-add-tag/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

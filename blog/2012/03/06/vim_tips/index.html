@@ -39,7 +39,7 @@ ZZ
   
   <script type="text/javascript">
     var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', '32449808']);
+    _gaq.push(['_setAccount', 'UA-32449808-1']);
     _gaq.push(['_trackPageview']);
 
     (function() {
@@ -75,8 +75,8 @@ ZZ
   
 <ul class="main-navigation">
   <li><a href="/">Blog</a></li>
-  <li><a href="/blog/categories">Categories</a></li>
   <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/blog/tags">Tags</a></li>
 </ul>
 
 </nav>
@@ -634,14 +634,16 @@ It automatically indent the C coding file.</p>
 </span>
 
 
-      
+      <div id="tag_list">
+    Tags:
+    <ul id="tags_ul">
 
-<span class="tags">
-  
-    <a class='tag' href='//linux/'>Linux</a>, <a class='tag' href='//vim/'>VIM</a>
-  
-</span>
+        <li><a href="/tags/VIM/">VIM</a></li>
 
+        <li><a href="/tags/Linux/">Linux</a></li>
+
+    </ul>
+</div>
 
     </p>
     
@@ -676,6 +678,10 @@ It automatically indent the C coding file.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/06/07/octopress-add-tag/">Octopress增加Tag标签</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/06/06/vim_help_read/">VIM用户手册27笔记</a>
       </li>
     
@@ -693,10 +699,6 @@ It automatically indent the C coding file.</p>
     
       <li class="post">
         <a href="/blog/2012/06/05/vim_regex_case/">VIM使用正则表达式改变大小写</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/05/os_impletion/">一个操作系统的实现笔记</a>
       </li>
     
   </ul>

@@ -9,8 +9,7 @@
   <meta name="author" content="Xiongbupt">
 
   
-  <meta name="description" content="VIM的查找命令与模式，这章节和正则表达式相关，可以重点查阅下。 大小写忽略 ignorecase 忽视大小写
-smartcase 若只有小写，可匹配大小写；若含有大写，则严格匹配 特定模式中的大小写可以使用\C来严格匹配，\c可以用来通用匹配，不区分大小写 无折返查找 :set &hellip;">
+  <meta name="description" content="前因 由于之前参考中文的搜索，结果都不理想，推翻重来，直接使用google使用octopress tag关键词搜索到的第一个返回结果来修改，下面记录如下。 显示所有的便签列表 修改source/_layouts/post.html文件，使它们include一个名字为tags.html的新文件 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -33,7 +32,7 @@ smartcase 若只有小写，可匹配大小写；若含有大写，则严格匹�
   
   <script type="text/javascript">
     var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', '32449808']);
+    _gaq.push(['_setAccount', 'UA-32449808-1']);
     _gaq.push(['_trackPageview']);
 
     (function() {
@@ -69,8 +68,8 @@ smartcase 若只有小写，可匹配大小写；若含有大写，则严格匹�
   
 <ul class="main-navigation">
   <li><a href="/">Blog</a></li>
-  <li><a href="/blog/categories">Categories</a></li>
   <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/blog/tags">Tags</a></li>
 </ul>
 
 </nav>
@@ -78,6 +77,105 @@ smartcase 若只有小写，可匹配大小写；若含有大写，则严格匹�
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/06/07/octopress-add-tag/">Octopress增加Tag标签</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-07T06:23:00+08:00" pubdate data-updated="true">Jun 7<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>前因</h2>
+
+<p>由于之前参考中文的搜索，结果都不理想，推翻重来，直接使用<a href="http://www.google.com/">google</a>使用<code>octopress tag</code>关键词搜索到的<a href="http://aijazansari.com/2012/01/07/tag-clouds-with-octopress/">第一个返回结果</a>来修改，下面记录如下。</p>
+
+<h3>显示所有的便签列表</h3>
+
+<p>修改<code>source/_layouts/post.html</code>文件，使它们include一个名字为<code>tags.html</code>的新文件。
+&#8230;</p>
+
+<pre><code>   {% include post/author.html %}
+   {% include post/date.html %}{% if updated %}{{ updated }}{% else %}{{ time }}{% endif %}
+   {% include post/categories.html %}
+</code></pre>
+
+<ul>
+<li>   {% include post/tags.html %}
+ </p>
+ {% unless page.sharing == false %}
+   {% include post/sharing.html %}
+&#8230;
+创建一个新文件<code>source/_includes/post/tags.html</code>，整个文件的内容如下所示：</li>
+</ul>
+
+
+<div id="tag_list">
+    Tags:
+    <ul id="tags_ul">
+{% for t in page.tags  %}
+        <li><a href="/tags/{{t}}/">{{t}}</a></li>
+{% endfor %}
+    </ul>
+</div>
+
+
+<p>在sass/custom/_styles.css文件中添加如下内容：</p>
+
+<pre><code>div#tag_list {
+    font-size: 12pt;
+}
+
+#tags_ul {
+    display: inline;
+}
+
+#tags_ul li:last-child:after {
+  content: "";
+}
+
+#tags_ul li:after {
+  content: ", ";
+}
+
+#tags_ul li {
+    display: inline;
+}
+</code></pre>
+
+<h3>创建tag文件和tag云</h3>
+
+<p>使用作者提供的perl脚本文件。</p>
+
+<h3>显示tag云标签</h3>
+
+<p>为了在右侧显示云标签，需要修改<code>_config.yaml</code>文件，添加</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1235,91 +1333,6 @@ git config &#8211;global core.autocrlf input<em>(Linux下使用）</em></p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/05/29/tomcat-mysql/">Tomcat MySQL</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-29T00:00:00+08:00" pubdate data-updated="true">May 29<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content">
-
-<div class="highlight"><pre><code class="java"><span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">jasper</span><span class="o">.</span><span class="na">JasperException</span><span class="o">:</span> <span class="n">javax</span><span class="o">.</span><span class="na">servlet</span><span class="o">.</span><span class="na">ServletException</span><span class="o">:</span> <span class="n">com</span><span class="o">.</span><span class="na">mysql</span><span class="o">.</span><span class="na">jdbc</span><span class="o">.</span><span class="na">CommunicationsException</span><span class="o">:</span> <span class="n">Communications</span> <span class="n">link</span> <span class="n">failure</span> <span class="n">due</span> <span class="n">to</span> <span class="n">underlying</span> <span class="nl">exception:</span> 
-
-<span class="o">**</span> <span class="n">BEGIN</span> <span class="n">NESTED</span> <span class="n">EXCEPTION</span> <span class="o">**</span> 
-
-<span class="n">java</span><span class="o">.</span><span class="na">net</span><span class="o">.</span><span class="na">SocketException</span>
-<span class="nl">MESSAGE:</span> <span class="n">java</span><span class="o">.</span><span class="na">net</span><span class="o">.</span><span class="na">ConnectException</span><span class="o">:</span> <span class="n">Connection</span> <span class="n">refused</span>
-
-<span class="nl">STACKTRACE:</span>
-
-<span class="n">java</span><span class="o">.</span><span class="na">net</span><span class="o">.</span><span class="na">SocketException</span><span class="o">:</span> <span class="n">java</span><span class="o">.</span><span class="na">net</span><span class="o">.</span><span class="na">ConnectException</span><span class="o">:</span> <span class="n">Connection</span> <span class="n">refused</span>
-    <span class="n">at</span> <span class="n">com</span><span class="o">.</span><span class="na">mysql</span><span class="o">.</span><span class="na">jdbc</span><span class="o">.</span><span class="na">StandardSocketFactory</span><span class="o">.</span><span class="na">connect</span><span class="o">(</span><span class="n">StandardSocketFactory</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">156</span><span class="o">)</span>
-    <span class="n">at</span> <span class="n">com</span><span class="o">.</span><span class="na">mysql</span><span class="o">.</span><span class="na">jdbc</span><span class="o">.</span><span class="na">MysqlIO</span><span class="o">.&lt;</span><span class="n">init</span><span class="o">&gt;(</span><span class="n">MysqlIO</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">276</span><span class="o">)</span>
-    <span class="n">at</span> <span class="n">com</span><span class="o">.</span><span class="na">mysql</span><span class="o">.</span><span class="na">jdbc</span><span class="o">.</span><span class="na">Connection</span><span class="o">.</span><span class="na">createNewIO</span><span class="o">(</span><span class="n">Connection</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">2641</span><span class="o">)</span>
-    <span class="n">at</span> <span class="n">com</span><span class="o">.</span><span class="na">mysql</span><span class="o">.</span><span class="na">jdbc</span><span class="o">.</span><span class="na">Connection</span><span class="o">.&lt;</span><span class="n">init</span><span class="o">&gt;(</span><span class="n">Connection</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">1531</span><span class="o">)</span>
-    <span class="n">at</span> <span class="n">com</span><span class="o">.</span><span class="na">mysql</span><span class="o">.</span><span class="na">jdbc</span><span class="o">.</span><span class="na">NonRegisteringDriver</span><span class="o">.</span><span class="na">connect</span><span class="o">(</span><span class="n">NonRegisteringDriver</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">266</span><span class="o">)</span>
-    <span class="n">at</span> <span class="n">java</span><span class="o">.</span><span class="na">sql</span><span class="o">.</span><span class="na">DriverManager</span><span class="o">.</span><span class="na">getConnection</span><span class="o">(</span><span class="n">DriverManager</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">579</span><span class="o">)</span>
-    <span class="n">at</span> <span class="n">java</span><span class="o">.</span><span class="na">sql</span><span class="o">.</span><span class="na">DriverManager</span><span class="o">.</span><span class="na">getConnection</span><span class="o">(</span><span class="n">DriverManager</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">243</span><span class="o">)</span>
-    <span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">jsp</span><span class="o">.</span><span class="na">testSQL1_jsp</span><span class="o">.</span><span class="na">_jspService</span><span class="o">(</span><span class="n">testSQL1_jsp</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">77</span><span class="o">)</span>
-    <span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">jasper</span><span class="o">.</span><span class="na">runtime</span><span class="o">.</span><span class="na">HttpJspBase</span><span class="o">.</span><span class="na">service</span><span class="o">(</span><span class="n">HttpJspBase</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">70</span><span class="o">)</span>
-    <span class="n">at</span> <span class="n">javax</span><span class="o">.</span><span class="na">servlet</span><span class="o">.</span><span class="na">http</span><span class="o">.</span><span class="na">HttpServlet</span><span class="o">.</span><span class="na">service</span><span class="o">(</span><span class="n">HttpServlet</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">722</span><span class="o">)</span>
-    <span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">jasper</span><span class="o">.</span><span class="na">servlet</span><span class="o">.</span><span class="na">JspServletWrapper</span><span class="o">.</span><span class="na">service</span><span class="o">(</span><span class="n">JspServletWrapper</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">432</span><span class="o">)</span>
-    <span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">jasper</span><span class="o">.</span><span class="na">servlet</span><span class="o">.</span><span class="na">JspServlet</span><span class="o">.</span><span class="na">serviceJspFile</span><span class="o">(</span><span class="n">JspServlet</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">390</span><span class="o">)</span>
-    <span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">jasper</span><span class="o">.</span><span class="na">servlet</span><span class="o">.</span><span class="na">JspServlet</span><span class="o">.</span><span class="na">service</span><span class="o">(</span><span class="n">JspServlet</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">334</span><span class="o">)</span>
-    <span class="n">at</span> <span class="n">javax</span><span class="o">.</span><span class="na">servlet</span><span class="o">.</span><span class="na">http</span><span class="o">.</span><span class="na">HttpServlet</span><span class="o">.</span><span class="na">service</span><span class="o">(</span><span class="n">HttpServlet</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">722</span><span class="o">)</span>
-    <span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">catalina</span><span class="o">.</span><span class="na">core</span><span class="o">.</span><span class="na">ApplicationFilterChain</span><span class="o">.</span><span class="na">internalDoFilter</span><span class="o">(</span><span class="n">ApplicationFilterChain</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">305</span><span class="o">)</span>
-    <span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">catalina</span><span class="o">.</span><span class="na">core</span><span class="o">.</span><span class="na">ApplicationFilterChain</span><span class="o">.</span><span class="na">doFilter</span><span class="o">(</span><span class="n">ApplicationFilterChain</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">210</span><span class="o">)</span>
-    <span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">catalina</span><span class="o">.</span><span class="na">core</span><span class="o">.</span><span class="na">StandardWrapperValve</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">StandardWrapperValve</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">224</span><span class="o">)</span>
-    <span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">catalina</span><span class="o">.</span><span class="na">core</span><span class="o">.</span><span class="na">StandardContextValve</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">StandardContextValve</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">169</span><span class="o">)</span>
-    <span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">catalina</span><span class="o">.</span><span class="na">authenticator</span><span class="o">.</span><span class="na">AuthenticatorBase</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">AuthenticatorBase</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">472</span><span class="o">)</span>
-    <span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">catalina</span><span class="o">.</span><span class="na">core</span><span class="o">.</span><span class="na">StandardHostValve</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">StandardHostValve</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">168</span><span class="o">)</span>
-    <span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">catalina</span><span class="o">.</span><span class="na">valves</span><span class="o">.</span><span class="na">ErrorReportValve</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">ErrorReportValve</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">98</span><span class="o">)</span>
-    <span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">catalina</span><span class="o">.</span><span class="na">valves</span><span class="o">.</span><span class="na">AccessLogValve</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">AccessLogValve</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">927</span><span class="o">)</span>
-    <span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">catalina</span><span class="o">.</span><span class="na">core</span><span class="o">.</span><span class="na">StandardEngineValve</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">StandardEngineValve</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">118</span><span class="o">)</span>
-    <span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">catalina</span><span class="o">.</span><span class="na">connector</span><span class="o">.</span><span class="na">CoyoteAdapter</span><span class="o">.</span><span class="na">service</span><span class="o">(</span><span class="n">CoyoteAdapter</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">407</span><span class="o">)</span>
-    <span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">coyote</span><span class="o">.</span><span class="na">http11</span><span class="o">.</span><span class="na">AbstractHttp11Processor</span><span class="o">.</span><span class="na">process</span><span class="o">(</span><span class="n">AbstractHttp11Processor</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">987</span><span class="o">)</span>
-    <span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">coyote</span><span class="o">.</span><span class="na">AbstractProtocol</span><span class="n">$AbstractConnectionHandler</span><span class="o">.</span><span class="na">process</span><span class="o">(</span><span class="n">AbstractProtocol</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">579</span><span class="o">)</span>
-    <span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">tomcat</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">net</span><span class="o">.</span><span class="na">JIoEndpoint</span><span class="n">$SocketProcessor</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">JIoEndpoint</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">309</span><span class="o">)</span>
-    <span class="n">at</span> <span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">concurrent</span><span class="o">.</span><span class="na">ThreadPoolExecutor</span><span class="o">.</span><span class="na">runWorker</span><span class="o">(</span><span class="n">ThreadPoolExecutor</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">1110</span><span class="o">)</span>
-    <span class="n">at</span> <span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">concurrent</span><span class="o">.</span><span class="na">ThreadPoolExecutor</span><span class="n">$Worker</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">ThreadPoolExecutor</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">603</span><span class="o">)</span>
-    <span class="n">at</span> <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">Thread</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">Thread</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">722</span><span class="o">)</span>
-
-
-<span class="o">**</span> <span class="n">END</span> <span class="n">NESTED</span> <span class="n">EXCEPTION</span> <span class="o">**</span>
-</code></pre>
-</div>
-
-
-<p>在使用tomcat与mysql时，出现了上述错误，原因是由于mysql中的配置中禁用了网络的连接。在arch环境下，通过编辑/etc/mysql/my.cnf文件，将<code>skip-networking</code>这个选项注释掉即可。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -1333,6 +1346,10 @@ git config &#8211;global core.autocrlf input<em>(Linux下使用）</em></p>
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/06/07/octopress-add-tag/">Octopress增加Tag标签</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/06/06/vim_help_read/">VIM用户手册27笔记</a>
@@ -1352,10 +1369,6 @@ git config &#8211;global core.autocrlf input<em>(Linux下使用）</em></p>
     
       <li class="post">
         <a href="/blog/2012/06/05/vim_regex_case/">VIM使用正则表达式改变大小写</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/05/os_impletion/">一个操作系统的实现笔记</a>
       </li>
     
   </ul>

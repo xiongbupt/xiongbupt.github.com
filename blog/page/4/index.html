@@ -9,8 +9,11 @@
   <meta name="author" content="Xiongbupt">
 
   
-  <meta name="description" content=" __attribute__((packed)) 取消编译器的默认优化，按照字节的方式进行对齐 memset(void *ptr, int value, size_t num) 注意第二个和第三个参数的顺序，首先是设置的值然后才是设置的位数
-">
+  <meta name="description" content="Linux内核等待队列 wait_queue_head_t
+init_waitqueue_head()
+DECLARE_WAIT_QUEUE_HEAD
+等待队列就是一个进程链表，其中包含了所有等待某个特定事件的进程。
+静态初始化一个等待队列头使用下面的宏 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -33,7 +36,7 @@
   
   <script type="text/javascript">
     var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', '32449808']);
+    _gaq.push(['_setAccount', 'UA-32449808-1']);
     _gaq.push(['_trackPageview']);
 
     (function() {
@@ -69,8 +72,8 @@
   
 <ul class="main-navigation">
   <li><a href="/">Blog</a></li>
-  <li><a href="/blog/categories">Categories</a></li>
   <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/blog/tags">Tags</a></li>
 </ul>
 
 </nav>
@@ -78,6 +81,61 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/03/19/linux_kernel_notes/">Linux内核设计与实现笔记</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-19T00:00:00+08:00" pubdate data-updated="true">Mar 19<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>Linux内核等待队列</h3>
+
+<p>wait_queue_head_t<br/>
+init_waitqueue_head()<br/>
+DECLARE_WAIT_QUEUE_HEAD<br/>
+等待队列就是一个进程链表，其中包含了所有等待某个特定事件的进程。<br/>
+静态初始化一个等待队列头使用下面的宏</p>
+
+<blockquote><p>DECLARE_WAIT_QUEUE_HEAD(name)</p></blockquote>
+
+<p>动态初始化一个等待队列</p>
+
+<div class="highlight"><pre><code class="c"><span class="n">wait_queue_head_t</span> <span class="n">name</span><span class="p">;</span>
+<span class="n">init_waitqueue_head</span><span class="p">(</span><span class="o">&amp;</span><span class="n">name</span><span class="p">)</span>
+</code></pre>
+</div>
+
+
+<blockquote><p>add_wait_queue() <br/>
+用来将一个进程添加到等待队列，该函数在获得必要的自旋锁后，使用<code>__add_wait_queue()</code>函数来完成队列添加工作</p></blockquote>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1348,88 +1406,6 @@ inode的组成元素可以分为两部分：1.描述文件状态的元数据，�
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/02/28/linux-system-call/">Linux系统调用分类</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-02-28T00:00:00+08:00" pubdate data-updated="true">Feb 28<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>进程管理</h2>
-
-<p>进程管理包括创建进程，查询进程信息，修改进程信息等。fork，vfork将一个进程创建为两个进程。clone是fork的增强版，还可以创建线程。</p>
-
-<p>exit结束一个进程并释放其占用的资源。</p>
-
-<p>personlity定义应用程序的执行环境。</p>
-
-<p>ptrace使得能跟踪系统调用，是strace的分支。（strace的使用方法 strace -o a.txt program，将program调用的系统调用输出到文件a.txt中）</p>
-
-<p>nice设置普通进程的优先级，从-20到19之间。数值越低，优先级越高。</p>
-
-<h2>时间操作</h2>
-
-<p>adjtimex读取和设置基于时间的内核变量。</p>
-
-<p>gettimeofday和settimeofday分别获取和设置当前系统时间。</p>
-
-<p>time返回自1970年1月1日零时开始经过的时间。stime可以设置这个值，因此也可以修改系统时间。</p>
-
-<h2>信号处理</h2>
-
-<p>signal设置信号处理函数。</p>
-
-<p>sigpending检查进程当前是否有待解决的信号被阻塞。</p>
-
-<p>kill用于向一个进程发送任何信号。</p>
-
-<h2>调度</h2>
-
-<p>setpriority和getpriority分别设置和获取进程的优先级。</p>
-
-<h2>模块</h2>
-
-<p>init_module添加一个新模块</p>
-
-<p>delete_module从内核移除一个模块</p>
-
-<h2>文件系统</h2>
-
-<h2>内存管理</h2>
-
-<h2>进程间通信和网络功能</h2>
-
-<h2>系统信息和设置</h2>
-
-<h2>系统安全和能力</h2>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/5/">&larr; Older</a>
@@ -1445,6 +1421,10 @@ inode的组成元素可以分为两部分：1.描述文件状态的元数据，�
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/06/07/octopress-add-tag/">Octopress增加Tag标签</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/06/06/vim_help_read/">VIM用户手册27笔记</a>
@@ -1464,10 +1444,6 @@ inode的组成元素可以分为两部分：1.描述文件状态的元数据，�
     
       <li class="post">
         <a href="/blog/2012/06/05/vim_regex_case/">VIM使用正则表达式改变大小写</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/05/os_impletion/">一个操作系统的实现笔记</a>
       </li>
     
   </ul>

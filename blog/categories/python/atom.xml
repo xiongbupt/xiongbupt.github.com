@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Python | Keep Learning]]></title>
   <link href="http://xiongbupt.github.com/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://xiongbupt.github.com/"/>
-  <updated>2012-06-07T21:53:37+08:00</updated>
+  <updated>2012-06-07T22:00:35+08:00</updated>
   <id>http://xiongbupt.github.com/</id>
   <author>
     <name><![CDATA[Xiongbupt]]></name>
@@ -43,12 +43,11 @@
 <p>python中以写的方式打开文件将会将文件的内容清空，无需使用truncate()再次将文件的内容清空</p>
 
 <p>python中使用def定义函数，如下所示
-<div class="highlight"><pre><code class="python"><span class="k">def</span> <span class="nf">functiona</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
-<span class="n">test</span>
-<span class="k">print</span><span class="p">()</span>
-</code></pre>
-</div>
-</p>
+{% highlight python%}
+def functiona(*args):
+test
+print()
+{% endhighlight %}</p>
 
 <h3>python函数书写检查步骤</h3>
 
@@ -75,15 +74,14 @@
 
 
 <p>python中return可以连续返回多个值，以逗号分隔，多个数值可以按照顺序赋值给对应的变量，按照返回顺序如
-<div class="highlight"><pre><code class="python"><span class="k">def</span> <span class="nf">function</span><span class="p">():</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+{% highlight python %}
+def function():</p>
 
-<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">ruturn</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span>
-<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-
-<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">a1</span><span class="p">,</span> <span class="n">b1</span><span class="p">,</span> <span class="n">c1</span> <span class="o">=</span> <span class="n">function</span><span class="p">()</span>
+<pre><code>ruturn a, b, c
 </code></pre>
-</div>
-</p>
+
+<p>a1, b1, c1 = function()
+{% endhighlight %}</p>
 
 <p>python中似乎有全局变量这种东西</p>
 
@@ -119,25 +117,23 @@
 
 <p>python中的if-else组合如下所示</p>
 
-<p><div class="highlight"><pre><code class="python"><span class="k">if</span> <span class="n">statement</span><span class="p">:</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+<p>{% highlight python %}
+if statement:</p>
 
-<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">if</span><span class="o">-</span><span class="n">code</span><span class="o">-</span><span class="n">part</span>
-<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-
-<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">elif</span> <span class="n">statement2</span><span class="p">:</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-
-<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">elif</span><span class="o">-</span><span class="n">code</span><span class="o">-</span><span class="n">part</span>
-<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-
-<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">else</span><span class="p">:</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-
-<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">other</span><span class="o">-</span><span class="n">parts</span>
-<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-
-<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+<pre><code>if-code-part
 </code></pre>
-</div>
-</p>
+
+<p>elif statement2:</p>
+
+<pre><code>elif-code-part
+</code></pre>
+
+<p>else:</p>
+
+<pre><code>other-parts
+</code></pre>
+
+<p>{% endhighlight %}</p>
 
 <p>python中的range([start], stop[,step])</p>
 
@@ -161,21 +157,19 @@
 
 <p>del 删除列表中的某项，使用索引来删除，也可以删除一个范围。比如：</p>
 
-<p><div class="highlight"><pre><code class="python"><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+<p>{% highlight python %}</p>
 
-<span class="o">&lt;</span><span class="n">blockquote</span><span class="o">&gt;&lt;</span><span class="n">blockquote</span><span class="o">&gt;&lt;</span><span class="n">blockquote</span><span class="o">&gt;&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">66.25</span><span class="p">,</span> <span class="mi">333</span><span class="p">,</span> <span class="mi">333</span><span class="p">,</span> <span class="mf">1234.5</span><span class="p">]</span>
-<span class="k">del</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c">#删除a列表中的第一个元素</span>
-<span class="n">a</span>
-<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">66.25</span><span class="p">,</span> <span class="mi">333</span><span class="p">,</span> <span class="mi">333</span><span class="p">,</span> <span class="mf">1234.5</span><span class="p">]</span>
-<span class="k">del</span> <span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span> <span class="c">#删除a列表中的第2，3个元素</span>
-<span class="n">a</span>
-<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">66.25</span><span class="p">,</span> <span class="mf">1234.5</span><span class="p">]</span>
-<span class="k">del</span> <span class="n">a</span><span class="p">[:]</span> <span class="c">#删除a列表中的所有元素</span>
-<span class="n">a</span>
-<span class="p">[]</span>
-</code></pre>
-</div>
-</p></blockquote></blockquote></blockquote>
+<blockquote><blockquote><blockquote><p>a = [-1, 1, 66.25, 333, 333, 1234.5]
+del a[0] #删除a列表中的第一个元素
+a
+[1, 66.25, 333, 333, 1234.5]
+del a[2:4] #删除a列表中的第2，3个元素
+a
+[1, 66.25, 1234.5]
+del a[:] #删除a列表中的所有元素
+a
+[]
+{% endhighlight %}</p></blockquote></blockquote></blockquote>
 
 <p>from 从某些模块中引入一些功能</p>
 

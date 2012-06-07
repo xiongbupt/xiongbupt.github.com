@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: C语言 | Keep Learning]]></title>
+  <link href="http://xiongbupt.github.com/blog/categories/c语言/atom.xml" rel="self"/>
+  <link href="http://xiongbupt.github.com/"/>
+  <updated>2012-06-07T22:00:35+08:00</updated>
+  <id>http://xiongbupt.github.com/</id>
+  <author>
+    <name><![CDATA[Xiongbupt]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[c语言笔记]]></title>
+    <link href="http://xiongbupt.github.com/blog/2012/03/19/c_language_notes/"/>
+    <updated>2012-03-19T00:00:00+08:00</updated>
+    <id>http://xiongbupt.github.com/blog/2012/03/19/c_language_notes</id>
+    <content type="html"><![CDATA[<p>{% highlight c %}
+<strong>attribute</strong>((packed))<br/>
+{% endhighlight %}
+取消编译器的默认优化，按照字节的方式进行对齐</p>
+
+<p>{% highlight c %}
+memset(void *ptr, int value, size_t num)
+{% endhighlight %}
+注意第二个和第三个参数的顺序，首先是设置的值然后才是设置的位数</p>
+]]></content>
+  </entry>
+  
+</feed>

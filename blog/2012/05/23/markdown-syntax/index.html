@@ -5,14 +5,14 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>markdown syntax - Keep Learning</title>
+  <title>Markdown基本使用 - Keep Learning</title>
   <meta name="author" content="Xiongbupt">
 
   
   <meta name="description" content="链接 如果需要在页面插入链接，使用尖括号&lt;>括起来便可以了。 如果需要为一段文字加上链接，使用如下方式
 文字,google （ href="http://" 为链接加上标题可如下所示
 文字，google 链接
-按照上述方式，在文章中另起一行，通常是在文章的末尾，添加 \[lable1\]: &hellip;">
+按照上述方式，在文章中另起一行，通常是在文章的末尾，添加 [lable1]: &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -94,7 +94,7 @@
   
   <header>
     
-      <h1 class="entry-title">Markdown Syntax</h1>
+      <h1 class="entry-title">Markdown基本使用</h1>
     
     
       <p class="meta">
@@ -130,7 +130,7 @@
 <p><a href="http://www.google.com">链接</a>
 按照上述方式，在文章中另起一行，通常是在文章的末尾，添加</p>
 
-<pre><code>\[lable1\]:http://www.google.com
+<pre><code>[lable1]:http://www.google.com
 </code></pre>
 
 <p>将对应的链接完成即可。注意使用的是中括号和一个冒号，后面添加对应的链接地址。</p>
@@ -178,9 +178,9 @@
 
 <p>比如下面的例子</p>
 
-<div class="highlight"><pre><code class="c"><span class="lineno">1</span>   <span class="n">printf</span><span class="p">(</span><span class="s">&quot;hello world&quot;</span><span class="p">);</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'>  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;hello world&quot;</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 
@@ -203,12 +203,15 @@ printf("hello world");
 
 <p>对应的html代码为</p>
 
-<div class="highlight"><pre><code class="html"><span class="lineno">1</span> <span class="nt">&lt;ul&gt;</span>
-<span class="lineno">2</span> <span class="nt">&lt;li&gt;</span>first<span class="nt">&lt;/li&gt;</span>
-<span class="lineno">3</span> <span class="nt">&lt;li&gt;</span>second<span class="nt">&lt;/li&gt;</span>
-<span class="lineno">4</span> <span class="nt">&lt;/ul&gt;</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;ul&gt;</span>
+</span><span class='line'><span class="nt">&lt;li&gt;</span>first<span class="nt">&lt;/li&gt;</span>
+</span><span class='line'><span class="nt">&lt;li&gt;</span>second<span class="nt">&lt;/li&gt;</span>
+</span><span class='line'><span class="nt">&lt;/ul&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 
@@ -240,12 +243,15 @@ printf("hello world");
 
 
 
-<div class="highlight"><pre><code class="html"><span class="lineno">1</span> <span class="nt">&lt;ol&gt;</span>
-<span class="lineno">2</span> <span class="nt">&lt;li&gt;</span>第一条<span class="nt">&lt;/li&gt;</span>
-<span class="lineno">3</span> <span class="nt">&lt;li&gt;</span>第2条<span class="nt">&lt;/li&gt;</span>
-<span class="lineno">4</span> <span class="nt">&lt;/ol&gt;</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;ol&gt;</span>
+</span><span class='line'><span class="nt">&lt;li&gt;</span>第一条<span class="nt">&lt;/li&gt;</span>
+</span><span class='line'><span class="nt">&lt;li&gt;</span>第2条<span class="nt">&lt;/li&gt;</span>
+</span><span class='line'><span class="nt">&lt;/ol&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <h2>转义符</h2>
@@ -305,11 +311,13 @@ google</p>
 
 <p>对应的HTML代码均为</p>
 
-<div class="highlight"><pre><code class="html"><span class="lineno">1</span>     <span class="nt">&lt;p&gt;</span>google<span class="nt">&lt;/p&gt;</span>
-<span class="lineno">2</span>     <span class="nt">&lt;hr/&gt;</span>
-<span class="lineno">3</span>     <span class="nt">&lt;p&gt;</span>google<span class="nt">&lt;/p&gt;</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>    <span class="nt">&lt;p&gt;</span>google<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;hr/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;p&gt;</span>google<span class="nt">&lt;/p&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 
@@ -351,16 +359,23 @@ google</p>
 
 
 
-<div class="highlight"><pre><code class="html"><span class="lineno">1</span> <span class="nt">&lt;blockquote&gt;</span>
-<span class="lineno">2</span> <span class="nt">&lt;p&gt;</span>google<span class="nt">&lt;/p&gt;</span>
-<span class="lineno">3</span> 
-<span class="lineno">4</span> <span class="nt">&lt;blockquote&gt;</span>
-<span class="lineno">5</span> <span class="nt">&lt;p&gt;</span>google<span class="nt">&lt;/p&gt;</span>
-<span class="lineno">6</span> <span class="nt">&lt;/blockquote&gt;</span>
-<span class="lineno">7</span> 
-<span class="lineno">8</span> <span class="nt">&lt;/blockquote&gt;</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;blockquote&gt;</span>
+</span><span class='line'><span class="nt">&lt;p&gt;</span>google<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;blockquote&gt;</span>
+</span><span class='line'><span class="nt">&lt;p&gt;</span>google<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'><span class="nt">&lt;/blockquote&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;/blockquote&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>表示HTML中的    <code>"&lt;code&gt;"</code>标记的`同样可以嵌套。如果希望插入一个该符号而不愿意被翻译成为<code>"&lt;code&gt;"</code>，可以使用"`"</p>
@@ -370,29 +385,35 @@ html代码为</p>
 
 <p><code>`</code></p>
 
-<div class="highlight"><pre><code class="html"><span class="lineno">1</span> <span class="nt">&lt;code&gt;</span>&#39;<span class="nt">&lt;/code&gt;</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;code&gt;</span>&#39;<span class="nt">&lt;/code&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <h2>c语言测试</h2>
 
-<div class="highlight"><pre><code class="c"><span class="lineno">1</span> <span class="cp">#include &lt;stdio.h&gt;</span>
-<span class="lineno">2</span> 
-<span class="lineno">3</span> <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
-<span class="lineno">4</span>   <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">9527</span><span class="p">;</span>
-<span class="lineno">5</span>   <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Your ID: %d&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
-<span class="lineno">6</span>   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="lineno">7</span> <span class="p">}</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cp">#include &lt;stdio.h&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">9527</span><span class="p">;</span>
+</span><span class='line'>  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Your ID: %d&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <h2>bash测试</h2>
 
-<div class="highlight"><pre><code class="bash"><span class="lineno">1</span> <span class="nb">cd</span> ~
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd</span> ~
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <h2>语法高亮简述</h2>
@@ -445,6 +466,8 @@ html代码为</p>
     <ul id="tags_ul">
 
         <li><a href="/blog/tags/Learning/">Learning</a></li>
+
+        <li><a href="/blog/tags/Markdown/">Markdown</a></li>
 
     </ul>
 </div>

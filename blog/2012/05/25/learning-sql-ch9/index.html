@@ -153,64 +153,119 @@
 
 <h5>in和not in运算符</h5>
 
-<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">branch_id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">city</span>
-    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">branch</span>
-    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">name</span> <span class="k">IN</span> <span class="p">(</span><span class="s1">&#39;Headquarters&#39;</span><span class="p">,</span> <span class="s1">&#39;Quincy Branch&#39;</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">-----------+---------------+---------+</span>
-<span class="o">|</span> <span class="n">branch_id</span> <span class="o">|</span> <span class="n">name</span>          <span class="o">|</span> <span class="n">city</span>    <span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------+---------------+---------+</span>
-<span class="o">|</span>         <span class="mi">1</span> <span class="o">|</span> <span class="n">Headquarters</span>  <span class="o">|</span> <span class="n">Waltham</span> <span class="o">|</span>
-<span class="o">|</span>         <span class="mi">3</span> <span class="o">|</span> <span class="n">Quincy</span> <span class="n">Branch</span> <span class="o">|</span> <span class="n">Quincy</span>  <span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------+---------------+---------+</span>
-<span class="mi">2</span> <span class="k">rows</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
-<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">branch_id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">city</span>
-    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">branch</span>
-    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">name</span> <span class="k">NOT</span> <span class="k">IN</span> <span class="p">(</span><span class="s1">&#39;Headquarters&#39;</span><span class="p">,</span> <span class="s1">&#39;Quincy Branch&#39;</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">-----------+---------------+--------+</span>
-<span class="o">|</span> <span class="n">branch_id</span> <span class="o">|</span> <span class="n">name</span>          <span class="o">|</span> <span class="n">city</span>   <span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------+---------------+--------+</span>
-<span class="o">|</span>         <span class="mi">2</span> <span class="o">|</span> <span class="n">Woburn</span> <span class="n">Branch</span> <span class="o">|</span> <span class="n">Woburn</span> <span class="o">|</span>
-<span class="o">|</span>         <span class="mi">4</span> <span class="o">|</span> <span class="n">So</span><span class="p">.</span> <span class="n">NH</span> <span class="n">Branch</span> <span class="o">|</span> <span class="n">Salem</span>  <span class="o">|</span>
-<span class="o">+</span><span class="c1">-----------+---------------+--------+</span>
-<span class="mi">2</span> <span class="k">rows</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
-<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">emp_id</span><span class="p">,</span> <span class="n">fname</span><span class="p">,</span> <span class="n">lname</span><span class="p">,</span> <span class="n">title</span>
-    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">employee</span>
-    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">emp_id</span> <span class="k">IN</span> <span class="p">(</span><span class="k">SELECT</span> <span class="k">DISTINCT</span>
-    <span class="o">-&gt;</span> <span class="n">superior_emp_id</span>
-    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">employee</span>
-    <span class="o">-&gt;</span> <span class="p">);</span>
-<span class="o">+</span><span class="c1">--------+---------+-----------+--------------------+</span>
-<span class="o">|</span> <span class="n">emp_id</span> <span class="o">|</span> <span class="n">fname</span>   <span class="o">|</span> <span class="n">lname</span>     <span class="o">|</span> <span class="n">title</span>              <span class="o">|</span>
-<span class="o">+</span><span class="c1">--------+---------+-----------+--------------------+</span>
-<span class="o">|</span>      <span class="mi">1</span> <span class="o">|</span> <span class="n">Michael</span> <span class="o">|</span> <span class="n">Smith</span>     <span class="o">|</span> <span class="n">President</span>          <span class="o">|</span>
-<span class="o">|</span>      <span class="mi">3</span> <span class="o">|</span> <span class="n">Robert</span>  <span class="o">|</span> <span class="n">Tyler</span>     <span class="o">|</span> <span class="n">Treasurer</span>          <span class="o">|</span>
-<span class="o">|</span>      <span class="mi">4</span> <span class="o">|</span> <span class="n">Susan</span>   <span class="o">|</span> <span class="n">Hawthorne</span> <span class="o">|</span> <span class="n">Operations</span> <span class="n">Manager</span> <span class="o">|</span>
-<span class="o">|</span>      <span class="mi">6</span> <span class="o">|</span> <span class="n">Helen</span>   <span class="o">|</span> <span class="n">Fleming</span>   <span class="o">|</span> <span class="n">Head</span> <span class="n">Teller</span>        <span class="o">|</span>
-<span class="o">|</span>     <span class="mi">10</span> <span class="o">|</span> <span class="n">Paula</span>   <span class="o">|</span> <span class="n">Roberts</span>   <span class="o">|</span> <span class="n">Head</span> <span class="n">Teller</span>        <span class="o">|</span>
-<span class="o">|</span>     <span class="mi">13</span> <span class="o">|</span> <span class="n">John</span>    <span class="o">|</span> <span class="n">Blake</span>     <span class="o">|</span> <span class="n">Head</span> <span class="n">Teller</span>        <span class="o">|</span>
-<span class="o">|</span>     <span class="mi">16</span> <span class="o">|</span> <span class="n">Theresa</span> <span class="o">|</span> <span class="n">Markham</span>   <span class="o">|</span> <span class="n">Head</span> <span class="n">Teller</span>        <span class="o">|</span>
-<span class="o">+</span><span class="c1">--------+---------+-----------+--------------------+</span>
-<span class="mi">7</span> <span class="k">rows</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
-
-<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">emp_id</span><span class="p">,</span> <span class="n">fname</span><span class="p">,</span> <span class="n">lname</span><span class="p">,</span> <span class="n">title</span> <span class="k">FROM</span> <span class="n">employee</span> <span class="k">WHERE</span> <span class="n">emp_id</span> <span class="k">NOT</span> <span class="k">IN</span> <span class="p">(</span><span class="k">SELECT</span> <span class="k">DISTINCT</span> <span class="n">superior_emp_id</span> <span class="k">FROM</span> <span class="n">employee</span> <span class="k">WHERE</span> <span class="n">superior_emp_id</span> <span class="k">IS</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">--------+----------+----------+----------------+</span>
-<span class="o">|</span> <span class="n">emp_id</span> <span class="o">|</span> <span class="n">fname</span>    <span class="o">|</span> <span class="n">lname</span>    <span class="o">|</span> <span class="n">title</span>          <span class="o">|</span>
-<span class="o">+</span><span class="c1">--------+----------+----------+----------------+</span>
-<span class="o">|</span>      <span class="mi">2</span> <span class="o">|</span> <span class="n">Susan</span>    <span class="o">|</span> <span class="n">Barker</span>   <span class="o">|</span> <span class="n">Vice</span> <span class="n">President</span> <span class="o">|</span>
-<span class="o">|</span>      <span class="mi">5</span> <span class="o">|</span> <span class="n">John</span>     <span class="o">|</span> <span class="n">Gooding</span>  <span class="o">|</span> <span class="n">Loan</span> <span class="n">Manager</span>   <span class="o">|</span>
-<span class="o">|</span>      <span class="mi">7</span> <span class="o">|</span> <span class="n">Chris</span>    <span class="o">|</span> <span class="n">Tucker</span>   <span class="o">|</span> <span class="n">Teller</span>         <span class="o">|</span>
-<span class="o">|</span>      <span class="mi">8</span> <span class="o">|</span> <span class="n">Sarah</span>    <span class="o">|</span> <span class="n">Parker</span>   <span class="o">|</span> <span class="n">Teller</span>         <span class="o">|</span>
-<span class="o">|</span>      <span class="mi">9</span> <span class="o">|</span> <span class="n">Jane</span>     <span class="o">|</span> <span class="n">Grossman</span> <span class="o">|</span> <span class="n">Teller</span>         <span class="o">|</span>
-<span class="o">|</span>     <span class="mi">11</span> <span class="o">|</span> <span class="n">Thomas</span>   <span class="o">|</span> <span class="n">Ziegler</span>  <span class="o">|</span> <span class="n">Teller</span>         <span class="o">|</span>
-<span class="o">|</span>     <span class="mi">12</span> <span class="o">|</span> <span class="n">Samantha</span> <span class="o">|</span> <span class="n">Jameson</span>  <span class="o">|</span> <span class="n">Teller</span>         <span class="o">|</span>
-<span class="o">|</span>     <span class="mi">14</span> <span class="o">|</span> <span class="n">Cindy</span>    <span class="o">|</span> <span class="n">Mason</span>    <span class="o">|</span> <span class="n">Teller</span>         <span class="o">|</span>
-<span class="o">|</span>     <span class="mi">15</span> <span class="o">|</span> <span class="n">Frank</span>    <span class="o">|</span> <span class="n">Portman</span>  <span class="o">|</span> <span class="n">Teller</span>         <span class="o">|</span>
-<span class="o">|</span>     <span class="mi">17</span> <span class="o">|</span> <span class="n">Beth</span>     <span class="o">|</span> <span class="n">Fowler</span>   <span class="o">|</span> <span class="n">Teller</span>         <span class="o">|</span>
-<span class="o">|</span>     <span class="mi">18</span> <span class="o">|</span> <span class="n">Rick</span>     <span class="o">|</span> <span class="n">Tulman</span>   <span class="o">|</span> <span class="n">Teller</span>         <span class="o">|</span>
-<span class="o">+</span><span class="c1">--------+----------+----------+----------------+</span>
-<span class="mi">11</span> <span class="k">rows</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">branch_id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">city</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">branch</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">name</span> <span class="k">IN</span> <span class="p">(</span><span class="s1">&#39;Headquarters&#39;</span><span class="p">,</span> <span class="s1">&#39;Quincy Branch&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="o">+</span><span class="c1">-----------+---------------+---------+</span>
+</span><span class='line'><span class="o">|</span> <span class="n">branch_id</span> <span class="o">|</span> <span class="n">name</span>          <span class="o">|</span> <span class="n">city</span>    <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">-----------+---------------+---------+</span>
+</span><span class='line'><span class="o">|</span>         <span class="mi">1</span> <span class="o">|</span> <span class="n">Headquarters</span>  <span class="o">|</span> <span class="n">Waltham</span> <span class="o">|</span>
+</span><span class='line'><span class="o">|</span>         <span class="mi">3</span> <span class="o">|</span> <span class="n">Quincy</span> <span class="n">Branch</span> <span class="o">|</span> <span class="n">Quincy</span>  <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">-----------+---------------+---------+</span>
+</span><span class='line'><span class="mi">2</span> <span class="k">rows</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</span><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">branch_id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">city</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">branch</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">name</span> <span class="k">NOT</span> <span class="k">IN</span> <span class="p">(</span><span class="s1">&#39;Headquarters&#39;</span><span class="p">,</span> <span class="s1">&#39;Quincy Branch&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="o">+</span><span class="c1">-----------+---------------+--------+</span>
+</span><span class='line'><span class="o">|</span> <span class="n">branch_id</span> <span class="o">|</span> <span class="n">name</span>          <span class="o">|</span> <span class="n">city</span>   <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">-----------+---------------+--------+</span>
+</span><span class='line'><span class="o">|</span>         <span class="mi">2</span> <span class="o">|</span> <span class="n">Woburn</span> <span class="n">Branch</span> <span class="o">|</span> <span class="n">Woburn</span> <span class="o">|</span>
+</span><span class='line'><span class="o">|</span>         <span class="mi">4</span> <span class="o">|</span> <span class="n">So</span><span class="p">.</span> <span class="n">NH</span> <span class="n">Branch</span> <span class="o">|</span> <span class="n">Salem</span>  <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">-----------+---------------+--------+</span>
+</span><span class='line'><span class="mi">2</span> <span class="k">rows</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</span><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">emp_id</span><span class="p">,</span> <span class="n">fname</span><span class="p">,</span> <span class="n">lname</span><span class="p">,</span> <span class="n">title</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">employee</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">emp_id</span> <span class="k">IN</span> <span class="p">(</span><span class="k">SELECT</span> <span class="k">DISTINCT</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="n">superior_emp_id</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">employee</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="p">);</span>
+</span><span class='line'><span class="o">+</span><span class="c1">--------+---------+-----------+--------------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="n">emp_id</span> <span class="o">|</span> <span class="n">fname</span>   <span class="o">|</span> <span class="n">lname</span>     <span class="o">|</span> <span class="n">title</span>              <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">--------+---------+-----------+--------------------+</span>
+</span><span class='line'><span class="o">|</span>      <span class="mi">1</span> <span class="o">|</span> <span class="n">Michael</span> <span class="o">|</span> <span class="n">Smith</span>     <span class="o">|</span> <span class="n">President</span>          <span class="o">|</span>
+</span><span class='line'><span class="o">|</span>      <span class="mi">3</span> <span class="o">|</span> <span class="n">Robert</span>  <span class="o">|</span> <span class="n">Tyler</span>     <span class="o">|</span> <span class="n">Treasurer</span>          <span class="o">|</span>
+</span><span class='line'><span class="o">|</span>      <span class="mi">4</span> <span class="o">|</span> <span class="n">Susan</span>   <span class="o">|</span> <span class="n">Hawthorne</span> <span class="o">|</span> <span class="n">Operations</span> <span class="n">Manager</span> <span class="o">|</span>
+</span><span class='line'><span class="o">|</span>      <span class="mi">6</span> <span class="o">|</span> <span class="n">Helen</span>   <span class="o">|</span> <span class="n">Fleming</span>   <span class="o">|</span> <span class="n">Head</span> <span class="n">Teller</span>        <span class="o">|</span>
+</span><span class='line'><span class="o">|</span>     <span class="mi">10</span> <span class="o">|</span> <span class="n">Paula</span>   <span class="o">|</span> <span class="n">Roberts</span>   <span class="o">|</span> <span class="n">Head</span> <span class="n">Teller</span>        <span class="o">|</span>
+</span><span class='line'><span class="o">|</span>     <span class="mi">13</span> <span class="o">|</span> <span class="n">John</span>    <span class="o">|</span> <span class="n">Blake</span>     <span class="o">|</span> <span class="n">Head</span> <span class="n">Teller</span>        <span class="o">|</span>
+</span><span class='line'><span class="o">|</span>     <span class="mi">16</span> <span class="o">|</span> <span class="n">Theresa</span> <span class="o">|</span> <span class="n">Markham</span>   <span class="o">|</span> <span class="n">Head</span> <span class="n">Teller</span>        <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">--------+---------+-----------+--------------------+</span>
+</span><span class='line'><span class="mi">7</span> <span class="k">rows</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">emp_id</span><span class="p">,</span> <span class="n">fname</span><span class="p">,</span> <span class="n">lname</span><span class="p">,</span> <span class="n">title</span> <span class="k">FROM</span> <span class="n">employee</span> <span class="k">WHERE</span> <span class="n">emp_id</span> <span class="k">NOT</span> <span class="k">IN</span> <span class="p">(</span><span class="k">SELECT</span> <span class="k">DISTINCT</span> <span class="n">superior_emp_id</span> <span class="k">FROM</span> <span class="n">employee</span> <span class="k">WHERE</span> <span class="n">superior_emp_id</span> <span class="k">IS</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">);</span>
+</span><span class='line'><span class="o">+</span><span class="c1">--------+----------+----------+----------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="n">emp_id</span> <span class="o">|</span> <span class="n">fname</span>    <span class="o">|</span> <span class="n">lname</span>    <span class="o">|</span> <span class="n">title</span>          <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">--------+----------+----------+----------------+</span>
+</span><span class='line'><span class="o">|</span>      <span class="mi">2</span> <span class="o">|</span> <span class="n">Susan</span>    <span class="o">|</span> <span class="n">Barker</span>   <span class="o">|</span> <span class="n">Vice</span> <span class="n">President</span> <span class="o">|</span>
+</span><span class='line'><span class="o">|</span>      <span class="mi">5</span> <span class="o">|</span> <span class="n">John</span>     <span class="o">|</span> <span class="n">Gooding</span>  <span class="o">|</span> <span class="n">Loan</span> <span class="n">Manager</span>   <span class="o">|</span>
+</span><span class='line'><span class="o">|</span>      <span class="mi">7</span> <span class="o">|</span> <span class="n">Chris</span>    <span class="o">|</span> <span class="n">Tucker</span>   <span class="o">|</span> <span class="n">Teller</span>         <span class="o">|</span>
+</span><span class='line'><span class="o">|</span>      <span class="mi">8</span> <span class="o">|</span> <span class="n">Sarah</span>    <span class="o">|</span> <span class="n">Parker</span>   <span class="o">|</span> <span class="n">Teller</span>         <span class="o">|</span>
+</span><span class='line'><span class="o">|</span>      <span class="mi">9</span> <span class="o">|</span> <span class="n">Jane</span>     <span class="o">|</span> <span class="n">Grossman</span> <span class="o">|</span> <span class="n">Teller</span>         <span class="o">|</span>
+</span><span class='line'><span class="o">|</span>     <span class="mi">11</span> <span class="o">|</span> <span class="n">Thomas</span>   <span class="o">|</span> <span class="n">Ziegler</span>  <span class="o">|</span> <span class="n">Teller</span>         <span class="o">|</span>
+</span><span class='line'><span class="o">|</span>     <span class="mi">12</span> <span class="o">|</span> <span class="n">Samantha</span> <span class="o">|</span> <span class="n">Jameson</span>  <span class="o">|</span> <span class="n">Teller</span>         <span class="o">|</span>
+</span><span class='line'><span class="o">|</span>     <span class="mi">14</span> <span class="o">|</span> <span class="n">Cindy</span>    <span class="o">|</span> <span class="n">Mason</span>    <span class="o">|</span> <span class="n">Teller</span>         <span class="o">|</span>
+</span><span class='line'><span class="o">|</span>     <span class="mi">15</span> <span class="o">|</span> <span class="n">Frank</span>    <span class="o">|</span> <span class="n">Portman</span>  <span class="o">|</span> <span class="n">Teller</span>         <span class="o">|</span>
+</span><span class='line'><span class="o">|</span>     <span class="mi">17</span> <span class="o">|</span> <span class="n">Beth</span>     <span class="o">|</span> <span class="n">Fowler</span>   <span class="o">|</span> <span class="n">Teller</span>         <span class="o">|</span>
+</span><span class='line'><span class="o">|</span>     <span class="mi">18</span> <span class="o">|</span> <span class="n">Rick</span>     <span class="o">|</span> <span class="n">Tulman</span>   <span class="o">|</span> <span class="n">Teller</span>         <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">--------+----------+----------+----------------+</span>
+</span><span class='line'><span class="mi">11</span> <span class="k">rows</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p><font color ="red">注意上面在使用<code>NOT IN</code>的时候该子句中的<code>WHERE superior_emp_id IS NOT NULL</code></font></p>

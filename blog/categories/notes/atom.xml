@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Notes | Keep Learning]]></title>
   <link href="http://xiongbupt.github.com/blog/categories/notes/atom.xml" rel="self"/>
   <link href="http://xiongbupt.github.com/"/>
-  <updated>2012-06-07T22:00:35+08:00</updated>
+  <updated>2012-06-07T22:55:13+08:00</updated>
   <id>http://xiongbupt.github.com/</id>
   <author>
     <name><![CDATA[Xiongbupt]]></name>
@@ -34,9 +34,7 @@
 <pre><code>&lt;div id="tag_list"&gt;
     Tags:
     &lt;ul id="tags_ul"&gt;
-{% for t in page.tags  %}
-        &lt;li&gt;&lt;a href="http://xiongbupt.github.com/tags/{{t}}/"&gt;{{t}}&lt;/a&gt;&lt;/li&gt;
-{% endfor %}
+
     &lt;/ul&gt;
 &lt;/div&gt;
 </code></pre>
@@ -386,16 +384,23 @@ vim的写法
 
 <p>按照书中的推荐配置，bochsrc-sample.txt文件很大，上面有很多不需要的配置选项，按照书中的指示，将bochsrc文件中配置精简为如下所示：</p>
 
-<p>{% highlight bash %}
-megs:   32
-floppya: 1_44=a.img, status=inserted
-romimage: file=/usr/share/bochs/BIOS-bochs-latest
-vgaromimage: file=/usr/share/bochs/VGABIOS-lgpl-latest
-boot: floppy
-log: bochsout.txt
-mouse: enabled=0
-keyboard_mapping: enabled=1, map=/usr/share/bochs/keymaps/x11-pc-us.map
-{% endhighlight %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>megs:   32
+</span><span class='line'>floppya: <span class="nv">1_44</span><span class="o">=</span>a.img, <span class="nv">status</span><span class="o">=</span>inserted
+</span><span class='line'>romimage: <span class="nv">file</span><span class="o">=</span>/usr/share/bochs/BIOS-bochs-latest
+</span><span class='line'>vgaromimage: <span class="nv">file</span><span class="o">=</span>/usr/share/bochs/VGABIOS-lgpl-latest
+</span><span class='line'>boot: floppy
+</span><span class='line'>log: bochsout.txt
+</span><span class='line'>mouse: <span class="nv">enabled</span><span class="o">=</span>0
+</span><span class='line'>keyboard_mapping: <span class="nv">enabled</span><span class="o">=</span>1, <span class="nv">map</span><span class="o">=</span>/usr/share/bochs/keymaps/x11-pc-us.map
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h1>汇编文件编译及制作启动软盘</h1>
 
@@ -403,32 +408,57 @@ keyboard_mapping: enabled=1, map=/usr/share/bochs/keymaps/x11-pc-us.map
 
 <h2>附录：汇编代码</h2>
 
-<p>{% highlight nasm%}</p>
-
-<pre><code>org     07c00h
-mov     ax, cs
-mov     ds, ax
-mov     es, ax
-call    DispStr
-jmp     $       ;jump to this line, be a dead loop
-</code></pre>
-
-<p>DispStr:</p>
-
-<pre><code>mov     ax, BootMessage
-mov     bp, ax
-mov     cx, 16      ;the length of string
-mov     ax, 01301h  ;make the font on the screen
-mov     bx, 000ch
-mov     dl, 0
-int     10h
-ret
-</code></pre>
-
-<p>BootMessage:        db      "Hello, Os world!"
-times   510-($-$$)  db  0
-dw      0xaa55
-{% endhighlight %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class='nasm'><span class='line'><span class="err">&lt;/</span><span class="nf">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">&lt;</span><span class="nf">pre</span><span class="o">&gt;&lt;</span><span class="nv">code</span><span class="o">&gt;</span><span class="nv">org</span>     <span class="mh">07c00h</span>
+</span><span class='line'><span class="nf">mov</span>     <span class="nb">ax</span><span class="p">,</span> <span class="nb">cs</span>
+</span><span class='line'><span class="nf">mov</span>     <span class="nb">ds</span><span class="p">,</span> <span class="nb">ax</span>
+</span><span class='line'><span class="nf">mov</span>     <span class="nb">es</span><span class="p">,</span> <span class="nb">ax</span>
+</span><span class='line'><span class="nf">call</span>    <span class="nb">Disp</span><span class="nv">Str</span>
+</span><span class='line'><span class="nf">jmp</span>     <span class="kc">$</span>       <span class="c1">;jump to this line, be a dead loop</span>
+</span><span class='line'><span class="err">&lt;/</span><span class="nf">code</span><span class="o">&gt;&lt;/</span><span class="nv">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">&lt;</span><span class="nf">p</span><span class="o">&gt;</span><span class="nb">Disp</span><span class="nv">Str</span><span class="p">:</span><span class="o">&lt;/</span><span class="nv">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">&lt;</span><span class="nf">pre</span><span class="o">&gt;&lt;</span><span class="nv">code</span><span class="o">&gt;</span><span class="nv">mov</span>     <span class="nb">ax</span><span class="p">,</span> <span class="nv">BootMessage</span>
+</span><span class='line'><span class="nf">mov</span>     <span class="nb">bp</span><span class="p">,</span> <span class="nb">ax</span>
+</span><span class='line'><span class="nf">mov</span>     <span class="nb">cx</span><span class="p">,</span> <span class="mi">16</span>      <span class="c1">;the length of string</span>
+</span><span class='line'><span class="nf">mov</span>     <span class="nb">ax</span><span class="p">,</span> <span class="mh">01301h</span>  <span class="c1">;make the font on the screen</span>
+</span><span class='line'><span class="nf">mov</span>     <span class="nb">bx</span><span class="p">,</span> <span class="mh">000ch</span>
+</span><span class='line'><span class="nf">mov</span>     <span class="nb">dl</span><span class="p">,</span> <span class="mi">0</span>
+</span><span class='line'><span class="nf">int</span>     <span class="mh">10h</span>
+</span><span class='line'><span class="nf">ret</span>
+</span><span class='line'><span class="err">&lt;/</span><span class="nf">code</span><span class="o">&gt;&lt;/</span><span class="nv">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">&lt;</span><span class="nf">p</span><span class="o">&gt;</span><span class="nv">BootMessage</span><span class="p">:</span>        <span class="nv">db</span>      <span class="s">&quot;Hello, Os world!&quot;</span>
+</span><span class='line'><span class="kd">times</span>   <span class="mi">510</span><span class="o">-</span><span class="p">(</span><span class="kc">$</span><span class="o">-</span><span class="kc">$$</span><span class="p">)</span>  <span class="nv">db</span>  <span class="mi">0</span>
+</span><span class='line'><span class="kd">dw</span>      <span class="mh">0xaa55</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 ]]></content>
   </entry>
   

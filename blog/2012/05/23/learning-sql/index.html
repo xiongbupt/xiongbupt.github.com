@@ -152,84 +152,104 @@
 
 <h4>相等条件</h4>
 
-<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span><span class="k">SELECT</span> <span class="n">pt</span><span class="p">.</span><span class="n">name</span> <span class="n">product_type</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">name</span> <span class="n">product</span>
-<span class="o">-&gt;</span><span class="k">FROM</span> <span class="n">product</span> <span class="n">p</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">product_type</span> <span class="n">pt</span>
-<span class="o">-&gt;</span><span class="k">ON</span> <span class="n">p</span><span class="p">.</span><span class="n">product_type_cd</span> <span class="o">=</span> <span class="n">pt</span><span class="p">.</span><span class="n">product_type_cd</span>
-<span class="o">-&gt;</span><span class="k">WHERE</span> <span class="n">pt</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Customer Accounts&#39;</span><span class="p">;</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span><span class="k">SELECT</span> <span class="n">pt</span><span class="p">.</span><span class="n">name</span> <span class="n">product_type</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">name</span> <span class="n">product</span>
+</span><span class='line'><span class="o">-&gt;</span><span class="k">FROM</span> <span class="n">product</span> <span class="n">p</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">product_type</span> <span class="n">pt</span>
+</span><span class='line'><span class="o">-&gt;</span><span class="k">ON</span> <span class="n">p</span><span class="p">.</span><span class="n">product_type_cd</span> <span class="o">=</span> <span class="n">pt</span><span class="p">.</span><span class="n">product_type_cd</span>
+</span><span class='line'><span class="o">-&gt;</span><span class="k">WHERE</span> <span class="n">pt</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Customer Accounts&#39;</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <h4>不等条件</h4>
 
 <p>构造不等条件时，可以从<code>!=</code>或者<code>&lt;&gt;</code>中任选一个</p>
 
-<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span><span class="k">SELECT</span> <span class="n">pt</span><span class="p">.</span><span class="n">name</span> <span class="n">product_type</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">name</span> <span class="n">product</span>
-<span class="o">-&gt;</span><span class="k">FROM</span> <span class="n">product</span> <span class="n">p</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">product_type</span> <span class="n">pt</span>
-<span class="o">-&gt;</span><span class="k">ON</span> <span class="n">p</span><span class="p">.</span><span class="n">product_type_cd</span> <span class="o">=</span> <span class="n">pt</span><span class="p">.</span><span class="n">product_type_cd</span>
-<span class="o">-&gt;</span><span class="k">WHERE</span> <span class="n">pt</span><span class="p">.</span><span class="n">name</span> <span class="o">&lt;&gt;</span> <span class="s1">&#39;Customer Accounts&#39;</span><span class="p">;</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span><span class="k">SELECT</span> <span class="n">pt</span><span class="p">.</span><span class="n">name</span> <span class="n">product_type</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">name</span> <span class="n">product</span>
+</span><span class='line'><span class="o">-&gt;</span><span class="k">FROM</span> <span class="n">product</span> <span class="n">p</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">product_type</span> <span class="n">pt</span>
+</span><span class='line'><span class="o">-&gt;</span><span class="k">ON</span> <span class="n">p</span><span class="p">.</span><span class="n">product_type_cd</span> <span class="o">=</span> <span class="n">pt</span><span class="p">.</span><span class="n">product_type_cd</span>
+</span><span class='line'><span class="o">-&gt;</span><span class="k">WHERE</span> <span class="n">pt</span><span class="p">.</span><span class="n">name</span> <span class="o">&lt;&gt;</span> <span class="s1">&#39;Customer Accounts&#39;</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <h4>范围条件</h4>
 
 <p>使用&lt;，>等来构造范围</p>
 
-<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">emp_id</span><span class="p">,</span> <span class="n">fname</span><span class="p">,</span> <span class="n">lname</span><span class="p">,</span> <span class="n">start_date</span>
-    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">employee</span>
-    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">start_date</span> <span class="o">&lt;</span> <span class="s1">&#39;2007-01-01&#39;</span><span class="p">;</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">emp_id</span><span class="p">,</span> <span class="n">fname</span><span class="p">,</span> <span class="n">lname</span><span class="p">,</span> <span class="n">start_date</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">employee</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">start_date</span> <span class="o">&lt;</span> <span class="s1">&#39;2007-01-01&#39;</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 
 
-<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">emp_id</span><span class="p">,</span> <span class="n">fname</span><span class="p">,</span> <span class="n">lname</span><span class="p">,</span> <span class="n">start_date</span>
-    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">employee</span>
-    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">start_date</span> <span class="o">&lt;</span> <span class="s1">&#39;2007-01-01&#39;</span><span class="p">;</span>
-    <span class="o">-&gt;</span> <span class="k">AND</span> <span class="n">start_date</span> <span class="o">&gt;</span> <span class="s1">&#39;2005-01-01&#39;</span><span class="p">;</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">emp_id</span><span class="p">,</span> <span class="n">fname</span><span class="p">,</span> <span class="n">lname</span><span class="p">,</span> <span class="n">start_date</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">employee</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">start_date</span> <span class="o">&lt;</span> <span class="s1">&#39;2007-01-01&#39;</span><span class="p">;</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">AND</span> <span class="n">start_date</span> <span class="o">&gt;</span> <span class="s1">&#39;2005-01-01&#39;</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <h5>使用BETWEEN条件符</h5>
 
-<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">emp_id</span><span class="p">,</span> <span class="n">fname</span><span class="p">,</span> <span class="n">lname</span><span class="p">,</span> <span class="n">start_date</span>
-    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">employee</span>
-    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">start_date</span> <span class="k">BETWEEN</span> <span class="s1">&#39;2005-01-01&#39;</span> <span class="k">AND</span> <span class="s1">&#39;2007-01-01&#39;</span><span class="p">;</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">emp_id</span><span class="p">,</span> <span class="n">fname</span><span class="p">,</span> <span class="n">lname</span><span class="p">,</span> <span class="n">start_date</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">employee</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">start_date</span> <span class="k">BETWEEN</span> <span class="s1">&#39;2005-01-01&#39;</span> <span class="k">AND</span> <span class="s1">&#39;2007-01-01&#39;</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>注意BETWEEN后面的数的取值，紧接着的那个数应该小于AND后面的那个数，同时，这是一个闭区间。比如BETWEEN a AND b，则取值范围为[a,b]。</p>
 
 <p>使用BEWTEEN可以查询日期范围、数字范围，同时也可以查询字符串的范围。</p>
 
-<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">account_id</span> <span class="p">,</span> <span class="n">product_cd</span><span class="p">,</span> <span class="n">cust_id</span> <span class="p">,</span> <span class="n">avail_balance</span>  
-    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">account</span> 
-    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">avail_balance</span> <span class="k">BETWEEN</span> <span class="mi">3000</span> <span class="k">AND</span> <span class="mi">5000</span><span class="p">;</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">account_id</span> <span class="p">,</span> <span class="n">product_cd</span><span class="p">,</span> <span class="n">cust_id</span> <span class="p">,</span> <span class="n">avail_balance</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">account</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">avail_balance</span> <span class="k">BETWEEN</span> <span class="mi">3000</span> <span class="k">AND</span> <span class="mi">5000</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <h4>成员条件</h4>
 
-<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">account_id</span><span class="p">,</span> <span class="n">product_cd</span><span class="p">,</span> <span class="n">cust_id</span><span class="p">,</span> <span class="n">avail_balance</span> 
-    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">account</span>
-    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">product_cd</span> <span class="o">=</span> <span class="s1">&#39;CHK&#39;</span> <span class="k">OR</span> <span class="n">product_cd</span> <span class="o">=</span> <span class="s1">&#39;SAV&#39;</span>
-    <span class="o">-&gt;</span> <span class="k">OR</span> <span class="n">product_cd</span> <span class="o">=</span> <span class="s1">&#39;CD&#39;</span> <span class="k">OR</span> <span class="n">product_cd</span> <span class="o">=</span> <span class="s1">&#39;MM&#39;</span><span class="p">;</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">account_id</span><span class="p">,</span> <span class="n">product_cd</span><span class="p">,</span> <span class="n">cust_id</span><span class="p">,</span> <span class="n">avail_balance</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">account</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">product_cd</span> <span class="o">=</span> <span class="s1">&#39;CHK&#39;</span> <span class="k">OR</span> <span class="n">product_cd</span> <span class="o">=</span> <span class="s1">&#39;SAV&#39;</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">OR</span> <span class="n">product_cd</span> <span class="o">=</span> <span class="s1">&#39;CD&#39;</span> <span class="k">OR</span> <span class="n">product_cd</span> <span class="o">=</span> <span class="s1">&#39;MM&#39;</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>使用in来代替上面的多个输入</p>
 
-<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">account_id</span><span class="p">,</span> <span class="n">product_cd</span><span class="p">,</span> <span class="n">cust_id</span><span class="p">,</span> <span class="n">avail_balance</span> 
-    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">account</span>
-    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">product_cd</span> <span class="k">IN</span> <span class="p">(</span><span class="s1">&#39;CHK&#39;</span><span class="p">,</span> <span class="s1">&#39;SAV&#39;</span><span class="p">,</span> <span class="s1">&#39;CD&#39;</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">);</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">account_id</span><span class="p">,</span> <span class="n">product_cd</span><span class="p">,</span> <span class="n">cust_id</span><span class="p">,</span> <span class="n">avail_balance</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">account</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">product_cd</span> <span class="k">IN</span> <span class="p">(</span><span class="s1">&#39;CHK&#39;</span><span class="p">,</span> <span class="s1">&#39;SAV&#39;</span><span class="p">,</span> <span class="s1">&#39;CD&#39;</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>使用子查询</p>
@@ -297,10 +317,11 @@ REGEXP</p>
 
 <p>在<code>FROM</code>子句中包含两个表，并且使用<code>JOIN</code>隔开。如下所示：</p>
 
-<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">e</span><span class="p">.</span><span class="n">fname</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">lname</span><span class="p">,</span> <span class="n">d</span><span class="p">.</span><span class="n">name</span>
-    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">employee</span> <span class="n">e</span> <span class="k">JOIN</span> <span class="n">department</span> <span class="n">d</span><span class="p">;</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">e</span><span class="p">.</span><span class="n">fname</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">lname</span><span class="p">,</span> <span class="n">d</span><span class="p">.</span><span class="n">name</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">employee</span> <span class="n">e</span> <span class="k">JOIN</span> <span class="n">department</span> <span class="n">d</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>上面将会将这两个表中选出的东西做交叉乘积，类似于笛卡尔积的方式将返回结果。</p>
@@ -316,40 +337,48 @@ REGEXP</p>
 <p>为了将表的结果返回一个对应的值，需要使用内连接（<code>INNER JOIN</code>）。通过添加<code>ON</code>子句并可以达到这个目的。在使用内连接（<code>INNER JOIN</code>）时，如果两个表中出现了一个表中有而另一个表中对应的元素是缺失的情况下，将会把该对应的行去除。如果需要显示，需要使用外连接（<code>OUTER JOIN</code>），在后面会进行详细描述。
 下面是个例子</p>
 
-<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">e</span><span class="p">.</span><span class="n">fname</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">lname</span><span class="p">,</span> <span class="n">d</span><span class="p">.</span><span class="n">name</span>
-    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">employee</span> <span class="n">e</span> <span class="k">JOIN</span> <span class="n">department</span> <span class="n">d</span>
-    <span class="o">-&gt;</span> <span class="k">ON</span> <span class="n">e</span><span class="p">.</span><span class="n">dept_id</span> <span class="o">=</span> <span class="n">d</span><span class="p">.</span><span class="n">dept_id</span><span class="p">;</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">e</span><span class="p">.</span><span class="n">fname</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">lname</span><span class="p">,</span> <span class="n">d</span><span class="p">.</span><span class="n">name</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">employee</span> <span class="n">e</span> <span class="k">JOIN</span> <span class="n">department</span> <span class="n">d</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">ON</span> <span class="n">e</span><span class="p">.</span><span class="n">dept_id</span> <span class="o">=</span> <span class="n">d</span><span class="p">.</span><span class="n">dept_id</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>在上面的例子中，没有显示的指明是否为内连接，在默认的情况下是内连接，但是最好增加关键词<code>INNER</code>。如下所示：</p>
 
-<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">e</span><span class="p">.</span><span class="n">fname</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">lname</span><span class="p">,</span> <span class="n">d</span><span class="p">.</span><span class="n">name</span>
-    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">employee</span> <span class="n">e</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">department</span> <span class="n">d</span>
-    <span class="o">-&gt;</span> <span class="k">ON</span> <span class="n">e</span><span class="p">.</span><span class="n">dept_id</span> <span class="o">=</span> <span class="n">d</span><span class="p">.</span><span class="n">dept_id</span><span class="p">;</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">e</span><span class="p">.</span><span class="n">fname</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">lname</span><span class="p">,</span> <span class="n">d</span><span class="p">.</span><span class="n">name</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">employee</span> <span class="n">e</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">department</span> <span class="n">d</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">ON</span> <span class="n">e</span><span class="p">.</span><span class="n">dept_id</span> <span class="o">=</span> <span class="n">d</span><span class="p">.</span><span class="n">dept_id</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>如果连接的两个表的列名是相同的，可以使用<code>USING</code>子句来代替<code>ON</code>子句，如下所示：</p>
 
-<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">e</span><span class="p">.</span><span class="n">fname</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">lname</span><span class="p">,</span> <span class="n">d</span><span class="p">.</span><span class="n">name</span>
-    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">employee</span> <span class="n">e</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">department</span> <span class="n">d</span>
-    <span class="o">-&gt;</span> <span class="k">USING</span> <span class="p">(</span><span class="n">dept_id</span><span class="p">);</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">e</span><span class="p">.</span><span class="n">fname</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">lname</span><span class="p">,</span> <span class="n">d</span><span class="p">.</span><span class="n">name</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">employee</span> <span class="n">e</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">department</span> <span class="n">d</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">USING</span> <span class="p">(</span><span class="n">dept_id</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <h4>ANSI连接语法</h4>
 
 <p>下面是一个使用旧语法的例子，在这个例子中没有<code>ON</code>子句，在<code>FROM</code>子句中定义各表的别名，并使用逗号隔开，然后在<code>WHERE</code>子句中包含连接条件。</p>
 
-<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">e</span><span class="p">.</span><span class="n">fname</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">lname</span><span class="p">,</span> <span class="n">d</span><span class="p">.</span><span class="n">name</span>
-    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">employee</span> <span class="n">e</span><span class="p">,</span> <span class="n">department</span> <span class="n">d</span>
-    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">e</span><span class="p">.</span><span class="n">dept_id</span> <span class="o">=</span> <span class="n">d</span><span class="p">.</span><span class="n">dept_id</span><span class="p">;</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">e</span><span class="p">.</span><span class="n">fname</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">lname</span><span class="p">,</span> <span class="n">d</span><span class="p">.</span><span class="n">name</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">employee</span> <span class="n">e</span><span class="p">,</span> <span class="n">department</span> <span class="n">d</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">e</span><span class="p">.</span><span class="n">dept_id</span> <span class="o">=</span> <span class="n">d</span><span class="p">.</span><span class="n">dept_id</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>但是ANSI连接语法的优势如下：</p>
@@ -363,16 +392,23 @@ REGEXP</p>
 
 <p>例子如下所示：</p>
 
-<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">a</span><span class="p">.</span><span class="n">account_id</span><span class="p">,</span> <span class="n">a</span><span class="p">.</span><span class="n">cust_id</span><span class="p">,</span> <span class="n">a</span><span class="p">.</span><span class="n">open_date</span><span class="p">,</span> <span class="n">a</span><span class="p">.</span><span class="n">product_cd</span>
-    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">account</span> <span class="n">a</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">employee</span> <span class="n">e</span>
-    <span class="o">-&gt;</span> <span class="k">ON</span> <span class="n">a</span><span class="p">.</span><span class="n">open_emp_id</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">emp_id</span>
-    <span class="o">-&gt;</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">branch</span> <span class="n">b</span>
-    <span class="o">-&gt;</span> <span class="k">ON</span> <span class="n">e</span><span class="p">.</span><span class="n">assigned_branch_id</span> <span class="o">=</span> <span class="n">b</span><span class="p">.</span><span class="n">branch_id</span>
-    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">e</span><span class="p">.</span><span class="n">start_date</span> <span class="o">&lt;</span> <span class="s1">&#39;2007-01-01&#39;</span>
-    <span class="o">-&gt;</span> <span class="k">AND</span> <span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Teller&#39;</span> <span class="k">OR</span> <span class="n">e</span><span class="p">.</span><span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Head Teller&#39;</span><span class="p">)</span>
-    <span class="o">-&gt;</span> <span class="k">AND</span> <span class="n">b</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Woburn Branch&#39;</span><span class="p">;</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">a</span><span class="p">.</span><span class="n">account_id</span><span class="p">,</span> <span class="n">a</span><span class="p">.</span><span class="n">cust_id</span><span class="p">,</span> <span class="n">a</span><span class="p">.</span><span class="n">open_date</span><span class="p">,</span> <span class="n">a</span><span class="p">.</span><span class="n">product_cd</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">account</span> <span class="n">a</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">employee</span> <span class="n">e</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">ON</span> <span class="n">a</span><span class="p">.</span><span class="n">open_emp_id</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">emp_id</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">branch</span> <span class="n">b</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">ON</span> <span class="n">e</span><span class="p">.</span><span class="n">assigned_branch_id</span> <span class="o">=</span> <span class="n">b</span><span class="p">.</span><span class="n">branch_id</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">e</span><span class="p">.</span><span class="n">start_date</span> <span class="o">&lt;</span> <span class="s1">&#39;2007-01-01&#39;</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">AND</span> <span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Teller&#39;</span> <span class="k">OR</span> <span class="n">e</span><span class="p">.</span><span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Head Teller&#39;</span><span class="p">)</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">AND</span> <span class="n">b</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Woburn Branch&#39;</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <h3>连接3个或更多的表</h3>
@@ -381,36 +417,49 @@ REGEXP</p>
 对于三个表的连接中，<code>FROM</code>子句中包含了三个表名和两种连接类型，以及两个<code>ON</code>子句。
 两个表的例子：</p>
 
-<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">select</span> <span class="n">a</span><span class="p">.</span><span class="n">account_id</span><span class="p">,</span> <span class="k">c</span><span class="p">.</span><span class="n">fed_id</span>
-    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">account</span> <span class="n">a</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">customer</span> <span class="k">c</span>
-    <span class="o">-&gt;</span> <span class="k">ON</span> <span class="n">a</span><span class="p">.</span><span class="n">cust_id</span> <span class="o">=</span> <span class="k">c</span><span class="p">.</span><span class="n">cust_id</span>
-    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="k">c</span><span class="p">.</span><span class="n">cust_type_cd</span> <span class="o">=</span> <span class="s1">&#39;B&#39;</span><span class="p">;</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">select</span> <span class="n">a</span><span class="p">.</span><span class="n">account_id</span><span class="p">,</span> <span class="k">c</span><span class="p">.</span><span class="n">fed_id</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">account</span> <span class="n">a</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">customer</span> <span class="k">c</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">ON</span> <span class="n">a</span><span class="p">.</span><span class="n">cust_id</span> <span class="o">=</span> <span class="k">c</span><span class="p">.</span><span class="n">cust_id</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="k">c</span><span class="p">.</span><span class="n">cust_type_cd</span> <span class="o">=</span> <span class="s1">&#39;B&#39;</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>三个表的例子</p>
 
-<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">a</span><span class="p">.</span><span class="n">account_id</span><span class="p">,</span> <span class="k">c</span><span class="p">.</span><span class="n">fed_id</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">fname</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">lname</span>
-    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">account</span> <span class="n">a</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">customer</span> <span class="k">c</span>
-    <span class="o">-&gt;</span> <span class="k">ON</span> <span class="n">a</span><span class="p">.</span><span class="n">cust_id</span> <span class="o">=</span> <span class="k">c</span><span class="p">.</span><span class="n">cust_id</span>
-    <span class="o">-&gt;</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">employee</span> <span class="n">e</span>
-    <span class="o">-&gt;</span> <span class="k">ON</span> <span class="n">a</span><span class="p">.</span><span class="n">open_emp_id</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">emp_id</span>
-    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="k">c</span><span class="p">.</span><span class="n">cust_type_cd</span> <span class="o">=</span> <span class="s1">&#39;B&#39;</span><span class="p">;</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">a</span><span class="p">.</span><span class="n">account_id</span><span class="p">,</span> <span class="k">c</span><span class="p">.</span><span class="n">fed_id</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">fname</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">lname</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">account</span> <span class="n">a</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">customer</span> <span class="k">c</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">ON</span> <span class="n">a</span><span class="p">.</span><span class="n">cust_id</span> <span class="o">=</span> <span class="k">c</span><span class="p">.</span><span class="n">cust_id</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">employee</span> <span class="n">e</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">ON</span> <span class="n">a</span><span class="p">.</span><span class="n">open_emp_id</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">emp_id</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="k">c</span><span class="p">.</span><span class="n">cust_type_cd</span> <span class="o">=</span> <span class="s1">&#39;B&#39;</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>SQL是一种非过程化的语言，因此表的顺序不重要。如果需要对表的顺序进行强制规定，对于MySQL可以使用<code>STRAIGHT_JOIN</code>进行强制的规定。如下所示：</p>
 
-<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">STRAIGHT_JOIN</span> <span class="n">a</span><span class="p">.</span><span class="n">account_id</span><span class="p">,</span> <span class="k">c</span><span class="p">.</span><span class="n">fed_id</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">fname</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">lname</span>
-    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">account</span> <span class="n">a</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">customer</span> <span class="k">c</span>
-    <span class="o">-&gt;</span> <span class="k">ON</span> <span class="n">a</span><span class="p">.</span><span class="n">cust_id</span> <span class="o">=</span> <span class="k">c</span><span class="p">.</span><span class="n">cust_id</span>
-    <span class="o">-&gt;</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">employee</span> <span class="n">e</span>
-    <span class="o">-&gt;</span> <span class="k">ON</span> <span class="n">a</span><span class="p">.</span><span class="n">open_emp_id</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">emp_id</span>
-    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="k">c</span><span class="p">.</span><span class="n">cust_type_cd</span> <span class="o">=</span> <span class="s1">&#39;B&#39;</span><span class="p">;</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">STRAIGHT_JOIN</span> <span class="n">a</span><span class="p">.</span><span class="n">account_id</span><span class="p">,</span> <span class="k">c</span><span class="p">.</span><span class="n">fed_id</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">fname</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">lname</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">account</span> <span class="n">a</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">customer</span> <span class="k">c</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">ON</span> <span class="n">a</span><span class="p">.</span><span class="n">cust_id</span> <span class="o">=</span> <span class="k">c</span><span class="p">.</span><span class="n">cust_id</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">employee</span> <span class="n">e</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">ON</span> <span class="n">a</span><span class="p">.</span><span class="n">open_emp_id</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">emp_id</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="k">c</span><span class="p">.</span><span class="n">cust_type_cd</span> <span class="o">=</span> <span class="s1">&#39;B&#39;</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <h4>将子查询结果作为查询表</h4>
@@ -441,11 +490,13 @@ REGEXP</p>
 
 <h3>示例</h3>
 
-<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="mi">1</span> <span class="n">num</span><span class="p">,</span> <span class="s1">&#39;abc&#39;</span> <span class="n">str</span>
-    <span class="o">-&gt;</span> <span class="k">UNION</span>
-    <span class="o">-&gt;</span> <span class="k">SELECT</span> <span class="mi">9</span> <span class="n">num</span><span class="p">,</span> <span class="s1">&#39;efg&#39;</span> <span class="n">str</span><span class="p">;</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="mi">1</span> <span class="n">num</span><span class="p">,</span> <span class="s1">&#39;abc&#39;</span> <span class="n">str</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">UNION</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">SELECT</span> <span class="mi">9</span> <span class="n">num</span><span class="p">,</span> <span class="s1">&#39;efg&#39;</span> <span class="n">str</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>使用<code>SELECT</code>语句显示语句，然后使用<code>UNION</code>操作符将两个<code>SELECT</code>语句的内容进行并操作，在最终的结果中将会显示两行。</p>
@@ -459,68 +510,97 @@ REGEXP</p>
 <p><code>UNION ALL</code>保留重复项，<code>UNION</code>去除重复项。
 示例</p>
 
-<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="s1">&#39;IND&#39;</span> <span class="n">type_cd</span><span class="p">,</span> <span class="n">cust_id</span><span class="p">,</span> <span class="n">lname</span> <span class="n">name</span>
-    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">individual</span>
-    <span class="o">-&gt;</span> <span class="k">UNION</span> <span class="k">ALL</span>
-    <span class="o">-&gt;</span> <span class="k">SELECT</span> <span class="s1">&#39;BUS&#39;</span> <span class="n">type_cd</span><span class="p">,</span> <span class="n">cust_id</span><span class="p">,</span> <span class="n">name</span>
-    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">business</span><span class="p">;</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="s1">&#39;IND&#39;</span> <span class="n">type_cd</span><span class="p">,</span> <span class="n">cust_id</span><span class="p">,</span> <span class="n">lname</span> <span class="n">name</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">individual</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">UNION</span> <span class="k">ALL</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">SELECT</span> <span class="s1">&#39;BUS&#39;</span> <span class="n">type_cd</span><span class="p">,</span> <span class="n">cust_id</span><span class="p">,</span> <span class="n">name</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">business</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>示例2</p>
 
-<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="s1">&#39;IND&#39;</span> <span class="n">type_cd</span><span class="p">,</span> <span class="n">cust_id</span><span class="p">,</span> <span class="n">lname</span> <span class="n">name</span>
-    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">individual</span>
-    <span class="o">-&gt;</span> <span class="k">UNION</span> <span class="k">ALL</span>
-    <span class="o">-&gt;</span> <span class="k">SELECT</span> <span class="s1">&#39;BUS&#39;</span> <span class="n">type_cd</span><span class="p">,</span> <span class="n">cust_id</span><span class="p">,</span> <span class="n">name</span>
-    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">business</span>
-    <span class="o">-&gt;</span> <span class="k">UNION</span> <span class="k">ALL</span>
-    <span class="o">-&gt;</span> <span class="k">SELECT</span> <span class="s1">&#39;BUS&#39;</span> <span class="n">type_cd</span><span class="p">,</span> <span class="n">cust_id</span><span class="p">,</span> <span class="n">name</span>
-    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">business</span><span class="p">;</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="s1">&#39;IND&#39;</span> <span class="n">type_cd</span><span class="p">,</span> <span class="n">cust_id</span><span class="p">,</span> <span class="n">lname</span> <span class="n">name</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">individual</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">UNION</span> <span class="k">ALL</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">SELECT</span> <span class="s1">&#39;BUS&#39;</span> <span class="n">type_cd</span><span class="p">,</span> <span class="n">cust_id</span><span class="p">,</span> <span class="n">name</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">business</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">UNION</span> <span class="k">ALL</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">SELECT</span> <span class="s1">&#39;BUS&#39;</span> <span class="n">type_cd</span><span class="p">,</span> <span class="n">cust_id</span><span class="p">,</span> <span class="n">name</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">business</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>示例3</p>
 
-<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">emp_id</span>
-    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">employee</span>
-    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">assigned_branch_id</span> <span class="o">=</span> <span class="mi">2</span>
-    <span class="o">-&gt;</span> <span class="k">AND</span> <span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="ss">&quot;Teller&quot;</span> <span class="k">OR</span> <span class="n">title</span> <span class="o">=</span> <span class="ss">&quot;Header Teller&quot;</span><span class="p">)</span>
-    <span class="o">-&gt;</span> <span class="k">UNION</span> <span class="k">ALL</span>
-    <span class="o">-&gt;</span> <span class="k">SELECT</span> <span class="k">DISTINCT</span> <span class="n">open_emp_id</span>
-    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">account</span>
-    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">open_branch_id</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">emp_id</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">employee</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">assigned_branch_id</span> <span class="o">=</span> <span class="mi">2</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">AND</span> <span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="ss">&quot;Teller&quot;</span> <span class="k">OR</span> <span class="n">title</span> <span class="o">=</span> <span class="ss">&quot;Header Teller&quot;</span><span class="p">)</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">UNION</span> <span class="k">ALL</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">SELECT</span> <span class="k">DISTINCT</span> <span class="n">open_emp_id</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">account</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">open_branch_id</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>示例4</p>
 
-<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">emp_id</span>
-    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">employee</span>
-    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">assigned_branch_id</span> <span class="o">=</span> <span class="mi">2</span>
-    <span class="o">-&gt;</span> <span class="k">AND</span> <span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="ss">&quot;Teller&quot;</span> <span class="k">OR</span> <span class="n">title</span> <span class="o">=</span> <span class="ss">&quot;Header Teller&quot;</span><span class="p">)</span>
-    <span class="o">-&gt;</span> <span class="k">UNION</span>
-    <span class="o">-&gt;</span> <span class="k">SELECT</span> <span class="k">DISTINCT</span> <span class="n">open_emp_id</span>
-    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">account</span>
-    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">open_branch_id</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">emp_id</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">employee</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">assigned_branch_id</span> <span class="o">=</span> <span class="mi">2</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">AND</span> <span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="ss">&quot;Teller&quot;</span> <span class="k">OR</span> <span class="n">title</span> <span class="o">=</span> <span class="ss">&quot;Header Teller&quot;</span><span class="p">)</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">UNION</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">SELECT</span> <span class="k">DISTINCT</span> <span class="n">open_emp_id</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">account</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">open_branch_id</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <h4>intersect操作符</h4>
 
 <p>在MySQL中，没有实现intersect的操作。</p>
 
-<div class="highlight"><pre><code class="sql"><span class="k">SELECT</span> <span class="n">emp_id</span><span class="p">,</span> <span class="n">fname</span><span class="p">,</span> <span class="n">lname</span>
-<span class="k">FROM</span> <span class="n">employee</span>
-<span class="k">INTERSECT</span>
-<span class="k">SELECT</span> <span class="n">cust_id</span><span class="p">,</span> <span class="n">fname</span><span class="p">,</span> <span class="n">lname</span>
-<span class="k">FROM</span> <span class="n">individual</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span> <span class="n">emp_id</span><span class="p">,</span> <span class="n">fname</span><span class="p">,</span> <span class="n">lname</span>
+</span><span class='line'><span class="k">FROM</span> <span class="n">employee</span>
+</span><span class='line'><span class="k">INTERSECT</span>
+</span><span class='line'><span class="k">SELECT</span> <span class="n">cust_id</span><span class="p">,</span> <span class="n">fname</span><span class="p">,</span> <span class="n">lname</span>
+</span><span class='line'><span class="k">FROM</span> <span class="n">individual</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <h4>except操作符</h4>
@@ -533,31 +613,46 @@ REGEXP</p>
 
 <p>通常情况下，复合查询中两个查询对应列的名字是相同的，但是不是强制的，如下所示：</p>
 
-<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">emp_id</span><span class="p">,</span> <span class="n">assigned_branch_id</span>
-    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">employee</span>
-    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Teller&#39;</span>
-    <span class="o">-&gt;</span> <span class="k">UNION</span>
-    <span class="o">-&gt;</span> <span class="k">SELECT</span> <span class="n">open_emp_id</span><span class="p">,</span> <span class="n">open_branch_id</span>
-    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">account</span>
-    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">product_cd</span> <span class="o">=</span> <span class="s1">&#39;SAV&#39;</span>
-    <span class="o">-&gt;</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">emp_id</span><span class="p">;</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">emp_id</span><span class="p">,</span> <span class="n">assigned_branch_id</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">employee</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Teller&#39;</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">UNION</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">SELECT</span> <span class="n">open_emp_id</span><span class="p">,</span> <span class="n">open_branch_id</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">account</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">product_cd</span> <span class="o">=</span> <span class="s1">&#39;SAV&#39;</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">emp_id</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>如果这两个列的名字不同，但是指定的是后面列的名字的话，会出错，如下所示：</p>
 
-<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">emp_id</span><span class="p">,</span> <span class="n">assigned_branch_id</span>
-    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">employee</span>
-    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Teller&#39;</span>
-    <span class="o">-&gt;</span> <span class="k">UNION</span>
-    <span class="o">-&gt;</span> <span class="k">SELECT</span> <span class="n">open_emp_id</span><span class="p">,</span> <span class="n">open_branch_id</span>
-    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">account</span>
-    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">product_cd</span> <span class="o">=</span> <span class="s1">&#39;SAV&#39;</span>
-    <span class="o">-&gt;</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">open_emp_id</span><span class="p">;</span>
-<span class="n">ERROR</span> <span class="mi">1054</span> <span class="p">(</span><span class="mi">42</span><span class="n">S22</span><span class="p">):</span> <span class="k">Unknown</span> <span class="k">column</span> <span class="s1">&#39;open_emp_id&#39;</span> <span class="k">in</span> <span class="s1">&#39;order clause&#39;</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">emp_id</span><span class="p">,</span> <span class="n">assigned_branch_id</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">employee</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Teller&#39;</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">UNION</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">SELECT</span> <span class="n">open_emp_id</span><span class="p">,</span> <span class="n">open_branch_id</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">account</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">product_cd</span> <span class="o">=</span> <span class="s1">&#39;SAV&#39;</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">open_emp_id</span><span class="p">;</span>
+</span><span class='line'><span class="n">ERROR</span> <span class="mi">1054</span> <span class="p">(</span><span class="mi">42</span><span class="n">S22</span><span class="p">):</span> <span class="k">Unknown</span> <span class="k">column</span> <span class="s1">&#39;open_emp_id&#39;</span> <span class="k">in</span> <span class="s1">&#39;order clause&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <h4>集合操作符优先级</h4>
@@ -632,7 +727,7 @@ REGEXP</p>
         <a class="basic-alignment left" href="/blog/2012/05/22/learning-sql/" title="Previous Post: Learning SQL(ch1-ch3)">&laquo; Learning SQL(ch1-ch3)</a>
       
       
-        <a class="basic-alignment right" href="/blog/2012/05/23/markdown-syntax/" title="Next Post: markdown syntax">markdown syntax &raquo;</a>
+        <a class="basic-alignment right" href="/blog/2012/05/23/markdown-syntax/" title="Next Post: Markdown基本使用">Markdown基本使用 &raquo;</a>
       
     </p>
   </footer>

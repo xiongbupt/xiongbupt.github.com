@@ -175,51 +175,56 @@
 
 <p>SQL语句</p>
 
-<div class="highlight"><pre><code class="sql"><span class="o">&gt;</span><span class="k">select</span> <span class="o">/</span> <span class="o">*</span> <span class="err">一个或多个事务</span> <span class="o">*</span> <span class="o">/</span> <span class="p">...</span>
-<span class="o">&gt;</span><span class="k">from</span>  <span class="o">/</span> <span class="o">*</span> <span class="err">一个或多个地点</span> <span class="o">*</span> <span class="o">/</span> <span class="p">...</span>
-<span class="o">&gt;</span><span class="k">where</span>  <span class="o">/</span> <span class="o">*</span> <span class="err">一个或多个条件</span> <span class="o">*</span> <span class="o">/</span> <span class="p">...</span>
-<span class="o">&gt;</span><span class="k">update</span>
-<span class="o">&gt;</span><span class="k">delete</span>
-<span class="o">&gt;</span><span class="k">insert</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="o">&gt;</span><span class="k">select</span> <span class="o">/</span> <span class="o">*</span> <span class="err">一个或多个事务</span> <span class="o">*</span> <span class="o">/</span> <span class="p">...</span>
+</span><span class='line'><span class="o">&gt;</span><span class="k">from</span>  <span class="o">/</span> <span class="o">*</span> <span class="err">一个或多个地点</span> <span class="o">*</span> <span class="o">/</span> <span class="p">...</span>
+</span><span class='line'><span class="o">&gt;</span><span class="k">where</span>  <span class="o">/</span> <span class="o">*</span> <span class="err">一个或多个条件</span> <span class="o">*</span> <span class="o">/</span> <span class="p">...</span>
+</span><span class='line'><span class="o">&gt;</span><span class="k">update</span>
+</span><span class='line'><span class="o">&gt;</span><span class="k">delete</span>
+</span><span class='line'><span class="o">&gt;</span><span class="k">insert</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <h2>CH2 创建和使用数据库</h2>
 
-<div class="highlight"><pre><code class="sql"><span class="o">&gt;</span><span class="n">mysql</span> <span class="o">-</span><span class="n">u</span> <span class="k">user</span> <span class="o">-</span><span class="n">p</span> <span class="n">passwd</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="o">&gt;</span><span class="n">mysql</span> <span class="o">-</span><span class="n">u</span> <span class="k">user</span> <span class="o">-</span><span class="n">p</span> <span class="n">passwd</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>进入用户名为user，密码为passwd的账户
 在使用root用户登录之后可以创建其他的账户，允许其他账户进行登录</p>
 
-<div class="highlight"><pre><code class="sql"><span class="o">&gt;</span><span class="k">create</span> <span class="k">database</span> <span class="n">bank</span><span class="p">;</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="o">&gt;</span><span class="k">create</span> <span class="k">database</span> <span class="n">bank</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>创建一个bank数据库</p>
 
-<div class="highlight"><pre><code class="sql"><span class="o">&gt;</span><span class="k">grant</span> <span class="k">all</span> <span class="k">privileges</span> <span class="k">on</span> <span class="n">bank</span><span class="p">.</span><span class="err">\</span><span class="o">*</span> <span class="k">to</span> <span class="s1">&#39;someuser&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span> <span class="n">identified</span> <span class="k">by</span> <span class="s1">&#39;passwd&#39;</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="o">&gt;</span><span class="k">grant</span> <span class="k">all</span> <span class="k">privileges</span> <span class="k">on</span> <span class="n">bank</span><span class="p">.</span><span class="err">\</span><span class="o">*</span> <span class="k">to</span> <span class="s1">&#39;someuser&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span> <span class="n">identified</span> <span class="k">by</span> <span class="s1">&#39;passwd&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>创建一个用户名为someuser，密码为passwd的账户，可以使用bank数据库的所有表项，具有完全的权限。</p>
 
-<div class="highlight"><pre><code class="sql"><span class="o">&gt;</span><span class="k">select</span> <span class="n">now</span><span class="p">();</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="o">&gt;</span><span class="k">select</span> <span class="n">now</span><span class="p">();</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>可以用来查询系统的时间，now()是MySQL内建的函数。
 如果为了与oracle数据库兼容，可以使用</p>
 
-<div class="highlight"><pre><code class="sql"><span class="o">&gt;</span><span class="k">select</span> <span class="n">now</span><span class="p">()</span> <span class="k">from</span> <span class="n">dual</span><span class="p">;</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="o">&gt;</span><span class="k">select</span> <span class="n">now</span><span class="p">()</span> <span class="k">from</span> <span class="n">dual</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <h3>MySQL数据类型</h3>
@@ -239,9 +244,9 @@
 
 <p>char列可以设置的最大长度为<em>255</em>个字节，varchar列最多可以存储65535字节。</p>
 
-<div class="highlight"><pre><code class="sql"><span class="k">show</span> <span class="nb">character</span> <span class="k">set</span><span class="p">;</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">show</span> <span class="nb">character</span> <span class="k">set</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>显示mysql支持的字符集。
@@ -250,9 +255,9 @@
 
 <p>在mysql中修改整个数据库的默认字符集：</p>
 
-<div class="highlight"><pre><code class="sql"><span class="k">create</span> <span class="k">database</span> <span class="n">foreign_sales</span> <span class="nb">character</span> <span class="k">set</span> <span class="n">utf8</span><span class="p">;</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">create</span> <span class="k">database</span> <span class="n">foreign_sales</span> <span class="nb">character</span> <span class="k">set</span> <span class="n">utf8</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <h5>文本数据</h5>
@@ -395,25 +400,25 @@ s为小数点右边所允许的数字位数</p>
 <p>在定义表时，需要向数据库指明哪个列或者哪些列作为表的主键，通过为表建立一个约束(constraint)可以做到这一点。
 MySQL提供了一种enum数据类型，与c语言的枚举是一个道理，仅仅允许从那几个字符里面选择一个。</p>
 
-<div class="highlight"><pre><code class="sql"><span class="o">&gt;</span><span class="k">create</span> <span class="k">table</span> <span class="n">person</span> <span class="p">(</span><span class="n">person_id</span> <span class="nb">smallint</span> <span class="n">unsigned</span><span class="p">,</span> <span class="n">fname</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span> <span class="n">lname</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span> <span class="n">gender</span> <span class="n">enum</span><span class="p">(</span><span class="s1">&#39;M&#39;</span><span class="p">,</span><span class="s1">&#39;F&#39;</span><span class="p">),</span> <span class="n">birth_date</span> <span class="nb">date</span><span class="p">,</span> <span class="n">street</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span> <span class="n">city</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span> <span class="k">state</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span> <span class="n">country</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span> <span class="n">postal_code</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span> <span class="k">constraint</span> <span class="n">pk_person</span> <span class="k">primary</span> <span class="k">key</span> <span class="p">(</span><span class="n">person_id</span><span class="p">)</span> <span class="p">);</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="o">&gt;</span><span class="k">create</span> <span class="k">table</span> <span class="n">person</span> <span class="p">(</span><span class="n">person_id</span> <span class="nb">smallint</span> <span class="n">unsigned</span><span class="p">,</span> <span class="n">fname</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span> <span class="n">lname</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span> <span class="n">gender</span> <span class="n">enum</span><span class="p">(</span><span class="s1">&#39;M&#39;</span><span class="p">,</span><span class="s1">&#39;F&#39;</span><span class="p">),</span> <span class="n">birth_date</span> <span class="nb">date</span><span class="p">,</span> <span class="n">street</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span> <span class="n">city</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span> <span class="k">state</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span> <span class="n">country</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span> <span class="n">postal_code</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span> <span class="k">constraint</span> <span class="n">pk_person</span> <span class="k">primary</span> <span class="k">key</span> <span class="p">(</span><span class="n">person_id</span><span class="p">)</span> <span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>上述语句创建一个表。</p>
 
-<div class="highlight"><pre><code class="sql"><span class="o">&gt;</span><span class="k">desc</span><span class="p">(</span><span class="n">describle</span><span class="p">)</span> <span class="n">person</span><span class="p">;</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="o">&gt;</span><span class="k">desc</span><span class="p">(</span><span class="n">describle</span><span class="p">)</span> <span class="n">person</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>查看表是否被创建</p>
 
 <p>使用</p>
 
-<div class="highlight"><pre><code class="sql"><span class="o">&gt;</span><span class="k">create</span> <span class="k">table</span> <span class="n">name</span> <span class="p">(</span><span class="err">表所包含的数据</span><span class="p">);</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="o">&gt;</span><span class="k">create</span> <span class="k">table</span> <span class="n">name</span> <span class="p">(</span><span class="err">表所包含的数据</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>来创建一个表。</p>
@@ -424,9 +429,9 @@ MySQL提供了一种enum数据类型，与c语言的枚举是一个道理，仅�
 不知道应如何赋值
 集合为空</p>
 
-<div class="highlight"><pre><code class="sql"><span class="o">&gt;</span><span class="k">create</span> <span class="k">table</span> <span class="n">favorite_food</span> <span class="p">(</span><span class="n">person_id</span> <span class="nb">smallint</span> <span class="n">unsigned</span><span class="p">,</span> <span class="n">food</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span> <span class="k">constraint</span> <span class="n">pk_favorite_food</span> <span class="k">primary</span> <span class="k">key</span><span class="p">(</span><span class="n">person_id</span><span class="p">,</span> <span class="n">food</span><span class="p">)</span> <span class="p">,</span> <span class="k">constraint</span> <span class="n">fk_fav_food_person_id</span> <span class="k">foreign</span> <span class="k">key</span><span class="p">(</span><span class="n">person_id</span><span class="p">)</span> <span class="k">references</span> <span class="n">person</span><span class="p">(</span><span class="n">person_id</span><span class="p">)</span> <span class="p">);</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="o">&gt;</span><span class="k">create</span> <span class="k">table</span> <span class="n">favorite_food</span> <span class="p">(</span><span class="n">person_id</span> <span class="nb">smallint</span> <span class="n">unsigned</span><span class="p">,</span> <span class="n">food</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span> <span class="k">constraint</span> <span class="n">pk_favorite_food</span> <span class="k">primary</span> <span class="k">key</span><span class="p">(</span><span class="n">person_id</span><span class="p">,</span> <span class="n">food</span><span class="p">)</span> <span class="p">,</span> <span class="k">constraint</span> <span class="n">fk_fav_food_person_id</span> <span class="k">foreign</span> <span class="k">key</span><span class="p">(</span><span class="n">person_id</span><span class="p">)</span> <span class="k">references</span> <span class="n">person</span><span class="p">(</span><span class="n">person_id</span><span class="p">)</span> <span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>上述语句创建一个表，其中的<code>foreign key(key_name) references table_name(key_name)</code>是外键约束的创建，使得<code>key_name</code>仅仅只能是<code>table_name</code>这个表中的<code>key_name</code>。若在这个表里面没有对应的<code>key_name</code>时，创建条目将会是错误的。
@@ -441,43 +446,47 @@ MySQL提供了一种enum数据类型，与c语言的枚举是一个道理，仅�
 表中需要使用的列的名称；
 需要插入到列的值。</p>
 
-<div class="highlight"><pre><code class="sql"><span class="o">&gt;</span><span class="k">alter</span> <span class="k">table</span> <span class="n">talbe_name</span> <span class="k">modify</span> <span class="n">colum_name</span> <span class="n">for_example</span> <span class="nb">smallint</span> <span class="n">unsigned</span> <span class="n">auto_increment</span><span class="p">;</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="o">&gt;</span><span class="k">alter</span> <span class="k">table</span> <span class="n">talbe_name</span> <span class="k">modify</span> <span class="n">colum_name</span> <span class="n">for_example</span> <span class="nb">smallint</span> <span class="n">unsigned</span> <span class="n">auto_increment</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 
 
-<div class="highlight"><pre><code class="sql"><span class="o">&gt;</span><span class="k">INSERT</span> <span class="k">INTO</span> <span class="k">table_name</span>
-
-<span class="o">&gt;</span><span class="p">(</span><span class="k">column</span> <span class="n">name</span><span class="p">)</span>
-
-<span class="o">&gt;</span><span class="k">VALUES</span><span class="p">(</span><span class="n">the</span> <span class="k">values</span><span class="p">);</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="o">&gt;</span><span class="k">INSERT</span> <span class="k">INTO</span> <span class="k">table_name</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&gt;</span><span class="p">(</span><span class="k">column</span> <span class="n">name</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&gt;</span><span class="k">VALUES</span><span class="p">(</span><span class="n">the</span> <span class="k">values</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>mysql使用xml格式数据，在进入mysql数据库时，输入</p>
 
-<div class="highlight"><pre><code class="sql"><span class="n">mysql</span> <span class="o">-</span><span class="n">u</span> <span class="n">lrngsql</span> <span class="o">-</span><span class="n">p</span> <span class="c1">--xml bank</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span> <span class="o">-</span><span class="n">u</span> <span class="n">lrngsql</span> <span class="o">-</span><span class="n">p</span> <span class="c1">--xml bank</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>输入密码之后即进入的是xml格式的数据库。</p>
 
 <h5>更新数据</h5>
 
-<div class="highlight"><pre><code class="sql"><span class="o">&gt;</span><span class="k">UPDATE</span> <span class="k">table_name</span> <span class="k">SET</span> <span class="n">column1</span> <span class="o">=</span> <span class="s1">&#39;value1&#39;</span> <span class="n">column2</span> <span class="o">=</span> <span class="s1">&#39;value2&#39;</span> <span class="p">...</span> <span class="k">WHERE</span> <span class="n">primary_key</span> <span class="o">=</span> <span class="n">somevalue</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="o">&gt;</span><span class="k">UPDATE</span> <span class="k">table_name</span> <span class="k">SET</span> <span class="n">column1</span> <span class="o">=</span> <span class="s1">&#39;value1&#39;</span> <span class="n">column2</span> <span class="o">=</span> <span class="s1">&#39;value2&#39;</span> <span class="p">...</span> <span class="k">WHERE</span> <span class="n">primary_key</span> <span class="o">=</span> <span class="n">somevalue</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <h5>删除数据</h5>
 
-<div class="highlight"><pre><code class="sql"><span class="o">&gt;</span><span class="k">DELETE</span> <span class="k">FROM</span> <span class="k">table_name</span> <span class="k">WHERE</span> <span class="n">some_value</span> <span class="n">mached</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="o">&gt;</span><span class="k">DELETE</span> <span class="k">FROM</span> <span class="k">table_name</span> <span class="k">WHERE</span> <span class="n">some_value</span> <span class="n">mached</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>省略WHERE的条件，则会删除表中的所有数据。</p>
@@ -494,16 +503,16 @@ MySQL提供了一种enum数据类型，与c语言的枚举是一个道理，仅�
 
 <h4>显示数据库有多少表</h4>
 
-<div class="highlight"><pre><code class="sql"><span class="o">&gt;</span><span class="k">SHOW</span> <span class="n">TABLES</span><span class="p">;</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="o">&gt;</span><span class="k">SHOW</span> <span class="n">TABLES</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <h5>删除表</h5>
 
-<div class="highlight"><pre><code class="sql"><span class="o">&gt;</span><span class="k">DROP</span> <span class="n">TABLES</span> <span class="k">table_name</span><span class="p">:</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="o">&gt;</span><span class="k">DROP</span> <span class="n">TABLES</span> <span class="k">table_name</span><span class="p">:</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <h2>CH3 查询入门</h2>
@@ -524,10 +533,11 @@ MySQL提供了一种enum数据类型，与c语言的枚举是一个道理，仅�
 
 <p>example:</p>
 
-<div class="highlight"><pre><code class="sql"><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="k">table_name</span><span class="p">;</span>
-<span class="k">SELECT</span> <span class="n">name</span> <span class="k">FROM</span> <span class="k">table_name</span><span class="p">;</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="k">table_name</span><span class="p">;</span>
+</span><span class='line'><span class="k">SELECT</span> <span class="n">name</span> <span class="k">FROM</span> <span class="k">table_name</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>显示<code>table_name</code>表中所有的行和列。
@@ -545,9 +555,9 @@ MySQL提供了一种enum数据类型，与c语言的枚举是一个道理，仅�
 
 <h5>别的别名</h5>
 
-<div class="highlight"><pre><code class="sql"><span class="o">&gt;</span><span class="k">select</span> <span class="n">column_name1</span> <span class="k">AS</span> <span class="n">alias1</span><span class="p">,</span> <span class="n">column_name2</span> <span class="k">AS</span> <span class="n">alias2</span> <span class="k">from</span> <span class="k">table</span><span class="p">;</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="o">&gt;</span><span class="k">select</span> <span class="n">column_name1</span> <span class="k">AS</span> <span class="n">alias1</span><span class="p">,</span> <span class="n">column_name2</span> <span class="k">AS</span> <span class="n">alias2</span> <span class="k">from</span> <span class="k">table</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>从表中查找<code>column_name1</code>，同时将其取名为<code>alias1</code>。
@@ -557,9 +567,9 @@ MySQL提供了一种enum数据类型，与c语言的枚举是一个道理，仅�
 
 <p>在<code>select</code>后面加上关键字<code>distinct</code>。</p>
 
-<div class="highlight"><pre><code class="sql"><span class="o">&gt;</span><span class="k">SELECT</span> <span class="k">DISTINCT</span> <span class="n">cust_id</span> <span class="k">FROM</span> <span class="n">account</span><span class="p">;</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="o">&gt;</span><span class="k">SELECT</span> <span class="k">DISTINCT</span> <span class="n">cust_id</span> <span class="k">FROM</span> <span class="n">account</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>注意：对<code>DISTINCT</code>的使用，会对数据进行排序，会浪费时间。因此不要随便使用这个词，在确定没有重复数据时，便可以不使用它。</p>
@@ -586,9 +596,9 @@ MySQL提供了一种enum数据类型，与c语言的枚举是一个道理，仅�
 <p>视图是存储在数据字典中的查询，它的行为表现的像一个表，但实际上并不拥有任何数据。
 在使用这种查询时，需要首先创建一个视图</p>
 
-<div class="highlight"><pre><code class="sql"><span class="o">&gt;</span><span class="k">CREATE</span> <span class="k">VIEW</span> <span class="n">view_name</span> <span class="k">AS</span> <span class="k">SELECT</span> <span class="n">colmn_1</span><span class="p">,</span> <span class="n">colmn_2</span> <span class="k">FROM</span> <span class="k">table_name</span><span class="p">;</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="o">&gt;</span><span class="k">CREATE</span> <span class="k">VIEW</span> <span class="n">view_name</span> <span class="k">AS</span> <span class="k">SELECT</span> <span class="n">colmn_1</span><span class="p">,</span> <span class="n">colmn_2</span> <span class="k">FROM</span> <span class="k">table_name</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <h5>表链接</h5>
@@ -606,11 +616,13 @@ MySQL提供了一种enum数据类型，与c语言的枚举是一个道理，仅�
 <p>同样可以在别名的前面使用AS
 example:</p>
 
-<div class="highlight"><pre><code class="sql"><span class="o">&gt;</span><span class="k">SELECT</span> <span class="k">alias</span><span class="p">.</span><span class="n">column1</span> <span class="k">FROM</span> <span class="k">table</span> <span class="k">alias</span><span class="p">;</span>
-
-<span class="o">&gt;</span><span class="k">SELECT</span> <span class="k">alias</span><span class="p">.</span><span class="n">column1</span> <span class="k">FROM</span> <span class="k">table</span> <span class="k">AS</span> <span class="k">alias</span><span class="p">;</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="o">&gt;</span><span class="k">SELECT</span> <span class="k">alias</span><span class="p">.</span><span class="n">column1</span> <span class="k">FROM</span> <span class="k">table</span> <span class="k">alias</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&gt;</span><span class="k">SELECT</span> <span class="k">alias</span><span class="p">.</span><span class="n">column1</span> <span class="k">FROM</span> <span class="k">table</span> <span class="k">AS</span> <span class="k">alias</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>上面两个例子均是将table这个另外命名为alias，这个操作可以将表的名称进行简化。</p>
@@ -625,13 +637,17 @@ example:</p>
 
 <p>详见第八章</p>
 
-<div class="highlight"><pre><code class="sql"><span class="o">&gt;</span><span class="k">SELECT</span> <span class="n">d</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="k">count</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">emp_id</span><span class="p">)</span> <span class="n">num_employees</span>
-<span class="o">&gt;</span><span class="k">FROM</span> <span class="n">department</span> <span class="n">d</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">employee</span> <span class="n">e</span>
-<span class="o">&gt;</span><span class="k">ON</span> <span class="n">d</span><span class="p">.</span><span class="n">dept_id</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">dept_id</span>
-<span class="o">&gt;</span><span class="k">GROUP</span> <span class="k">BY</span> <span class="n">d</span><span class="p">.</span><span class="n">name</span>
-<span class="o">&gt;</span><span class="k">HAVING</span> <span class="n">coutn</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">emp_id</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="o">&gt;</span><span class="k">SELECT</span> <span class="n">d</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="k">count</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">emp_id</span><span class="p">)</span> <span class="n">num_employees</span>
+</span><span class='line'><span class="o">&gt;</span><span class="k">FROM</span> <span class="n">department</span> <span class="n">d</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">employee</span> <span class="n">e</span>
+</span><span class='line'><span class="o">&gt;</span><span class="k">ON</span> <span class="n">d</span><span class="p">.</span><span class="n">dept_id</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">dept_id</span>
+</span><span class='line'><span class="o">&gt;</span><span class="k">GROUP</span> <span class="k">BY</span> <span class="n">d</span><span class="p">.</span><span class="n">name</span>
+</span><span class='line'><span class="o">&gt;</span><span class="k">HAVING</span> <span class="n">coutn</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">emp_id</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <h4>order by子句</h4>
@@ -646,9 +662,9 @@ example:</p>
 
 <h5>根据表达式排序</h5>
 
-<div class="highlight"><pre><code class="sql"><span class="o">&gt;</span><span class="k">right</span><span class="p">(</span><span class="n">fed_id</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="o">&gt;</span><span class="k">right</span><span class="p">(</span><span class="n">fed_id</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>使用MySQL的内建函数提取<code>fed_id</code>列的最后三个字符。</p>

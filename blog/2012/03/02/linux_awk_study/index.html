@@ -9,7 +9,8 @@
   <meta name="author" content="Xiongbupt">
 
   
-  <meta name="description" content="awk awk以花括号分隔命令，命令以'{}'围起来？ 其中print与print $0的作用相同，都是打印整整一行。print $1 $2则是打印改行的第1个和第2个内容。 -F用来标志分隔符是什么，如下面 $awk -F &quot;:&quot; &#39;{print $1 $2}&#39 &hellip;">
+  <meta name="description" content="awk awk以花括号分隔命令，命令以'{}'围起来？ 其中print与print $0的作用相同，都是打印整整一行。print $1 $2则是打印改行的第1个和第2个内容。 -F用来标志分隔符是什么，如下面 1
+$awk -F &quot;:&quot; &#39;{print $1 $2}&# &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -127,9 +128,9 @@
 
 
 
-<div class="highlight"><pre><code class="bash"><span class="nv">$awk</span> -F <span class="s2">&quot;:&quot;</span> <span class="s1">&#39;{print $1 $2}&#39;</span> /etc/passwd
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$awk</span> -F <span class="s2">&quot;:&quot;</span> <span class="s1">&#39;{print $1 $2}&#39;</span> /etc/passwd
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>意味着以:（冒号）为分隔符，打印/etc/passwd每行的第一个和第二个字符。</p>
@@ -143,45 +144,49 @@ END区域可以用于设置awk在处理文本完之后进行汇总处理。</p>
 
 <h3>使用正则表达式</h3>
 
-<div class="highlight"><pre><code class="bash">awk <span class="s1">&#39;/xiong/ {print }&#39;</span> a
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>awk <span class="s1">&#39;/xiong/ {print }&#39;</span> a
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>打印文件a中含有xiong的一整行，这个可以与正则表达式紧密的结合。如下行，打印含有浮点数的整行。</p>
 
-<div class="highlight"><pre><code class="bash">awk <span class="s1">&#39;/\[0-9\]+\\.\[0-9\]\*/ {print}&#39;</span> a
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>awk <span class="s1">&#39;/\[0-9\]+\\.\[0-9\]\*/ {print}&#39;</span> a
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <h3>使用判断符号</h3>
 
 <p>awk支持==，>，&lt;，>=，&lt;=，!=同时它还支持~(包含),!~(不包含)。可以使用这些条件符号进行判断，来进行输出处理。如下行：</p>
 
-<div class="highlight"><pre><code class="bash">awk <span class="s1">&#39;$1 == &quot;xiong&quot; {print $3}&#39;</span> a
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>awk <span class="s1">&#39;$1 == &quot;xiong&quot; {print $3}&#39;</span> a
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>仅仅在a文件的第一个字符为xiong时输出该行的第3个变量。</p>
 
-<div class="highlight"><pre><code class="bash">awk <span class="s1">&#39;$5 ~ /root/ {print $3}&#39;</span> a
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>awk <span class="s1">&#39;$5 ~ /root/ {print $3}&#39;</span> a
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>仅仅在a文件的第5个参数含有root时输出第3个参量。</p>
 
 <p>awk也支持类似于c语言的条件判断处理，如上面的那条语句可以写成下面的判断形式</p>
 
-<div class="highlight"><pre><code class="bash"><span class="o">{</span>
-    <span class="k">if</span><span class="o">(</span> <span class="nv">$5</span> ~ /root/<span class="o">)</span> <span class="o">{</span>
-        print <span class="nv">$3</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">{</span>
+</span><span class='line'>    <span class="k">if</span><span class="o">(</span> <span class="nv">$5</span> ~ /root/<span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        print <span class="nv">$3</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <h3>awk算术支持</h3>
@@ -219,11 +224,13 @@ END区域可以用于设置awk在处理文本完之后进行汇总处理。</p>
 
 <p>如下所示：</p>
 
-<div class="highlight"><pre><code class="bash"><span class="k">for</span> <span class="o">(</span> x in myarray <span class="o">)</span> <span class="o">{</span>
-    print myarray<span class="o">[</span>x<span class="o">]</span>
-<span class="o">}</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="k">for</span> <span class="o">(</span> x in myarray <span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>  print myarray<span class="o">[</span>x<span class="o">]</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>上述的输出不知道哪个会放在前面，即无法判断是myarray[1]先出现还是myarray[2]先出现，它是无序的。</p>

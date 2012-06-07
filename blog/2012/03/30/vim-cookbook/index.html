@@ -9,11 +9,17 @@
   <meta name="author" content="Xiongbupt">
 
   
-  <meta name="description" content="转载自vim_cook_book 字符翻转 xp 可交换的替换单词 1G #到第一行
+  <meta name="description" content="转载自vim_cook_book 字符翻转 xp 可交换的替换单词 1
+2
+3
+4
+5
+1G #到第一行
 /idiot&lt;enter&gt; #搜索单词idiot
 cwmanager #将idiot替换为manager
 n #搜索下一个idiot
-. #重复上面的替换操作 %s/\&lt;idiot\&gt;/ &hellip;">
+. #重复上面的替换操作 1
+%s/\&lt; &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -126,20 +132,24 @@ n #搜索下一个idiot
 
 <p>可交换的替换单词</p>
 
-<div class="highlight"><pre><code class="bash">1G              <span class="c">#到第一行</span>
-/idiot&lt;enter&gt;   <span class="c">#搜索单词idiot</span>
-cwmanager       <span class="c">#将idiot替换为manager</span>
-n               <span class="c">#搜索下一个idiot</span>
-.               <span class="c">#重复上面的替换操作</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>1G              <span class="c">#到第一行</span>
+</span><span class='line'>/idiot&lt;enter&gt;   <span class="c">#搜索单词idiot</span>
+</span><span class='line'>cwmanager       <span class="c">#将idiot替换为manager</span>
+</span><span class='line'>n               <span class="c">#搜索下一个idiot</span>
+</span><span class='line'>.               <span class="c">#重复上面的替换操作</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 
 
-<div class="highlight"><pre><code class="bash">%s/<span class="se">\&lt;</span>idiot<span class="se">\&gt;</span>/manager/gc <span class="c">#直接在命令行模式下进行输入，使用全局替换的方式</span>
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>%s/<span class="se">\&lt;</span>idiot<span class="se">\&gt;</span>/manager/gc <span class="c">#直接在命令行模式下进行输入，使用全局替换的方式</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>/&lt;idiot>/</p>
@@ -152,32 +162,32 @@ n               <span class="c">#搜索下一个idiot</span>
 
 <p>检查Makefile错误的好方法，由于命令是以tab开始的，若是空格将有错误</p>
 
-<div class="highlight"><pre><code class="bash">:set list
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>:set list
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>可以显示出空格和tab的区别，tab是<sup>I</sup></p>
 
 <p>vim读取man文件</p>
 
-<div class="highlight"><pre><code class="bash">man subject|ul -i|vim -
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>man subject|ul -i|vim -
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>vim移除行末的空格</p>
 
-<div class="highlight"><pre><code class="bash">:1,<span class="nv">$s</span>/<span class="o">[</span>tab<span class="o">]</span>*<span class="nv">$/</span>/
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>:1,<span class="nv">$s</span>/<span class="o">[</span>tab<span class="o">]</span>*<span class="nv">$/</span>/
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>将Last, First改为First Last</p>
 
-<div class="highlight"><pre><code class="bash">:1,<span class="nv">$s</span>/<span class="se">\(</span><span class="o">[</span>^,<span class="o">]</span>*<span class="se">\)</span>,<span class="se">\(</span>.*<span class="nv">$\</span><span class="o">)</span>/<span class="se">\2\1</span>/
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>:1,<span class="nv">$s</span>/<span class="se">\(</span><span class="o">[</span>^,<span class="o">]</span>*<span class="se">\)</span>,<span class="se">\(</span>.*<span class="nv">$\</span><span class="o">)</span>/<span class="se">\2\1</span>/
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <blockquote><p>The ( ... ) delimiters are used to inform the editor that the text that matches the regular expression side is to be treated special.<br/>
@@ -195,9 +205,9 @@ n               <span class="c">#搜索下一个idiot</span>
 
 <p>上述操作中，*代表的是光标所在位置，在普通模式下，输入中间的命令，将会得到后面的效果</p>
 
-<div class="highlight"><pre><code class="bash">vim --startuptime timefile the_file_you_want_to_edit
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>vim --startuptime timefile the_file_you_want_to_edit
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>查看vim启动时间所占用的时间比</p>

@@ -216,9 +216,9 @@
 %sudo ALL=(ALL) NOPASSWD: ALL<br/>
 将用户user_name添加至sudo用户组</p></blockquote>
 
-<div class="highlight"><pre><code class="bash">adduser user_name sudo
-</code></pre>
-</div>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>adduser user_name sudo
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>重新登录后，user_name用户即已经位于sudo用户组中。</p>
@@ -270,20 +270,24 @@
 
 <p>可交换的替换单词</p>
 
-<div class="highlight"><pre><code class="bash">1G              <span class="c">#到第一行</span>
-/idiot&lt;enter&gt;   <span class="c">#搜索单词idiot</span>
-cwmanager       <span class="c">#将idiot替换为manager</span>
-n               <span class="c">#搜索下一个idiot</span>
-.               <span class="c">#重复上面的替换操作</span>
-</code></pre>
-</div>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>1G              <span class="c">#到第一行</span>
+</span><span class='line'>/idiot&lt;enter&gt;   <span class="c">#搜索单词idiot</span>
+</span><span class='line'>cwmanager       <span class="c">#将idiot替换为manager</span>
+</span><span class='line'>n               <span class="c">#搜索下一个idiot</span>
+</span><span class='line'>.               <span class="c">#重复上面的替换操作</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 
 
-<div class="highlight"><pre><code class="bash">%s/<span class="se">\&lt;</span>idiot<span class="se">\&gt;</span>/manager/gc <span class="c">#直接在命令行模式下进行输入，使用全局替换的方式</span>
-</code></pre>
-</div>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>%s/<span class="se">\&lt;</span>idiot<span class="se">\&gt;</span>/manager/gc <span class="c">#直接在命令行模式下进行输入，使用全局替换的方式</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>/&lt;idiot>/</p>
@@ -332,9 +336,9 @@ n               <span class="c">#搜索下一个idiot</span>
 
   <div class="entry-content">
 
-<div class="highlight"><pre><code class="c"><span class="kt">int</span> <span class="n">mod_timer</span><span class="p">(</span><span class="k">struct</span> <span class="n">timer_list</span> <span class="o">*</span><span class="n">timer</span><span class="err">，</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">expires</span><span class="p">)</span>
-</code></pre>
-</div>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="kt">int</span> <span class="n">mod_timer</span><span class="p">(</span><span class="k">struct</span> <span class="n">timer_list</span> <span class="o">*</span><span class="n">timer</span><span class="err">，</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">expires</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>该函数负责修改内核定时器timer的超时字段expires。该函数可以修改激活和没有激活的内核定时器的超时时间，并把它们都设置为激活状态；返回值为0表示修改的内核定时器在修改之前处于未激活状态，返回值为1表示修改的内核定时器在修改之前处于已激活状态。</p>

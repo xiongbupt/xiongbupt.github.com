@@ -12,7 +12,8 @@
   <meta name="description" content="添加用户至sudo用户组并去除密码 visudo修改为不需要密码，将 %sudo ALL=(ALL):ALL
 修改为
 %sudo ALL=(ALL) NOPASSWD: ALL
-将用户user_name添加至sudo用户组 adduser user_name sudo 重新登录后， &hellip;">
+将用户user_name添加至sudo用户组 1
+adduser user_name sudo 重新登录后， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -126,9 +127,9 @@
 %sudo ALL=(ALL) NOPASSWD: ALL<br/>
 将用户user_name添加至sudo用户组</p></blockquote>
 
-<div class="highlight"><pre><code class="bash">adduser user_name sudo
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>adduser user_name sudo
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>重新登录后，user_name用户即已经位于sudo用户组中。</p>
@@ -138,12 +139,15 @@
 
 <h2>安装基本的软件</h2>
 
-<div class="highlight"><pre><code class="bash">sudo dpkg -i wireless-crda-1.14_i386.deb
-sudo dpkg -i linux-headers-2.6.30-02063010_2.6.30-02063010_all.deb
-sudo dpkg -i linux-headers-2.6.30-02063010-generic_2.6.30-02063010_all.deb
-sudo dpkg -i linux-image-2.6.30-***.deb
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo dpkg -i wireless-crda-1.14_i386.deb
+</span><span class='line'>sudo dpkg -i linux-headers-2.6.30-02063010_2.6.30-02063010_all.deb
+</span><span class='line'>sudo dpkg -i linux-headers-2.6.30-02063010-generic_2.6.30-02063010_all.deb
+</span><span class='line'>sudo dpkg -i linux-image-2.6.30-***.deb
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>参照<a href="http://bbs.byr.cn/#!article/Linux/82799">北邮人论坛的linux版块</a>，设置debian的源
@@ -163,10 +167,11 @@ sudo dpkg -i linux-image-2.6.30-***.deb
 
 <h2>将默认编辑器由gedit转换为gvim</h2>
 
-<div class="highlight"><pre><code class="bash">sudo cp /etc/gnome/defaults.list /etc/gnome/defaults.list.backup
-sduo vim /etc/gnome/defaults.list
-</code></pre>
-</div>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo cp /etc/gnome/defaults.list /etc/gnome/defaults.list.backup
+</span><span class='line'>sduo vim /etc/gnome/defaults.list
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>将该文件中的<code>gedit.desktop</code>全部替换为<code>gvim.desktop</code></p>

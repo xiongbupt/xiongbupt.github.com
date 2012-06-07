@@ -133,10 +133,11 @@ DECLARE_WAIT_QUEUE_HEAD<br/>
 
 <p>动态初始化一个等待队列</p>
 
-<div class="highlight"><pre><code class="c"><span class="n">wait_queue_head_t</span> <span class="n">name</span><span class="p">;</span>
-<span class="n">init_waitqueue_head</span><span class="p">(</span><span class="o">&amp;</span><span class="n">name</span><span class="p">)</span>
-</code></pre>
-</div>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">wait_queue_head_t</span> <span class="n">name</span><span class="p">;</span>
+</span><span class='line'><span class="n">init_waitqueue_head</span><span class="p">(</span><span class="o">&amp;</span><span class="n">name</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <blockquote><p>add_wait_queue() <br/>
@@ -178,16 +179,16 @@ DECLARE_WAIT_QUEUE_HEAD<br/>
 
   <div class="entry-content">
 
-<div class="highlight"><pre><code class="c"><span class="n">__attribute__</span><span class="p">((</span><span class="n">packed</span><span class="p">))</span>  
-</code></pre>
-</div>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">__attribute__</span><span class="p">((</span><span class="n">packed</span><span class="p">))</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>取消编译器的默认优化，按照字节的方式进行对齐</p>
 
-<div class="highlight"><pre><code class="c"><span class="n">memset</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">ptr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">value</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">num</span><span class="p">)</span>
-</code></pre>
-</div>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">memset</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">ptr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">value</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">num</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>注意第二个和第三个参数的顺序，首先是设置的值然后才是设置的位数</p>

@@ -202,7 +202,7 @@ footer: false
         # Construct the URL & date string
         #
         my $url = $file->{file};
-        $url =~ s/^$octopress_root\/public\/blog//;
+        $url =~ s/^$octopress_root\/public//;
         my $title = $file->{title};
         my @months = qw ( x Jan Feb Mar Apr May Jun
                           Jul Aug Sep Oct Nov Dec );

@@ -2,7 +2,7 @@
 layout: post
 title: "c语言笔记"
 category: C语言
-tags: [C语言]
+tags: [C Language]
 ---
 
 {% highlight c %}

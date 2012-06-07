@@ -1,6 +1,6 @@
 ---
 layout: post
 title: "cpp primer"
-category: 
-tags: []
+category: Notes
+tags: [Learning]
 ---

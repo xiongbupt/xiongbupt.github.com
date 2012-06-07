@@ -1,7 +1,62 @@
 // This File is imported last, and will override other styles in the cascade
 // Add styles here to make changes without digging in too much
-#content article .cloud li{
-  display: inline;
-  list-style: none outside none;
-  padding: 0 4px;
+div#tag_list {
+    font-size: 12pt;
+}
+
+#tags_ul {
+    display: inline;
+}
+
+#tags_ul li:last-child:after {
+  content: "";
+}
+
+#tags_ul li:after {
+  content: ", ";
+}
+
+#tags_ul li {
+    display: inline;
+}
+
+.tag_1 {
+    font-weight: 200;
+    font-size: 10pt;
+}
+.tag_2 {
+    font-weight: 200;
+    font-size: 12pt;
+}
+.tag_3 {
+    font-weight: 200;
+    font-size: 14pt;
+}
+.tag_4 {
+    font-weight: 200;
+    font-size: 16pt;
+}
+.tag_5 {
+    font-weight: 200;
+    font-size: 18pt;
+}
+.tag_6 {
+    font-weight: 200;
+    font-size: 20pt;
+}
+.tag_7 {
+    font-weight: 200;
+    font-size: 22pt;
+}
+.tag_8 {
+    font-weight: 200;
+    font-size: 24pt;
+}
+.tag_9 {
+    font-weight: 200;
+    font-size: 24pt;
+}
+.tag_10 {
+    font-weight: 900;
+    font-size: 24pt;
 }

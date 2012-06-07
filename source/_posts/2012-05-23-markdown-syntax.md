@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "markdown syntax"
-category:
-tags: []
+category: Notes
+tags: [Learning]
 ---
 ##链接
 如果需要在页面插入链接，使用尖括号\<\>括起来便可以了。

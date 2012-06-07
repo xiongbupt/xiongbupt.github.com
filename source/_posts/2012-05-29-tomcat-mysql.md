@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Tomcat MySQL"
-category: 
+category: Others
 tags: [Tomcat]
 ---
 {% highlight java %}

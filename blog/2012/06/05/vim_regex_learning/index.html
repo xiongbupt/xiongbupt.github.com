@@ -22,6 +22,7 @@
   <link rel="canonical" href="http://xiongbupt.github.com/blog/2012/06/05/vim_regex_learning/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="/javascripts/ender.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
@@ -29,6 +30,11 @@
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Ruge+Boogie|Ruthie|Flavors|Rancho|Galdeano' rel='stylesheet' type='text/css'>
+<script src="/javascripts/jquery-1.7.2.min.js" type="text/javascript"></script>
+<script src="/javascripts/jquery.tableofcontents.min.js" type="text/javascript"></script>
+<script src="/javascripts/generate-toc.js" type="text/javascript"></script>
+
 
   
   <script type="text/javascript">
@@ -105,12 +111,12 @@
   </header>
 
 
-<div class="entry-content"><h1>VIM正则表达式</h1>
+<div class="entry-content"><h2>VIM正则表达式</h2>
 
 <p>之前粗略的看了正则表达式的一些内容，但是在VIM中一直用的很少，刚才无意间看到了使用VIM对词进行大小写转换，中间出现了一些正则表达式的内容，从网上找了些内容，觉得可以留下来做个笔记，供以后自己参考。<br/>
 文章的主要内容参考<a href="http://qianjigui.iteye.com/blog/368449" title="VIM中的正则表达式">该博客</a>。</p>
 
-<h2>量词</h2>
+<h3>量词</h3>
 
 <p>VIM中的量词与perl相比</p>
 
@@ -194,7 +200,7 @@
 </table>
 
 
-<h2>环视和固化分组</h2>
+<h3>环视和固化分组</h3>
 
 <p>这个内容之前没有接触过，只是简单的摘抄下来，后面再进行研究了。</p>
 
@@ -248,15 +254,12 @@
 </table>
 
 
-<p>和perl稍有不同的是，vim中的环视和固化分组的模式的位置与perl不同。例如，查找紧跟在 foo 之后的 bar，perl将模式写在环视的括号内，而vim将模式写在环视的元字符之前。</p>
+<p>和perl稍有不同的是，vim中的环视和固化分组的模式的位置与perl不同。例如，查找紧跟在 foo 之后的 bar，perl将模式写在环视的括号内，而vim将模式写在环视的元字符之前。
+Perl的写法</p>
 
-<p>Perl的写法</p>
-
-<blockquote><p>/(?&lt;=foo)bar/</p></blockquote>
-
-<p>vim的写法</p>
-
-<blockquote><p>/(foo)\@&lt;=bar</p></blockquote>
+<blockquote><p>/(?&lt;=foo)bar/
+vim的写法
+/(foo)\@&lt;=bar</p></blockquote>
 </div>
 
 
@@ -336,7 +339,6 @@
   <li><a href='/blog/categories/git'>Git (3)</a></li>
   <li><a href='/blog/categories/linux'>Linux (12)</a></li>
   <li><a href='/blog/categories/notes'>Notes (22)</a></li>
-  <li><a href='/blog/categories/octopress'>Octopress (1)</a></li>
   <li><a href='/blog/categories/others'>Others (1)</a></li>
   <li><a href='/blog/categories/python'>Python (1)</a></li>
   <li><a href='/blog/categories/vim'>Vim (1)</a></li>
@@ -347,10 +349,6 @@
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2012/06/07/octopress-add-tag/">Octopress增加Tag标签</a>
-      </li>
     
       <li class="post">
         <a href="/blog/2012/06/07/octopress-add-tag/">Octopress添加标签</a>
@@ -370,6 +368,10 @@
     
       <li class="post">
         <a href="/blog/2012/06/05/vim_regex_learning/">VIM正则表达式学习</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/05/vim_regex_case/">VIM使用正则表达式改变大小写</a>
       </li>
     
   </ul>
@@ -420,7 +422,6 @@
     <a href="http://twitter.com/xiongbupt" class="twitter-follow-button" data-show-count="false">Follow @xiongbupt</a>
   
 </section>
-
 
 
 <section class="googleplus">

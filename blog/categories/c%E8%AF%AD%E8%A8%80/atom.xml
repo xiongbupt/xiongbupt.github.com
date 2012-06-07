@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C语言 | Keep Learning]]></title>
   <link href="http://xiongbupt.github.com/blog/categories/c%E8%AF%AD%E8%A8%80/atom.xml" rel="self"/>
   <link href="http://xiongbupt.github.com/"/>
-  <updated>2012-06-07T18:44:52+08:00</updated>
+  <updated>2012-06-07T17:41:58+08:00</updated>
   <id>http://xiongbupt.github.com/</id>
   <author>
     <name><![CDATA[Xiongbupt]]></name>
@@ -18,16 +18,14 @@
     <link href="http://xiongbupt.github.com/blog/2012/03/19/c_language_notes/"/>
     <updated>2012-03-19T00:00:00+08:00</updated>
     <id>http://xiongbupt.github.com/blog/2012/03/19/c_language_notes</id>
-    <content type="html"><![CDATA[<p><div class="highlight"><pre><code class="c"><span class="o">&lt;</span><span class="n">strong</span><span class="o">&gt;</span><span class="n">attribute</span><span class="o">&lt;/</span><span class="n">strong</span><span class="o">&gt;</span><span class="p">((</span><span class="n">packed</span><span class="p">))</span><span class="o">&lt;</span><span class="n">br</span><span class="o">/&gt;</span>
-</code></pre>
-</div>
-
+    <content type="html"><![CDATA[<p>{% highlight c %}
+<strong>attribute</strong>((packed))<br/>
+{% endhighlight %}
 取消编译器的默认优化，按照字节的方式进行对齐</p>
 
-<p><div class="highlight"><pre><code class="c"><span class="n">memset</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">ptr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">value</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">num</span><span class="p">)</span>
-</code></pre>
-</div>
-
+<p>{% highlight c %}
+memset(void *ptr, int value, size_t num)
+{% endhighlight %}
 注意第二个和第三个参数的顺序，首先是设置的值然后才是设置的位数</p>
 ]]></content>
   </entry>

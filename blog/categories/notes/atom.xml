@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Notes | Keep Learning]]></title>
   <link href="http://xiongbupt.github.com/blog/categories/notes/atom.xml" rel="self"/>
   <link href="http://xiongbupt.github.com/"/>
-  <updated>2012-06-07T18:44:52+08:00</updated>
+  <updated>2012-06-07T17:41:58+08:00</updated>
   <id>http://xiongbupt.github.com/</id>
   <author>
     <name><![CDATA[Xiongbupt]]></name>
@@ -26,12 +26,17 @@
 
 <p>修改<code>source/_layouts/post.html</code>文件，使它们include一个名字为<code>tags.html</code>的新文件。</p>
 
+<!--more-->
+
+
 <p>创建一个新文件<code>source/_includes/post/tags.html</code>，整个文件的内容如下所示：</p>
 
 <pre><code>&lt;div id="tag_list"&gt;
     Tags:
     &lt;ul id="tags_ul"&gt;
-
+{% for t in page.tags  %}
+        &lt;li&gt;&lt;a href="http://xiongbupt.github.com/tags/{{t}}/"&gt;{{t}}&lt;/a&gt;&lt;/li&gt;
+{% endfor %}
     &lt;/ul&gt;
 &lt;/div&gt;
 </code></pre>
@@ -66,6 +71,14 @@
 <h3>显示tag云标签</h3>
 
 <p>为了在右侧显示云标签，需要修改<code>_config.yaml</code>文件，添加</p>
+
+<p>{% include_code test.js %}</p>
+
+<p>test
+{% render_partial Readme.md %}
+test2</p>
+
+<p><code>$ sudo make me a sandwich</code></p>
 ]]></content>
   </entry>
   
@@ -76,17 +89,20 @@
     <id>http://xiongbupt.github.com/blog/2012/06/06/vim_help_read</id>
     <content type="html"><![CDATA[<p>VIM的查找命令与模式，这章节和正则表达式相关，可以重点查阅下。</p>
 
-<h1>大小写忽略</h1>
+<h2>大小写忽略</h2>
 
 <p>ignorecase  忽视大小写<br/>
 smartcase   若只有小写，可匹配大小写；若含有大写，则严格匹配  <br/>
 特定模式中的大小写可以使用\C来严格匹配，\c可以用来通用匹配，不区分大小写</p>
 
-<h1>无折返查找</h1>
+<h2>无折返查找</h2>
 
 <p><code>:set nowrapscan</code>简单的说就是在查找到文件结束处后不再返回文件开始处重新查找。</p>
 
-<h1>查找偏移</h1>
+<!--more-->
+
+
+<h2>查找偏移</h2>
 
 <p><code>/pattern/2</code>，这个查找将会在单词pattern的后两行。 <br/>
 * 匹配一个可选项，使用<code>\=</code>，比如</p>
@@ -101,11 +117,11 @@ smartcase   若只有小写，可匹配大小写；若含有大写，则严格�
 </ul>
 
 
-<h1>多选一</h1>
+<h2>多选一</h2>
 
 <p>或的运算符是<code>\|</code>。</p>
 
-<h1>字符范围</h1>
+<h2>字符范围</h2>
 
 <table>
 <thead>
@@ -197,12 +213,12 @@ smartcase   若只有小写，可匹配大小写；若含有大写，则严格�
     <link href="http://xiongbupt.github.com/blog/2012/06/05/vim_regex_learning/"/>
     <updated>2012-06-05T00:00:00+08:00</updated>
     <id>http://xiongbupt.github.com/blog/2012/06/05/vim_regex_learning</id>
-    <content type="html"><![CDATA[<h1>VIM正则表达式</h1>
+    <content type="html"><![CDATA[<h2>VIM正则表达式</h2>
 
 <p>之前粗略的看了正则表达式的一些内容，但是在VIM中一直用的很少，刚才无意间看到了使用VIM对词进行大小写转换，中间出现了一些正则表达式的内容，从网上找了些内容，觉得可以留下来做个笔记，供以后自己参考。<br/>
 文章的主要内容参考<a href="http://qianjigui.iteye.com/blog/368449" title="VIM中的正则表达式">该博客</a>。</p>
 
-<h2>量词</h2>
+<h3>量词</h3>
 
 <p>VIM中的量词与perl相比</p>
 
@@ -286,7 +302,7 @@ smartcase   若只有小写，可匹配大小写；若含有大写，则严格�
 </table>
 
 
-<h2>环视和固化分组</h2>
+<h3>环视和固化分组</h3>
 
 <p>这个内容之前没有接触过，只是简单的摘抄下来，后面再进行研究了。</p>
 
@@ -340,15 +356,12 @@ smartcase   若只有小写，可匹配大小写；若含有大写，则严格�
 </table>
 
 
-<p>和perl稍有不同的是，vim中的环视和固化分组的模式的位置与perl不同。例如，查找紧跟在 foo 之后的 bar，perl将模式写在环视的括号内，而vim将模式写在环视的元字符之前。</p>
+<p>和perl稍有不同的是，vim中的环视和固化分组的模式的位置与perl不同。例如，查找紧跟在 foo 之后的 bar，perl将模式写在环视的括号内，而vim将模式写在环视的元字符之前。
+Perl的写法</p>
 
-<p>Perl的写法</p>
-
-<blockquote><p>/(?&lt;=foo)bar/</p></blockquote>
-
-<p>vim的写法</p>
-
-<blockquote><p>/(foo)\@&lt;=bar</p></blockquote>
+<blockquote><p>/(?&lt;=foo)bar/
+vim的写法
+/(foo)\@&lt;=bar</p></blockquote>
 ]]></content>
   </entry>
   
@@ -375,17 +388,16 @@ smartcase   若只有小写，可匹配大小写；若含有大写，则严格�
 
 <p>按照书中的推荐配置，bochsrc-sample.txt文件很大，上面有很多不需要的配置选项，按照书中的指示，将bochsrc文件中配置精简为如下所示：</p>
 
-<p><div class="highlight"><pre><code class="bash">megs:   32
-floppya: <span class="nv">1_44</span><span class="o">=</span>a.img, <span class="nv">status</span><span class="o">=</span>inserted
-romimage: <span class="nv">file</span><span class="o">=</span>/usr/share/bochs/BIOS-bochs-latest
-vgaromimage: <span class="nv">file</span><span class="o">=</span>/usr/share/bochs/VGABIOS-lgpl-latest
+<p>{% highlight bash %}
+megs:   32
+floppya: 1_44=a.img, status=inserted
+romimage: file=/usr/share/bochs/BIOS-bochs-latest
+vgaromimage: file=/usr/share/bochs/VGABIOS-lgpl-latest
 boot: floppy
 log: bochsout.txt
-mouse: <span class="nv">enabled</span><span class="o">=</span>0
-keyboard_mapping: <span class="nv">enabled</span><span class="o">=</span>1, <span class="nv">map</span><span class="o">=</span>/usr/share/bochs/keymaps/x11-pc-us.map
-</code></pre>
-</div>
-</p>
+mouse: enabled=0
+keyboard_mapping: enabled=1, map=/usr/share/bochs/keymaps/x11-pc-us.map
+{% endhighlight %}</p>
 
 <h1>汇编文件编译及制作启动软盘</h1>
 
@@ -393,34 +405,32 @@ keyboard_mapping: <span class="nv">enabled</span><span class="o">=</span>1, <spa
 
 <h2>附录：汇编代码</h2>
 
-<p><div class="highlight"><pre><code class="nasm"><span class="err">&lt;/</span><span class="nf">p</span><span class="o">&gt;</span>
+<p>{% highlight nasm%}</p>
 
-<span class="err">&lt;</span><span class="nf">pre</span><span class="o">&gt;&lt;</span><span class="nv">code</span><span class="o">&gt;</span><span class="nv">org</span>     <span class="mh">07c00h</span>
-<span class="nf">mov</span>     <span class="nb">ax</span><span class="p">,</span> <span class="nb">cs</span>
-<span class="nf">mov</span>     <span class="nb">ds</span><span class="p">,</span> <span class="nb">ax</span>
-<span class="nf">mov</span>     <span class="nb">es</span><span class="p">,</span> <span class="nb">ax</span>
-<span class="nf">call</span>    <span class="nb">Disp</span><span class="nv">Str</span>
-<span class="nf">jmp</span>     <span class="kc">$</span>       <span class="c1">;jump to this line, be a dead loop</span>
-<span class="err">&lt;/</span><span class="nf">code</span><span class="o">&gt;&lt;/</span><span class="nv">pre</span><span class="o">&gt;</span>
-
-<span class="err">&lt;</span><span class="nf">p</span><span class="o">&gt;</span><span class="nb">Disp</span><span class="nv">Str</span><span class="p">:</span><span class="o">&lt;/</span><span class="nv">p</span><span class="o">&gt;</span>
-
-<span class="err">&lt;</span><span class="nf">pre</span><span class="o">&gt;&lt;</span><span class="nv">code</span><span class="o">&gt;</span><span class="nv">mov</span>     <span class="nb">ax</span><span class="p">,</span> <span class="nv">BootMessage</span>
-<span class="nf">mov</span>     <span class="nb">bp</span><span class="p">,</span> <span class="nb">ax</span>
-<span class="nf">mov</span>     <span class="nb">cx</span><span class="p">,</span> <span class="mi">16</span>      <span class="c1">;the length of string</span>
-<span class="nf">mov</span>     <span class="nb">ax</span><span class="p">,</span> <span class="mh">01301h</span>  <span class="c1">;make the font on the screen</span>
-<span class="nf">mov</span>     <span class="nb">bx</span><span class="p">,</span> <span class="mh">000ch</span>
-<span class="nf">mov</span>     <span class="nb">dl</span><span class="p">,</span> <span class="mi">0</span>
-<span class="nf">int</span>     <span class="mh">10h</span>
-<span class="nf">ret</span>
-<span class="err">&lt;/</span><span class="nf">code</span><span class="o">&gt;&lt;/</span><span class="nv">pre</span><span class="o">&gt;</span>
-
-<span class="err">&lt;</span><span class="nf">p</span><span class="o">&gt;</span><span class="nv">BootMessage</span><span class="p">:</span>        <span class="nv">db</span>      <span class="s">&quot;Hello, Os world!&quot;</span>
-<span class="kd">times</span>   <span class="mi">510</span><span class="o">-</span><span class="p">(</span><span class="kc">$</span><span class="o">-</span><span class="kc">$$</span><span class="p">)</span>  <span class="nv">db</span>  <span class="mi">0</span>
-<span class="kd">dw</span>      <span class="mh">0xaa55</span>
+<pre><code>org     07c00h
+mov     ax, cs
+mov     ds, ax
+mov     es, ax
+call    DispStr
+jmp     $       ;jump to this line, be a dead loop
 </code></pre>
-</div>
-</p>
+
+<p>DispStr:</p>
+
+<pre><code>mov     ax, BootMessage
+mov     bp, ax
+mov     cx, 16      ;the length of string
+mov     ax, 01301h  ;make the font on the screen
+mov     bx, 000ch
+mov     dl, 0
+int     10h
+ret
+</code></pre>
+
+<p>BootMessage:        db      "Hello, Os world!"
+times   510-($-$$)  db  0
+dw      0xaa55
+{% endhighlight %}</p>
 ]]></content>
   </entry>
   

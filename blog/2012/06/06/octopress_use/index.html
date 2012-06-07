@@ -22,6 +22,7 @@
   <link rel="canonical" href="http://xiongbupt.github.com/blog/2012/06/06/octopress_use/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="/javascripts/ender.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
@@ -29,6 +30,11 @@
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Ruge+Boogie|Ruthie|Flavors|Rancho|Galdeano' rel='stylesheet' type='text/css'>
+<script src="/javascripts/jquery-1.7.2.min.js" type="text/javascript"></script>
+<script src="/javascripts/jquery.tableofcontents.min.js" type="text/javascript"></script>
+<script src="/javascripts/generate-toc.js" type="text/javascript"></script>
+
 
   
   <script type="text/javascript">
@@ -105,46 +111,51 @@
   </header>
 
 
-<div class="entry-content"><p>本文主要是参考Octopress的<a href="http://octopress.org/" title="OCTOPRESS 手册">官方网址</a>进行操作，之前使用了<a href="http://www.google.com/" title="GOOGLE">google</a>搜索了若干参考，但是操作之后出现了错误，推翻重来之后，写下这篇记录，方便自己以后使用。
+<div class="entry-content"><p>本文主要是参考Octopress的<a href="http://octopress.org/" title="OCTOPRESS 手册">官方网址</a>进行操作，之前使用了<a href="http://www.google.com/" title="GOOGLE">google</a>搜索了若干参考，但是操作之后出现了错误，推翻重来之后，写下这篇记录，方便自己以后使用。<br/>
 首先介绍下自己的环境Arch，由于之前已经使用了github的个人博客，但是之前使用的是jekyll的方式，自己不会调整那些主题，感觉有些不方便，上网找了下，发现似乎Octopress相对来说比较简单，于是在这种情况下尝试使用Octopress。至于在github上创建个人博客主页，在这里不做说明，在Octopress环境下，自己相当不清楚。</p>
+
+<!--more-->
+
 
 <p>由于Arch已经安装了ruby，且版本是1.9.3高于octopress要求的1.9.2，使用<code>pacman</code>的方式安装了ruby之后便没有必要再安装ruby了。按照<code>arch wiki</code>中所说的方式安装rvm即可。在这些基本工作完成之后，开始安装Octopress。</p>
 
-<h1>Octopress环境配置</h1>
+<h2>Octopress环境配置</h2>
 
-<p>git clone git://github.com/imathis/octopress.git octopress
-cd octopress    # If you use RVM, You'll be asked if you trust the .rvmrc file (say yes).
-gem install bundler
-bundle install
+<p>git clone git://github.com/imathis/octopress.git octopress<br/>
+cd octopress    # If you use RVM, You'll be asked if you trust the .rvmrc file (say yes).<br/>
+gem install bundler<br/>
+bundle install<br/>
 rake install</p>
 
-<h1>Github用户页面设置</h1>
+<h2>Github用户页面设置</h2>
 
 <p>参照Octopress上的将页面部署到github的<a href="http://octopress.org/docs/deploying/github/" title="OCTOPRESS Github介绍">手册</a>。<br/>
 Github Pages服务要求用户使用master分支作为Web服务器上的公共目录，当直接输入用户的web网址时，重定向的是master分支的目录。因此，可以创建一个source分支来工作，然后将生成的内容推送到master分支。Octopress可以通过使用下面的命令完成上面的任务：<br/>
-rake setup_github_pages<br/>
-上面的操作将会完成下面的操作：
-* 请求用户输入个人的Github可读可写地址，使用ssh的目录，如git@github.com:xiongbupt/xiongbupt.github.com.git这样的地址，在输入上面的命令之后，要求输入地址时输入这样一个地址即可。
-* 将本来octopress分支的远端分支有origin重命名为octopress，相当于工作目录内有两个远端分支。
-* 将个人的Github Pages作为默认的远程origin分支。
-* 将当前分支由master转换为source分支。
-* 根据之前自身输入的地址来配置个人博客的地址。
-* 在_deploy目录下创建一个master分支用于来布置。</p>
+<code>rake setup_github_pages</code><br/>
+上面的操作将会完成下面的操作：</p>
 
-<p>接下来使用<br/>
-rake generate
-rake deploy</p>
+<ul>
+<li>请求用户输入个人的Github可读可写地址，使用ssh的目录，如git@github.com:xiongbupt/xiongbupt.github.com.git这样的地址，在输入上面的命令之后，要求输入地址时输入这样一个地址即可。</li>
+<li>将本来octopress分支的远端分支有origin重命名为octopress，相当于工作目录内有两个远端分支。</li>
+<li>将个人的Github Pages作为默认的远程origin分支。</li>
+<li>将当前分支由master转换为source分支。</li>
+<li>根据之前自身输入的地址来配置个人博客的地址。</li>
+<li>在_deploy目录下创建一个master分支用于来布置。<br/>
+接下来使用<br/>
+rake generate<br/>
+rake deploy<br/>
+这两个操作将会完成下面的任务：生成网页内容，将将生成的网页内容拷贝到<code>_deploy/</code>文件夹内，将这些文件添加到git跟踪目录下，提交然后将这些文件推送到master分支。因此在完成内容编辑之后，简单使用上面的两个命令就将会本地完成的编辑内容推送到远程的服务器端。</li>
+</ul>
 
-<p>这两个操作将会完成下面的任务：生成网页内容，将将生成的网页内容拷贝到<code>_deploy/</code>文件夹内，将这些文件添加到git跟踪目录下，提交然后将这些文件推送到master分支。因此在完成内容编辑之后，简单使用上面的两个命令就将会本地完成的编辑内容推送到远程的服务器端。</p>
 
-<p><strong>不要忘记</strong>将源文件推送到自己的远程分支。使用下面的操作即可完成操作：
+<p><strong>不要忘记</strong>将源文件推送到自己的远程分支。使用下面的操作即可完成操作：<br/>
 git add .
 git commit -m '提交说明'
 git push origin source</p>
 
 <p><strong>注意：</strong>目前Github网站设置的默认分支是最新提交的分支，因此如果在网页显示有问题时，可以登录到Github网站上查看是否自己的版本库的默认分支是否为master分支，将默认分支调整为master即可在网页上显示内容。</p>
 
-<h1>Github工程页面设置</h1>
+<h2>Github工程页面设置</h2>
 
 <p>Github允许对于已存在的开源工程添加一个网页说明。Github会搜索工程目录下的gh-pages分支，然后将这些内容置于可以访问的类似于<code>http://username.github.com/project</code>。</p>
 
@@ -159,9 +170,8 @@ rake setup_github_pages</p>
 
 <p>接下来运行：  <br/>
 rake generate
-rake deploy</p>
-
-<p>这将会生成博客内容，将生成的文件拷贝到<code>_deploy/</code>文件夹内，将它们加入到git同步库中，提交并将这些文件推送到master分支。</p>
+rake deploy
+这将会生成博客内容，将生成的文件拷贝到<code>_deploy/</code>文件夹内，将它们加入到git同步库中，提交并将这些文件推送到master分支。</p>
 
 <p>现在已经对网站的内容进行了一次提交，但是同样也应该对网站的博客的源代码进行提交。在添加了自己工程的网址作为远端仓库之后，可以进行提交，如下所示：      <br/>
 git remote add origin (your repo url)
@@ -170,12 +180,12 @@ git config.branch.master.remote origin</p>
 
 <p>在完成上述设置之后便可以使用<code>git push</code>进行推送了。</p>
 
-<h1>自定义域名</h1>
+<h2>自定义域名</h2>
 
 <p>首先需要在<code>source</code>文件夹下创建一个名字为<code>CNAME</code>的文件，然后将自己的域名输入到该文件中，如下所示： <br/>
 echo 'your-domain.com' >> source/CNAME</p>
 
-<p>接下来在域名的注册处添加域名记录。具体介绍参考[octopress][lab4]的介绍，此处不做详细描述。</p>
+<p>接下来在域名的注册处添加域名记录。具体介绍参考<a href="http://octopress.org/docs/deploying/github/" title="OCTOPRESS Github介绍">octopress</a>的介绍，此处不做详细描述。</p>
 
 <p>sed -n 's/(category:\ )([)(\w<em>)(])/\1\3/p' </em>.md</p>
 </div>
@@ -255,7 +265,6 @@ echo 'your-domain.com' >> source/CNAME</p>
   <li><a href='/blog/categories/git'>Git (3)</a></li>
   <li><a href='/blog/categories/linux'>Linux (12)</a></li>
   <li><a href='/blog/categories/notes'>Notes (22)</a></li>
-  <li><a href='/blog/categories/octopress'>Octopress (1)</a></li>
   <li><a href='/blog/categories/others'>Others (1)</a></li>
   <li><a href='/blog/categories/python'>Python (1)</a></li>
   <li><a href='/blog/categories/vim'>Vim (1)</a></li>
@@ -266,10 +275,6 @@ echo 'your-domain.com' >> source/CNAME</p>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2012/06/07/octopress-add-tag/">Octopress增加Tag标签</a>
-      </li>
     
       <li class="post">
         <a href="/blog/2012/06/07/octopress-add-tag/">Octopress添加标签</a>
@@ -289,6 +294,10 @@ echo 'your-domain.com' >> source/CNAME</p>
     
       <li class="post">
         <a href="/blog/2012/06/05/vim_regex_learning/">VIM正则表达式学习</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/05/vim_regex_case/">VIM使用正则表达式改变大小写</a>
       </li>
     
   </ul>
@@ -339,7 +348,6 @@ echo 'your-domain.com' >> source/CNAME</p>
     <a href="http://twitter.com/xiongbupt" class="twitter-follow-button" data-show-count="false">Follow @xiongbupt</a>
   
 </section>
-
 
 
 <section class="googleplus">

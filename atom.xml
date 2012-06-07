@@ -4,7 +4,7 @@
   <title><![CDATA[Keep Learning]]></title>
   <link href="http://xiongbupt.github.com/atom.xml" rel="self"/>
   <link href="http://xiongbupt.github.com/"/>
-  <updated>2012-06-07T18:44:52+08:00</updated>
+  <updated>2012-06-07T17:41:21+08:00</updated>
   <id>http://xiongbupt.github.com/</id>
   <author>
     <name><![CDATA[Xiongbupt]]></name>
@@ -12,67 +12,6 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[Octopress增加Tag标签]]></title>
-    <link href="http://xiongbupt.github.com/blog/2012/06/07/octopress-add-tag/"/>
-    <updated>2012-06-07T06:23:00+08:00</updated>
-    <id>http://xiongbupt.github.com/blog/2012/06/07/octopress-add-tag</id>
-    <content type="html"><![CDATA[<h2>前因</h2>
-
-<p>由于之前参考中文的搜索，结果都不理想，推翻重来，直接使用<a href="http://www.google.com/">google</a>使用<code>octopress tag</code>关键词搜索到的<a href="http://aijazansari.com/2012/01/07/tag-clouds-with-octopress/">第一个返回结果</a>来修改，下面记录如下。</p>
-
-<h3>显示所有的便签列表</h3>
-
-<p>修改<code>source/_layouts/post.html</code>文件，使它们include一个名字为<code>tags.html</code>的新文件。
-创建一个新文件<code>source/_includes/post/tags.html</code>，整个文件的内容如下所示：</p>
-
-<pre><code>&lt;div id="tag_list"&gt;
-    Tags:
-    &lt;ul id="tags_ul"&gt;
-
-        &lt;li&gt;&lt;a href="http://xiongbupt.github.com/tags/VIM/"&gt;VIM&lt;/a&gt;&lt;/li&gt;
-
-        &lt;li&gt;&lt;a href="http://xiongbupt.github.com/tags/Learning/"&gt;Learning&lt;/a&gt;&lt;/li&gt;
-
-        &lt;li&gt;&lt;a href="http://xiongbupt.github.com/tags/Octopress/"&gt;Octopress&lt;/a&gt;&lt;/li&gt;
-
-    &lt;/ul&gt;
-&lt;/div&gt;
-</code></pre>
-
-<p>在sass/custom/_styles.css文件中添加如下内容：</p>
-
-<pre><code>div#tag_list {
-    font-size: 12pt;
-}
-
-#tags_ul {
-    display: inline;
-}
-
-#tags_ul li:last-child:after {
-  content: "";
-}
-
-#tags_ul li:after {
-  content: ", ";
-}
-
-#tags_ul li {
-    display: inline;
-}
-</code></pre>
-
-<h3>创建tag文件和tag云</h3>
-
-<p>使用作者提供的perl脚本文件。</p>
-
-<h3>显示tag云标签</h3>
-
-<p>为了在右侧显示云标签，需要修改<code>_config.yaml</code>文件，添加</p>
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[Octopress添加标签]]></title>
@@ -86,6 +25,9 @@
 <h3>显示所有的便签列表</h3>
 
 <p>修改<code>source/_layouts/post.html</code>文件，使它们include一个名字为<code>tags.html</code>的新文件。</p>
+
+<!--more-->
+
 
 <p>创建一个新文件<code>source/_includes/post/tags.html</code>，整个文件的内容如下所示：</p>
 
@@ -131,6 +73,97 @@
 <h3>显示tag云标签</h3>
 
 <p>为了在右侧显示云标签，需要修改<code>_config.yaml</code>文件，添加</p>
+
+<figure class='code'><figcaption><span> (test.js)</span> <a href='http://xiongbupt.github.com/downloads/code/test.js'>download</a></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm">sample javascript from xui</span>
+</span><span class='line'><span class="cm">*/</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">var</span> <span class="kc">undefined</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">xui</span><span class="p">,</span>
+</span><span class='line'>    <span class="nb">window</span>     <span class="o">=</span> <span class="k">this</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">string</span>     <span class="o">=</span> <span class="k">new</span> <span class="nb">String</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">),</span>
+</span><span class='line'>    <span class="nb">document</span>   <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nb">document</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">simpleExpr</span> <span class="o">=</span> <span class="sr">/^#?([\w-]+)$/</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">idExpr</span>     <span class="o">=</span> <span class="sr">/^#/</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">tagExpr</span>    <span class="o">=</span> <span class="sr">/&lt;([\w:]+)/</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">slice</span>      <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="p">[].</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> <span class="p">};</span>
+</span><span class='line'>    <span class="k">try</span> <span class="p">{</span> <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="nx">slice</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">nodeType</span><span class="p">;</span> <span class="p">}</span>
+</span><span class='line'>    <span class="k">catch</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span> <span class="nx">slice</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span> <span class="kd">var</span> <span class="nx">ret</span><span class="o">=</span><span class="p">[];</span> <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">e</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span>
+</span><span class='line'>        <span class="nx">ret</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">e</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span> <span class="k">return</span> <span class="nx">ret</span><span class="p">;</span> <span class="p">};</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">window</span><span class="p">.</span><span class="nx">x$</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">xui</span> <span class="o">=</span> <span class="nx">xui</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">q</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="k">new</span> <span class="nx">xui</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">q</span><span class="p">,</span> <span class="nx">context</span><span class="p">);</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>test</p>
+
+<h2>What is Octopress?</h2>
+
+<p>Octopress is <a href="https://github.com/mojombo/jekyll">Jekyll</a> blogging at its finest.</p>
+
+<ol>
+<li><strong>Octopress sports a clean responsive theme</strong> written in semantic HTML5, focused on readability and friendliness toward mobile devices.</li>
+<li><strong>Code blogging is easy and beautiful.</strong> Embed code (with <a href="http://ethanschoonover.com/solarized">Solarized</a> styling) in your posts from gists, jsFiddle or from your filesystem.</li>
+<li><strong>Third party integration is simple</strong> with built-in support for Twitter, Pinboard, Delicious, GitHub Repositories, Disqus Comments and Google Analytics.</li>
+<li><strong>It&#8217;s easy to use.</strong> A collection of rake tasks simplifies development and makes deploying a cinch.</li>
+<li><strong>Ships with great plug-ins</strong> some original and others from the Jekyll community &mdash; tested and improved.</li>
+</ol>
+
+
+<h2>Documentation</h2>
+
+<p>Check out <a href="http://octopress.org/docs">Octopress.org</a> for guides and documentation.</p>
+
+<h2>Contributing</h2>
+
+<p>We love to see people contributing to Octopress, whether it&#8217;s a bug report, feature suggestion or a pull request. At the moment, we try to keep the core slick and lean, focusing on basic blogging needs, so some of your suggestions might not find their way into Octopress. For those ideas, we started a <a href="https://github.com/imathis/octopress/wiki/3rd-party-plugins">list of 3rd party plug-ins</a>, where you can link your own Octopress plug-in repositories. For the future, we&#8217;re thinking about ways to easier add them them into our main releases.</p>
+
+<h2>License</h2>
+
+<p>(The MIT License)</p>
+
+<p>Copyright © 2009-2011 Brandon Mathis</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the ‘Software’), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED ‘AS IS’, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+
+<h4>If you want to be awesome.</h4>
+
+<ul>
+<li>Proudly display the &#8216;Powered by Octopress&#8217; credit in the footer.</li>
+<li>Add your site to the Wiki so we can watch the community grow.</li>
+</ul>
+
+
+<p>test2</p>
+
+<p><code>$ sudo make me a sandwich</code></p>
 ]]></content>
   </entry>
   
@@ -141,17 +174,20 @@
     <id>http://xiongbupt.github.com/blog/2012/06/06/vim_help_read</id>
     <content type="html"><![CDATA[<p>VIM的查找命令与模式，这章节和正则表达式相关，可以重点查阅下。</p>
 
-<h1>大小写忽略</h1>
+<h2>大小写忽略</h2>
 
 <p>ignorecase  忽视大小写<br/>
 smartcase   若只有小写，可匹配大小写；若含有大写，则严格匹配  <br/>
 特定模式中的大小写可以使用\C来严格匹配，\c可以用来通用匹配，不区分大小写</p>
 
-<h1>无折返查找</h1>
+<h2>无折返查找</h2>
 
 <p><code>:set nowrapscan</code>简单的说就是在查找到文件结束处后不再返回文件开始处重新查找。</p>
 
-<h1>查找偏移</h1>
+<!--more-->
+
+
+<h2>查找偏移</h2>
 
 <p><code>/pattern/2</code>，这个查找将会在单词pattern的后两行。 <br/>
 * 匹配一个可选项，使用<code>\=</code>，比如</p>
@@ -166,11 +202,11 @@ smartcase   若只有小写，可匹配大小写；若含有大写，则严格�
 </ul>
 
 
-<h1>多选一</h1>
+<h2>多选一</h2>
 
 <p>或的运算符是<code>\|</code>。</p>
 
-<h1>字符范围</h1>
+<h2>字符范围</h2>
 
 <table>
 <thead>
@@ -253,46 +289,51 @@ smartcase   若只有小写，可匹配大小写；若含有大写，则严格�
     <link href="http://xiongbupt.github.com/blog/2012/06/06/octopress_use/"/>
     <updated>2012-06-06T00:00:00+08:00</updated>
     <id>http://xiongbupt.github.com/blog/2012/06/06/octopress_use</id>
-    <content type="html"><![CDATA[<p>本文主要是参考Octopress的<a href="http://octopress.org/" title="OCTOPRESS 手册">官方网址</a>进行操作，之前使用了<a href="http://www.google.com/" title="GOOGLE">google</a>搜索了若干参考，但是操作之后出现了错误，推翻重来之后，写下这篇记录，方便自己以后使用。
+    <content type="html"><![CDATA[<p>本文主要是参考Octopress的<a href="http://octopress.org/" title="OCTOPRESS 手册">官方网址</a>进行操作，之前使用了<a href="http://www.google.com/" title="GOOGLE">google</a>搜索了若干参考，但是操作之后出现了错误，推翻重来之后，写下这篇记录，方便自己以后使用。<br/>
 首先介绍下自己的环境Arch，由于之前已经使用了github的个人博客，但是之前使用的是jekyll的方式，自己不会调整那些主题，感觉有些不方便，上网找了下，发现似乎Octopress相对来说比较简单，于是在这种情况下尝试使用Octopress。至于在github上创建个人博客主页，在这里不做说明，在Octopress环境下，自己相当不清楚。</p>
+
+<!--more-->
+
 
 <p>由于Arch已经安装了ruby，且版本是1.9.3高于octopress要求的1.9.2，使用<code>pacman</code>的方式安装了ruby之后便没有必要再安装ruby了。按照<code>arch wiki</code>中所说的方式安装rvm即可。在这些基本工作完成之后，开始安装Octopress。</p>
 
-<h1>Octopress环境配置</h1>
+<h2>Octopress环境配置</h2>
 
-<p>git clone git://github.com/imathis/octopress.git octopress
-cd octopress    # If you use RVM, You&#8217;ll be asked if you trust the .rvmrc file (say yes).
-gem install bundler
-bundle install
+<p>git clone git://github.com/imathis/octopress.git octopress<br/>
+cd octopress    # If you use RVM, You&#8217;ll be asked if you trust the .rvmrc file (say yes).<br/>
+gem install bundler<br/>
+bundle install<br/>
 rake install</p>
 
-<h1>Github用户页面设置</h1>
+<h2>Github用户页面设置</h2>
 
 <p>参照Octopress上的将页面部署到github的<a href="http://octopress.org/docs/deploying/github/" title="OCTOPRESS Github介绍">手册</a>。<br/>
 Github Pages服务要求用户使用master分支作为Web服务器上的公共目录，当直接输入用户的web网址时，重定向的是master分支的目录。因此，可以创建一个source分支来工作，然后将生成的内容推送到master分支。Octopress可以通过使用下面的命令完成上面的任务：<br/>
-rake setup_github_pages<br/>
-上面的操作将会完成下面的操作：
-* 请求用户输入个人的Github可读可写地址，使用ssh的目录，如git@github.com:xiongbupt/xiongbupt.github.com.git这样的地址，在输入上面的命令之后，要求输入地址时输入这样一个地址即可。
-* 将本来octopress分支的远端分支有origin重命名为octopress，相当于工作目录内有两个远端分支。
-* 将个人的Github Pages作为默认的远程origin分支。
-* 将当前分支由master转换为source分支。
-* 根据之前自身输入的地址来配置个人博客的地址。
-* 在_deploy目录下创建一个master分支用于来布置。</p>
+<code>rake setup_github_pages</code><br/>
+上面的操作将会完成下面的操作：</p>
 
-<p>接下来使用<br/>
-rake generate
-rake deploy</p>
+<ul>
+<li>请求用户输入个人的Github可读可写地址，使用ssh的目录，如git@github.com:xiongbupt/xiongbupt.github.com.git这样的地址，在输入上面的命令之后，要求输入地址时输入这样一个地址即可。</li>
+<li>将本来octopress分支的远端分支有origin重命名为octopress，相当于工作目录内有两个远端分支。</li>
+<li>将个人的Github Pages作为默认的远程origin分支。</li>
+<li>将当前分支由master转换为source分支。</li>
+<li>根据之前自身输入的地址来配置个人博客的地址。</li>
+<li>在_deploy目录下创建一个master分支用于来布置。<br/>
+接下来使用<br/>
+rake generate<br/>
+rake deploy<br/>
+这两个操作将会完成下面的任务：生成网页内容，将将生成的网页内容拷贝到<code>_deploy/</code>文件夹内，将这些文件添加到git跟踪目录下，提交然后将这些文件推送到master分支。因此在完成内容编辑之后，简单使用上面的两个命令就将会本地完成的编辑内容推送到远程的服务器端。</li>
+</ul>
 
-<p>这两个操作将会完成下面的任务：生成网页内容，将将生成的网页内容拷贝到<code>_deploy/</code>文件夹内，将这些文件添加到git跟踪目录下，提交然后将这些文件推送到master分支。因此在完成内容编辑之后，简单使用上面的两个命令就将会本地完成的编辑内容推送到远程的服务器端。</p>
 
-<p><strong>不要忘记</strong>将源文件推送到自己的远程分支。使用下面的操作即可完成操作：
+<p><strong>不要忘记</strong>将源文件推送到自己的远程分支。使用下面的操作即可完成操作：<br/>
 git add .
 git commit -m &#8216;提交说明&#8217;
 git push origin source</p>
 
 <p><strong>注意：</strong>目前Github网站设置的默认分支是最新提交的分支，因此如果在网页显示有问题时，可以登录到Github网站上查看是否自己的版本库的默认分支是否为master分支，将默认分支调整为master即可在网页上显示内容。</p>
 
-<h1>Github工程页面设置</h1>
+<h2>Github工程页面设置</h2>
 
 <p>Github允许对于已存在的开源工程添加一个网页说明。Github会搜索工程目录下的gh-pages分支，然后将这些内容置于可以访问的类似于<code>http://username.github.com/project</code>。</p>
 
@@ -307,9 +348,8 @@ rake setup_github_pages</p>
 
 <p>接下来运行：  <br/>
 rake generate
-rake deploy</p>
-
-<p>这将会生成博客内容，将生成的文件拷贝到<code>_deploy/</code>文件夹内，将它们加入到git同步库中，提交并将这些文件推送到master分支。</p>
+rake deploy
+这将会生成博客内容，将生成的文件拷贝到<code>_deploy/</code>文件夹内，将它们加入到git同步库中，提交并将这些文件推送到master分支。</p>
 
 <p>现在已经对网站的内容进行了一次提交，但是同样也应该对网站的博客的源代码进行提交。在添加了自己工程的网址作为远端仓库之后，可以进行提交，如下所示：      <br/>
 git remote add origin (your repo url)
@@ -318,12 +358,12 @@ git config.branch.master.remote origin</p>
 
 <p>在完成上述设置之后便可以使用<code>git push</code>进行推送了。</p>
 
-<h1>自定义域名</h1>
+<h2>自定义域名</h2>
 
 <p>首先需要在<code>source</code>文件夹下创建一个名字为<code>CNAME</code>的文件，然后将自己的域名输入到该文件中，如下所示： <br/>
 echo &#8216;your-domain.com&#8217; >> source/CNAME</p>
 
-<p>接下来在域名的注册处添加域名记录。具体介绍参考[octopress][lab4]的介绍，此处不做详细描述。</p>
+<p>接下来在域名的注册处添加域名记录。具体介绍参考<a href="http://octopress.org/docs/deploying/github/" title="OCTOPRESS Github介绍">octopress</a>的介绍，此处不做详细描述。</p>
 
 <p>sed -n &#8216;s/(category:\ )([)(\w<em>)(])/\1\3/p&#8217; </em>.md</p>
 ]]></content>
@@ -343,12 +383,12 @@ echo &#8216;your-domain.com&#8217; >> source/CNAME</p>
     <link href="http://xiongbupt.github.com/blog/2012/06/05/vim_regex_learning/"/>
     <updated>2012-06-05T00:00:00+08:00</updated>
     <id>http://xiongbupt.github.com/blog/2012/06/05/vim_regex_learning</id>
-    <content type="html"><![CDATA[<h1>VIM正则表达式</h1>
+    <content type="html"><![CDATA[<h2>VIM正则表达式</h2>
 
 <p>之前粗略的看了正则表达式的一些内容，但是在VIM中一直用的很少，刚才无意间看到了使用VIM对词进行大小写转换，中间出现了一些正则表达式的内容，从网上找了些内容，觉得可以留下来做个笔记，供以后自己参考。<br/>
 文章的主要内容参考<a href="http://qianjigui.iteye.com/blog/368449" title="VIM中的正则表达式">该博客</a>。</p>
 
-<h2>量词</h2>
+<h3>量词</h3>
 
 <p>VIM中的量词与perl相比</p>
 
@@ -432,7 +472,7 @@ echo &#8216;your-domain.com&#8217; >> source/CNAME</p>
 </table>
 
 
-<h2>环视和固化分组</h2>
+<h3>环视和固化分组</h3>
 
 <p>这个内容之前没有接触过，只是简单的摘抄下来，后面再进行研究了。</p>
 
@@ -486,15 +526,12 @@ echo &#8216;your-domain.com&#8217; >> source/CNAME</p>
 </table>
 
 
-<p>和perl稍有不同的是，vim中的环视和固化分组的模式的位置与perl不同。例如，查找紧跟在 foo 之后的 bar，perl将模式写在环视的括号内，而vim将模式写在环视的元字符之前。</p>
+<p>和perl稍有不同的是，vim中的环视和固化分组的模式的位置与perl不同。例如，查找紧跟在 foo 之后的 bar，perl将模式写在环视的括号内，而vim将模式写在环视的元字符之前。
+Perl的写法</p>
 
-<p>Perl的写法</p>
-
-<blockquote><p>/(?&lt;=foo)bar/</p></blockquote>
-
-<p>vim的写法</p>
-
-<blockquote><p>/(foo)\@&lt;=bar</p></blockquote>
+<blockquote><p>/(?&lt;=foo)bar/
+vim的写法
+/(foo)\@&lt;=bar</p></blockquote>
 ]]></content>
   </entry>
   
@@ -3519,6 +3556,524 @@ example:</p>
 <p>如果有标题，同样也可以有标签，允许创建表格的定位点。如果没有标签被创建，则标题将会作为标签。</p>
 
 <p>在一个表中可以通过一个单一的空行来创建多重标签。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[正则表达式学习]]></title>
+    <link href="http://xiongbupt.github.com/blog/2012/05/14/regex-learning/"/>
+    <updated>2012-05-14T00:00:00+08:00</updated>
+    <id>http://xiongbupt.github.com/blog/2012/05/14/regex-learning</id>
+    <content type="html"><![CDATA[<h1>不同程序中的regex的使用</h1>
+
+<h3>grep</h3>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="center">表达式</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td align="center">-E</td>
+<td align="center">扩展正则表达式  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">-G</td>
+<td align="center">基本正则表达式  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">-P</td>
+<td align="center">perl基本表达式  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">-o</td>
+<td align="center">仅仅输出匹配结果  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">-v</td>
+<td align="center">进行求非操作  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">-c</td>
+<td align="center">计算匹配的总数  </td>
+</tr>
+</tbody>
+</table>
+
+
+<h3>perl</h3>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="center">表达式</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td align="center">m/pattern/</td>
+<td align="center">搜索  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">s/pattern/pattern/</td>
+<td align="center">替换  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">qr/pattern/</td>
+<td align="center">返回一个regex对象供以后使用  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">split()</td>
+<td align="center">把一个字符串拆分成子字符串  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">\i</td>
+<td align="center">不区分大小写  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">\g</td>
+<td align="center">全局搜索  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">$&#8217;</td>
+<td align="center">匹配前面的所有东西  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">$`</td>
+<td align="center">匹配之后的所有东西  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">$&amp;</td>
+<td align="center">整个匹配的字符串  </td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>匹配纯字符串</h2>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="center">表达式</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td align="center">\</td>
+<td align="center">用来对字符进行转义  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">.</td>
+<td align="center">可以用来表示任何字符  </td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>匹配一组字符</h2>
+
+<p><code>[]</code>用来表示字符集合，出现在它们之间的字符可以使用。字符区间的关系。<br/>
+字符区间可以在<code>[]</code>中使用-来实现。<br/>
+注意：<br/>
+<code>-</code>只有在[]中使用时才有特殊的含义，在其他环境中使用时，不需要使用\进行转义。<br/>
+在字符区间中取非使用<code>^</code>元字符。<br/>
+注意：<br/>
+<code>^</code>的效果作用于给定字符集合里的所哟字符和字符区间，而不仅仅是紧跟在<code>^</code>后的那一个字符或字符区间。</p>
+
+<h2>使用元字符</h2>
+
+<p>对元字符转义需要用到\字符，这个字符对任何元字符都具有转义作用。<br/>
+配对的元字符不用作元字符时必须被转义。</p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="center">正则表达式</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td align="center">[\b]</td>
+<td align="center">backtrace  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">\f</td>
+<td align="center">换页符  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">\n</td>
+<td align="center">换行符  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">\r</td>
+<td align="center">回车符  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">\t</td>
+<td align="center">制表符(Tab)  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">\v</td>
+<td align="center">垂直制表符  </td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>匹配数字</h2>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="center">正则表达式</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td align="center">\d</td>
+<td align="center">任何一个数字字符，即[0-9]  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">\D</td>
+<td align="center">任何一个非数字字符，即[<code>^</code>0-9]  </td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>匹配字母和数字（包括_)</h2>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="center">正则表达式</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td align="center">\w</td>
+<td align="center">[0-9a-zA-Z_]  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">\W</td>
+<td align="center">[<code>^</code>0-9a-zA-Z_]  </td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>匹配空白</h2>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="center">正则表达式</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td align="center">\s</td>
+<td align="center">[\f\n\t\r\v ]  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">\S</td>
+<td align="center">[<code>^</code>\f\n\t\r\v ]  </td>
+</tr>
+</tbody>
+</table>
+
+
+<p>注意\b，即backtrace没有包含在\s中，因此也就灭有包含在\S中。</p>
+
+<h2>posix字符类</h2>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="center">正则表达式</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td align="center">[:alnum:]</td>
+<td align="center">任何一个字母或数字[a-zA-Z0-9]  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">[:alpha:]</td>
+<td align="center">任何一个字母[a-zA-Z]  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">[:blank:]</td>
+<td align="center">空格或制表符[\t ]  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">[:cntrl:]</td>
+<td align="center">ASCII控制字符(ASCII 0~31, 127)  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">[:digit:]</td>
+<td align="center">[0-9]  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">[:graph:]</td>
+<td align="center">[:print:]不包括空格  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">[:lower:]</td>
+<td align="center">[a-z]  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">[:punct:]</td>
+<td align="center">既不属于[:alnum:]，也不属于[:cntrl:]的字符  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">[:space:]</td>
+<td align="center">[\f\t\n\r\v ]  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">[:upper:]</td>
+<td align="center">[A-Z]  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">[:xdigit:]</td>
+<td align="center">[a-fA-F0-9]  </td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>重复匹配</h2>
+
+<ul>
+<li>+出现1次及以上，不包括0次。（是一个元字符，需要使用\进行转义）<br/>
+在[]中出现的类似+，.这样的元字符可以不被转义，可以正常使用，但是转义了也没有坏处。</li>
+<li>*出现0次及以上，包括0次。（是一个元字符，需要使用\进行转义）</li>
+<li>?出现0次或者1次。（是一个元字符，需要使用\进行转义）</li>
+<li>{} 出现的次数，用来精确匹配。可以是一个确定的数字，也可以是一个区间。<br/>
+  如a{6} 出现6次a
+  a{3,5} 至少3次a，最多5次a<br/>
+  a{3,}  至少出现3次a，上限没有限制
+<strong>注意：</strong>
+在匹最好使用\/来进行匹配，防止不必要的麻烦。</li>
+</ul>
+
+
+<p>+,*,{n,}都是贪婪型匹配，每次都尽可能的匹配更长的字符。若想使用这些的懒惰型匹配，在这些后面添加一个?即可。</p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="center">贪婪型</th>
+<th align="center">懒惰型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td align="center">*</td>
+<td align="center">*?</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">+</td>
+<td align="center">+?</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">{n,}</td>
+<td align="center">{n,}?</td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>位置匹配</h2>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="center">正则表达式</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td align="center">\b</td>
+<td align="center">单词边界（用于一个\w与一个\W之间的匹配)|</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">\B</td>
+<td align="center">非单词边界</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">^</td>
+<td align="center">字符串开头</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">$</td>
+<td align="center">字符串结尾</td>
+</tr>
+</tbody>
+</table>
+
+
+<h1>使用子表达式</h1>
+
+<p><code>()</code>是元字符，使用它们时需要使用转义，用于将一个子表达式合并在一起组成一个完整的部分。<br/>
+<code>|</code>或者<code>,</code>是一个元字符，使用的时候需要使用转义。</p>
+
+<h1>回溯引用</h1>
+
+<p>指的是模式的后半部分引用在前半部分中定义的子表达式，可以把回溯表达式想象成变量。
+\1 代表前面模式里的第一个表达式。（需要用括号括起来）</p>
+
+<h2>大小写字母转换</h2>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="center">正则表达式</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td align="center">\E</td>
+<td align="left">结束\L或\U转换</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">\l</td>
+<td align="left">下一个小写</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">\L</td>
+<td align="left">\L和\E之间的全部小写</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">\u</td>
+<td align="left">下一个大写</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">\U</td>
+<td align="left">\U和\E之间的全部大写</td>
+</tr>
+</tbody>
+</table>
+
+
+<h1>前后查找</h1>
+
+<h2>向前查找</h2>
+
+<p>向前查找模式其实就是一个以<code>?=</code>开头的子表达式，需要匹配的文本跟在=的后面。找到=后面的即可，不消费它，即不把它包括在内。</p>
+
+<p>例子：</p>
+
+<blockquote><p>.+(?=:)</p></blockquote>
+
+<p><strong>提示：</strong><br/>
+任何一个子表达式都可以转换为一个向前查找表达式，只要给它加上一个?=前缀即可。</p>
+
+<h2>向后查找</h2>
+
+<blockquote><p><code>?&lt;=</code><br/>
+例子：
+(?&lt;=\$)</p>
+
+<pre><code>寻找$符号但是不消费它
+</code></pre>
+
+<p><strong>警告：</strong>向前查找模式的长度是可变的，它们可以包含<code>.</code>和<code>+</code>之类的元字符，长度很灵活。而向后查找模式只能是固定长度。</p>
+
+<h2>负向前查找</h2>
+
+<p>?!</p>
+
+<h2>负向后查找</h2>
+
+<p>?&lt;!</p></blockquote>
+
+<h1>嵌入式条件</h1>
+
+<p>Regex中的条件用<code>?</code>来定义</p>
+
+<h2>回溯引用中的条件</h2>
+
+<blockquote><p>?(backreferrenc)true-regex)<br/>
+?(backreferrenc)true-regex|false-regex)</p>
+
+<h2>前后查找条件</h2></blockquote>
 ]]></content>
   </entry>
   

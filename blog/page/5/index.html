@@ -9,7 +9,8 @@
   <meta name="author" content="Xiongbupt">
 
   
-  <meta name="description" content="进程管理 进程管理包括创建进程，查询进程信息，修改进程信息等。fork，vfork将一个进程创建为两个进程。clone是fork的增强版，还可以创建线程。 exit结束一个进程并释放其占用的资源。 personlity定义应用程序的执行环境。 ptrace使得能跟踪系统调用，是strace的分支 &hellip;">
+  <meta name="description" content="Linux PCI Driver PCI的字节序是小头序的。
+PCI配置空间中每个设备功能由256字节组成，其中前64字节是标准化的，有必需的也有可选的。 Linux文件系统 文件系统可以分为三类：1.基于盘的（面向块设备）；2.虚拟文件系统（内核自身形成的）；3.网络文件系统。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -69,7 +70,8 @@
 <ul class="main-navigation">
   <li><a href="/">Blog</a></li>
   <li><a href="/blog/archives">Archives</a></li>
-  <li><a href="/blog/tags">Tags</a></li>
+  <li><a href="/blog/categories">类别</a></li>
+  <li><a href="/blog/tags">标签</a></li>
 </ul>
 
 </nav>
@@ -77,6 +79,51 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/02/28/notes/">读书笔记</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-28T00:00:00+08:00" pubdate data-updated="true">Feb 28<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>Linux PCI Driver</h2>
+
+<p>PCI的字节序是小头序的。<br/>
+PCI配置空间中每个设备功能由256字节组成，其中前64字节是标准化的，有必需的也有可选的。</p>
+
+<h2>Linux文件系统</h2>
+
+<p>文件系统可以分为三类：1.基于盘的（面向块设备）；2.虚拟文件系统（内核自身形成的）；3.网络文件系统。<br/>
+inode的组成元素可以分为两部分：1.描述文件状态的元数据，如权限，修改日期等；2.指向实际内容的部分，可以是一个类似指针的东西。<br/>
+创建一个文件时返回的文件描述符从3开始，其中0为标准输入，1为标准输出，2为标准错误输出。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -216,12 +263,32 @@
 </div>
 <aside class="sidebar">
   
-    <section>
+    
+<section>
+<h1>分类</h1>
+<ul>
+  <li><a href='/blog/categories/c语言'>C语言 (1)</a></li>
+  <li><a href='/blog/categories/git'>Git (3)</a></li>
+  <li><a href='/blog/categories/linux'>Linux (12)</a></li>
+  <li><a href='/blog/categories/notes'>Notes (22)</a></li>
+  <li><a href='/blog/categories/octopress'>Octopress (1)</a></li>
+  <li><a href='/blog/categories/others'>Others (1)</a></li>
+  <li><a href='/blog/categories/python'>Python (1)</a></li>
+  <li><a href='/blog/categories/vim'>Vim (1)</a></li>
+  <li><a href='/blog/categories/wsn'>Wsn (1)</a></li>
+</ul>
+</section>
+
+<section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
     
       <li class="post">
         <a href="/blog/2012/06/07/octopress-add-tag/">Octopress增加Tag标签</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/07/octopress-add-tag/">Octopress添加标签</a>
       </li>
     
       <li class="post">
@@ -238,10 +305,6 @@
     
       <li class="post">
         <a href="/blog/2012/06/05/vim_regex_learning/">VIM正则表达式学习</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/05/vim_regex_case/">VIM使用正则表达式改变大小写</a>
       </li>
     
   </ul>

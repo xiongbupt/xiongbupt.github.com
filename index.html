@@ -9,7 +9,7 @@
   <meta name="author" content="Xiongbupt">
 
   
-  <meta name="description" content="前因 由于之前参考中文的搜索，结果都不理想，推翻重来，直接使用google使用octopress tag关键词搜索到的第一个返回结果来修改，下面记录如下。 显示所有的便签列表 修改source/_layouts/post.html文件，使它们include一个名字为tags.html的新文件 &hellip;">
+  <meta name="description" content="前因 由于之前参考中文的搜索，结果都不理想，推翻重来，直接使用google使用octopress tag关键词搜索到的第一个返回结果来修改，下面记录如下。 显示所有的便签列表 修改source/_layouts/post.html文件，使它们include一个名字为tags.html的新文件。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -69,7 +69,8 @@
 <ul class="main-navigation">
   <li><a href="/">Blog</a></li>
   <li><a href="/blog/archives">Archives</a></li>
-  <li><a href="/blog/tags">Tags</a></li>
+  <li><a href="/blog/categories">类别</a></li>
+  <li><a href="/blog/tags">标签</a></li>
 </ul>
 
 </nav>
@@ -113,32 +114,108 @@
 <h3>显示所有的便签列表</h3>
 
 <p>修改<code>source/_layouts/post.html</code>文件，使它们include一个名字为<code>tags.html</code>的新文件。
-&#8230;</p>
+创建一个新文件<code>source/_includes/post/tags.html</code>，整个文件的内容如下所示：</p>
 
-<pre><code>   {% include post/author.html %}
-   {% include post/date.html %}{% if updated %}{{ updated }}{% else %}{{ time }}{% endif %}
-   {% include post/categories.html %}
+<pre><code>&lt;div id="tag_list"&gt;
+    Tags:
+    &lt;ul id="tags_ul"&gt;
+
+        &lt;li&gt;&lt;a href="/tags/VIM/"&gt;VIM&lt;/a&gt;&lt;/li&gt;
+
+        &lt;li&gt;&lt;a href="/tags/Learning/"&gt;Learning&lt;/a&gt;&lt;/li&gt;
+
+        &lt;li&gt;&lt;a href="/tags/Octopress/"&gt;Octopress&lt;/a&gt;&lt;/li&gt;
+
+    &lt;/ul&gt;
+&lt;/div&gt;
 </code></pre>
 
-<ul>
-<li>   {% include post/tags.html %}
- </p>
- {% unless page.sharing == false %}
-   {% include post/sharing.html %}
-&#8230;
-创建一个新文件<code>source/_includes/post/tags.html</code>，整个文件的内容如下所示：</li>
-</ul>
+<p>在sass/custom/_styles.css文件中添加如下内容：</p>
 
+<pre><code>div#tag_list {
+    font-size: 12pt;
+}
 
-<div id="tag_list">
-    Tags:
-    <ul id="tags_ul">
-{% for t in page.tags  %}
-        <li><a href="/tags/{{t}}/">{{t}}</a></li>
-{% endfor %}
-    </ul>
+#tags_ul {
+    display: inline;
+}
+
+#tags_ul li:last-child:after {
+  content: "";
+}
+
+#tags_ul li:after {
+  content: ", ";
+}
+
+#tags_ul li {
+    display: inline;
+}
+</code></pre>
+
+<h3>创建tag文件和tag云</h3>
+
+<p>使用作者提供的perl脚本文件。</p>
+
+<h3>显示tag云标签</h3>
+
+<p>为了在右侧显示云标签，需要修改<code>_config.yaml</code>文件，添加</p>
 </div>
+  
+  
 
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/06/07/octopress-add-tag/">Octopress添加标签</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-07T00:00:00+08:00" pubdate data-updated="true">Jun 7<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>前因</h2>
+
+<p>由于之前参考中文的搜索，结果都不理想，推翻重来，直接使用<a href="http://www.google.com/">google</a>使用<code>octopress tag</code>关键词搜索到的<a href="http://aijazansari.com/2012/01/07/tag-clouds-with-octopress/">第一个返回结果</a>来修改，下面记录如下。</p>
+
+<h3>显示所有的便签列表</h3>
+
+<p>修改<code>source/_layouts/post.html</code>文件，使它们include一个名字为<code>tags.html</code>的新文件。</p>
+
+<p>创建一个新文件<code>source/_includes/post/tags.html</code>，整个文件的内容如下所示：</p>
+
+<pre><code>&lt;div id="tag_list"&gt;
+    Tags:
+    &lt;ul id="tags_ul"&gt;
+
+        &lt;li&gt;&lt;a href="/tags/VIM/"&gt;VIM&lt;/a&gt;&lt;/li&gt;
+
+        &lt;li&gt;&lt;a href="/tags/Learning/"&gt;Learning&lt;/a&gt;&lt;/li&gt;
+
+    &lt;/ul&gt;
+&lt;/div&gt;
+</code></pre>
 
 <p>在sass/custom/_styles.css文件中添加如下内容：</p>
 
@@ -1295,44 +1372,6 @@ git config &#8211;global core.autocrlf input<em>(Linux下使用）</em></p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/05/31/git/">Git Server</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-31T00:00:00+08:00" pubdate data-updated="true">May 31<span>st</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1>小型系统下GIT安装使用</h1>
-
-<p><a href="http://blog.prosight.me/index.php/2009/11/485">参考博客</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -1343,12 +1382,32 @@ git config &#8211;global core.autocrlf input<em>(Linux下使用）</em></p>
 </div>
 <aside class="sidebar">
   
-    <section>
+    
+<section>
+<h1>分类</h1>
+<ul>
+  <li><a href='/blog/categories/c语言'>C语言 (1)</a></li>
+  <li><a href='/blog/categories/git'>Git (3)</a></li>
+  <li><a href='/blog/categories/linux'>Linux (12)</a></li>
+  <li><a href='/blog/categories/notes'>Notes (22)</a></li>
+  <li><a href='/blog/categories/octopress'>Octopress (1)</a></li>
+  <li><a href='/blog/categories/others'>Others (1)</a></li>
+  <li><a href='/blog/categories/python'>Python (1)</a></li>
+  <li><a href='/blog/categories/vim'>Vim (1)</a></li>
+  <li><a href='/blog/categories/wsn'>Wsn (1)</a></li>
+</ul>
+</section>
+
+<section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
     
       <li class="post">
         <a href="/blog/2012/06/07/octopress-add-tag/">Octopress增加Tag标签</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/07/octopress-add-tag/">Octopress添加标签</a>
       </li>
     
       <li class="post">
@@ -1365,10 +1424,6 @@ git config &#8211;global core.autocrlf input<em>(Linux下使用）</em></p>
     
       <li class="post">
         <a href="/blog/2012/06/05/vim_regex_learning/">VIM正则表达式学习</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/05/vim_regex_case/">VIM使用正则表达式改变大小写</a>
       </li>
     
   </ul>

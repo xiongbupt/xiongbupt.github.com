@@ -9,7 +9,17 @@
   <meta name="author" content="Xiongbupt">
 
   
-  <meta name="description" content="GBD指令 backtrace 在程序出现错误之后，使用它可以看出出错的函数被哪个函数所调用。 查看内存地址存放的值 x 内存地址(examine) 查看代码。 list 如list 1,90用来查看1到90行的代码。 用来设置断点 break 设置到函数的断点,函数所在行也可以设置断点 &hellip;">
+  <meta name="description" content="不同程序中的regex的使用 grep 表达式
+含义 -E
+扩展正则表达式 -G
+基本正则表达式 -P
+perl基本表达式 -o
+仅仅输出匹配结果 -v
+进行求非操作 -c
+计算匹配的总数 perl 表达式
+含义 m/pattern/
+搜索 s/pattern/pattern/
+替换 qr/ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -69,7 +79,8 @@
 <ul class="main-navigation">
   <li><a href="/">Blog</a></li>
   <li><a href="/blog/archives">Archives</a></li>
-  <li><a href="/blog/tags">Tags</a></li>
+  <li><a href="/blog/categories">类别</a></li>
+  <li><a href="/blog/tags">标签</a></li>
 </ul>
 
 </nav>
@@ -77,6 +88,551 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/05/14/regex-learning/">正则表达式学习</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-14T00:00:00+08:00" pubdate data-updated="true">May 14<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1>不同程序中的regex的使用</h1>
+
+<h3>grep</h3>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="center">表达式</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td align="center">-E</td>
+<td align="center">扩展正则表达式  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">-G</td>
+<td align="center">基本正则表达式  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">-P</td>
+<td align="center">perl基本表达式  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">-o</td>
+<td align="center">仅仅输出匹配结果  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">-v</td>
+<td align="center">进行求非操作  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">-c</td>
+<td align="center">计算匹配的总数  </td>
+</tr>
+</tbody>
+</table>
+
+
+<h3>perl</h3>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="center">表达式</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td align="center">m/pattern/</td>
+<td align="center">搜索  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">s/pattern/pattern/</td>
+<td align="center">替换  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">qr/pattern/</td>
+<td align="center">返回一个regex对象供以后使用  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">split()</td>
+<td align="center">把一个字符串拆分成子字符串  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">\i</td>
+<td align="center">不区分大小写  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">\g</td>
+<td align="center">全局搜索  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">$&#8217;</td>
+<td align="center">匹配前面的所有东西  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">$`</td>
+<td align="center">匹配之后的所有东西  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">$&amp;</td>
+<td align="center">整个匹配的字符串  </td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>匹配纯字符串</h2>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="center">表达式</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td align="center">\</td>
+<td align="center">用来对字符进行转义  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">.</td>
+<td align="center">可以用来表示任何字符  </td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>匹配一组字符</h2>
+
+<p><code>[]</code>用来表示字符集合，出现在它们之间的字符可以使用。字符区间的关系。<br/>
+字符区间可以在<code>[]</code>中使用-来实现。<br/>
+注意：<br/>
+<code>-</code>只有在[]中使用时才有特殊的含义，在其他环境中使用时，不需要使用\进行转义。<br/>
+在字符区间中取非使用<code>^</code>元字符。<br/>
+注意：<br/>
+<code>^</code>的效果作用于给定字符集合里的所哟字符和字符区间，而不仅仅是紧跟在<code>^</code>后的那一个字符或字符区间。</p>
+
+<h2>使用元字符</h2>
+
+<p>对元字符转义需要用到\字符，这个字符对任何元字符都具有转义作用。<br/>
+配对的元字符不用作元字符时必须被转义。</p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="center">正则表达式</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td align="center">[\b]</td>
+<td align="center">backtrace  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">\f</td>
+<td align="center">换页符  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">\n</td>
+<td align="center">换行符  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">\r</td>
+<td align="center">回车符  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">\t</td>
+<td align="center">制表符(Tab)  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">\v</td>
+<td align="center">垂直制表符  </td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>匹配数字</h2>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="center">正则表达式</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td align="center">\d</td>
+<td align="center">任何一个数字字符，即[0-9]  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">\D</td>
+<td align="center">任何一个非数字字符，即[<code>^</code>0-9]  </td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>匹配字母和数字（包括_)</h2>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="center">正则表达式</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td align="center">\w</td>
+<td align="center">[0-9a-zA-Z_]  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">\W</td>
+<td align="center">[<code>^</code>0-9a-zA-Z_]  </td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>匹配空白</h2>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="center">正则表达式</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td align="center">\s</td>
+<td align="center">[\f\n\t\r\v ]  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">\S</td>
+<td align="center">[<code>^</code>\f\n\t\r\v ]  </td>
+</tr>
+</tbody>
+</table>
+
+
+<p>注意\b，即backtrace没有包含在\s中，因此也就灭有包含在\S中。</p>
+
+<h2>posix字符类</h2>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="center">正则表达式</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td align="center">[:alnum:]</td>
+<td align="center">任何一个字母或数字[a-zA-Z0-9]  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">[:alpha:]</td>
+<td align="center">任何一个字母[a-zA-Z]  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">[:blank:]</td>
+<td align="center">空格或制表符[\t ]  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">[:cntrl:]</td>
+<td align="center">ASCII控制字符(ASCII 0~31, 127)  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">[:digit:]</td>
+<td align="center">[0-9]  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">[:graph:]</td>
+<td align="center">[:print:]不包括空格  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">[:lower:]</td>
+<td align="center">[a-z]  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">[:punct:]</td>
+<td align="center">既不属于[:alnum:]，也不属于[:cntrl:]的字符  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">[:space:]</td>
+<td align="center">[\f\t\n\r\v ]  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">[:upper:]</td>
+<td align="center">[A-Z]  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">[:xdigit:]</td>
+<td align="center">[a-fA-F0-9]  </td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>重复匹配</h2>
+
+<ul>
+<li>+出现1次及以上，不包括0次。（是一个元字符，需要使用\进行转义）<br/>
+在[]中出现的类似+，.这样的元字符可以不被转义，可以正常使用，但是转义了也没有坏处。</li>
+<li>*出现0次及以上，包括0次。（是一个元字符，需要使用\进行转义）</li>
+<li>?出现0次或者1次。（是一个元字符，需要使用\进行转义）</li>
+<li>{} 出现的次数，用来精确匹配。可以是一个确定的数字，也可以是一个区间。<br/>
+  如a{6} 出现6次a
+  a{3,5} 至少3次a，最多5次a<br/>
+  a{3,}  至少出现3次a，上限没有限制
+<strong>注意：</strong>
+在匹最好使用\/来进行匹配，防止不必要的麻烦。</li>
+</ul>
+
+
+<p>+,*,{n,}都是贪婪型匹配，每次都尽可能的匹配更长的字符。若想使用这些的懒惰型匹配，在这些后面添加一个?即可。</p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="center">贪婪型</th>
+<th align="center">懒惰型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td align="center">*</td>
+<td align="center">*?</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">+</td>
+<td align="center">+?</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">{n,}</td>
+<td align="center">{n,}?</td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>位置匹配</h2>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="center">正则表达式</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td align="center">\b</td>
+<td align="center">单词边界（用于一个\w与一个\W之间的匹配)|</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">\B</td>
+<td align="center">非单词边界</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">^</td>
+<td align="center">字符串开头</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">$</td>
+<td align="center">字符串结尾</td>
+</tr>
+</tbody>
+</table>
+
+
+<h1>使用子表达式</h1>
+
+<p><code>()</code>是元字符，使用它们时需要使用转义，用于将一个子表达式合并在一起组成一个完整的部分。<br/>
+<code>|</code>或者<code>,</code>是一个元字符，使用的时候需要使用转义。</p>
+
+<h1>回溯引用</h1>
+
+<p>指的是模式的后半部分引用在前半部分中定义的子表达式，可以把回溯表达式想象成变量。
+\1 代表前面模式里的第一个表达式。（需要用括号括起来）</p>
+
+<h2>大小写字母转换</h2>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="center">正则表达式</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td align="center">\E</td>
+<td align="left">结束\L或\U转换</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">\l</td>
+<td align="left">下一个小写</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">\L</td>
+<td align="left">\L和\E之间的全部小写</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">\u</td>
+<td align="left">下一个大写</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">\U</td>
+<td align="left">\U和\E之间的全部大写</td>
+</tr>
+</tbody>
+</table>
+
+
+<h1>前后查找</h1>
+
+<h2>向前查找</h2>
+
+<p>向前查找模式其实就是一个以<code>?=</code>开头的子表达式，需要匹配的文本跟在=的后面。找到=后面的即可，不消费它，即不把它包括在内。</p>
+
+<p>例子：</p>
+
+<blockquote><p>.+(?=:)</p></blockquote>
+
+<p><strong>提示：</strong><br/>
+任何一个子表达式都可以转换为一个向前查找表达式，只要给它加上一个?=前缀即可。</p>
+
+<h2>向后查找</h2>
+
+<blockquote><p><code>?&lt;=</code><br/>
+例子：
+(?&lt;=\$)</p>
+
+<pre><code>寻找$符号但是不消费它
+</code></pre>
+
+<p><strong>警告：</strong>向前查找模式的长度是可变的，它们可以包含<code>.</code>和<code>+</code>之类的元字符，长度很灵活。而向后查找模式只能是固定长度。</p>
+
+<h2>负向前查找</h2>
+
+<p>?!</p>
+
+<h2>负向后查找</h2>
+
+<p>?&lt;!</p></blockquote>
+
+<h1>嵌入式条件</h1>
+
+<p>Regex中的条件用<code>?</code>来定义</p>
+
+<h2>回溯引用中的条件</h2>
+
+<blockquote><p>?(backreferrenc)true-regex)<br/>
+?(backreferrenc)true-regex|false-regex)</p>
+
+<h2>前后查找条件</h2></blockquote>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -766,46 +1322,6 @@ int((A+B-1)/B) = N + 1 + int((M-1)/B) = N + 1</p></blockquote>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/03/19/moder_operation_system_process/">现代操作系统：进程（笔记）</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-03-19T00:00:00+08:00" pubdate data-updated="true">Mar 19<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h3>进程</h3>
-
-<h4>进程模型</h4>
-
-<p>一个进程就是一个正在执行的程序实例，包括程序计数器、寄存器和变量的当前值。一个进程就是某种类型的一个活动，它有程序、输入、输出以及状态。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/4/">&larr; Older</a>
@@ -818,12 +1334,32 @@ int((A+B-1)/B) = N + 1 + int((M-1)/B) = N + 1</p></blockquote>
 </div>
 <aside class="sidebar">
   
-    <section>
+    
+<section>
+<h1>分类</h1>
+<ul>
+  <li><a href='/blog/categories/c语言'>C语言 (1)</a></li>
+  <li><a href='/blog/categories/git'>Git (3)</a></li>
+  <li><a href='/blog/categories/linux'>Linux (12)</a></li>
+  <li><a href='/blog/categories/notes'>Notes (22)</a></li>
+  <li><a href='/blog/categories/octopress'>Octopress (1)</a></li>
+  <li><a href='/blog/categories/others'>Others (1)</a></li>
+  <li><a href='/blog/categories/python'>Python (1)</a></li>
+  <li><a href='/blog/categories/vim'>Vim (1)</a></li>
+  <li><a href='/blog/categories/wsn'>Wsn (1)</a></li>
+</ul>
+</section>
+
+<section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
     
       <li class="post">
         <a href="/blog/2012/06/07/octopress-add-tag/">Octopress增加Tag标签</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/07/octopress-add-tag/">Octopress添加标签</a>
       </li>
     
       <li class="post">
@@ -840,10 +1376,6 @@ int((A+B-1)/B) = N + 1 + int((M-1)/B) = N + 1</p></blockquote>
     
       <li class="post">
         <a href="/blog/2012/06/05/vim_regex_learning/">VIM正则表达式学习</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/05/vim_regex_case/">VIM使用正则表达式改变大小写</a>
       </li>
     
   </ul>

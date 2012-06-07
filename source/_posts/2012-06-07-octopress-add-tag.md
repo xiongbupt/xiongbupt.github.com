@@ -3,12 +3,15 @@ layout: post
 title: "Octopress添加标签"
 category: Notes
 tags: [VIM, Learning]
+toc: true
 ---
 
 ##前因
 由于之前参考中文的搜索，结果都不理想，推翻重来，直接使用[google][l1]使用`octopress tag`关键词搜索到的[第一个返回结果][l2]来修改，下面记录如下。
 ###显示所有的便签列表
 修改`source/_layouts/post.html`文件，使它们include一个名字为`tags.html`的新文件。
+
+<!--more-->
 
 创建一个新文件`source/_includes/post/tags.html`，整个文件的内容如下所示：
     <div id="tag_list">

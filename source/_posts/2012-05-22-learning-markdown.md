@@ -2,7 +2,7 @@
 layout: post
 title: "markdown基本语法学习"
 category: Notes
-tags: [Markdonw, Learning]
+tags: [Markdown, Learning]
 ---
 #markdown基本语法
 摘抄自*http://wowubuntu.com/markdown/*

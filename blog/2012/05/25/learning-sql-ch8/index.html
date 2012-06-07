@@ -134,6 +134,11 @@
 
 <p><code>COUNT()</code>称为聚集函数，可以计算每个分组的行数，如下面的例子所示。本例相对于上例来说仅仅添加了<code>COUNT()</code>函数来完成聚集功能。</p>
 
+<!--more-->
+
+
+
+
 <div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">open_emp_id</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="n">how_many</span>
     <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">account</span>
     <span class="o">-&gt;</span> <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">open_emp_id</span><span class="p">;</span>

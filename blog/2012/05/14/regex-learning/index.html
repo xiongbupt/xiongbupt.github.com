@@ -120,7 +120,7 @@ perl基本表达式 -o
   </header>
 
 
-<div class="entry-content"><h1>不同程序中的regex的使用</h1>
+<div class="entry-content"><h2>不同程序中的regex的使用</h2>
 
 <h3>grep</h3>
 
@@ -225,6 +225,9 @@ perl基本表达式 -o
 </tr>
 </tbody>
 </table>
+
+
+<!--more-->
 
 
 <h2>匹配纯字符串</h2>
@@ -538,17 +541,17 @@ perl基本表达式 -o
 </table>
 
 
-<h1>使用子表达式</h1>
+<h2>使用子表达式</h2>
 
 <p><code>()</code>是元字符，使用它们时需要使用转义，用于将一个子表达式合并在一起组成一个完整的部分。<br/>
 <code>|</code>或者<code>,</code>是一个元字符，使用的时候需要使用转义。</p>
 
-<h1>回溯引用</h1>
+<h2>回溯引用</h2>
 
 <p>指的是模式的后半部分引用在前半部分中定义的子表达式，可以把回溯表达式想象成变量。
 \1 代表前面模式里的第一个表达式。（需要用括号括起来）</p>
 
-<h2>大小写字母转换</h2>
+<h3>大小写字母转换</h3>
 
 <table>
 <thead>
@@ -588,9 +591,9 @@ perl基本表达式 -o
 </table>
 
 
-<h1>前后查找</h1>
+<h2>前后查找</h2>
 
-<h2>向前查找</h2>
+<h3>向前查找</h3>
 
 <p>向前查找模式其实就是一个以<code>?=</code>开头的子表达式，需要匹配的文本跟在=的后面。找到=后面的即可，不消费它，即不把它包括在内。</p>
 
@@ -601,7 +604,7 @@ perl基本表达式 -o
 <p><strong>提示：</strong><br/>
 任何一个子表达式都可以转换为一个向前查找表达式，只要给它加上一个?=前缀即可。</p>
 
-<h2>向后查找</h2>
+<h3>向后查找</h3>
 
 <blockquote><p><code>?&lt;=</code><br/>
 例子：
@@ -616,11 +619,11 @@ perl基本表达式 -o
 
 <p>?!</p>
 
-<h2>负向后查找</h2>
+<h3>负向后查找</h3>
 
 <p>?&lt;!</p></blockquote>
 
-<h1>嵌入式条件</h1>
+<h2>嵌入式条件</h2>
 
 <p>Regex中的条件用<code>?</code>来定义</p>
 
@@ -629,7 +632,7 @@ perl基本表达式 -o
 <blockquote><p>?(backreferrenc)true-regex)<br/>
 ?(backreferrenc)true-regex|false-regex)</p>
 
-<h2>前后查找条件</h2></blockquote>
+<h3>前后查找条件</h3></blockquote>
 </div>
 
 

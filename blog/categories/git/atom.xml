@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Git | Keep Learning]]></title>
   <link href="http://xiongbupt.github.com/blog/categories/git/atom.xml" rel="self"/>
   <link href="http://xiongbupt.github.com/"/>
-  <updated>2012-06-07T17:41:58+08:00</updated>
+  <updated>2012-06-07T20:03:26+08:00</updated>
   <id>http://xiongbupt.github.com/</id>
   <author>
     <name><![CDATA[Xiongbupt]]></name>
@@ -18,7 +18,7 @@
     <link href="http://xiongbupt.github.com/blog/2012/06/01/git-lab-use/"/>
     <updated>2012-06-01T00:00:00+08:00</updated>
     <id>http://xiongbupt.github.com/blog/2012/06/01/git-lab-use</id>
-    <content type="html"><![CDATA[<h1>Git个人电脑操作</h1>
+    <content type="html"><![CDATA[<h2>Git个人电脑操作</h2>
 
 <p>Git版本控制有三个区域，分别是工作目录、暂存区和git目录。
 <img src="/images/fig0101-tn.png" title="Git 本地操作" alt="Git的本地操作" /></p>
@@ -29,7 +29,10 @@
 
 <p>在使用<code>git commit</code>将本地工作的内容提交到git工作目录之后，本地代码的修改工作便已经完成。</p>
 
-<h1>Git获取服务器端代码</h1>
+<!--more-->
+
+
+<h2>Git获取服务器端代码</h2>
 
 <p>使用git从服务器端下载最新的代码，目前服务器端的ip地址为10.117.6.138。使用</p>
 
@@ -38,7 +41,7 @@
 
 <p>下载源代码之后，接下来便可以对代码进行修改了。每次修改之后，均使用<code>git add</code>和<code>git commit</code>在本地完成提交操作。这些操作与前面提到的在个人电脑上的操作类似。</p>
 
-<h1>在个人电脑上创建新分支</h1>
+<h2>在个人电脑上创建新分支</h2>
 
 <p>git创建分支的操作非常简单，而且代价也很小。</p>
 
@@ -62,7 +65,7 @@
 git checkout new_branch_name
 </code></pre>
 
-<h1>查看服务器端的分支</h1>
+<h2>查看服务器端的分支</h2>
 
 <p>如果想要查看服务器端都有什么分支，可以使用如下：</p>
 
@@ -71,7 +74,7 @@ git checkout new_branch_name
 
 <p>上面这条指令将会输出远端服务器端的分支，以及个人的电脑是否已经和这些分支同步。</p>
 
-<h1>推送代码至Git服务器端</h1>
+<h2>推送代码至Git服务器端</h2>
 
 <p>当自己需要将代码推送到Git服务器端时，需要确保服务器端的代码与自己下载的代码是一致的，因此推荐每次在向服务器端推送代码之前，先使用<code>git pull</code>操作将服务器端的代码与本地的代码进行合并，完成合并之后再进行提交。若未进行此操作，将代码推送至服务器端将会失败，服务器端将会给出提示。<br/>
 从Git服务器端下载代码有两种方式，一种是<code>git pull</code>，另外一种是<code>git fetch</code>。其中<code>git pull</code>操作不仅仅执行了<code>git fetch</code>，同时，它还将远端仓库的版本与当前的版本进行了合并即<code>merge</code>操作。如果可以直接合并，将不需要在本地端手工合并，Git将会自动合并。<br/>
@@ -90,7 +93,7 @@ git push origin branch_name
 
 <p>其中<code>local_branch</code>是本地分支的名字，而<code>remote_branch</code>则为远端服务器的分支名字。</p>
 
-<h1>切换到远端Git服务器上分支</h1>
+<h2>切换到远端Git服务器上分支</h2>
 
 <p>从服务器上使用<code>git fetch</code>下载代码之后，个人PC上的代码库便和服务端的代码库的版本是一致的。此时，如果个人PC希望切换到远端服务器的某个分支，必须在自己的代码库中再创建一个分支，建议将该分支的名字命名为与远端服务器的分支名字相同，这样在推送到服务器端时可以较为方便，防止再在远端服务器上创建一个新的分支。具体操作可以如下所示：</p>
 
@@ -104,7 +107,7 @@ git checkout -b branch_name origin/branch_name
 <pre><code>git push origin branch_name
 </code></pre>
 
-<h1>开发流程简介</h1>
+<h2>开发流程简介</h2>
 
 <p>在创建项目之前，需要在服务器端创建一个版本库。这个操作需要有远端服务器的登录权限，可以在相应的目录下创建目录及文件，目前对服务器的登录为ssh的远程登录方式。在登录到服务器端后，使用<em><code>git init --bare</code></em> 创建一个空的仓库即可。也可以在本地创建仓库之后，使用如下命令将仓库拷贝到远端服务器。</p>
 
@@ -171,7 +174,7 @@ git checkout -b branch_name origin/branch_name
 
 <p>总之，git的提交分支的方式便是按照上面的一个简单的说明进行开发。</p>
 
-<h2>git版本回退</h2>
+<h3>git版本回退</h3>
 
 <p>如果在开发过程中，发现出现了错误，想要将git的版本回退到某个时期，可以使用</p>
 
@@ -185,7 +188,7 @@ git checkout -b branch_name origin/branch_name
 
 <p>这样可以以这个hash_number代表的历史版本。</p>
 
-<h2>git版本合并</h2>
+<h3>git版本合并</h3>
 
 <p>从服务器端下载代码之后，如果出现了冲突，需要使用</p>
 
@@ -205,7 +208,7 @@ git checkout -b branch_name origin/branch_name
 
 <p>再来尝试手动合并即可。</p>
 
-<h1>git基本命令介绍</h1>
+<h2>git基本命令介绍</h2>
 
 <p>从服务器端下载代码</p>
 
@@ -361,6 +364,9 @@ git config --global core.autocrlf input<em>(Linux下使用）</em></p>
 <code>git log reB --not reA</code><br/>
 上述三个命令等价，均是指包含reB而不包含reA</p>
 
+<!--more-->
+
+
 <p><code>git log refA refB ^refC</code><br/>
 <code>git log refA refB --not refC</code><br/>
 <code>...</code>三点描述符，显示的是并集减去交集<br/>
@@ -382,9 +388,10 @@ git config --global core.autocrlf input<em>(Linux下使用）</em></p>
 <h3>改变最近一次提交</h3>
 
 <p>修改最后一次的声明，输入下面的命令即可
-{% highlight bash %}
-$git commit --amend
-{% endhighlight %}
+<div class="highlight"><pre><code class="bash"><span class="nv">$git</span> commit --amend
+</code></pre>
+</div>
+
 如果在依次提交之后，发现还有文件没有增加进来，可以使用git add。发现文件需要删除，使用git rm。在完成这些操作之后，使用git commit --amend操作来进行修正。这样，便会将这次更新合并到上次的更新上去。注意不要在推送之后再使用这个方法。</p>
 
 <h3>修改多次提交说明</h3>
@@ -414,11 +421,15 @@ $git commit --amend
     <link href="http://xiongbupt.github.com/blog/2012/02/22/try-github-blog/"/>
     <updated>2012-02-22T00:00:00+08:00</updated>
     <id>http://xiongbupt.github.com/blog/2012/02/22/try-github-blog</id>
-    <content type="html"><![CDATA[<h1>在Linux上使用git</h1>
+    <content type="html"><![CDATA[<h2>在Linux上使用git</h2>
 
 <p>git作为一款分布式版本控制软件，在Linux上的安装相当容易。各个不同的发行版使用源更新工具安装git即可。具体步骤可以使用google搜索对应版本的git的安装。
-在git安装完成之后，对git全局用户进行初始化设置。
-<code>git config --global user.name xxx</code>
+在git安装完成之后，对git全局用户进行初始化设置。</p>
+
+<!--more-->
+
+
+<p><code>git config --global user.name xxx</code>
 <code>git config --global user.email xxx@xxx</code>
 完成这些基本设置之后，在<a href="https://github.com">github网址</a>上成功注册帐号，在登录后的界面上点击Create A repository，创建一个新的项目。项目名称命名为xxx.github.com，其中xxx为自身注册的用户名。</p>
 

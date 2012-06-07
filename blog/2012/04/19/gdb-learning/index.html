@@ -110,7 +110,7 @@
   </header>
 
 
-<div class="entry-content"><h1>GBD指令</h1>
+<div class="entry-content"><h2>GBD指令</h2>
 
 <p>backtrace 在程序出现错误之后，使用它可以看出出错的函数被哪个函数所调用。</p>
 
@@ -124,6 +124,9 @@
 
 <pre><code>如list 1,90用来查看1到90行的代码。
 </code></pre></blockquote>
+
+<!--more-->
+
 
 <p>用来设置断点</p>
 
@@ -141,9 +144,9 @@
 
 <blockquote><p>condition 1 var==some_value</p></blockquote>
 
-<h1><a href="http://fanqiang.chinaunix.net/program/other/2006-07-14/4834.shtml">摘抄</a></h1>
+<h2><a href="http://fanqiang.chinaunix.net/program/other/2006-07-14/4834.shtml">摘抄</a></h2>
 
-<h2>断点(breakpoint)</h2>
+<h3>断点(breakpoint)</h3>
 
 <p>break命令（可以简写为b）可以用来在调试的程序中设置断点，该命令有如下四种形式：</p>
 
@@ -178,7 +181,7 @@
 
 <p>从断点继续运行：countinue 命令</p>
 
-<h2>断点的管理</h2>
+<h3>断点的管理</h3>
 
 <ol>
 <li>显示当前gdb的断点信息：
@@ -222,7 +225,7 @@
 </ol>
 
 
-<h2>变量的检查和赋值</h2>
+<h3>变量的检查和赋值</h3>
 
 <ul>
 <li>whatis:识别数组或变量的类型</li>
@@ -232,18 +235,18 @@
 </ul>
 
 
-<h2>单步执行</h2>
+<h3>单步执行</h3>
 
-<p>不进入的单步执行</p>
+<p>不进入函数的单步执行</p>
 
 <blockquote><p>next</p></blockquote>
 
-<p>进入的单步执行</p>
+<p>进入函数的单步执行</p>
 
 <blockquote><p>step
 如果已经进入了某函数，而想退出该函数返回到它的调用函数中，可使用命令finish</p></blockquote>
 
-<h3>常用的gdb命令</h3>
+<h4>常用的gdb命令</h4>
 
 <ul>
 <li>backtrace 显示程序中的当前位置和表示如何到达当前位置的栈跟踪（同义词：where）</li>

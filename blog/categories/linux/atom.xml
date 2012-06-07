@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | Keep Learning]]></title>
   <link href="http://xiongbupt.github.com/blog/categories/linux/atom.xml" rel="self"/>
   <link href="http://xiongbupt.github.com/"/>
-  <updated>2012-06-07T17:41:58+08:00</updated>
+  <updated>2012-06-07T20:03:26+08:00</updated>
   <id>http://xiongbupt.github.com/</id>
   <author>
     <name><![CDATA[Xiongbupt]]></name>
@@ -103,7 +103,7 @@ echo 'your-domain.com' >> source/CNAME</p>
     <link href="http://xiongbupt.github.com/blog/2012/04/01/debian/"/>
     <updated>2012-04-01T00:00:00+08:00</updated>
     <id>http://xiongbupt.github.com/blog/2012/04/01/debian</id>
-    <content type="html"><![CDATA[<h1>添加用户至sudo用户组并去除密码</h1>
+    <content type="html"><![CDATA[<h2>添加用户至sudo用户组并去除密码</h2>
 
 <p>visudo修改为不需要密码，将</p>
 
@@ -111,19 +111,24 @@ echo 'your-domain.com' >> source/CNAME</p>
 修改为
 %sudo ALL=(ALL) NOPASSWD: ALL<br/>
 将用户user_name添加至sudo用户组<br/>
-{% highlight bash %}
-adduser user_name sudo
-{% endhighlight %}
-重新登录后，user_name用户即已经位于sudo用户组中。</p>
+<div class="highlight"><pre><code class="bash">adduser user_name sudo
+</code></pre>
+</div>
 
-<h1>安装基本的软件</h1>
+重新登录后，user_name用户即已经位于sudo用户组中。</p></blockquote>
 
-<p>{% highlight bash %}
-sudo dpkg -i wireless-crda-1.14_i386.deb
+<!--more-->
+
+
+<h2>安装基本的软件</h2>
+
+<p><div class="highlight"><pre><code class="bash">sudo dpkg -i wireless-crda-1.14_i386.deb
 sudo dpkg -i linux-headers-2.6.30-02063010_2.6.30-02063010_all.deb
 sudo dpkg -i linux-headers-2.6.30-02063010-generic_2.6.30-02063010_all.deb
 sudo dpkg -i linux-image-2.6.30-***.deb
-{% endhighlight %}</p></blockquote>
+</code></pre>
+</div>
+</p>
 
 <p>参照<a href="http://bbs.byr.cn/#!article/Linux/82799">北邮人论坛的linux版块</a>，设置debian的源
 之后使用<code>sudo apt-get install</code>安装了
@@ -140,19 +145,20 @@ sudo dpkg -i linux-image-2.6.30-***.deb
 * make
 * build-essential</p>
 
-<h1>将默认编辑器由gedit转换为gvim</h1>
+<h2>将默认编辑器由gedit转换为gvim</h2>
 
-<p>{% highlight bash %}
-sudo cp /etc/gnome/defaults.list /etc/gnome/defaults.list.backup
+<p><div class="highlight"><pre><code class="bash">sudo cp /etc/gnome/defaults.list /etc/gnome/defaults.list.backup
 sduo vim /etc/gnome/defaults.list
-{% endhighlight %}
+</code></pre>
+</div>
+
 将该文件中的<code>gedit.desktop</code>全部替换为<code>gvim.desktop</code></p>
 
-<h1>添加ifconfig等命令到普通用户</h1>
+<h2>添加ifconfig等命令到普通用户</h2>
 
 <p>修改<code>/etc/profile</code>，将第7行的PATH中添加<code>/sbin</code></p>
 
-<h1>安装中文字体</h1>
+<h2>安装中文字体</h2>
 
 <ul>
 <li>tty-wqy-zenhei</li>
@@ -175,42 +181,51 @@ sduo vim /etc/gnome/defaults.list
 <blockquote><p>xp</p></blockquote>
 
 <p>可交换的替换单词
-{% highlight bash %}
-1G              #到第一行
-/idiot<enter>   #搜索单词idiot
-cwmanager       #将idiot替换为manager
-n               #搜索下一个idiot
-.               #重复上面的替换操作
-{% endhighlight %}</p>
+<div class="highlight"><pre><code class="bash">1G              <span class="c">#到第一行</span>
+/idiot&lt;enter&gt;   <span class="c">#搜索单词idiot</span>
+cwmanager       <span class="c">#将idiot替换为manager</span>
+n               <span class="c">#搜索下一个idiot</span>
+.               <span class="c">#重复上面的替换操作</span>
+</code></pre>
+</div>
+</p>
 
-<p>{% highlight bash %}
-%s/&lt;idiot>/manager/gc #直接在命令行模式下进行输入，使用全局替换的方式
-{% endhighlight %}
+<p><div class="highlight"><pre><code class="bash">%s/&amp;lt;idiot&gt;/manager/gc <span class="c">#直接在命令行模式下进行输入，使用全局替换的方式</span>
+</code></pre>
+</div>
+
 /&lt;idiot>/</p>
 
 <blockquote><p>This text specifies the text we are looking for wand want. The &lt; tells Vim to match a word start and the > tells Vim to match the end of a word.<br/>
 &lt;表明匹配的是一个单词的开始，>表明匹配的是一个单词的结束。</p></blockquote>
 
+<!--more-->
+
+
 <p>检查Makefile错误的好方法，由于命令是以tab开始的，若是空格将有错误
-{% highlight bash %}
-:set list
-{% endhighlight %}
+<div class="highlight"><pre><code class="bash">:set list
+</code></pre>
+</div>
+
 可以显示出空格和tab的区别，tab是<sup>I</sup></p>
 
 <p>vim读取man文件
-{% highlight bash %}
-man subject|ul -i|vim -
-{% endhighlight %}</p>
+<div class="highlight"><pre><code class="bash">man subject|ul -i|vim -
+</code></pre>
+</div>
+</p>
 
 <p>vim移除行末的空格
-{% highlight bash %}
-:1,$s/[tab]*$//
-{% endhighlight %}</p>
+<div class="highlight"><pre><code class="bash">:1,<span class="nv">$s</span>/<span class="o">[</span>tab<span class="o">]</span>*<span class="nv">$/</span>/
+</code></pre>
+</div>
+</p>
 
 <p>将Last, First改为First Last
-{% highlight bash %}
-:1,$s/([<sup>,]<em>),(.</em>$)/\2\1/</sup>
-{% endhighlight %}</p>
+<div class="highlight"><pre><code class="bash">:1,<span class="nv">$s</span>/<span class="o">([</span>&lt;sup&gt;,<span class="o">]</span>&lt;em&gt;<span class="o">)</span>,<span class="o">(</span>.&lt;/em&gt;<span class="nv">$)</span>/<span class="se">\2\1</span>/&lt;/sup&gt;
+</code></pre>
+</div>
+</p>
 
 <blockquote><p>The ( ... ) delimiters are used to inform the editor that the text that matches the regular expression side is to be treated special.<br/>
 (...)分隔符告知编辑器将括号内的内容应该被当做正则表达式来对待（？？？）</p></blockquote>
@@ -227,9 +242,10 @@ man subject|ul -i|vim -
 
 <p>上述操作中，*代表的是光标所在位置，在普通模式下，输入中间的命令，将会得到后面的效果</p>
 
-<p>{% highlight bash %}
-vim --startuptime timefile the_file_you_want_to_edit
-{% endhighlight %}
+<p><div class="highlight"><pre><code class="bash">vim --startuptime timefile the_file_you_want_to_edit
+</code></pre>
+</div>
+
 查看vim启动时间所占用的时间比</p>
 
 <p>set list查看不可见字符</p>
@@ -241,13 +257,19 @@ vim --startuptime timefile the_file_you_want_to_edit
     <link href="http://xiongbupt.github.com/blog/2012/03/26/linux_timer/"/>
     <updated>2012-03-26T00:00:00+08:00</updated>
     <id>http://xiongbupt.github.com/blog/2012/03/26/linux_timer</id>
-    <content type="html"><![CDATA[<p>{% highlight c %}
-int mod_timer(struct timer_list <em>timer，unsigned long expires)
-{% endhighlight %}
-该函数负责修改内核定时器timer的超时字段expires。该函数可以修改激活和没有激活的内核定时器的超时时间，并把它们都设置为激活状态；返回值为0表示修改的内核定时器在修改之前处于未激活状态，返回值为1表示修改的内核定时器在修改之前处于已激活状态。
-{% highlight c %}
-del_timer(sturct timer_list </em>timer)
-{% endhighlight %}
+    <content type="html"><![CDATA[<p><div class="highlight"><pre><code class="c"><span class="kt">int</span> <span class="n">mod_timer</span><span class="p">(</span><span class="k">struct</span> <span class="n">timer_list</span> <span class="o">*</span><span class="n">timer</span><span class="err">，</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">expires</span><span class="p">)</span>
+</code></pre>
+</div>
+
+该函数负责修改内核定时器timer的超时字段expires。该函数可以修改激活和没有激活的内核定时器的超时时间，并把它们都设置为激活状态；返回值为0表示修改的内核定时器在修改之前处于未激活状态，返回值为1表示修改的内核定时器在修改之前处于已激活状态。</p>
+
+<!--more-->
+
+
+<p><div class="highlight"><pre><code class="c"><span class="n">del_timer</span><span class="p">(</span><span class="n">sturct</span> <span class="n">timer_list</span> <span class="o">*</span><span class="n">timer</span><span class="p">)</span>
+</code></pre>
+</div>
+
 返回值为0表示修删的内核定时器在删除之前处于未激活状态，返回值为1表示删除的内核定时器在删除之前处于已激活状态。</p>
 ]]></content>
   </entry>

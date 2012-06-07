@@ -110,7 +110,7 @@
   </header>
 
 
-<div class="entry-content"><h1>Git个人电脑操作</h1>
+<div class="entry-content"><h2>Git个人电脑操作</h2>
 
 <p>Git版本控制有三个区域，分别是工作目录、暂存区和git目录。
 <img src="/images/fig0101-tn.png" title="Git 本地操作" alt="Git的本地操作" /></p>
@@ -121,7 +121,10 @@
 
 <p>在使用<code>git commit</code>将本地工作的内容提交到git工作目录之后，本地代码的修改工作便已经完成。</p>
 
-<h1>Git获取服务器端代码</h1>
+<!--more-->
+
+
+<h2>Git获取服务器端代码</h2>
 
 <p>使用git从服务器端下载最新的代码，目前服务器端的ip地址为10.117.6.138。使用</p>
 
@@ -130,7 +133,7 @@
 
 <p>下载源代码之后，接下来便可以对代码进行修改了。每次修改之后，均使用<code>git add</code>和<code>git commit</code>在本地完成提交操作。这些操作与前面提到的在个人电脑上的操作类似。</p>
 
-<h1>在个人电脑上创建新分支</h1>
+<h2>在个人电脑上创建新分支</h2>
 
 <p>git创建分支的操作非常简单，而且代价也很小。</p>
 
@@ -154,7 +157,7 @@
 git checkout new_branch_name
 </code></pre>
 
-<h1>查看服务器端的分支</h1>
+<h2>查看服务器端的分支</h2>
 
 <p>如果想要查看服务器端都有什么分支，可以使用如下：</p>
 
@@ -163,7 +166,7 @@ git checkout new_branch_name
 
 <p>上面这条指令将会输出远端服务器端的分支，以及个人的电脑是否已经和这些分支同步。</p>
 
-<h1>推送代码至Git服务器端</h1>
+<h2>推送代码至Git服务器端</h2>
 
 <p>当自己需要将代码推送到Git服务器端时，需要确保服务器端的代码与自己下载的代码是一致的，因此推荐每次在向服务器端推送代码之前，先使用<code>git pull</code>操作将服务器端的代码与本地的代码进行合并，完成合并之后再进行提交。若未进行此操作，将代码推送至服务器端将会失败，服务器端将会给出提示。<br/>
 从Git服务器端下载代码有两种方式，一种是<code>git pull</code>，另外一种是<code>git fetch</code>。其中<code>git pull</code>操作不仅仅执行了<code>git fetch</code>，同时，它还将远端仓库的版本与当前的版本进行了合并即<code>merge</code>操作。如果可以直接合并，将不需要在本地端手工合并，Git将会自动合并。<br/>
@@ -182,7 +185,7 @@ git push origin branch_name
 
 <p>其中<code>local_branch</code>是本地分支的名字，而<code>remote_branch</code>则为远端服务器的分支名字。</p>
 
-<h1>切换到远端Git服务器上分支</h1>
+<h2>切换到远端Git服务器上分支</h2>
 
 <p>从服务器上使用<code>git fetch</code>下载代码之后，个人PC上的代码库便和服务端的代码库的版本是一致的。此时，如果个人PC希望切换到远端服务器的某个分支，必须在自己的代码库中再创建一个分支，建议将该分支的名字命名为与远端服务器的分支名字相同，这样在推送到服务器端时可以较为方便，防止再在远端服务器上创建一个新的分支。具体操作可以如下所示：</p>
 
@@ -196,7 +199,7 @@ git checkout -b branch_name origin/branch_name
 <pre><code>git push origin branch_name
 </code></pre>
 
-<h1>开发流程简介</h1>
+<h2>开发流程简介</h2>
 
 <p>在创建项目之前，需要在服务器端创建一个版本库。这个操作需要有远端服务器的登录权限，可以在相应的目录下创建目录及文件，目前对服务器的登录为ssh的远程登录方式。在登录到服务器端后，使用<em><code>git init --bare</code></em> 创建一个空的仓库即可。也可以在本地创建仓库之后，使用如下命令将仓库拷贝到远端服务器。</p>
 
@@ -263,7 +266,7 @@ git checkout -b branch_name origin/branch_name
 
 <p>总之，git的提交分支的方式便是按照上面的一个简单的说明进行开发。</p>
 
-<h2>git版本回退</h2>
+<h3>git版本回退</h3>
 
 <p>如果在开发过程中，发现出现了错误，想要将git的版本回退到某个时期，可以使用</p>
 
@@ -277,7 +280,7 @@ git checkout -b branch_name origin/branch_name
 
 <p>这样可以以这个hash_number代表的历史版本。</p>
 
-<h2>git版本合并</h2>
+<h3>git版本合并</h3>
 
 <p>从服务器端下载代码之后，如果出现了冲突，需要使用</p>
 
@@ -297,7 +300,7 @@ git checkout -b branch_name origin/branch_name
 
 <p>再来尝试手动合并即可。</p>
 
-<h1>git基本命令介绍</h1>
+<h2>git基本命令介绍</h2>
 
 <p>从服务器端下载代码</p>
 

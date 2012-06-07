@@ -9,7 +9,7 @@
   <meta name="author" content="Xiongbupt">
 
   
-  <meta name="description" content="GBD指令 backtrace 在程序出现错误之后，使用它可以看出出错的函数被哪个函数所调用。 查看内存地址存放的值 x 内存地址(examine) 查看代码。 list 如list 1,90用来查看1到90行的代码。 用来设置断点 break 设置到函数的断点,函数所在行也可以设置断点 &hellip;">
+  <meta name="description" content="GBD指令 backtrace 在程序出现错误之后，使用它可以看出出错的函数被哪个函数所调用。 查看内存地址存放的值 x 内存地址(examine) 查看代码。 list 如list 1,90用来查看1到90行的代码。 ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -113,7 +113,7 @@
   </header>
 
 
-  <div class="entry-content"><h1>GBD指令</h1>
+  <div class="entry-content"><h2>GBD指令</h2>
 
 <p>backtrace 在程序出现错误之后，使用它可以看出出错的函数被哪个函数所调用。</p>
 
@@ -128,161 +128,12 @@
 <pre><code>如list 1,90用来查看1到90行的代码。
 </code></pre></blockquote>
 
-<p>用来设置断点</p>
-
-<blockquote><p>break</p></blockquote>
-
-<p>设置到函数的断点,函数所在行也可以设置断点</p>
-
-<blockquote><p>break 函数名</p></blockquote>
-
-<p>设置条件</p>
-
-<blockquote><p>condition</p></blockquote>
-
-<p>仅仅在var变量的值为some_value时使用断点，与断点一起使用，可以减少断点的量</p>
-
-<blockquote><p>condition 1 var==some_value</p></blockquote>
-
-<h1><a href="http://fanqiang.chinaunix.net/program/other/2006-07-14/4834.shtml">摘抄</a></h1>
-
-<h2>断点(breakpoint)</h2>
-
-<p>break命令（可以简写为b）可以用来在调试的程序中设置断点，该命令有如下四种形式：</p>
-
-<p>使程序恰好在执行给定行之前停止。</p>
-
-<blockquote><p>break line-number</p></blockquote>
-
-<p>使程序恰好在进入指定的函数之前停止。</p>
-
-<blockquote><p>break function-name</p></blockquote>
-
-<p>如果condition（条件）是真，程序到达指定行或函数时停止。</p>
-
-<blockquote><p>break line-or-function if condition</p></blockquote>
-
-<p>在指定例程的入口处设置断点</p>
-
-<blockquote><p>break routine-name</p></blockquote>
-
-<p>如果该程序是由很多原文件构成的，你可以在各个原文件中设置断点，而不是在当前的原文件中设置断点，其方法如下：</p>
-
-<blockquote><p>(gdb) break filename:line-number
-(gdb) break filename:function-name</p></blockquote>
-
-<p>要想设置一个条件断点，可以利用break if命令，如下所示：</p>
-
-<blockquote><p>(gdb) break line-or-function if expr</p></blockquote>
-
-<p>例：</p>
-
-<blockquote><p>(gdb) break 46 if testsize==100</p></blockquote>
-
-<p>从断点继续运行：countinue 命令</p>
-
-<h2>断点的管理</h2>
-
-<ol>
-<li>显示当前gdb的断点信息：
-
-<blockquote><p>(gdb) info break</p></blockquote></li>
-</ol>
-
-
-<p>他会以如下的形式显示所有的断点信息：</p>
-
-<pre><code>Num Type Disp Enb Address What
-1 breakpoint keep y 0x000028bc in init_random at qsort2.c:155
-2 breakpoint keep y 0x0000291c in init_organ at qsort2.c:168
-(gdb)
-</code></pre>
-
-<ol>
-<li>删除指定的某个断点：
-
-<blockquote><p>(gdb) delete breakpoint 1</p></blockquote></li>
-</ol>
-
-
-<p>上面的命令将会删除编号为1的断点，如果不带编号参数，将删除所有的断点</p>
-
-<blockquote><p>(gdb) delete breakpoint</p></blockquote>
-
-<ol>
-<li><p>禁止使用某个断点
-下面的命令将禁止断点 1,同时断点信息的 (Enb)域将变为 n</p>
-
-<blockquote><p>(gdb) disable breakpoint 1</p></blockquote></li>
-<li><p>允许使用某个断点
-命令将允许断点 1,同时断点信息的 (Enb)域将变为 y</p>
-
-<blockquote><p>(gdb) enable breakpoint 1</p></blockquote></li>
-<li><p>清除原文件中某一代码行上的所有断点</p>
-
-<blockquote><p>(gdb)clear number
- 注：number 为原文件的某个代码行的行号</p></blockquote></li>
-</ol>
-
-
-<h2>变量的检查和赋值</h2>
-
-<ul>
-<li>whatis:识别数组或变量的类型</li>
-<li>ptype:比whatis的功能更强，他可以提供一个结构的定义</li>
-<li>set variable:将值赋予变量</li>
-<li>print 除了显示一个变量的值外，还可以用来赋值</li>
-</ul>
-
-
-<h2>单步执行</h2>
-
-<p>不进入的单步执行</p>
-
-<blockquote><p>next</p></blockquote>
-
-<p>进入的单步执行</p>
-
-<blockquote><p>step
-如果已经进入了某函数，而想退出该函数返回到它的调用函数中，可使用命令finish</p></blockquote>
-
-<h3>常用的gdb命令</h3>
-
-<ul>
-<li>backtrace 显示程序中的当前位置和表示如何到达当前位置的栈跟踪（同义词：where）</li>
-<li>breakpoint 在程序中设置一个断点</li>
-<li>cd 改变当前工作目录</li>
-<li>clear 删除刚才停止处的断点</li>
-<li>commands 命中断点时，列出将要执行的命令</li>
-<li>continue 从断点开始继续执行</li>
-<li>delete 删除一个断点或监测点；也可与其他命令一起使用</li>
-<li>display 程序停止时显示变量和表达时</li>
-<li>down 下移栈帧，使得另一个函数成为当前函数</li>
-<li>frame 选择下一条continue命令的帧</li>
-<li>info 显示与该程序有关的各种信息</li>
-<li>jump 在源程序中的另一点开始运行</li>
-<li>kill 异常终止在gdb 控制下运行的程序</li>
-<li>list 列出相应于正在执行的程序的原文件内容</li>
-<li>next 执行下一个源程序行，从而执行其整体中的一个函数</li>
-<li>print 显示变量或表达式的值</li>
-<li>pwd 显示当前工作目录</li>
-<li>pype 显示一个数据结构（如一个结构或C++类）的内容</li>
-<li>quit 退出gdb</li>
-<li>reverse-search 在源文件中反向搜索正规表达式</li>
-<li>run 执行该程序</li>
-<li>search 在源文件中搜索正规表达式</li>
-<li>set variable 给变量赋值</li>
-<li>signal 将一个信号发送到正在运行的进程</li>
-<li>step 执行下一个源程序行，必要时进入下一个函数</li>
-<li>undisplay display命令的反命令，不要显示表达式</li>
-<li>until 结束当前循环</li>
-<li>up 上移栈帧，使另一函数成为当前函数</li>
-<li>watch 在程序中设置一个监测点（即数据断点）</li>
-<li>whatis 显示变量或函数类型</li>
-</ul>
-
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/04/19/gdb-learning/">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -352,7 +203,7 @@
   </header>
 
 
-  <div class="entry-content"><h1>添加用户至sudo用户组并去除密码</h1>
+  <div class="entry-content"><h2>添加用户至sudo用户组并去除密码</h2>
 
 <p>visudo修改为不需要密码，将</p>
 
@@ -368,55 +219,12 @@
 
 <p>重新登录后，user_name用户即已经位于sudo用户组中。</p>
 
-<h1>安装基本的软件</h1>
-
-<div class="highlight"><pre><code class="bash">sudo dpkg -i wireless-crda-1.14_i386.deb
-sudo dpkg -i linux-headers-2.6.30-02063010_2.6.30-02063010_all.deb
-sudo dpkg -i linux-headers-2.6.30-02063010-generic_2.6.30-02063010_all.deb
-sudo dpkg -i linux-image-2.6.30-***.deb
-</code></pre>
-</div>
-
-
-<p>参照<a href="http://bbs.byr.cn/#!article/Linux/82799">北邮人论坛的linux版块</a>，设置debian的源
-之后使用<code>sudo apt-get install</code>安装了
-* vim
-* ctags
-* cscope
-* vim-gtk
-* ibus
-* vim-doc
-* vim-scripts
-* gcc
-* locales
-* nautilus-open-terminal
-* make
-* build-essential</p>
-
-<h1>将默认编辑器由gedit转换为gvim</h1>
-
-<div class="highlight"><pre><code class="bash">sudo cp /etc/gnome/defaults.list /etc/gnome/defaults.list.backup
-sduo vim /etc/gnome/defaults.list
-</code></pre>
-</div>
-
-
-<p>将该文件中的<code>gedit.desktop</code>全部替换为<code>gvim.desktop</code></p>
-
-<h1>添加ifconfig等命令到普通用户</h1>
-
-<p>修改<code>/etc/profile</code>，将第7行的PATH中添加<code>/sbin</code></p>
-
-<h1>安装中文字体</h1>
-
-<ul>
-<li>tty-wqy-zenhei</li>
-<li>tty-wqy-microhei</li>
-<li>xfonts-intl-chinese</li>
-</ul>
-
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/04/01/debian/">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -479,61 +287,12 @@ n               <span class="c">#搜索下一个idiot</span>
 <blockquote><p>This text specifies the text we are looking for wand want. The &lt; tells Vim to match a word start and the > tells Vim to match the end of a word.<br/>
 &lt;表明匹配的是一个单词的开始，>表明匹配的是一个单词的结束。</p></blockquote>
 
-<p>检查Makefile错误的好方法，由于命令是以tab开始的，若是空格将有错误</p>
-
-<div class="highlight"><pre><code class="bash">:set list
-</code></pre>
-</div>
-
-
-<p>可以显示出空格和tab的区别，tab是<sup>I</sup></p>
-
-<p>vim读取man文件</p>
-
-<div class="highlight"><pre><code class="bash">man subject|ul -i|vim -
-</code></pre>
-</div>
-
-
-<p>vim移除行末的空格</p>
-
-<div class="highlight"><pre><code class="bash">:1,<span class="nv">$s</span>/<span class="o">[</span>tab<span class="o">]</span>*<span class="nv">$/</span>/
-</code></pre>
-</div>
-
-
-<p>将Last, First改为First Last</p>
-
-<div class="highlight"><pre><code class="bash">:1,<span class="nv">$s</span>/<span class="se">\(</span><span class="o">[</span>^,<span class="o">]</span>*<span class="se">\)</span>,<span class="se">\(</span>.*<span class="nv">$\</span><span class="o">)</span>/<span class="se">\2\1</span>/
-</code></pre>
-</div>
-
-
-<blockquote><p>The ( &#8230; ) delimiters are used to inform the editor that the text that matches the regular expression side is to be treated special.<br/>
-(&#8230;)分隔符告知编辑器将括号内的内容应该被当做正则表达式来对待（？？？）</p></blockquote>
-
-<p>操作示例</p>
-
-<pre><code>if ( x&gt;3 ) {
-  "Hello *world!"           ds"         Hello world!
-  [123+4*56]/2              cs])        (123+456)/2
-  "Look ma, I'm *HTML!"     cs"&lt;q&gt;      &lt;q&gt;Look ma, I'm HTML!&lt;/q&gt;
-  if *x&gt;3 {                 ysW(        if ( x&gt;3 ) {
-  my $str = *whee!;         vllllS'     my $str = 'whee!';
-</code></pre>
-
-<p>上述操作中，*代表的是光标所在位置，在普通模式下，输入中间的命令，将会得到后面的效果</p>
-
-<div class="highlight"><pre><code class="bash">vim --startuptime timefile the_file_you_want_to_edit
-</code></pre>
-</div>
-
-
-<p>查看vim启动时间所占用的时间比</p>
-
-<p>set list查看不可见字符</p>
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/03/30/vim-cookbook/">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -576,14 +335,12 @@ n               <span class="c">#搜索下一个idiot</span>
 
 <p>该函数负责修改内核定时器timer的超时字段expires。该函数可以修改激活和没有激活的内核定时器的超时时间，并把它们都设置为激活状态；返回值为0表示修改的内核定时器在修改之前处于未激活状态，返回值为1表示修改的内核定时器在修改之前处于已激活状态。</p>
 
-<div class="highlight"><pre><code class="c"><span class="n">del_timer</span><span class="p">(</span><span class="n">sturct</span> <span class="n">timer_list</span> <span class="o">*</span><span class="n">timer</span><span class="p">)</span>
-</code></pre>
-</div>
-
-
-<p>返回值为0表示修删的内核定时器在删除之前处于未激活状态，返回值为1表示删除的内核定时器在删除之前处于已激活状态。</p>
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/03/26/linux_timer/">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -689,7 +446,7 @@ n               <span class="c">#搜索下一个idiot</span>
   </header>
 
 
-  <div class="entry-content"><h1>问题</h1>
+  <div class="entry-content"><h2>问题</h2>
 
 <p>A,B都是整数并且 A>1, B>1，求 ┌ A/B ┐ 即 A/B 的上取整。</p>
 
@@ -699,35 +456,12 @@ n               <span class="c">#搜索下一个idiot</span>
 
 <p>这个算法的一个应用：如果你有一个动态增长的缓冲区，增长的步长是 B,某一次缓冲区申请的大小是 A，这个时候，就可以用这个算法，计算出缓冲区的一个合适大小了，正好可以容纳A，并且不会过于得多，多余部分不会比B多。</p>
 
-<h1>方法</h1>
-
-<p>int( (A+B-1)/B )</p>
-
-<h1>HUNTON的证明</h1>
-
-<p>上取整用UP表示。<br/>
-由于A>1、B>1，且A、B都是整数，所以可以设A=NB+M。 <br/>
-其中N为非负整数，M为0到B-1的数，则</p>
-
-<blockquote><p>A/B = N + M/B
-(A+B-1)/B = N + 1 + (M – 1)/B;</p></blockquote>
-
-<p>当M为0时</p>
-
-<blockquote><p>UP(A/B) = N，
-int((A+B-1)/B) = N + int(1 – 1/B) = N</p></blockquote>
-
-<p>当M为1到B-1的数时</p>
-
-<blockquote><p>0 &lt;= M-1 &lt;= B-2
-UP(A/B) = N + 1，
-int((A+B-1)/B) = N + 1 + int((M-1)/B) = N + 1</p></blockquote>
-
-<p>所以对A>1、B>1的整数A、B都有：</p>
-
-<blockquote><p>UP(A/B) = int((A+B-1)/B)</p></blockquote>
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/03/21/linux_inf/">Read on &rarr;</a>
+    </footer>
   
 
 

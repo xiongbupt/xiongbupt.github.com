@@ -33,8 +33,12 @@ smartcase 若只有小写，可匹配大小写；若含有大写，则严格匹�
 <link href='http://fonts.googleapis.com/css?family=Ruge+Boogie|Ruthie|Flavors|Rancho|Galdeano' rel='stylesheet' type='text/css'>
 <script src="/javascripts/jquery-1.7.2.min.js" type="text/javascript"></script>
 <script src="/javascripts/jquery.tableofcontents.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+  // Revert jQuery's '$' alias, to avoid clashes with ender.js. NOTE: Use
+  // jQuery(...), instead of $(...) from here on.
+  jQuery.noConflict();
+</script>
 <script src="/javascripts/generate-toc.js" type="text/javascript"></script>
-
 
   
   <script type="text/javascript">
@@ -379,7 +383,7 @@ smartcase   若只有小写，可匹配大小写；若含有大写，则严格�
   </script>
   <script src="/javascripts/twitter.js" type="text/javascript"> </script>
   
-    <a href="http://twitter.com/xiongbupt" class="twitter-follow-button" data-show-count="false">Follow @xiongbupt</a>
+    <a href="http://twitter.com/xiongbupt" class="twitter-follow-button" data-show-count="true">Follow @xiongbupt</a>
   
 </section>
 

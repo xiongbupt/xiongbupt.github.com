@@ -9,8 +9,8 @@
   <meta name="author" content="Xiongbupt">
 
   
-  <meta name="description" content="
-">
+  <meta name="description" content="VIM的查找命令与模式，这章节和正则表达式相关，可以重点查阅下。 大小写忽略 ignorecase 忽视大小写
+smartcase 若只有小写，可匹配大小写；若含有大写，则严格匹配 特定模式中的大小写可以使用\C来严格匹配，\c可以用来通用匹配，不区分大小写 无折返查找 :set &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -110,9 +110,24 @@
   </header>
 
 
-  <div class="entry-content">
+  <div class="entry-content"><p>VIM的查找命令与模式，这章节和正则表达式相关，可以重点查阅下。</p>
+
+<h2>大小写忽略</h2>
+
+<p>ignorecase  忽视大小写<br/>
+smartcase   若只有小写，可匹配大小写；若含有大写，则严格匹配  <br/>
+特定模式中的大小写可以使用\C来严格匹配，\c可以用来通用匹配，不区分大小写</p>
+
+<h2>无折返查找</h2>
+
+<p><code>:set nowrapscan</code>简单的说就是在查找到文件结束处后不再返回文件开始处重新查找。</p>
+
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/06/08/octopresszeng-jia-fen-lei-biao-qian/">Read on &rarr;</a>
+    </footer>
   
 
 

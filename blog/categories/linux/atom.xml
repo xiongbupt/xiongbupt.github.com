@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | Keep Learning]]></title>
   <link href="http://xiongbupt.github.com/blog/categories/linux/atom.xml" rel="self"/>
   <link href="http://xiongbupt.github.com/"/>
-  <updated>2012-06-08T17:18:42+08:00</updated>
+  <updated>2012-06-08T17:28:16+08:00</updated>
   <id>http://xiongbupt.github.com/</id>
   <author>
     <name><![CDATA[Xiongbupt]]></name>
@@ -111,9 +111,9 @@ echo 'your-domain.com' >> source/CNAME</p>
 修改为
 %sudo ALL=(ALL) NOPASSWD: ALL<br/>
 将用户user_name添加至sudo用户组<br/>
-{% codeblock lang:bash %}
-adduser user_name sudo
-{% endcodeblock %}
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>adduser user_name sudo
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 重新登录后，user_name用户即已经位于sudo用户组中。</p></blockquote>
 
 <!--more-->
@@ -121,12 +121,15 @@ adduser user_name sudo
 
 <h2>安装基本的软件</h2>
 
-<p>{% codeblock lang:bash %}
-sudo dpkg -i wireless-crda-1.14_i386.deb
-sudo dpkg -i linux-headers-2.6.30-02063010_2.6.30-02063010_all.deb
-sudo dpkg -i linux-headers-2.6.30-02063010-generic_2.6.30-02063010_all.deb
-sudo dpkg -i linux-image-2.6.30-***.deb
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo dpkg -i wireless-crda-1.14_i386.deb
+</span><span class='line'>sudo dpkg -i linux-headers-2.6.30-02063010_2.6.30-02063010_all.deb
+</span><span class='line'>sudo dpkg -i linux-headers-2.6.30-02063010-generic_2.6.30-02063010_all.deb
+</span><span class='line'>sudo dpkg -i linux-image-2.6.30-***.deb
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>参照<a href="http://bbs.byr.cn/#!article/Linux/82799">北邮人论坛的linux版块</a>，设置debian的源
 之后使用<code>sudo apt-get install</code>安装了
@@ -145,10 +148,11 @@ sudo dpkg -i linux-image-2.6.30-***.deb
 
 <h2>将默认编辑器由gedit转换为gvim</h2>
 
-<p>{% codeblock lang:bash %}
-sudo cp /etc/gnome/defaults.list /etc/gnome/defaults.list.backup
-sduo vim /etc/gnome/defaults.list
-{% endcodeblock %}
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo cp /etc/gnome/defaults.list /etc/gnome/defaults.list.backup
+</span><span class='line'>sduo vim /etc/gnome/defaults.list
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 将该文件中的<code>gedit.desktop</code>全部替换为<code>gvim.desktop</code></p>
 
 <h2>添加ifconfig等命令到普通用户</h2>
@@ -171,17 +175,17 @@ sduo vim /etc/gnome/defaults.list
     <link href="http://xiongbupt.github.com/blog/2012/03/26/linux_timer/"/>
     <updated>2012-03-26T00:00:00+08:00</updated>
     <id>http://xiongbupt.github.com/blog/2012/03/26/linux_timer</id>
-    <content type="html"><![CDATA[<p>{% codeblock lang:c %}
-int mod_timer(struct timer_list *timer，unsigned long expires)
-{% endcodeblock %}
+    <content type="html"><![CDATA[<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="kt">int</span> <span class="n">mod_timer</span><span class="p">(</span><span class="k">struct</span> <span class="n">timer_list</span> <span class="o">*</span><span class="n">timer</span><span class="err">，</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">expires</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 该函数负责修改内核定时器timer的超时字段expires。该函数可以修改激活和没有激活的内核定时器的超时时间，并把它们都设置为激活状态；返回值为0表示修改的内核定时器在修改之前处于未激活状态，返回值为1表示修改的内核定时器在修改之前处于已激活状态。</p>
 
 <!--more-->
 
 
-<p>{% codeblock lang:c %}
-del_timer(sturct timer_list *timer)
-{% endcodeblock %}
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">del_timer</span><span class="p">(</span><span class="n">sturct</span> <span class="n">timer_list</span> <span class="o">*</span><span class="n">timer</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 返回值为0表示修删的内核定时器在删除之前处于未激活状态，返回值为1表示删除的内核定时器在删除之前处于已激活状态。</p>
 ]]></content>
   </entry>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | Keep Learning]]></title>
   <link href="http://xiongbupt.github.com/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://xiongbupt.github.com/"/>
-  <updated>2012-06-08T17:18:42+08:00</updated>
+  <updated>2012-06-08T17:28:16+08:00</updated>
   <id>http://xiongbupt.github.com/</id>
   <author>
     <name><![CDATA[Xiongbupt]]></name>
@@ -103,7 +103,16 @@ end
 
 <p>上述代码的片段在Octopress中的markdown文件中输入之后，得到的效果如下：</p>
 
-<p>{% gist 996818 %}</p>
+<p><div><script src='https://gist.github.com/996818.js?file='></script>
+<noscript><pre><code>@@ -590,7 +590,7 @@ class SpritesTest &lt; Test::Unit::TestCase
+  it &quot;should generate a sprite from nested folders&quot; do
+    css = render &lt;&lt;-SCSS
+-     @import &quot;nested/*.png&quot;;
++     @import &quot;nested/**/*.png&quot;;
+      @include all-nested-sprites;
+    SCSS
+    assert_correct css, &lt;&lt;-CSS</code></pre></noscript></div>
+</p>
 
 <p>如果一个gist的id对应有多个文件，这时需要对想要高亮的文件添加文件名，具体语法如下所示：</p>
 
@@ -128,7 +137,12 @@ Building site: source -> public
 <code>``
 上网搜索之后在[该网址][lab4]发现解决方法。   
 这种方式需要使用python2来完成代码高亮的操作，由于Arch的python指向的是python3，而python3无法完成该功能，因此需要在</code>plugin<code>文件夹中再添加一个新文件，指定在</code>Octopress<code>运行时使用的是python2，具体增加的文件内容如下所示，文件的名字为</code>ruby_python_arch_linux_fix.rb`<br/>
-{% include_code Set the ruby to run python2.7 ruby/ruby_python_arch_linux_fix.rb %}</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Set the ruby to run python2.7 (ruby_python_arch_linux_fix.rb)</span> <a href='/downloads/code/ruby/ruby_python_arch_linux_fix.rb'>download</a></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="nb">require</span> <span class="s1">&#39;rubypython&#39;</span>
+</span><span class='line'>    <span class="no">RubyPython</span><span class="o">.</span><span class="n">configure</span> <span class="ss">:python_exe</span> <span class="o">=&gt;</span> <span class="s1">&#39;python2.7&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>在完成该操作之后，仍然报错，得到如下错误：<br/>
 <code>bash Error message

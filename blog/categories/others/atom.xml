@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Others | Keep Learning]]></title>
   <link href="http://xiongbupt.github.com/blog/categories/others/atom.xml" rel="self"/>
   <link href="http://xiongbupt.github.com/"/>
-  <updated>2012-06-08T17:45:01+08:00</updated>
+  <updated>2012-06-08T18:35:12+08:00</updated>
   <id>http://xiongbupt.github.com/</id>
   <author>
     <name><![CDATA[Xiongbupt]]></name>
@@ -18,101 +18,55 @@
     <link href="http://xiongbupt.github.com/blog/2012/05/29/tomcat-mysql/"/>
     <updated>2012-05-29T00:00:00+08:00</updated>
     <id>http://xiongbupt.github.com/blog/2012/05/29/tomcat-mysql</id>
-    <content type="html"><![CDATA[<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">jasper</span><span class="o">.</span><span class="na">JasperException</span><span class="o">:</span> <span class="n">javax</span><span class="o">.</span><span class="na">servlet</span><span class="o">.</span><span class="na">ServletException</span><span class="o">:</span> <span class="n">com</span><span class="o">.</span><span class="na">mysql</span><span class="o">.</span><span class="na">jdbc</span><span class="o">.</span><span class="na">CommunicationsException</span><span class="o">:</span> <span class="n">Communications</span> <span class="n">link</span> <span class="n">failure</span> <span class="n">due</span> <span class="n">to</span> <span class="n">underlying</span> <span class="nl">exception:</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;&lt;</span><span class="n">strong</span><span class="o">&gt;</span> <span class="n">BEGIN</span> <span class="n">NESTED</span> <span class="n">EXCEPTION</span> <span class="o">&lt;/</span><span class="n">strong</span><span class="o">&gt;&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">java</span><span class="o">.</span><span class="na">net</span><span class="o">.</span><span class="na">SocketException</span>
-</span><span class='line'><span class="nl">MESSAGE:</span> <span class="n">java</span><span class="o">.</span><span class="na">net</span><span class="o">.</span><span class="na">ConnectException</span><span class="o">:</span> <span class="n">Connection</span> <span class="n">refused</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="nl">STACKTRACE:</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;!--</span><span class="n">more</span><span class="o">--&gt;</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">java</span><span class="o">.</span><span class="na">net</span><span class="o">.</span><span class="na">SocketException</span><span class="o">:</span> <span class="n">java</span><span class="o">.</span><span class="na">net</span><span class="o">.</span><span class="na">ConnectException</span><span class="o">:</span> <span class="n">Connection</span> <span class="n">refused</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">at</span> <span class="n">com</span><span class="o">.</span><span class="na">mysql</span><span class="o">.</span><span class="na">jdbc</span><span class="o">.</span><span class="na">StandardSocketFactory</span><span class="o">.</span><span class="na">connect</span><span class="o">(</span><span class="n">StandardSocketFactory</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">156</span><span class="o">)</span>
-</span><span class='line'><span class="n">at</span> <span class="n">com</span><span class="o">.</span><span class="na">mysql</span><span class="o">.</span><span class="na">jdbc</span><span class="o">.</span><span class="na">MysqlIO</span><span class="o">.&amp;</span><span class="n">lt</span><span class="o">;</span><span class="n">init</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;(</span><span class="n">MysqlIO</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">276</span><span class="o">)</span>
-</span><span class='line'><span class="n">at</span> <span class="n">com</span><span class="o">.</span><span class="na">mysql</span><span class="o">.</span><span class="na">jdbc</span><span class="o">.</span><span class="na">Connection</span><span class="o">.</span><span class="na">createNewIO</span><span class="o">(</span><span class="n">Connection</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">2641</span><span class="o">)</span>
-</span><span class='line'><span class="n">at</span> <span class="n">com</span><span class="o">.</span><span class="na">mysql</span><span class="o">.</span><span class="na">jdbc</span><span class="o">.</span><span class="na">Connection</span><span class="o">.&amp;</span><span class="n">lt</span><span class="o">;</span><span class="n">init</span><span class="o">&amp;</span><span class="n">gt</span><span class="o">;(</span><span class="n">Connection</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">1531</span><span class="o">)</span>
-</span><span class='line'><span class="n">at</span> <span class="n">com</span><span class="o">.</span><span class="na">mysql</span><span class="o">.</span><span class="na">jdbc</span><span class="o">.</span><span class="na">NonRegisteringDriver</span><span class="o">.</span><span class="na">connect</span><span class="o">(</span><span class="n">NonRegisteringDriver</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">266</span><span class="o">)</span>
-</span><span class='line'><span class="n">at</span> <span class="n">java</span><span class="o">.</span><span class="na">sql</span><span class="o">.</span><span class="na">DriverManager</span><span class="o">.</span><span class="na">getConnection</span><span class="o">(</span><span class="n">DriverManager</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">579</span><span class="o">)</span>
-</span><span class='line'><span class="n">at</span> <span class="n">java</span><span class="o">.</span><span class="na">sql</span><span class="o">.</span><span class="na">DriverManager</span><span class="o">.</span><span class="na">getConnection</span><span class="o">(</span><span class="n">DriverManager</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">243</span><span class="o">)</span>
-</span><span class='line'><span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">jsp</span><span class="o">.</span><span class="na">testSQL1_jsp</span><span class="o">.</span><span class="na">_jspService</span><span class="o">(</span><span class="n">testSQL1_jsp</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">77</span><span class="o">)</span>
-</span><span class='line'><span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">jasper</span><span class="o">.</span><span class="na">runtime</span><span class="o">.</span><span class="na">HttpJspBase</span><span class="o">.</span><span class="na">service</span><span class="o">(</span><span class="n">HttpJspBase</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">70</span><span class="o">)</span>
-</span><span class='line'><span class="n">at</span> <span class="n">javax</span><span class="o">.</span><span class="na">servlet</span><span class="o">.</span><span class="na">http</span><span class="o">.</span><span class="na">HttpServlet</span><span class="o">.</span><span class="na">service</span><span class="o">(</span><span class="n">HttpServlet</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">722</span><span class="o">)</span>
-</span><span class='line'><span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">jasper</span><span class="o">.</span><span class="na">servlet</span><span class="o">.</span><span class="na">JspServletWrapper</span><span class="o">.</span><span class="na">service</span><span class="o">(</span><span class="n">JspServletWrapper</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">432</span><span class="o">)</span>
-</span><span class='line'><span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">jasper</span><span class="o">.</span><span class="na">servlet</span><span class="o">.</span><span class="na">JspServlet</span><span class="o">.</span><span class="na">serviceJspFile</span><span class="o">(</span><span class="n">JspServlet</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">390</span><span class="o">)</span>
-</span><span class='line'><span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">jasper</span><span class="o">.</span><span class="na">servlet</span><span class="o">.</span><span class="na">JspServlet</span><span class="o">.</span><span class="na">service</span><span class="o">(</span><span class="n">JspServlet</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">334</span><span class="o">)</span>
-</span><span class='line'><span class="n">at</span> <span class="n">javax</span><span class="o">.</span><span class="na">servlet</span><span class="o">.</span><span class="na">http</span><span class="o">.</span><span class="na">HttpServlet</span><span class="o">.</span><span class="na">service</span><span class="o">(</span><span class="n">HttpServlet</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">722</span><span class="o">)</span>
-</span><span class='line'><span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">catalina</span><span class="o">.</span><span class="na">core</span><span class="o">.</span><span class="na">ApplicationFilterChain</span><span class="o">.</span><span class="na">internalDoFilter</span><span class="o">(</span><span class="n">ApplicationFilterChain</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">305</span><span class="o">)</span>
-</span><span class='line'><span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">catalina</span><span class="o">.</span><span class="na">core</span><span class="o">.</span><span class="na">ApplicationFilterChain</span><span class="o">.</span><span class="na">doFilter</span><span class="o">(</span><span class="n">ApplicationFilterChain</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">210</span><span class="o">)</span>
-</span><span class='line'><span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">catalina</span><span class="o">.</span><span class="na">core</span><span class="o">.</span><span class="na">StandardWrapperValve</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">StandardWrapperValve</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">224</span><span class="o">)</span>
-</span><span class='line'><span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">catalina</span><span class="o">.</span><span class="na">core</span><span class="o">.</span><span class="na">StandardContextValve</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">StandardContextValve</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">169</span><span class="o">)</span>
-</span><span class='line'><span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">catalina</span><span class="o">.</span><span class="na">authenticator</span><span class="o">.</span><span class="na">AuthenticatorBase</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">AuthenticatorBase</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">472</span><span class="o">)</span>
-</span><span class='line'><span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">catalina</span><span class="o">.</span><span class="na">core</span><span class="o">.</span><span class="na">StandardHostValve</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">StandardHostValve</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">168</span><span class="o">)</span>
-</span><span class='line'><span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">catalina</span><span class="o">.</span><span class="na">valves</span><span class="o">.</span><span class="na">ErrorReportValve</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">ErrorReportValve</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">98</span><span class="o">)</span>
-</span><span class='line'><span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">catalina</span><span class="o">.</span><span class="na">valves</span><span class="o">.</span><span class="na">AccessLogValve</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">AccessLogValve</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">927</span><span class="o">)</span>
-</span><span class='line'><span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">catalina</span><span class="o">.</span><span class="na">core</span><span class="o">.</span><span class="na">StandardEngineValve</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">StandardEngineValve</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">118</span><span class="o">)</span>
-</span><span class='line'><span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">catalina</span><span class="o">.</span><span class="na">connector</span><span class="o">.</span><span class="na">CoyoteAdapter</span><span class="o">.</span><span class="na">service</span><span class="o">(</span><span class="n">CoyoteAdapter</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">407</span><span class="o">)</span>
-</span><span class='line'><span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">coyote</span><span class="o">.</span><span class="na">http11</span><span class="o">.</span><span class="na">AbstractHttp11Processor</span><span class="o">.</span><span class="na">process</span><span class="o">(</span><span class="n">AbstractHttp11Processor</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">987</span><span class="o">)</span>
-</span><span class='line'><span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">coyote</span><span class="o">.</span><span class="na">AbstractProtocol</span><span class="n">$AbstractConnectionHandler</span><span class="o">.</span><span class="na">process</span><span class="o">(</span><span class="n">AbstractProtocol</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">579</span><span class="o">)</span>
-</span><span class='line'><span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">tomcat</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">net</span><span class="o">.</span><span class="na">JIoEndpoint</span><span class="n">$SocketProcessor</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">JIoEndpoint</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">309</span><span class="o">)</span>
-</span><span class='line'><span class="n">at</span> <span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">concurrent</span><span class="o">.</span><span class="na">ThreadPoolExecutor</span><span class="o">.</span><span class="na">runWorker</span><span class="o">(</span><span class="n">ThreadPoolExecutor</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">1110</span><span class="o">)</span>
-</span><span class='line'><span class="n">at</span> <span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">concurrent</span><span class="o">.</span><span class="na">ThreadPoolExecutor</span><span class="n">$Worker</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">ThreadPoolExecutor</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">603</span><span class="o">)</span>
-</span><span class='line'><span class="n">at</span> <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">Thread</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">Thread</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">722</span><span class="o">)</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;&lt;</span><span class="n">strong</span><span class="o">&gt;</span> <span class="n">END</span> <span class="n">NESTED</span> <span class="n">EXCEPTION</span> <span class="o">&lt;/</span><span class="n">strong</span><span class="o">&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+    <content type="html"><![CDATA[<p>{% codeblock lang:java %}
+org.apache.jasper.JasperException: javax.servlet.ServletException: com.mysql.jdbc.CommunicationsException: Communications link failure due to underlying exception:</p>
+
+<p><strong> BEGIN NESTED EXCEPTION </strong></p>
+
+<p>java.net.SocketException
+MESSAGE: java.net.ConnectException: Connection refused</p>
+
+<p>STACKTRACE:</p>
+
+<!--more-->
+
+
+<p>java.net.SocketException: java.net.ConnectException: Connection refused</p>
+
+<pre><code>at com.mysql.jdbc.StandardSocketFactory.connect(StandardSocketFactory.java:156)
+at com.mysql.jdbc.MysqlIO.&lt;init&gt;(MysqlIO.java:276)
+at com.mysql.jdbc.Connection.createNewIO(Connection.java:2641)
+at com.mysql.jdbc.Connection.&lt;init&gt;(Connection.java:1531)
+at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:266)
+at java.sql.DriverManager.getConnection(DriverManager.java:579)
+at java.sql.DriverManager.getConnection(DriverManager.java:243)
+at org.apache.jsp.testSQL1_jsp._jspService(testSQL1_jsp.java:77)
+at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:70)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:722)
+at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:432)
+at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:390)
+at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:334)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:722)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:224)
+at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:169)
+at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:472)
+at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:168)
+at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98)
+at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:927)
+at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407)
+at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:987)
+at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:579)
+at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:309)
+at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1110)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:603)
+at java.lang.Thread.run(Thread.java:722)
+</code></pre>
+
+<p><strong> END NESTED EXCEPTION </strong>
+{% endcodeblock %}
 在使用tomcat与mysql时，出现了上述错误，原因是由于mysql中的配置中禁用了网络的连接。在arch环境下，通过编辑/etc/mysql/my.cnf文件，将<code>skip-networking</code>这个选项注释掉即可。</p>
 ]]></content>
   </entry>

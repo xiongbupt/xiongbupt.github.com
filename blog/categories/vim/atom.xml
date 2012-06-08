@@ -4,7 +4,7 @@
   <title><![CDATA[Category: VIM | Keep Learning]]></title>
   <link href="http://xiongbupt.github.com/blog/categories/vim/atom.xml" rel="self"/>
   <link href="http://xiongbupt.github.com/"/>
-  <updated>2012-06-08T17:45:01+08:00</updated>
+  <updated>2012-06-08T18:35:12+08:00</updated>
   <id>http://xiongbupt.github.com/</id>
   <author>
     <name><![CDATA[Xiongbupt]]></name>
@@ -34,14 +34,14 @@
 
 <ul>
 <li>将整篇文档内容全部小写
-<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>:%s/.*/<span class="se">\L</span>&amp;amp;/g
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+{% codeblock lang:bash %}
+:%s/.*/\L&amp;/g
+{% endcodeblock %}
   &amp;是一个用来表明匹配前面全部的回溯引用的记录符号。</li>
 <li>将紧跟着&lt;后面的字符全部大写，比如在HTML标签中使用。
-<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>:%s/&amp;lt;<span class="o">(</span><span class="se">\w</span>*<span class="o">)</span>/&amp;lt;<span class="se">\U\1</span>/g
-</span></code></pre></td></tr></table></div></figure></notextile></div></li>
+{% codeblock lang:bash %}
+:%s/&lt;(\w*)/&lt;\U\1/g
+{% endcodeblock %}</li>
 </ul>
 
 

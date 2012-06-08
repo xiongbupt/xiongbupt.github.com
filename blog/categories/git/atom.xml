@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Git | Keep Learning]]></title>
   <link href="http://xiongbupt.github.com/blog/categories/git/atom.xml" rel="self"/>
   <link href="http://xiongbupt.github.com/"/>
-  <updated>2012-06-08T17:45:01+08:00</updated>
+  <updated>2012-06-08T18:35:12+08:00</updated>
   <id>http://xiongbupt.github.com/</id>
   <author>
     <name><![CDATA[Xiongbupt]]></name>
@@ -388,9 +388,9 @@ git config --global core.autocrlf input<em>(Linux下使用）</em></p>
 <h3>改变最近一次提交</h3>
 
 <p>修改最后一次的声明，输入下面的命令即可
-<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$git</span> commit --amend
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+{% codeblock lang:bash %}
+$git commit --amend
+{% endcodeblock %}
 如果在依次提交之后，发现还有文件没有增加进来，可以使用git add。发现文件需要删除，使用git rm。在完成这些操作之后，使用git commit --amend操作来进行修正。这样，便会将这次更新合并到上次的更新上去。注意不要在推送之后再使用这个方法。</p>
 
 <h3>修改多次提交说明</h3>

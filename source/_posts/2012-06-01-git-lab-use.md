@@ -109,90 +109,145 @@ git将会尝试自动合并，如果合并失败，使用
 再来尝试手动合并即可。
 ##git基本命令介绍#
 从服务器端下载代码
->git clone username@remote_server:/path/to/work
+{% codeblock lang:bash %}
+git clone username@remote_server:/path/to/work
+{% endcodeblock %}
 
 添加文件到暂存区
->git add filename
+{% codeblock lang:bash %}
+git add filename
+{% endcodeblock %}
 
 将已经在版本库中但是在工作目录下修改的文件添加到暂存区
->git add -u
+{% codeblock lang:bash %}
+git add -u
+{% endcodeblock %}
 
 从版本库中删除文件
->git rm filename
+{% codeblock lang:bash %}
+git rm filename
+{% endcodeblock %}
 
 将文件重命名
->git mv oldname newname
+{% codeblock lang:bash %}
+git mv oldname newname
+{% endcodeblock %}
 
 将暂存区文件存储到版本库中
->git commit
+{% codeblock lang:bash %}
+git commit
+{% endcodeblock %}
 
 直接添加注释，不再进入界面编辑提交日志
->git commit -m 'Description of the commit'
+{% codeblock lang:bash %}
+git commit -m 'Description of the commit'
+{% endcodeblock %}
 
 从已经克隆的版本库中下载服务器端的代码到本地版本库中
->git fetch
+{% codeblock lang:bash %}
+git fetch
+{% endcodeblock %}
 
 从已经克隆的版本库中下载服务器端的代码并合并分支
->git pull
+{% codeblock lang:bash %}
+git pull
+{% endcodeblock %}
 
 在本地创建一个名字为branch_name的分支
->git branch branch_name
+{% codeblock lang:bash %}
+git branch branch_name
+{% endcodeblock %}
 
 切换到本地名字为branch_name的分支
->git checkout branch_name
+{% codeblock lang:bash %}
+git checkout branch_name
+{% endcodeblock %}
 
 在本地创建一个分支名为branch_name的分支并切换到该分支
->git chekcout -b branch_name
+{% codeblock lang:bash %}
+git chekcout -b branch_name
+{% endcodeblock %}
 
 将本地名字为branch_name的分支推送到服务器端，并且在服务器端的名字为branch_name
->git push origin branch_name
+{% codeblock lang:bash %}
+git push origin branch_name
+{% endcodeblock %}
 
 将本地名字为branch_name的分支推送到服务器端，并且在服务器端的名字为branch_server
->git push origin branch_name:branch_server
+{% codeblock lang:bash %}
+git push origin branch_name:branch_server
+{% endcodeblock %}
 
 查看服务器端的分支状态
->git remote show origin
+{% codeblock lang:bash %}
+git remote show origin
+{% endcodeblock %}
 
 查看本地分支状态
->git branch
+{% codeblock lang:bash %}
+git branch
+{% endcodeblock %}
 
 删除本地分支
->git branch -d branch_name
+{% codeblock lang:bash %}
+git branch -d branch_name
+{% endcodeblock %}
 
 合并分支
->git merge
+{% codeblock lang:bash %}
+git merge
+{% endcodeblock %}
 
 合并冲突解决
->git mergetool
+{% codeblock lang:bash %}
+git mergetool
+{% endcodeblock %}
 
 查看简明历史
->git log
+{% codeblock lang:bash %}
+git log
+{% endcodeblock %}
 
 查看每次提交具体修改
->git log -p
+{% codeblock lang:bash %}
+git log -p
+{% endcodeblock %}
 
 查看提交某个文件的修改历史
->git log -p filename
+{% codeblock lang:bash %}
+git log -p filename
+{% endcodeblock %}
 
 显示文件的增减行数
->git log --stat
+{% codeblock lang:bash %}
+git log --stat
+{% endcodeblock %}
 
 git个人邮件配置
->git config --global user.email username@web.com
+{% codeblock lang:bash %}
+git config --global user.email username@web.com
+{% endcodeblock %}
 
 git个人名字配置
->git config --global user.name username
+{% codeblock lang:bash %}
+git config --global user.name username
+{% endcodeblock %}
 
 git简称配置，如chekcout简称为co，commit为ci，branch为br，status为st
->git config --global alias.co checkout  
->git config --global alias.ci commit  
->git config --global alias.br branch  
->git config --global alias.st status  
+{% codeblock lang:bash %}
+git config --global alias.co checkout  
+git config --global alias.ci commit  
+git config --global alias.br branch  
+git config --global alias.st status  
+{% endcodeblock %}
 
 git格式化与空格
-    由于linux系统和windows系统对行尾结束符处理方式不一致，windows下使用回车和换行两个字符来结束一行，而Linux系统仅仅使用一个换行字符，当跨平台在linux系统和windows系统下开发时，会出现较麻烦的现象。Git可以在提交时自动将结束符CRLF转换成LF，而在签出代码时将LF转换成为CRLF。在windows系统下，将autocrlf选项设置为true，这样在签出代码时，LF将会被换成CRLF；在Linux系统下，将autocrlf设置为input仅仅在签入代码时将CRLF转换为LF，在签出代码时，不进行转换，LF还是LF。此选项对跨平台开发具有较大作用，推荐使用。
->git config --global core.autocrlf true*（windows下使用）*  
->git config --global core.autocrlf input*(Linux下使用）*   
+>由于linux系统和windows系统对行尾结束符处理方式不一致，windows下使用回车和换行两个字符来结束一行，而Linux系统仅仅使用一个换行字符，当跨平台在linux系统和windows系统下开发时，会出现较麻烦的现象。Git可以在提交时自动将结束符CRLF转换成LF，而在签出代码时将LF转换成为CRLF。在windows系统下，将autocrlf选项设置为true，这样在签出代码时，LF将会被换成CRLF；在Linux系统下，将autocrlf设置为input仅仅在签入代码时将CRLF转换为LF，在签出代码时，不进行转换，LF还是LF。此选项对跨平台开发具有较大作用，推荐使用。
+
+{% codeblock lang:bash %}
+git config --global core.autocrlf true*（windows下使用）*  
+git config --global core.autocrlf input*(Linux下使用）*   
+{% endcodeblock %}
 #注意事项
 * Git的每次提交到服务器端的操作必须先从服务器端下载最新的提交代码，在本地完成合并冲突之后才可以完成提交。
 * Git对于文件的合并有自动合并的功能，当已修改的版本与未修改的版本只是删减操作时，Git将会自动合并。

@@ -6,6 +6,7 @@ comments: true
 categories: [Octopress]
 tags: [Linux, Learning, Octopress]
 ---
+
 现在博客已经基本搭建完毕，下面对从`jekyll bootstrap`搬迁到做一个基本介绍。首先是代码高亮部分，下面的文章主要来自于[Octopress关于代码高亮部分][lab1]。文章主要是对上面的内容进行一个简单的翻译，以及简单介绍从`jekyll bootstrap`上面的代码移动到`Octopress`上面做一个简单的介绍。
 ##共享代码片段
 在博客上共享代码片段应该是简单的，并且代码应该具有简单的高亮功能。Octopress也具有这种功能，在`jekyll`上，其使用的是`pygment`来实现代码高亮的功能，Octopress实现的更好。在Octopress上面有下面几种选择：   
@@ -113,7 +114,6 @@ sed -n 's/\(\ highlight\ \)/\1/p' *
 ``` bash Sed替换文件内容
 sed -i 's/\(\ highlight\ bash %}\)/\ codeblock\ lang:bash\ %}/' *
 ```
-
 [lab1]:http://octopress.org/docs/blogging/code/ "Octopress代码高亮"
 [lab2]:http://ethanschoonover.com/solarized "Solarized高亮"
 [lab3]:https://gist.github.com/

@@ -2,7 +2,7 @@
 layout: post
 title: "VIM使用正则表达式改变大小写"
 category: VIM
-tags: [Regex]
+tags: [Regex, VIM]
 ---
 ##VIM使用正则表达式改变字符大小写
 转载自[vim_wiki][label1]  
@@ -28,24 +28,28 @@ tags: [Regex]
 使用\0作为参考引用，而不是使用每个单独命名，比如（\1，\2等），下面的例子演示了\0的使用。
 >This regex upper cases an explicit set of words to uppercase in a file.  
 
->`:%s/\(select\)\|\(order)\|\(by\)\|\(from\)\|\(where\)/\U\0/g`
+    `:%s/\(select\)\|\(order)\|\(by\)\|\(from\)\|\(where\)/\U\0/g`
 
 >Not rocket science, but otherwise you'd have to do this:  
 
->`:%s/\(select\)\|\(order)\|\(by\)\|\(from\)\|\(where\)/\U\1\U\2\U\3\U\4\U\5/g`
+    `:%s/\(select\)\|\(order)\|\(by\)\|\(from\)\|\(where\)/\U\1\U\2\U\3\U\4\U\5/g`
 
 >[edit:  Much easier to just use this, where either 0 or 1 will work:]  
 
->`:%s/\(select\|order\|by\|from\|where\)/\U\1/g`
+    `:%s/\(select\|order\|by\|from\|where\)/\U\1/g`
 
 上面的三个操作均是将一文中的几个关键词转换为大写操作，显然方法2显得很不合适，方法1和方法3要高明许多。
 
 
 将HTML标签全部大写  
->:%s/<\/\=\(\w\+\)\>/\U&/g
+{% codeblock lang:html %}
+:%s/<\/\=\(\w\+\)\>/\U&/g
+{% endcodeblock %}
 
 将HTML标签全部小写  
->:%s/<\/\=\(\w\+\)\>/\L&/g
+{% codeblock lang:html %}
+%s/<\/\=\(\w\+\)\>/\L&/g
+{% endcodeblock %}
 
 上面的例子中的`\=`可以替换成为`\?`，两个符号的意思都是匹配0个或者1个。
 [label1]:http://vim.wikia.com/wiki/Changing_case_with_regular_expressions "VIM中使用正则表达式"

@@ -9,24 +9,36 @@ tags: [Linux, Learning]
 backtrace 在程序出现错误之后，使用它可以看出出错的函数被哪个函数所调用。
 
 查看内存地址存放的值
->x 内存地址(examine)  
+{% codeblock lang:bash %}
+x 内存地址(examine)  
+{% endcodeblock %}
 
 查看代码。  
->list  
+{% codeblock lang:bash %}
+list  
+{% endcodeblock %}
     如list 1,90用来查看1到90行的代码。
 
 <!--more-->
 用来设置断点
->break  
+{% codeblock lang:bash %}
+break  
+{% endcodeblock %}
 
 设置到函数的断点,函数所在行也可以设置断点
->break 函数名  
+{% codeblock lang:bash %}
+break 函数名  
+{% endcodeblock %}
 
 设置条件
->condition  
+{% codeblock lang:bash %}
+condition  
+{% endcodeblock %}
 
 仅仅在var变量的值为some_value时使用断点，与断点一起使用，可以减少断点的量
->condition 1 var==some_value  
+{% codeblock lang:bash %}
+condition 1 var==some_value  
+{% endcodeblock %}
 
 
 
@@ -36,55 +48,82 @@ backtrace 在程序出现错误之后，使用它可以看出出错的函数被�
 break命令（可以简写为b）可以用来在调试的程序中设置断点，该命令有如下四种形式：
 
 使程序恰好在执行给定行之前停止。
->break line-number  
+{% codeblock lang:bash %}
+break line-number  
+{% endcodeblock %}
 
 使程序恰好在进入指定的函数之前停止。
->break function-name  
+{% codeblock lang:bash %}
+break function-name  
+{% endcodeblock %}
 
 如果condition（条件）是真，程序到达指定行或函数时停止。
->break line-or-function if condition   
+{% codeblock lang:bash %}
+break line-or-function if condition   
+{% endcodeblock %}
 
 在指定例程的入口处设置断点
->break routine-name   
+{% codeblock lang:bash %}
+break routine-name   
+{% endcodeblock %}
 
 如果该程序是由很多原文件构成的，你可以在各个原文件中设置断点，而不是在当前的原文件中设置断点，其方法如下：
->(gdb) break filename:line-number
->(gdb) break filename:function-name
+{% codeblock lang:bash %}
+(gdb) break filename:line-number
+(gdb) break filename:function-name
+{% endcodeblock %}
 
 要想设置一个条件断点，可以利用break if命令，如下所示：
->(gdb) break line-or-function if expr
+{% codeblock lang:bash %}
+(gdb) break line-or-function if expr
+{% endcodeblock %}
 
 例：
->(gdb) break 46 if testsize==100
-
+{% codeblock lang:bash %}
+(gdb) break 46 if testsize==100
+{% endcodeblock %}
 从断点继续运行：countinue 命令
 
 
 ###断点的管理
-1. 显示当前gdb的断点信息：
->(gdb) info break  
+* 显示当前gdb的断点信息：
+{% codeblock lang:bash %}
+(gdb) info break  
+{% endcodeblock %}
 
 他会以如下的形式显示所有的断点信息：
-    Num Type Disp Enb Address What
-    1 breakpoint keep y 0x000028bc in init_random at qsort2.c:155
-    2 breakpoint keep y 0x0000291c in init_organ at qsort2.c:168
-    (gdb)
-2. 删除指定的某个断点：
->(gdb) delete breakpoint 1  
+{% codeblock lang:bash %}
+Num Type Disp Enb Address What
+1 breakpoint keep y 0x000028bc in init_random at qsort2.c:155
+2 breakpoint keep y 0x0000291c in init_organ at qsort2.c:168
+(gdb)
+{% endcodeblock %}
+* 删除指定的某个断点：
+{% codeblock lang:bash %}
+(gdb) delete breakpoint 1  
+{% endcodeblock %}
 
 上面的命令将会删除编号为1的断点，如果不带编号参数，将删除所有的断点
->(gdb) delete breakpoint
+{% codeblock lang:bash %}
+(gdb) delete breakpoint
+{% endcodeblock %}
 
-3. 禁止使用某个断点
+* 禁止使用某个断点
 下面的命令将禁止断点 1,同时断点信息的 (Enb)域将变为 n
->(gdb) disable breakpoint 1  
+{% codeblock lang:bash %}
+(gdb) disable breakpoint 1  
+{% endcodeblock %}
 
-4. 允许使用某个断点
+* 允许使用某个断点
 命令将允许断点 1,同时断点信息的 (Enb)域将变为 y
->(gdb) enable breakpoint 1
+{% codeblock lang:bash %}
+(gdb) enable breakpoint 1
+{% endcodeblock %}
 
-5. 清除原文件中某一代码行上的所有断点
->(gdb)clear number
+* 清除原文件中某一代码行上的所有断点
+{% codeblock lang:bash %}
+(gdb)clear number
+{% endcodeblock %}
     注：number 为原文件的某个代码行的行号
 
 
@@ -97,10 +136,14 @@ break命令（可以简写为b）可以用来在调试的程序中设置断点�
 
 ###单步执行
 不进入函数的单步执行
->next
+{% codeblock lang:bash %}
+next
+{% endcodeblock %}
 
 进入函数的单步执行
->step
+{% codeblock lang:bash %}
+step
+{% endcodeblock %}
 如果已经进入了某函数，而想退出该函数返回到它的调用函数中，可使用命令finish
 
 

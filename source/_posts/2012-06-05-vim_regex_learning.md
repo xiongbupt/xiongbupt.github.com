@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "VIM正则表达式学习"
-category: Notes
-tags: [VIM, Regex]
+category: VIM
+tags: [VIM, Regex, Learning]
 ---
 ##VIM正则表达式
 之前粗略的看了正则表达式的一些内容，但是在VIM中一直用的很少，刚才无意间看到了使用VIM对词进行大小写转换，中间出现了一些正则表达式的内容，从网上找了些内容，觉得可以留下来做个笔记，供以后自己参考。  
@@ -39,9 +39,13 @@ VIM中的量词与perl相比
 
 和perl稍有不同的是，vim中的环视和固化分组的模式的位置与perl不同。例如，查找紧跟在 foo 之后的 bar，perl将模式写在环视的括号内，而vim将模式写在环视的元字符之前。
 Perl的写法
->/(?<=foo)bar/
+{% codeblock lang:perl %}
+/(?<=foo)bar/
+{% endcodeblock %}
 vim的写法
->/\(foo\)\@<=bar
+{% codeblock lang:bash %}
+/\(foo\)\@<=bar
+{% endcodeblock %}
 
 
 

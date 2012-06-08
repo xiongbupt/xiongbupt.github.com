@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "AWK语言学习"
-category: Linux
-tags: [Linux, AWK]
+category: Notes
+tags: [Linux, AWK, Learning]
 ---
 ##awk
 awk以花括号分隔命令，命令以'{}'围起来？
@@ -72,7 +72,9 @@ awk的分隔符支持正则表达式，使用FS这个变量表明分隔符为什
 
 如下面，表明分隔符为多个tab键
 
->FS="\t+"
+{% codeblock lang:bash %}
+FS="\t+"
+{% endcodeblock %}
 
 ###awk符号设置
 * FS：输入分隔符，在单行的时候和RS可以认为为相同的 
@@ -99,19 +101,25 @@ for ( x in myarray ) {
 
 awk的数组下标可以是字符串，比如
 
->myarr["1"]="abc"  
->print myarr[1]  
->print myarr["1"]  
+{% codeblock lang:bash %}
+myarr["1"]="abc"  
+print myarr[1]  
+print myarr["1"]  
+{% endcodeblock %}
 
 这两个的输出结果一致，都是abc。
 
->myarr["hello"] = "abc"
+{% codeblock lang:bash %}
+myarr["hello"] = "abc"
+{% endcodeblock %}
 
 数组也可以这样定义，即数组的下标可以是字符串，不一定得是数字。
 
 使用delete可以删除一个数组中的元素，比如
 
->delete fooarray[1]
+{% codeblock lang:bash %}
+delete fooarray[1]
+{% endcodeblock %}
 
 将会删除fooarray[1]这个数组元素。
 

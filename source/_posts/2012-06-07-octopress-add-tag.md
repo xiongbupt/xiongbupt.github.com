@@ -1,7 +1,8 @@
 ---
 layout: post
 title: "Octopress添加标签"
-category: Notes
+category: Octopress
+comments: true
 tags: [Octopress, Learning]
 toc: true
 ---

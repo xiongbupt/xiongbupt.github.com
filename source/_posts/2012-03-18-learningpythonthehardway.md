@@ -6,11 +6,15 @@ tags: [Python, Learning]
 ---
 ##python函数
 
->raw_input([prompt])  
+{% codeblock lang:python %}
+raw_input([prompt])  
+{% endcodeblock %}
 
 在终端上显示prompt的提示符，在界面上输入东西之后，将输入的东西以string的形式返回到对应的变量中
 
->open()  
+{% codeblock lang:python %}
+open()  
+{% endcodeblock %}
 
 打开文件，括号中的文件应该使用引号来表达，使用字符串，不能单单的使用名字。open返回的是文件描述符，对文件描述符的操作可以使用pydoc2 file来查看对应的操作。
 
@@ -18,6 +22,7 @@ tags: [Python, Learning]
 python中的打印信息%r和%s的区别主要是%r是按照输入的来打印，而%s是python采用的猜测用户想要看到的信息来进行输出
 
 假设使用file为使用open返回的描述符，下面是一些日常操作的函数
+
 * close()将文件关闭并保存
 * read()读取文件的内容(添加操作的权限，有'r''w''a'这三种权限，如下所示open("hello_world",'a')
 * readline()仅仅读取文件内容的一行
@@ -65,26 +70,37 @@ python中似乎有全局变量这种东西
 
 ###python字符串操作函数
 
+{% codeblock lang:python %}
 string.split([sep[,maxsplit]])  
+{% endcodeblock %}
     以分隔符sep来分隔字符串string。若指定maxsplit，则返回maxsplit+1个字符最多
 
+{% codeblock lang:python %}
 sorted() 将字符串进行排序
+{% endcodeblock %}
 
+{% codeblock lang:python %}
 list.pop() 获取一个词然后将其从词组中删除，默认参数为-1，即为最后一个
+{% endcodeblock %}
 
+{% codeblock lang:python %}
 from ex25 import *  
 引入ex25.py文件中的所有函数功能。
+{% endcodeblock %}
 
+{% codeblock lang:python %}
 import ex25  
+{% endcodeblock %}
 在命令行中输入，引入ex25。
 
 python中的逻辑判断符号
+
 * and
 * or
 * not
 * !=
 * ==
-* >=
+* \>=
 * <=
 * True
 * False
@@ -108,6 +124,7 @@ python中的range([start], stop[,step])
     start若省略则为0，step若省略则为1。step不能是0，否则报错.返回的是从start开始，以step为间隔，小于stop的一个list
 
 python中list的操作函数包括
+
 * list.append(x)最后的位置添加一个x
 * list.extend(L)在list的最后的位置添加一个list，L为一个list.
 * list.insert(i, x)在list的i位置添加x

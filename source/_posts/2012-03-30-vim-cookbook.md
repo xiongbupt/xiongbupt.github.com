@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "VIM使用便签"
-category: Linux
+category: VIM
 tags: [VIM, Linux]
 ---
 转载自[vim_cook_book][1]
@@ -47,7 +47,7 @@ vim移除行末的空格
 :1,$s/\([^,]*\),\(.*$\)/\2\1/
 {% endcodeblock %}
 >The \( ... \) delimiters are used to inform the editor that the text that matches the regular expression side is to be treated special.  
->\(...\)分隔符告知编辑器将括号内的内容应该被当做正则表达式来对待（？？？）
+(...\)分隔符告知编辑器将括号内的内容应该被当做正则表达式来对待（？？？）
 
 操作示例
     if ( x>3 ) {

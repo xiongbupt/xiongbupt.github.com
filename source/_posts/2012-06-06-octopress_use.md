@@ -1,7 +1,8 @@
 ---
 layout: post
 title: "Octopress尝试记录"
-category: Linux
+category: Octopress
+comments: true
 tags: [Linux]
 ---
 本文主要是参考Octopress的[官方网址][lab1]进行操作，之前使用了[google][lab2]搜索了若干参考，但是操作之后出现了错误，推翻重来之后，写下这篇记录，方便自己以后使用。  

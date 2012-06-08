@@ -30,14 +30,6 @@
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href='http://fonts.googleapis.com/css?family=Ruge+Boogie|Ruthie|Flavors|Rancho|Galdeano' rel='stylesheet' type='text/css'>
-<script src="/javascripts/jquery-1.7.2.min.js" type="text/javascript"></script>
-<script src="/javascripts/jquery.tableofcontents.min.js" type="text/javascript"></script>
-<script type="text/javascript">
-  // Revert jQuery's '$' alias, to avoid clashes with ender.js. NOTE: Use
-  // jQuery(...), instead of $(...) from here on.
-  jQuery.noConflict();
-</script>
-<script src="/javascripts/generate-toc.js" type="text/javascript"></script>
 
   
   <script type="text/javascript">
@@ -108,8 +100,6 @@
 
 
 <time datetime="2012-06-01T00:00:00+08:00" pubdate data-updated="true">Jun 1<span>st</span>, 2012</time>
-        
-         | <a href="#disqus_thread">Comments</a>
         
       </p>
     
@@ -310,118 +300,202 @@ git checkout -b branch_name origin/branch_name
 
 <p>从服务器端下载代码</p>
 
-<blockquote><p>git clone username@remote_server:/path/to/work</p></blockquote>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git clone username@remote_server:/path/to/work
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>添加文件到暂存区</p>
 
-<blockquote><p>git add filename</p></blockquote>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git add filename
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>将已经在版本库中但是在工作目录下修改的文件添加到暂存区</p>
 
-<blockquote><p>git add -u</p></blockquote>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git add -u
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>从版本库中删除文件</p>
 
-<blockquote><p>git rm filename</p></blockquote>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git rm filename
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>将文件重命名</p>
 
-<blockquote><p>git mv oldname newname</p></blockquote>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git mv oldname newname
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>将暂存区文件存储到版本库中</p>
 
-<blockquote><p>git commit</p></blockquote>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git commit
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>直接添加注释，不再进入界面编辑提交日志</p>
 
-<blockquote><p>git commit -m 'Description of the commit'</p></blockquote>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git commit -m <span class="s1">&#39;Description of the commit&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>从已经克隆的版本库中下载服务器端的代码到本地版本库中</p>
 
-<blockquote><p>git fetch</p></blockquote>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git fetch
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>从已经克隆的版本库中下载服务器端的代码并合并分支</p>
 
-<blockquote><p>git pull</p></blockquote>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git pull
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>在本地创建一个名字为branch_name的分支</p>
 
-<blockquote><p>git branch branch_name</p></blockquote>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git branch branch_name
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>切换到本地名字为branch_name的分支</p>
 
-<blockquote><p>git checkout branch_name</p></blockquote>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git checkout branch_name
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>在本地创建一个分支名为branch_name的分支并切换到该分支</p>
 
-<blockquote><p>git chekcout -b branch_name</p></blockquote>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git chekcout -b branch_name
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>将本地名字为branch_name的分支推送到服务器端，并且在服务器端的名字为branch_name</p>
 
-<blockquote><p>git push origin branch_name</p></blockquote>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git push origin branch_name
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>将本地名字为branch_name的分支推送到服务器端，并且在服务器端的名字为branch_server</p>
 
-<blockquote><p>git push origin branch_name:branch_server</p></blockquote>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git push origin branch_name:branch_server
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>查看服务器端的分支状态</p>
 
-<blockquote><p>git remote show origin</p></blockquote>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git remote show origin
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>查看本地分支状态</p>
 
-<blockquote><p>git branch</p></blockquote>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git branch
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>删除本地分支</p>
 
-<blockquote><p>git branch -d branch_name</p></blockquote>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git branch -d branch_name
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>合并分支</p>
 
-<blockquote><p>git merge</p></blockquote>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git merge
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>合并冲突解决</p>
 
-<blockquote><p>git mergetool</p></blockquote>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git mergetool
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>查看简明历史</p>
 
-<blockquote><p>git log</p></blockquote>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git log
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>查看每次提交具体修改</p>
 
-<blockquote><p>git log -p</p></blockquote>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git log -p
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>查看提交某个文件的修改历史</p>
 
-<blockquote><p>git log -p filename</p></blockquote>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git log -p filename
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>显示文件的增减行数</p>
 
-<blockquote><p>git log --stat</p></blockquote>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git log --stat
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>git个人邮件配置</p>
 
-<blockquote><p>git config --global user.email username@web.com</p></blockquote>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git config --global user.email username@web.com
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>git个人名字配置</p>
 
-<blockquote><p>git config --global user.name username</p></blockquote>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git config --global user.name username
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>git简称配置，如chekcout简称为co，commit为ci，branch为br，status为st</p>
 
-<blockquote><p>git config --global alias.co checkout<br/>
-git config --global alias.ci commit<br/>
-git config --global alias.br branch<br/>
-git config --global alias.st status</p></blockquote>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git config --global alias.co checkout
+</span><span class='line'>git config --global alias.ci commit
+</span><span class='line'>git config --global alias.br branch
+</span><span class='line'>git config --global alias.st status
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>git格式化与空格</p>
 
-<pre><code>由于linux系统和windows系统对行尾结束符处理方式不一致，windows下使用回车和换行两个字符来结束一行，而Linux系统仅仅使用一个换行字符，当跨平台在linux系统和windows系统下开发时，会出现较麻烦的现象。Git可以在提交时自动将结束符CRLF转换成LF，而在签出代码时将LF转换成为CRLF。在windows系统下，将autocrlf选项设置为true，这样在签出代码时，LF将会被换成CRLF；在Linux系统下，将autocrlf设置为input仅仅在签入代码时将CRLF转换为LF，在签出代码时，不进行转换，LF还是LF。此选项对跨平台开发具有较大作用，推荐使用。
-</code></pre>
+<blockquote><p>由于linux系统和windows系统对行尾结束符处理方式不一致，windows下使用回车和换行两个字符来结束一行，而Linux系统仅仅使用一个换行字符，当跨平台在linux系统和windows系统下开发时，会出现较麻烦的现象。Git可以在提交时自动将结束符CRLF转换成LF，而在签出代码时将LF转换成为CRLF。在windows系统下，将autocrlf选项设置为true，这样在签出代码时，LF将会被换成CRLF；在Linux系统下，将autocrlf设置为input仅仅在签入代码时将CRLF转换为LF，在签出代码时，不进行转换，LF还是LF。此选项对跨平台开发具有较大作用，推荐使用。</p></blockquote>
 
-<blockquote><p>git config --global core.autocrlf true<em>（windows下使用）</em><br/>
-git config --global core.autocrlf input<em>(Linux下使用）</em></p>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git config --global core.autocrlf <span class="nb">true</span>*（windows下使用）*
+</span><span class='line'>git config --global core.autocrlf input*<span class="o">(</span>Linux下使用）*
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <h1>注意事项</h1>
 
@@ -433,7 +507,7 @@ git config --global core.autocrlf input<em>(Linux下使用）</em></p>
 <li>使用<code>git checkout filename</code>操作时，将会从暂存区中获取文件，替代本地文件。注意这种情况下，本地的所有修改都会丢失。因此，在使用此命令之前，需要确认本地的修改已经无用或者已经保存。</li>
 <li>尽量多使用<code>git status</code>查看当前状态，在这个命令的输出中可以获取很多帮助信息以及可以采取什么操作来实现哪些功能。</li>
 </ul>
-</blockquote>
+
 </div>
 
 
@@ -511,12 +585,12 @@ git config --global core.autocrlf input<em>(Linux下使用）</em></p>
 <ul>
   <li><a href='/blog/categories/c语言'>C语言 (1)</a></li>
   <li><a href='/blog/categories/git'>Git (3)</a></li>
-  <li><a href='/blog/categories/linux'>Linux (12)</a></li>
+  <li><a href='/blog/categories/linux'>Linux (10)</a></li>
   <li><a href='/blog/categories/notes'>Notes (22)</a></li>
   <li><a href='/blog/categories/octopress'>Octopress (1)</a></li>
   <li><a href='/blog/categories/others'>Others (1)</a></li>
   <li><a href='/blog/categories/python'>Python (1)</a></li>
-  <li><a href='/blog/categories/vim'>Vim (1)</a></li>
+  <li><a href='/blog/categories/vim'>Vim (3)</a></li>
   <li><a href='/blog/categories/wsn'>Wsn (1)</a></li>
 </ul>
 </section>
@@ -524,6 +598,10 @@ git config --global core.autocrlf input<em>(Linux下使用）</em></p>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/06/08/octopresszeng-jia-fen-lei-biao-qian/">Octopress增加分类标签</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/06/08/octopressdai-ma-gao-liang/">Octopress代码高亮</a>
@@ -543,10 +621,6 @@ git config --global core.autocrlf input<em>(Linux下使用）</em></p>
     
       <li class="post">
         <a href="/blog/2012/06/06/assemble_language_learn/">汇编语言学习</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/05/vim_regex_learning/">VIM正则表达式学习</a>
       </li>
     
   </ul>

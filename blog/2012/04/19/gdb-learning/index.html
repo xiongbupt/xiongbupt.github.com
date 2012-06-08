@@ -9,7 +9,10 @@
   <meta name="author" content="Xiongbupt">
 
   
-  <meta name="description" content="GBD指令 backtrace 在程序出现错误之后，使用它可以看出出错的函数被哪个函数所调用。 查看内存地址存放的值 x 内存地址(examine) 查看代码。 list 如list 1,90用来查看1到90行的代码。 用来设置断点 break 设置到函数的断点,函数所在行也可以设置断点 &hellip;">
+  <meta name="description" content="GBD指令 backtrace 在程序出现错误之后，使用它可以看出出错的函数被哪个函数所调用。 查看内存地址存放的值 1
+x 内存地址(examine) 查看代码。 1
+list 如list 1,90用来查看1到90行的代码。 用来设置断点 1
+break 设置到函数的断点, &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -30,14 +33,6 @@
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href='http://fonts.googleapis.com/css?family=Ruge+Boogie|Ruthie|Flavors|Rancho|Galdeano' rel='stylesheet' type='text/css'>
-<script src="/javascripts/jquery-1.7.2.min.js" type="text/javascript"></script>
-<script src="/javascripts/jquery.tableofcontents.min.js" type="text/javascript"></script>
-<script type="text/javascript">
-  // Revert jQuery's '$' alias, to avoid clashes with ender.js. NOTE: Use
-  // jQuery(...), instead of $(...) from here on.
-  jQuery.noConflict();
-</script>
-<script src="/javascripts/generate-toc.js" type="text/javascript"></script>
 
   
   <script type="text/javascript">
@@ -109,8 +104,6 @@
 
 <time datetime="2012-04-19T00:00:00+08:00" pubdate data-updated="true">Apr 19<span>th</span>, 2012</time>
         
-         | <a href="#disqus_thread">Comments</a>
-        
       </p>
     
   </header>
@@ -122,33 +115,51 @@
 
 <p>查看内存地址存放的值</p>
 
-<blockquote><p>x 内存地址(examine)</p></blockquote>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>x 内存地址<span class="o">(</span>examine<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>查看代码。</p>
 
-<blockquote><p>list</p>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>list
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <pre><code>如list 1,90用来查看1到90行的代码。
-</code></pre></blockquote>
+</code></pre>
 
 <!--more-->
 
 
 <p>用来设置断点</p>
 
-<blockquote><p>break</p></blockquote>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">break</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>设置到函数的断点,函数所在行也可以设置断点</p>
 
-<blockquote><p>break 函数名</p></blockquote>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">break</span> 函数名
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>设置条件</p>
 
-<blockquote><p>condition</p></blockquote>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>condition
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>仅仅在var变量的值为some_value时使用断点，与断点一起使用，可以减少断点的量</p>
 
-<blockquote><p>condition 1 var==some_value</p></blockquote>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>condition 1 <span class="nv">var</span><span class="o">==</span>some_value
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <h2><a href="http://fanqiang.chinaunix.net/program/other/2006-07-14/4834.shtml">摘抄</a></h2>
 
@@ -158,78 +169,133 @@
 
 <p>使程序恰好在执行给定行之前停止。</p>
 
-<blockquote><p>break line-number</p></blockquote>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">break </span>line-number
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>使程序恰好在进入指定的函数之前停止。</p>
 
-<blockquote><p>break function-name</p></blockquote>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">break </span><span class="k">function</span>-name
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>如果condition（条件）是真，程序到达指定行或函数时停止。</p>
 
-<blockquote><p>break line-or-function if condition</p></blockquote>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">break </span>line-or-function <span class="k">if </span>condition
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>在指定例程的入口处设置断点</p>
 
-<blockquote><p>break routine-name</p></blockquote>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">break </span>routine-name
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>如果该程序是由很多原文件构成的，你可以在各个原文件中设置断点，而不是在当前的原文件中设置断点，其方法如下：</p>
 
-<blockquote><p>(gdb) break filename:line-number
-(gdb) break filename:function-name</p></blockquote>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">(</span>gdb<span class="o">)</span> <span class="nb">break </span>filename:line-number
+</span><span class='line'><span class="o">(</span>gdb<span class="o">)</span> <span class="nb">break </span>filename:function-name
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>要想设置一个条件断点，可以利用break if命令，如下所示：</p>
 
-<blockquote><p>(gdb) break line-or-function if expr</p></blockquote>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">(</span>gdb<span class="o">)</span> <span class="nb">break </span>line-or-function <span class="k">if </span>expr
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>例：</p>
 
-<blockquote><p>(gdb) break 46 if testsize==100</p></blockquote>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">(</span>gdb<span class="o">)</span> <span class="nb">break </span>46 <span class="k">if </span><span class="nv">testsize</span><span class="o">==</span>100
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>从断点继续运行：countinue 命令</p>
 
 <h3>断点的管理</h3>
 
-<ol>
-<li>显示当前gdb的断点信息：
+<ul>
+<li>显示当前gdb的断点信息：</li>
+</ul>
 
-<blockquote><p>(gdb) info break</p></blockquote></li>
-</ol>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">(</span>gdb<span class="o">)</span> info <span class="nb">break</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>他会以如下的形式显示所有的断点信息：</p>
 
-<pre><code>Num Type Disp Enb Address What
-1 breakpoint keep y 0x000028bc in init_random at qsort2.c:155
-2 breakpoint keep y 0x0000291c in init_organ at qsort2.c:168
-(gdb)
-</code></pre>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>Num Type Disp Enb Address What
+</span><span class='line'>1 breakpoint keep y 0x000028bc in init_random at qsort2.c:155
+</span><span class='line'>2 breakpoint keep y 0x0000291c in init_organ at qsort2.c:168
+</span><span class='line'><span class="o">(</span>gdb<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<ol>
-<li>删除指定的某个断点：
 
-<blockquote><p>(gdb) delete breakpoint 1</p></blockquote></li>
-</ol>
+<ul>
+<li>删除指定的某个断点：</li>
+</ul>
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">(</span>gdb<span class="o">)</span> delete breakpoint 1
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>上面的命令将会删除编号为1的断点，如果不带编号参数，将删除所有的断点</p>
 
-<blockquote><p>(gdb) delete breakpoint</p></blockquote>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">(</span>gdb<span class="o">)</span> delete breakpoint
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<ol>
-<li><p>禁止使用某个断点
-下面的命令将禁止断点 1,同时断点信息的 (Enb)域将变为 n</p>
 
-<blockquote><p>(gdb) disable breakpoint 1</p></blockquote></li>
-<li><p>允许使用某个断点
-命令将允许断点 1,同时断点信息的 (Enb)域将变为 y</p>
+<ul>
+<li>禁止使用某个断点
+下面的命令将禁止断点 1,同时断点信息的 (Enb)域将变为 n</li>
+</ul>
 
-<blockquote><p>(gdb) enable breakpoint 1</p></blockquote></li>
-<li><p>清除原文件中某一代码行上的所有断点</p>
 
-<blockquote><p>(gdb)clear number
- 注：number 为原文件的某个代码行的行号</p></blockquote></li>
-</ol>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">(</span>gdb<span class="o">)</span> disable breakpoint 1
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
+
+<ul>
+<li>允许使用某个断点
+命令将允许断点 1,同时断点信息的 (Enb)域将变为 y</li>
+</ul>
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">(</span>gdb<span class="o">)</span> <span class="nb">enable </span>breakpoint 1
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<ul>
+<li>清除原文件中某一代码行上的所有断点</li>
+</ul>
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">(</span>gdb<span class="o">)</span>clear number
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<pre><code>注：number 为原文件的某个代码行的行号
+</code></pre>
 
 <h3>变量的检查和赋值</h3>
 
@@ -245,12 +311,19 @@
 
 <p>不进入函数的单步执行</p>
 
-<blockquote><p>next</p></blockquote>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>next
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>进入函数的单步执行</p>
 
-<blockquote><p>step
-如果已经进入了某函数，而想退出该函数返回到它的调用函数中，可使用命令finish</p></blockquote>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>step
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>如果已经进入了某函数，而想退出该函数返回到它的调用函数中，可使用命令finish</p>
 
 <h4>常用的gdb命令</h4>
 
@@ -364,12 +437,12 @@
 <ul>
   <li><a href='/blog/categories/c语言'>C语言 (1)</a></li>
   <li><a href='/blog/categories/git'>Git (3)</a></li>
-  <li><a href='/blog/categories/linux'>Linux (12)</a></li>
+  <li><a href='/blog/categories/linux'>Linux (10)</a></li>
   <li><a href='/blog/categories/notes'>Notes (22)</a></li>
   <li><a href='/blog/categories/octopress'>Octopress (1)</a></li>
   <li><a href='/blog/categories/others'>Others (1)</a></li>
   <li><a href='/blog/categories/python'>Python (1)</a></li>
-  <li><a href='/blog/categories/vim'>Vim (1)</a></li>
+  <li><a href='/blog/categories/vim'>Vim (3)</a></li>
   <li><a href='/blog/categories/wsn'>Wsn (1)</a></li>
 </ul>
 </section>
@@ -377,6 +450,10 @@
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/06/08/octopresszeng-jia-fen-lei-biao-qian/">Octopress增加分类标签</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/06/08/octopressdai-ma-gao-liang/">Octopress代码高亮</a>
@@ -396,10 +473,6 @@
     
       <li class="post">
         <a href="/blog/2012/06/06/assemble_language_learn/">汇编语言学习</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/05/vim_regex_learning/">VIM正则表达式学习</a>
       </li>
     
   </ul>

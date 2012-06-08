@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Git | Keep Learning]]></title>
   <link href="http://xiongbupt.github.com/blog/categories/git/atom.xml" rel="self"/>
   <link href="http://xiongbupt.github.com/"/>
-  <updated>2012-06-08T22:04:22+08:00</updated>
+  <updated>2012-06-08T17:18:42+08:00</updated>
   <id>http://xiongbupt.github.com/</id>
   <author>
     <name><![CDATA[Xiongbupt]]></name>
@@ -210,120 +210,147 @@ git checkout -b branch_name origin/branch_name
 
 <h2>git基本命令介绍</h2>
 
-<p>从服务器端下载代码</p>
+<p>从服务器端下载代码
+{% codeblock lang:bash %}
+git clone username@remote_server:/path/to/work
+{% endcodeblock %}</p>
 
-<blockquote><p>git clone username@remote_server:/path/to/work</p></blockquote>
+<p>添加文件到暂存区
+{% codeblock lang:bash %}
+git add filename
+{% endcodeblock %}</p>
 
-<p>添加文件到暂存区</p>
+<p>将已经在版本库中但是在工作目录下修改的文件添加到暂存区
+{% codeblock lang:bash %}
+git add -u
+{% endcodeblock %}</p>
 
-<blockquote><p>git add filename</p></blockquote>
+<p>从版本库中删除文件
+{% codeblock lang:bash %}
+git rm filename
+{% endcodeblock %}</p>
 
-<p>将已经在版本库中但是在工作目录下修改的文件添加到暂存区</p>
+<p>将文件重命名
+{% codeblock lang:bash %}
+git mv oldname newname
+{% endcodeblock %}</p>
 
-<blockquote><p>git add -u</p></blockquote>
+<p>将暂存区文件存储到版本库中
+{% codeblock lang:bash %}
+git commit
+{% endcodeblock %}</p>
 
-<p>从版本库中删除文件</p>
+<p>直接添加注释，不再进入界面编辑提交日志
+{% codeblock lang:bash %}
+git commit -m 'Description of the commit'
+{% endcodeblock %}</p>
 
-<blockquote><p>git rm filename</p></blockquote>
+<p>从已经克隆的版本库中下载服务器端的代码到本地版本库中
+{% codeblock lang:bash %}
+git fetch
+{% endcodeblock %}</p>
 
-<p>将文件重命名</p>
+<p>从已经克隆的版本库中下载服务器端的代码并合并分支
+{% codeblock lang:bash %}
+git pull
+{% endcodeblock %}</p>
 
-<blockquote><p>git mv oldname newname</p></blockquote>
+<p>在本地创建一个名字为branch_name的分支
+{% codeblock lang:bash %}
+git branch branch_name
+{% endcodeblock %}</p>
 
-<p>将暂存区文件存储到版本库中</p>
+<p>切换到本地名字为branch_name的分支
+{% codeblock lang:bash %}
+git checkout branch_name
+{% endcodeblock %}</p>
 
-<blockquote><p>git commit</p></blockquote>
+<p>在本地创建一个分支名为branch_name的分支并切换到该分支
+{% codeblock lang:bash %}
+git chekcout -b branch_name
+{% endcodeblock %}</p>
 
-<p>直接添加注释，不再进入界面编辑提交日志</p>
+<p>将本地名字为branch_name的分支推送到服务器端，并且在服务器端的名字为branch_name
+{% codeblock lang:bash %}
+git push origin branch_name
+{% endcodeblock %}</p>
 
-<blockquote><p>git commit -m 'Description of the commit'</p></blockquote>
+<p>将本地名字为branch_name的分支推送到服务器端，并且在服务器端的名字为branch_server
+{% codeblock lang:bash %}
+git push origin branch_name:branch_server
+{% endcodeblock %}</p>
 
-<p>从已经克隆的版本库中下载服务器端的代码到本地版本库中</p>
+<p>查看服务器端的分支状态
+{% codeblock lang:bash %}
+git remote show origin
+{% endcodeblock %}</p>
 
-<blockquote><p>git fetch</p></blockquote>
+<p>查看本地分支状态
+{% codeblock lang:bash %}
+git branch
+{% endcodeblock %}</p>
 
-<p>从已经克隆的版本库中下载服务器端的代码并合并分支</p>
+<p>删除本地分支
+{% codeblock lang:bash %}
+git branch -d branch_name
+{% endcodeblock %}</p>
 
-<blockquote><p>git pull</p></blockquote>
+<p>合并分支
+{% codeblock lang:bash %}
+git merge
+{% endcodeblock %}</p>
 
-<p>在本地创建一个名字为branch_name的分支</p>
+<p>合并冲突解决
+{% codeblock lang:bash %}
+git mergetool
+{% endcodeblock %}</p>
 
-<blockquote><p>git branch branch_name</p></blockquote>
+<p>查看简明历史
+{% codeblock lang:bash %}
+git log
+{% endcodeblock %}</p>
 
-<p>切换到本地名字为branch_name的分支</p>
+<p>查看每次提交具体修改
+{% codeblock lang:bash %}
+git log -p
+{% endcodeblock %}</p>
 
-<blockquote><p>git checkout branch_name</p></blockquote>
+<p>查看提交某个文件的修改历史
+{% codeblock lang:bash %}
+git log -p filename
+{% endcodeblock %}</p>
 
-<p>在本地创建一个分支名为branch_name的分支并切换到该分支</p>
+<p>显示文件的增减行数
+{% codeblock lang:bash %}
+git log --stat
+{% endcodeblock %}</p>
 
-<blockquote><p>git chekcout -b branch_name</p></blockquote>
+<p>git个人邮件配置
+{% codeblock lang:bash %}
+git config --global user.email username@web.com
+{% endcodeblock %}</p>
 
-<p>将本地名字为branch_name的分支推送到服务器端，并且在服务器端的名字为branch_name</p>
+<p>git个人名字配置
+{% codeblock lang:bash %}
+git config --global user.name username
+{% endcodeblock %}</p>
 
-<blockquote><p>git push origin branch_name</p></blockquote>
-
-<p>将本地名字为branch_name的分支推送到服务器端，并且在服务器端的名字为branch_server</p>
-
-<blockquote><p>git push origin branch_name:branch_server</p></blockquote>
-
-<p>查看服务器端的分支状态</p>
-
-<blockquote><p>git remote show origin</p></blockquote>
-
-<p>查看本地分支状态</p>
-
-<blockquote><p>git branch</p></blockquote>
-
-<p>删除本地分支</p>
-
-<blockquote><p>git branch -d branch_name</p></blockquote>
-
-<p>合并分支</p>
-
-<blockquote><p>git merge</p></blockquote>
-
-<p>合并冲突解决</p>
-
-<blockquote><p>git mergetool</p></blockquote>
-
-<p>查看简明历史</p>
-
-<blockquote><p>git log</p></blockquote>
-
-<p>查看每次提交具体修改</p>
-
-<blockquote><p>git log -p</p></blockquote>
-
-<p>查看提交某个文件的修改历史</p>
-
-<blockquote><p>git log -p filename</p></blockquote>
-
-<p>显示文件的增减行数</p>
-
-<blockquote><p>git log --stat</p></blockquote>
-
-<p>git个人邮件配置</p>
-
-<blockquote><p>git config --global user.email username@web.com</p></blockquote>
-
-<p>git个人名字配置</p>
-
-<blockquote><p>git config --global user.name username</p></blockquote>
-
-<p>git简称配置，如chekcout简称为co，commit为ci，branch为br，status为st</p>
-
-<blockquote><p>git config --global alias.co checkout<br/>
+<p>git简称配置，如chekcout简称为co，commit为ci，branch为br，status为st
+{% codeblock lang:bash %}
+git config --global alias.co checkout<br/>
 git config --global alias.ci commit<br/>
 git config --global alias.br branch<br/>
-git config --global alias.st status</p></blockquote>
+git config --global alias.st status<br/>
+{% endcodeblock %}</p>
 
 <p>git格式化与空格</p>
 
-<pre><code>由于linux系统和windows系统对行尾结束符处理方式不一致，windows下使用回车和换行两个字符来结束一行，而Linux系统仅仅使用一个换行字符，当跨平台在linux系统和windows系统下开发时，会出现较麻烦的现象。Git可以在提交时自动将结束符CRLF转换成LF，而在签出代码时将LF转换成为CRLF。在windows系统下，将autocrlf选项设置为true，这样在签出代码时，LF将会被换成CRLF；在Linux系统下，将autocrlf设置为input仅仅在签入代码时将CRLF转换为LF，在签出代码时，不进行转换，LF还是LF。此选项对跨平台开发具有较大作用，推荐使用。
-</code></pre>
+<blockquote><p>由于linux系统和windows系统对行尾结束符处理方式不一致，windows下使用回车和换行两个字符来结束一行，而Linux系统仅仅使用一个换行字符，当跨平台在linux系统和windows系统下开发时，会出现较麻烦的现象。Git可以在提交时自动将结束符CRLF转换成LF，而在签出代码时将LF转换成为CRLF。在windows系统下，将autocrlf选项设置为true，这样在签出代码时，LF将会被换成CRLF；在Linux系统下，将autocrlf设置为input仅仅在签入代码时将CRLF转换为LF，在签出代码时，不进行转换，LF还是LF。此选项对跨平台开发具有较大作用，推荐使用。</p></blockquote>
 
-<blockquote><p>git config --global core.autocrlf true<em>（windows下使用）</em><br/>
-git config --global core.autocrlf input<em>(Linux下使用）</em></p>
+<p>{% codeblock lang:bash %}
+git config --global core.autocrlf true<em>（windows下使用）</em><br/>
+git config --global core.autocrlf input<em>(Linux下使用）</em> <br/>
+{% endcodeblock %}</p>
 
 <h1>注意事项</h1>
 
@@ -335,7 +362,7 @@ git config --global core.autocrlf input<em>(Linux下使用）</em></p>
 <li>使用<code>git checkout filename</code>操作时，将会从暂存区中获取文件，替代本地文件。注意这种情况下，本地的所有修改都会丢失。因此，在使用此命令之前，需要确认本地的修改已经无用或者已经保存。</li>
 <li>尽量多使用<code>git status</code>查看当前状态，在这个命令的输出中可以获取很多帮助信息以及可以采取什么操作来实现哪些功能。</li>
 </ul>
-</blockquote>
+
 ]]></content>
   </entry>
   

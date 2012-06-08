@@ -4,7 +4,7 @@
   <title><![CDATA[Category: VIM | Keep Learning]]></title>
   <link href="http://xiongbupt.github.com/blog/categories/vim/atom.xml" rel="self"/>
   <link href="http://xiongbupt.github.com/"/>
-  <updated>2012-06-08T22:04:22+08:00</updated>
+  <updated>2012-06-08T17:18:42+08:00</updated>
   <id>http://xiongbupt.github.com/</id>
   <author>
     <name><![CDATA[Xiongbupt]]></name>
@@ -12,6 +12,169 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[VIM正则表达式学习]]></title>
+    <link href="http://xiongbupt.github.com/blog/2012/06/05/vim_regex_learning/"/>
+    <updated>2012-06-05T00:00:00+08:00</updated>
+    <id>http://xiongbupt.github.com/blog/2012/06/05/vim_regex_learning</id>
+    <content type="html"><![CDATA[<h2>VIM正则表达式</h2>
+
+<p>之前粗略的看了正则表达式的一些内容，但是在VIM中一直用的很少，刚才无意间看到了使用VIM对词进行大小写转换，中间出现了一些正则表达式的内容，从网上找了些内容，觉得可以留下来做个笔记，供以后自己参考。<br/>
+文章的主要内容参考<a href="http://qianjigui.iteye.com/blog/368449" title="VIM中的正则表达式">该博客</a>。</p>
+
+<!--more-->
+
+
+<h3>量词</h3>
+
+<p>VIM中的量词与perl相比</p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="center">VIM    </th>
+<th align="center">Perl   </th>
+<th align="center">意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td align="center">*      </td>
+<td align="center">*      </td>
+<td align="center">0个或多个(匹配优先)</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">+     </td>
+<td align="center">+      </td>
+<td align="center">1个或多个(匹配优先)</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">\?或\= </td>
+<td align="center">?     </td>
+<td align="center">0个或1个(匹配优先)，\?不能在 ? 命令（逆向查找）中使用</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">{n,m} </td>
+<td align="center">{n,m}  </td>
+<td align="center">n个到m个(匹配优先)</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">{n,}  </td>
+<td align="center">{n,}   </td>
+<td align="center">最少n个(匹配优先)</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">{,m}  </td>
+<td align="center">{,m}   </td>
+<td align="center">最多m个(匹配优先)</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">{n}   </td>
+<td align="center">{n}    </td>
+<td align="center">恰好n个</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">{-n,m}</td>
+<td align="center">{n,m}? </td>
+<td align="center">n个到m个(忽略优先)</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">{-}   </td>
+<td align="center">*?     </td>
+<td align="center">0个或多个(忽略优先)</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">{-1,} </td>
+<td align="center">+?     </td>
+<td align="center">1个或多个(忽略优先)</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">{-,1} </td>
+<td align="center">??     </td>
+<td align="center">0个或1个(忽略优先)</td>
+</tr>
+</tbody>
+</table>
+
+
+<h3>环视和固化分组</h3>
+
+<p>这个内容之前没有接触过，只是简单的摘抄下来，后面再进行研究了。</p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="center">vim        </th>
+<th align="center">Perl   </th>
+<th align="center">意义           </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td align="center">\@=        </td>
+<td align="center">(?=    </td>
+<td align="center">顺序环视</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">\@!        </td>
+<td align="center">(?!    </td>
+<td align="center">顺序否定环视</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">\@&lt;=       </td>
+<td align="center">(?&lt;=   </td>
+<td align="center">逆序环视</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">\@&lt;!       </td>
+<td align="center">(?&lt;!   </td>
+<td align="center">逆序否定环视</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">\@>        </td>
+<td align="center">(?>    </td>
+<td align="center">固化分组</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">\%(atom)  </td>
+<td align="center">(?:    </td>
+<td align="center">非捕获型括号</td>
+</tr>
+</tbody>
+</table>
+
+
+<p>和perl稍有不同的是，vim中的环视和固化分组的模式的位置与perl不同。例如，查找紧跟在 foo 之后的 bar，perl将模式写在环视的括号内，而vim将模式写在环视的元字符之前。
+Perl的写法
+{% codeblock lang:perl %}
+/(?&lt;=foo)bar/
+{% endcodeblock %}
+vim的写法
+{% codeblock lang:bash %}
+/(foo)\@&lt;=bar
+{% endcodeblock %}</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[VIM使用正则表达式改变大小写]]></title>
@@ -52,29 +215,110 @@
 
 <p>使用\0作为参考引用，而不是使用每个单独命名，比如（\1，\2等），下面的例子演示了\0的使用。</p>
 
-<blockquote><p>This regex upper cases an explicit set of words to uppercase in a file.</p>
+<blockquote><p>This regex upper cases an explicit set of words to uppercase in a file.</p></blockquote>
 
-<p><code>:%s/\(select\)\|\(order)\|\(by\)\|\(from\)\|\(where\)/\U\0/g</code></p>
+<pre><code>`:%s/\(select\)\|\(order)\|\(by\)\|\(from\)\|\(where\)/\U\0/g`
+</code></pre>
 
-<p>Not rocket science, but otherwise you'd have to do this:</p>
+<blockquote><p>Not rocket science, but otherwise you'd have to do this:</p></blockquote>
 
-<p><code>:%s/\(select\)\|\(order)\|\(by\)\|\(from\)\|\(where\)/\U\1\U\2\U\3\U\4\U\5/g</code></p>
+<pre><code>`:%s/\(select\)\|\(order)\|\(by\)\|\(from\)\|\(where\)/\U\1\U\2\U\3\U\4\U\5/g`
+</code></pre>
 
-<p>[edit:  Much easier to just use this, where either 0 or 1 will work:]</p>
+<blockquote><p>[edit:  Much easier to just use this, where either 0 or 1 will work:]</p></blockquote>
 
-<p><code>:%s/\(select\|order\|by\|from\|where\)/\U\1/g</code></p></blockquote>
+<pre><code>`:%s/\(select\|order\|by\|from\|where\)/\U\1/g`
+</code></pre>
 
 <p>上面的三个操作均是将一文中的几个关键词转换为大写操作，显然方法2显得很不合适，方法1和方法3要高明许多。</p>
 
-<p>将HTML标签全部大写</p>
+<p>将HTML标签全部大写<br/>
+{% codeblock lang:html %}
+:%s/&lt;\/\=(\w+)>/\U&amp;/g
+{% endcodeblock %}</p>
 
-<blockquote><p>:%s/&lt;\/\=(\w+)>/\U&amp;/g</p></blockquote>
-
-<p>将HTML标签全部小写</p>
-
-<blockquote><p>:%s/&lt;\/\=(\w+)>/\L&amp;/g</p></blockquote>
+<p>将HTML标签全部小写<br/>
+{% codeblock lang:html %}
+%s/&lt;\/\=(\w+)>/\L&amp;/g
+{% endcodeblock %}</p>
 
 <p>上面的例子中的<code>\=</code>可以替换成为<code>\?</code>，两个符号的意思都是匹配0个或者1个。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[VIM使用便签]]></title>
+    <link href="http://xiongbupt.github.com/blog/2012/03/30/vim-cookbook/"/>
+    <updated>2012-03-30T00:00:00+08:00</updated>
+    <id>http://xiongbupt.github.com/blog/2012/03/30/vim-cookbook</id>
+    <content type="html"><![CDATA[<p>转载自<a href="http://www.oualline.com/vim-cook.html" title="vim_cook_book">vim_cook_book</a></p>
+
+<p>字符翻转</p>
+
+<blockquote><p>xp</p></blockquote>
+
+<p>可交换的替换单词
+{% codeblock lang:bash %}
+1G              #到第一行
+/idiot<enter>   #搜索单词idiot
+cwmanager       #将idiot替换为manager
+n               #搜索下一个idiot
+.               #重复上面的替换操作
+{% endcodeblock %}</p>
+
+<p>{% codeblock lang:bash %}
+%s/&lt;idiot>/manager/gc #直接在命令行模式下进行输入，使用全局替换的方式
+{% endcodeblock %}
+/&lt;idiot>/</p>
+
+<blockquote><p>This text specifies the text we are looking for wand want. The &lt; tells Vim to match a word start and the > tells Vim to match the end of a word.<br/>
+&lt;表明匹配的是一个单词的开始，>表明匹配的是一个单词的结束。</p></blockquote>
+
+<!--more-->
+
+
+<p>检查Makefile错误的好方法，由于命令是以tab开始的，若是空格将有错误
+{% codeblock lang:bash %}
+:set list
+{% endcodeblock %}
+可以显示出空格和tab的区别，tab是<sup>I</sup></p>
+
+<p>vim读取man文件
+{% codeblock lang:bash %}
+man subject|ul -i|vim -
+{% endcodeblock %}</p>
+
+<p>vim移除行末的空格
+{% codeblock lang:bash %}
+:1,$s/[tab]*$//
+{% endcodeblock %}</p>
+
+<p>将Last, First改为First Last
+{% codeblock lang:bash %}
+:1,$s/([<sup>,]<em>),(.</em>$)/\2\1/</sup>
+{% endcodeblock %}</p>
+
+<blockquote><p>The ( ... ) delimiters are used to inform the editor that the text that matches the regular expression side is to be treated special.<br/>
+(...)分隔符告知编辑器将括号内的内容应该被当做正则表达式来对待（？？？）</p></blockquote>
+
+<p>操作示例</p>
+
+<pre><code>if ( x&gt;3 ) {
+  "Hello *world!"           ds"         Hello world!
+  [123+4*56]/2              cs])        (123+456)/2
+  "Look ma, I'm *HTML!"     cs"&lt;q&gt;      &lt;q&gt;Look ma, I'm HTML!&lt;/q&gt;
+  if *x&gt;3 {                 ysW(        if ( x&gt;3 ) {
+  my $str = *whee!;         vllllS'     my $str = 'whee!';
+</code></pre>
+
+<p>上述操作中，*代表的是光标所在位置，在普通模式下，输入中间的命令，将会得到后面的效果</p>
+
+<p>{% codeblock lang:bash %}
+vim --startuptime timefile the_file_you_want_to_edit
+{% endcodeblock %}
+查看vim启动时间所占用的时间比</p>
+
+<p>set list查看不可见字符</p>
 ]]></content>
   </entry>
   

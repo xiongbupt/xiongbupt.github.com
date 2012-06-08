@@ -31,14 +31,6 @@ $awk -F &quot;:&quot; &#39;{print $1 $2}&# &hellip;">
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href='http://fonts.googleapis.com/css?family=Ruge+Boogie|Ruthie|Flavors|Rancho|Galdeano' rel='stylesheet' type='text/css'>
-<script src="/javascripts/jquery-1.7.2.min.js" type="text/javascript"></script>
-<script src="/javascripts/jquery.tableofcontents.min.js" type="text/javascript"></script>
-<script type="text/javascript">
-  // Revert jQuery's '$' alias, to avoid clashes with ender.js. NOTE: Use
-  // jQuery(...), instead of $(...) from here on.
-  jQuery.noConflict();
-</script>
-<script src="/javascripts/generate-toc.js" type="text/javascript"></script>
 
   
   <script type="text/javascript">
@@ -109,8 +101,6 @@ $awk -F &quot;:&quot; &#39;{print $1 $2}&# &hellip;">
 
 
 <time datetime="2012-03-02T00:00:00+08:00" pubdate data-updated="true">Mar 2<span>nd</span>, 2012</time>
-        
-         | <a href="#disqus_thread">Comments</a>
         
       </p>
     
@@ -202,7 +192,10 @@ END区域可以用于设置awk在处理文本完之后进行汇总处理。</p>
 
 <p>如下面，表明分隔符为多个tab键</p>
 
-<blockquote><p>FS="\t+"</p></blockquote>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">FS</span><span class="o">=</span><span class="s2">&quot;\t+&quot;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <h3>awk符号设置</h3>
 
@@ -239,19 +232,30 @@ END区域可以用于设置awk在处理文本完之后进行汇总处理。</p>
 
 <p>awk的数组下标可以是字符串，比如</p>
 
-<blockquote><p>myarr["1"]="abc"<br/>
-print myarr[1]<br/>
-print myarr["1"]</p></blockquote>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>myarr<span class="o">[</span><span class="s2">&quot;1&quot;</span><span class="o">]=</span><span class="s2">&quot;abc&quot;</span>
+</span><span class='line'>print myarr<span class="o">[</span>1<span class="o">]</span>
+</span><span class='line'>print myarr<span class="o">[</span><span class="s2">&quot;1&quot;</span><span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>这两个的输出结果一致，都是abc。</p>
 
-<blockquote><p>myarr["hello"] = "abc"</p></blockquote>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>myarr<span class="o">[</span><span class="s2">&quot;hello&quot;</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;abc&quot;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>数组也可以这样定义，即数组的下标可以是字符串，不一定得是数字。</p>
 
 <p>使用delete可以删除一个数组中的元素，比如</p>
 
-<blockquote><p>delete fooarray[1]</p></blockquote>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>delete fooarray<span class="o">[</span>1<span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>将会删除fooarray[1]这个数组元素。</p>
 
@@ -302,7 +306,7 @@ print myarr["1"]</p></blockquote>
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/linux/'>Linux</a>
+    <a class='category' href='/blog/categories/notes/'>Notes</a>
   
 </span>
 
@@ -314,6 +318,8 @@ print myarr["1"]</p></blockquote>
         <li><a href="/blog/tags/Linux/">Linux</a></li>
 
         <li><a href="/blog/tags/AWK/">AWK</a></li>
+
+        <li><a href="/blog/tags/Learning/">Learning</a></li>
 
     </ul>
 </div>
@@ -352,12 +358,12 @@ print myarr["1"]</p></blockquote>
 <ul>
   <li><a href='/blog/categories/c语言'>C语言 (1)</a></li>
   <li><a href='/blog/categories/git'>Git (3)</a></li>
-  <li><a href='/blog/categories/linux'>Linux (12)</a></li>
+  <li><a href='/blog/categories/linux'>Linux (10)</a></li>
   <li><a href='/blog/categories/notes'>Notes (22)</a></li>
   <li><a href='/blog/categories/octopress'>Octopress (1)</a></li>
   <li><a href='/blog/categories/others'>Others (1)</a></li>
   <li><a href='/blog/categories/python'>Python (1)</a></li>
-  <li><a href='/blog/categories/vim'>Vim (1)</a></li>
+  <li><a href='/blog/categories/vim'>Vim (3)</a></li>
   <li><a href='/blog/categories/wsn'>Wsn (1)</a></li>
 </ul>
 </section>
@@ -365,6 +371,10 @@ print myarr["1"]</p></blockquote>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/06/08/octopresszeng-jia-fen-lei-biao-qian/">Octopress增加分类标签</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/06/08/octopressdai-ma-gao-liang/">Octopress代码高亮</a>
@@ -384,10 +394,6 @@ print myarr["1"]</p></blockquote>
     
       <li class="post">
         <a href="/blog/2012/06/06/assemble_language_learn/">汇编语言学习</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/05/vim_regex_learning/">VIM正则表达式学习</a>
       </li>
     
   </ul>

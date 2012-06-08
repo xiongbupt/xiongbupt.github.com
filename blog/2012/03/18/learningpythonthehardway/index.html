@@ -9,7 +9,9 @@
   <meta name="author" content="Xiongbupt">
 
   
-  <meta name="description" content="python函数 raw_input([prompt]) 在终端上显示prompt的提示符，在界面上输入东西之后，将输入的东西以string的形式返回到对应的变量中 open() 打开文件，括号中的文件应该使用引号来表达，使用字符串，不能单单的使用名字。open返回的是文件描述符， &hellip;">
+  <meta name="description" content="python函数 1
+raw_input([prompt]) 在终端上显示prompt的提示符，在界面上输入东西之后，将输入的东西以string的形式返回到对应的变量中 1
+open() 打开文件，括号中的文件应该使用引号来表达，使用字符串，不能单单的使用名字。open返回的是文件描述符， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -30,14 +32,6 @@
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href='http://fonts.googleapis.com/css?family=Ruge+Boogie|Ruthie|Flavors|Rancho|Galdeano' rel='stylesheet' type='text/css'>
-<script src="/javascripts/jquery-1.7.2.min.js" type="text/javascript"></script>
-<script src="/javascripts/jquery.tableofcontents.min.js" type="text/javascript"></script>
-<script type="text/javascript">
-  // Revert jQuery's '$' alias, to avoid clashes with ender.js. NOTE: Use
-  // jQuery(...), instead of $(...) from here on.
-  jQuery.noConflict();
-</script>
-<script src="/javascripts/generate-toc.js" type="text/javascript"></script>
 
   
   <script type="text/javascript">
@@ -109,8 +103,6 @@
 
 <time datetime="2012-03-18T00:00:00+08:00" pubdate data-updated="true">Mar 18<span>th</span>, 2012</time>
         
-         | <a href="#disqus_thread">Comments</a>
-        
       </p>
     
   </header>
@@ -118,11 +110,17 @@
 
 <div class="entry-content"><h2>python函数</h2>
 
-<blockquote><p>raw_input([prompt])</p></blockquote>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="nb">raw_input</span><span class="p">([</span><span class="n">prompt</span><span class="p">])</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>在终端上显示prompt的提示符，在界面上输入东西之后，将输入的东西以string的形式返回到对应的变量中</p>
 
-<blockquote><p>open()</p></blockquote>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="nb">open</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>打开文件，括号中的文件应该使用引号来表达，使用字符串，不能单单的使用名字。open返回的是文件描述符，对文件描述符的操作可以使用pydoc2 file来查看对应的操作。</p>
 
@@ -131,12 +129,16 @@
 
 <p>python中的打印信息%r和%s的区别主要是%r是按照输入的来打印，而%s是python采用的猜测用户想要看到的信息来进行输出</p>
 
-<p>假设使用file为使用open返回的描述符，下面是一些日常操作的函数
-* close()将文件关闭并保存
-* read()读取文件的内容(添加操作的权限，有'r''w''a'这三种权限，如下所示open("hello_world",'a')
-* readline()仅仅读取文件内容的一行
-* truncate()清空文件(需要对文件具有可写的权限，默认open的操作仅仅以读的方式打开)
-* write(stuff)将stuff指定的内容写入文件</p>
+<p>假设使用file为使用open返回的描述符，下面是一些日常操作的函数</p>
+
+<ul>
+<li>close()将文件关闭并保存</li>
+<li>read()读取文件的内容(添加操作的权限，有'r''w''a'这三种权限，如下所示open("hello_world",'a')</li>
+<li>readline()仅仅读取文件内容的一行</li>
+<li>truncate()清空文件(需要对文件具有可写的权限，默认open的操作仅仅以读的方式打开)</li>
+<li>write(stuff)将stuff指定的内容写入文件</li>
+</ul>
+
 
 <p>python中以写的方式打开文件将会将文件的内容清空，无需使用truncate()再次将文件的内容清空</p>
 
@@ -192,31 +194,58 @@
 
 <h3>python字符串操作函数</h3>
 
-<p>string.split([sep[,maxsplit]])</p>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">string</span><span class="o">.</span><span class="n">split</span><span class="p">([</span><span class="n">sep</span><span class="p">[,</span><span class="n">maxsplit</span><span class="p">]])</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <pre><code>以分隔符sep来分隔字符串string。若指定maxsplit，则返回maxsplit+1个字符最多
 </code></pre>
 
-<p>sorted() 将字符串进行排序</p>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="nb">sorted</span><span class="p">()</span> <span class="err">将字符串进行排序</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<p>list.pop() 获取一个词然后将其从词组中删除，默认参数为-1，即为最后一个</p>
 
-<p>from ex25 import *<br/>
-引入ex25.py文件中的所有函数功能。</p>
 
-<p>import ex25<br/>
-在命令行中输入，引入ex25。</p>
 
-<p>python中的逻辑判断符号
-* and
-* or
-* not
-* !=
-* ==
-* >=
-* &lt;=
-* True
-* False</p>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="nb">list</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span> <span class="err">获取一个词然后将其从词组中删除，默认参数为</span><span class="o">-</span><span class="mi">1</span><span class="err">，即为最后一个</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">ex25</span> <span class="kn">import</span> <span class="o">*</span>
+</span><span class='line'><span class="err">引入</span><span class="n">ex25</span><span class="o">.</span><span class="n">py</span><span class="err">文件中的所有函数功能。</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">ex25</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>在命令行中输入，引入ex25。</p>
+
+<p>python中的逻辑判断符号</p>
+
+<ul>
+<li>and</li>
+<li>or</li>
+<li>not</li>
+<li>!=</li>
+<li>==</li>
+<li>>=</li>
+<li>&lt;=</li>
+<li>True</li>
+<li>False</li>
+</ul>
+
 
 <p>python中的if判断表达式后面的语句应该缩进4个空格来代表其所位于的缩进，if的条件后面需要添加冒号来告诉python这是一个新的代码块</p>
 
@@ -242,16 +271,20 @@
 <pre><code>start若省略则为0，step若省略则为1。step不能是0，否则报错.返回的是从start开始，以step为间隔，小于stop的一个list
 </code></pre>
 
-<p>python中list的操作函数包括
-* list.append(x)最后的位置添加一个x
-* list.extend(L)在list的最后的位置添加一个list，L为一个list.
-* list.insert(i, x)在list的i位置添加x
-* list.remove(x)在list中去除第一个等于x的项目
-* list.pop([i])在list中去除第i个位置的值，并返回该值。若未提供i则默认校区最后一个
-* list.index(x)返回列表中第一个值为x的下标
-* list.count(x)返回列表中一共有多少个值等于x的项目，用于计数
-* list.sort()对list就地进行排序，将会更改list
-* list.reverse()对list进行翻转处理</p>
+<p>python中list的操作函数包括</p>
+
+<ul>
+<li>list.append(x)最后的位置添加一个x</li>
+<li>list.extend(L)在list的最后的位置添加一个list，L为一个list.</li>
+<li>list.insert(i, x)在list的i位置添加x</li>
+<li>list.remove(x)在list中去除第一个等于x的项目</li>
+<li>list.pop([i])在list中去除第i个位置的值，并返回该值。若未提供i则默认校区最后一个</li>
+<li>list.index(x)返回列表中第一个值为x的下标</li>
+<li>list.count(x)返回列表中一共有多少个值等于x的项目，用于计数</li>
+<li>list.sort()对list就地进行排序，将会更改list</li>
+<li>list.reverse()对list进行翻转处理</li>
+</ul>
+
 
 <h3>python Keywords</h3>
 
@@ -366,12 +399,12 @@
 <ul>
   <li><a href='/blog/categories/c语言'>C语言 (1)</a></li>
   <li><a href='/blog/categories/git'>Git (3)</a></li>
-  <li><a href='/blog/categories/linux'>Linux (12)</a></li>
+  <li><a href='/blog/categories/linux'>Linux (10)</a></li>
   <li><a href='/blog/categories/notes'>Notes (22)</a></li>
   <li><a href='/blog/categories/octopress'>Octopress (1)</a></li>
   <li><a href='/blog/categories/others'>Others (1)</a></li>
   <li><a href='/blog/categories/python'>Python (1)</a></li>
-  <li><a href='/blog/categories/vim'>Vim (1)</a></li>
+  <li><a href='/blog/categories/vim'>Vim (3)</a></li>
   <li><a href='/blog/categories/wsn'>Wsn (1)</a></li>
 </ul>
 </section>
@@ -379,6 +412,10 @@
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/06/08/octopresszeng-jia-fen-lei-biao-qian/">Octopress增加分类标签</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/06/08/octopressdai-ma-gao-liang/">Octopress代码高亮</a>
@@ -398,10 +435,6 @@
     
       <li class="post">
         <a href="/blog/2012/06/06/assemble_language_learn/">汇编语言学习</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/05/vim_regex_learning/">VIM正则表达式学习</a>
       </li>
     
   </ul>

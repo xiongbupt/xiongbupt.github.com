@@ -9,7 +9,11 @@
   <meta name="author" content="Xiongbupt">
 
   
-  <meta name="description" content="进程 进程模型 一个进程就是一个正在执行的程序实例，包括程序计数器、寄存器和变量的当前值。一个进程就是某种类型的一个活动，它有程序、输入、输出以及状态。
+  <meta name="description" content="IEEE 802.15.4 MAC帧控制字段中帧类型的数值
+信标帧：000
+数据帧：001
+确认帧：010
+命令帧：011
 ">
   
 
@@ -31,14 +35,6 @@
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href='http://fonts.googleapis.com/css?family=Ruge+Boogie|Ruthie|Flavors|Rancho|Galdeano' rel='stylesheet' type='text/css'>
-<script src="/javascripts/jquery-1.7.2.min.js" type="text/javascript"></script>
-<script src="/javascripts/jquery.tableofcontents.min.js" type="text/javascript"></script>
-<script type="text/javascript">
-  // Revert jQuery's '$' alias, to avoid clashes with ender.js. NOTE: Use
-  // jQuery(...), instead of $(...) from here on.
-  jQuery.noConflict();
-</script>
-<script src="/javascripts/generate-toc.js" type="text/javascript"></script>
 
   
   <script type="text/javascript">
@@ -95,6 +91,46 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2012/03/21/ieee802154/">IEEE 802.15.4格式</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-21T00:00:00+08:00" pubdate data-updated="true">Mar 21<span>st</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>IEEE 802.15.4 MAC帧控制字段中帧类型的数值<br/>
+信标帧：000<br/>
+数据帧：001<br/>
+确认帧：010<br/>
+命令帧：011</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2012/03/19/moder_operation_system_process/">现代操作系统：进程（笔记）</a></h1>
     
     
@@ -112,8 +148,6 @@
 
 
 <time datetime="2012-03-19T00:00:00+08:00" pubdate data-updated="true">Mar 19<span>th</span>, 2012</time>
-        
-         | <a href="/blog/2012/03/19/moder_operation_system_process/#disqus_thread">Comments</a>
         
       </p>
     
@@ -154,8 +188,6 @@
 
 
 <time datetime="2012-03-19T00:00:00+08:00" pubdate data-updated="true">Mar 19<span>th</span>, 2012</time>
-        
-         | <a href="/blog/2012/03/19/linux_kernel_notes/#disqus_thread">Comments</a>
         
       </p>
     
@@ -213,8 +245,6 @@ DECLARE_WAIT_QUEUE_HEAD<br/>
 
 <time datetime="2012-03-19T00:00:00+08:00" pubdate data-updated="true">Mar 19<span>th</span>, 2012</time>
         
-         | <a href="/blog/2012/03/19/c_language_notes/#disqus_thread">Comments</a>
-        
       </p>
     
   </header>
@@ -265,8 +295,6 @@ DECLARE_WAIT_QUEUE_HEAD<br/>
 
 <time datetime="2012-03-18T00:00:00+08:00" pubdate data-updated="true">Mar 18<span>th</span>, 2012</time>
         
-         | <a href="/blog/2012/03/18/learningpythonthehardway/#disqus_thread">Comments</a>
-        
       </p>
     
   </header>
@@ -274,11 +302,17 @@ DECLARE_WAIT_QUEUE_HEAD<br/>
 
   <div class="entry-content"><h2>python函数</h2>
 
-<blockquote><p>raw_input([prompt])</p></blockquote>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="nb">raw_input</span><span class="p">([</span><span class="n">prompt</span><span class="p">])</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>在终端上显示prompt的提示符，在界面上输入东西之后，将输入的东西以string的形式返回到对应的变量中</p>
 
-<blockquote><p>open()</p></blockquote>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="nb">open</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>打开文件，括号中的文件应该使用引号来表达，使用字符串，不能单单的使用名字。open返回的是文件描述符，对文件描述符的操作可以使用pydoc2 file来查看对应的操作。</p>
 
@@ -315,8 +349,6 @@ DECLARE_WAIT_QUEUE_HEAD<br/>
 
 
 <time datetime="2012-03-07T00:00:00+08:00" pubdate data-updated="true">Mar 7<span>th</span>, 2012</time>
-        
-         | <a href="/blog/2012/03/07/linux_kernel_activity/#disqus_thread">Comments</a>
         
       </p>
     
@@ -359,8 +391,6 @@ DECLARE_WAIT_QUEUE_HEAD<br/>
 
 
 <time datetime="2012-03-06T00:00:00+08:00" pubdate data-updated="true">Mar 6<span>th</span>, 2012</time>
-        
-         | <a href="/blog/2012/03/06/vim_tips/#disqus_thread">Comments</a>
         
       </p>
     
@@ -441,8 +471,6 @@ ZZ<br/>
 
 <time datetime="2012-03-04T00:00:00+08:00" pubdate data-updated="true">Mar 4<span>th</span>, 2012</time>
         
-         | <a href="/blog/2012/03/04/linux_bash/#disqus_thread">Comments</a>
-        
       </p>
     
   </header>
@@ -492,8 +520,6 @@ stty &#8211;all查看当前终端的所有ctrl配置。<br/>
 
 <time datetime="2012-03-02T00:00:00+08:00" pubdate data-updated="true">Mar 2<span>nd</span>, 2012</time>
         
-         | <a href="/blog/2012/03/02/linux_awk_study/#disqus_thread">Comments</a>
-        
       </p>
     
   </header>
@@ -541,8 +567,6 @@ stty &#8211;all查看当前终端的所有ctrl配置。<br/>
 
 <time datetime="2012-03-01T00:00:00+08:00" pubdate data-updated="true">Mar 1<span>st</span>, 2012</time>
         
-         | <a href="/blog/2012/03/01/linux_process/#disqus_thread">Comments</a>
-        
       </p>
     
   </header>
@@ -576,44 +600,6 @@ stty &#8211;all查看当前终端的所有ctrl配置。<br/>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/02/29/linux-alipay/">Linux下支付宝插件的安装</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-02-29T00:00:00+08:00" pubdate data-updated="true">Feb 29<span>th</span>, 2012</time>
-        
-         | <a href="/blog/2012/02/29/linux-alipay/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>在linux下使用支付宝时需要安装插件才可以登录，当没有插件时，会提示安装插件。从网址下载的脚本文件安装之后仍然提示需要安装插件，从google搜索发现，支付宝的插件还需要libpng12的支持。我的Linux版本为arch，在arch的aur包里面有一个aliedit的插件，安装上这个插件后可以正常的使用。支付宝的Linux支持真是不好，也不提示说需要使用libpng的插件。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/5/">&larr; Older</a>
@@ -632,12 +618,12 @@ stty &#8211;all查看当前终端的所有ctrl配置。<br/>
 <ul>
   <li><a href='/blog/categories/c语言'>C语言 (1)</a></li>
   <li><a href='/blog/categories/git'>Git (3)</a></li>
-  <li><a href='/blog/categories/linux'>Linux (12)</a></li>
+  <li><a href='/blog/categories/linux'>Linux (10)</a></li>
   <li><a href='/blog/categories/notes'>Notes (22)</a></li>
   <li><a href='/blog/categories/octopress'>Octopress (1)</a></li>
   <li><a href='/blog/categories/others'>Others (1)</a></li>
   <li><a href='/blog/categories/python'>Python (1)</a></li>
-  <li><a href='/blog/categories/vim'>Vim (1)</a></li>
+  <li><a href='/blog/categories/vim'>Vim (3)</a></li>
   <li><a href='/blog/categories/wsn'>Wsn (1)</a></li>
 </ul>
 </section>
@@ -645,6 +631,10 @@ stty &#8211;all查看当前终端的所有ctrl配置。<br/>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/06/08/octopresszeng-jia-fen-lei-biao-qian/">Octopress增加分类标签</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/06/08/octopressdai-ma-gao-liang/">Octopress代码高亮</a>
@@ -664,10 +654,6 @@ stty &#8211;all查看当前终端的所有ctrl配置。<br/>
     
       <li class="post">
         <a href="/blog/2012/06/06/assemble_language_learn/">汇编语言学习</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/05/vim_regex_learning/">VIM正则表达式学习</a>
       </li>
     
   </ul>

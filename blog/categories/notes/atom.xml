@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Notes | Keep Learning]]></title>
   <link href="http://xiongbupt.github.com/blog/categories/notes/atom.xml" rel="self"/>
   <link href="http://xiongbupt.github.com/"/>
-  <updated>2012-06-08T22:04:22+08:00</updated>
+  <updated>2012-06-08T17:18:42+08:00</updated>
   <id>http://xiongbupt.github.com/</id>
   <author>
     <name><![CDATA[Xiongbupt]]></name>
@@ -293,166 +293,6 @@ smartcase   若只有小写，可匹配大小写；若含有大写，则严格�
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[VIM正则表达式学习]]></title>
-    <link href="http://xiongbupt.github.com/blog/2012/06/05/vim_regex_learning/"/>
-    <updated>2012-06-05T00:00:00+08:00</updated>
-    <id>http://xiongbupt.github.com/blog/2012/06/05/vim_regex_learning</id>
-    <content type="html"><![CDATA[<h2>VIM正则表达式</h2>
-
-<p>之前粗略的看了正则表达式的一些内容，但是在VIM中一直用的很少，刚才无意间看到了使用VIM对词进行大小写转换，中间出现了一些正则表达式的内容，从网上找了些内容，觉得可以留下来做个笔记，供以后自己参考。<br/>
-文章的主要内容参考<a href="http://qianjigui.iteye.com/blog/368449" title="VIM中的正则表达式">该博客</a>。</p>
-
-<!--more-->
-
-
-<h3>量词</h3>
-
-<p>VIM中的量词与perl相比</p>
-
-<table>
-<thead>
-<tr>
-<th></th>
-<th align="center">VIM    </th>
-<th align="center">Perl   </th>
-<th align="center">意义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td align="center">*      </td>
-<td align="center">*      </td>
-<td align="center">0个或多个(匹配优先)</td>
-</tr>
-<tr>
-<td></td>
-<td align="center">+     </td>
-<td align="center">+      </td>
-<td align="center">1个或多个(匹配优先)</td>
-</tr>
-<tr>
-<td></td>
-<td align="center">\?或\= </td>
-<td align="center">?     </td>
-<td align="center">0个或1个(匹配优先)，\?不能在 ? 命令（逆向查找）中使用</td>
-</tr>
-<tr>
-<td></td>
-<td align="center">{n,m} </td>
-<td align="center">{n,m}  </td>
-<td align="center">n个到m个(匹配优先)</td>
-</tr>
-<tr>
-<td></td>
-<td align="center">{n,}  </td>
-<td align="center">{n,}   </td>
-<td align="center">最少n个(匹配优先)</td>
-</tr>
-<tr>
-<td></td>
-<td align="center">{,m}  </td>
-<td align="center">{,m}   </td>
-<td align="center">最多m个(匹配优先)</td>
-</tr>
-<tr>
-<td></td>
-<td align="center">{n}   </td>
-<td align="center">{n}    </td>
-<td align="center">恰好n个</td>
-</tr>
-<tr>
-<td></td>
-<td align="center">{-n,m}</td>
-<td align="center">{n,m}? </td>
-<td align="center">n个到m个(忽略优先)</td>
-</tr>
-<tr>
-<td></td>
-<td align="center">{-}   </td>
-<td align="center">*?     </td>
-<td align="center">0个或多个(忽略优先)</td>
-</tr>
-<tr>
-<td></td>
-<td align="center">{-1,} </td>
-<td align="center">+?     </td>
-<td align="center">1个或多个(忽略优先)</td>
-</tr>
-<tr>
-<td></td>
-<td align="center">{-,1} </td>
-<td align="center">??     </td>
-<td align="center">0个或1个(忽略优先)</td>
-</tr>
-</tbody>
-</table>
-
-
-<h3>环视和固化分组</h3>
-
-<p>这个内容之前没有接触过，只是简单的摘抄下来，后面再进行研究了。</p>
-
-<table>
-<thead>
-<tr>
-<th></th>
-<th align="center">vim        </th>
-<th align="center">Perl   </th>
-<th align="center">意义           </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td align="center">\@=        </td>
-<td align="center">(?=    </td>
-<td align="center">顺序环视</td>
-</tr>
-<tr>
-<td></td>
-<td align="center">\@!        </td>
-<td align="center">(?!    </td>
-<td align="center">顺序否定环视</td>
-</tr>
-<tr>
-<td></td>
-<td align="center">\@&lt;=       </td>
-<td align="center">(?&lt;=   </td>
-<td align="center">逆序环视</td>
-</tr>
-<tr>
-<td></td>
-<td align="center">\@&lt;!       </td>
-<td align="center">(?&lt;!   </td>
-<td align="center">逆序否定环视</td>
-</tr>
-<tr>
-<td></td>
-<td align="center">\@>        </td>
-<td align="center">(?>    </td>
-<td align="center">固化分组</td>
-</tr>
-<tr>
-<td></td>
-<td align="center">\%(atom)  </td>
-<td align="center">(?:    </td>
-<td align="center">非捕获型括号</td>
-</tr>
-</tbody>
-</table>
-
-
-<p>和perl稍有不同的是，vim中的环视和固化分组的模式的位置与perl不同。例如，查找紧跟在 foo 之后的 bar，perl将模式写在环视的括号内，而vim将模式写在环视的元字符之前。
-Perl的写法</p>
-
-<blockquote><p>/(?&lt;=foo)bar/
-vim的写法
-/(foo)\@&lt;=bar</p></blockquote>
-]]></content>
-  </entry>
-  
-  <entry>
     <title type="html"><![CDATA[一个操作系统的实现笔记]]></title>
     <link href="http://xiongbupt.github.com/blog/2012/06/05/os_impletion/"/>
     <updated>2012-06-05T00:00:00+08:00</updated>
@@ -521,6 +361,17 @@ ret
 times   510-($-$$)  db  0
 dw      0xaa55
 {% endcodeblock %}</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Git server]]></title>
+    <link href="http://xiongbupt.github.com/blog/2012/05/31/git/"/>
+    <updated>2012-05-31T00:00:00+08:00</updated>
+    <id>http://xiongbupt.github.com/blog/2012/05/31/git</id>
+    <content type="html"><![CDATA[<h1>小型系统下GIT安装使用</h1>
+
+<p><a href="http://blog.prosight.me/index.php/2009/11/485">参考博客</a></p>
 ]]></content>
   </entry>
   

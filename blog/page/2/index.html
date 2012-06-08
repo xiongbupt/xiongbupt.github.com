@@ -9,8 +9,10 @@
   <meta name="author" content="Xiongbupt">
 
   
-  <meta name="description" content="小型系统下GIT安装使用 参考博客
-">
+  <meta name="description" content="git log branch_a..branch_b
+显示branch_b有而branch_a没有的历史。
+git log branch_b..branch_a
+显示branch_a有而branch_b没有的历史。 git log origin/master..HEAD &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -31,14 +33,6 @@
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href='http://fonts.googleapis.com/css?family=Ruge+Boogie|Ruthie|Flavors|Rancho|Galdeano' rel='stylesheet' type='text/css'>
-<script src="/javascripts/jquery-1.7.2.min.js" type="text/javascript"></script>
-<script src="/javascripts/jquery.tableofcontents.min.js" type="text/javascript"></script>
-<script type="text/javascript">
-  // Revert jQuery's '$' alias, to avoid clashes with ender.js. NOTE: Use
-  // jQuery(...), instead of $(...) from here on.
-  jQuery.noConflict();
-</script>
-<script src="/javascripts/generate-toc.js" type="text/javascript"></script>
 
   
   <script type="text/javascript">
@@ -95,7 +89,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2012/05/31/git/">Git Server</a></h1>
+      <h1 class="entry-title"><a href="/blog/2012/05/31/git-basic/">Git基本使用</a></h1>
     
     
       <p class="meta">
@@ -113,7 +107,64 @@
 
 <time datetime="2012-05-31T00:00:00+08:00" pubdate data-updated="true">May 31<span>st</span>, 2012</time>
         
-         | <a href="/blog/2012/05/31/git/#disqus_thread">Comments</a>
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><code>git log branch_a..branch_b</code><br/>
+显示branch_b有而branch_a没有的历史。<br/>
+<code>git log branch_b..branch_a</code><br/>
+显示branch_a有而branch_b没有的历史。</p>
+
+<p><code>git log origin/master..HEAD</code><br/>
+查看将会把什么推送到远端的master分支</p>
+
+<p><code>git show HEAD</code> <br/>
+<code>git show HEAD^</code><br/>
+<code>git show HEAD~</code><br/>
+^符号显示的是祖先，<sup>2显示的是第二父提交</sup></p>
+
+<p>~显示的是父提交，~2显示的是父提交的父提交</p>
+
+<p><code>git log reA..reB</code><br/>
+<code>git log ^reA reB</code><br/>
+<code>git log reB --not reA</code><br/>
+上述三个命令等价，均是指包含reB而不包含reA</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/05/31/git-basic/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/05/31/git/">Git Server</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-31T00:00:00+08:00" pubdate data-updated="true">May 31<span>st</span>, 2012</time>
         
       </p>
     
@@ -152,8 +203,6 @@
 
 
 <time datetime="2012-05-29T00:00:00+08:00" pubdate data-updated="true">May 29<span>th</span>, 2012</time>
-        
-         | <a href="/blog/2012/05/29/tomcat-mysql/#disqus_thread">Comments</a>
         
       </p>
     
@@ -284,8 +333,6 @@
 
 <time datetime="2012-05-26T00:00:00+08:00" pubdate data-updated="true">May 26<span>th</span>, 2012</time>
         
-         | <a href="/blog/2012/05/26/learning-sql-ch10/#disqus_thread">Comments</a>
-        
       </p>
     
   </header>
@@ -323,8 +370,6 @@
 
 
 <time datetime="2012-05-25T00:00:00+08:00" pubdate data-updated="true">May 25<span>th</span>, 2012</time>
-        
-         | <a href="/blog/2012/05/25/learning-sql-ch9/#disqus_thread">Comments</a>
         
       </p>
     
@@ -382,8 +427,6 @@
 
 
 <time datetime="2012-05-25T00:00:00+08:00" pubdate data-updated="true">May 25<span>th</span>, 2012</time>
-        
-         | <a href="/blog/2012/05/25/learning-sql-ch8/#disqus_thread">Comments</a>
         
       </p>
     
@@ -457,8 +500,6 @@
 
 <time datetime="2012-05-24T00:00:00+08:00" pubdate data-updated="true">May 24<span>th</span>, 2012</time>
         
-         | <a href="/blog/2012/05/24/learning-sql-ch7/#disqus_thread">Comments</a>
-        
       </p>
     
   </header>
@@ -521,8 +562,6 @@
 
 <time datetime="2012-05-23T00:00:00+08:00" pubdate data-updated="true">May 23<span>rd</span>, 2012</time>
         
-         | <a href="/blog/2012/05/23/markdown-syntax/#disqus_thread">Comments</a>
-        
       </p>
     
   </header>
@@ -580,8 +619,6 @@
 
 <time datetime="2012-05-23T00:00:00+08:00" pubdate data-updated="true">May 23<span>rd</span>, 2012</time>
         
-         | <a href="/blog/2012/05/23/learning-sql/#disqus_thread">Comments</a>
-        
       </p>
     
   </header>
@@ -630,8 +667,6 @@
 
 
 <time datetime="2012-05-22T00:00:00+08:00" pubdate data-updated="true">May 22<span>nd</span>, 2012</time>
-        
-         | <a href="/blog/2012/05/22/learning-sql/#disqus_thread">Comments</a>
         
       </p>
     
@@ -705,57 +740,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/05/22/learning-markdown/">Markdown基本语法学习</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-22T00:00:00+08:00" pubdate data-updated="true">May 22<span>nd</span>, 2012</time>
-        
-         | <a href="/blog/2012/05/22/learning-markdown/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>markdown基本语法</h2>
-
-<p>摘抄自<em><a href="http://wowubuntu.com/markdown/">http://wowubuntu.com/markdown/</a></em></p>
-
-<h3>宗旨</h3>
-
-<p>Markdown 的目标是实现「易读易写」。</p>
-
-<p>可读性，无论如何，都是最重要的。一份使用 Markdown 格式撰写的文件应该可以直接以纯文本发布，并且看起来不会像是由许多标签或是格式指令所构成。Markdown 语法受到一些既有 text-to-HTML 格式的影响，包括 Setext、atx、Textile、reStructuredText、Grutatext 和 EtText，而最大灵感来源其实是纯文本电子邮件的格式。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/05/22/learning-markdown/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -774,12 +758,12 @@
 <ul>
   <li><a href='/blog/categories/c语言'>C语言 (1)</a></li>
   <li><a href='/blog/categories/git'>Git (3)</a></li>
-  <li><a href='/blog/categories/linux'>Linux (12)</a></li>
+  <li><a href='/blog/categories/linux'>Linux (10)</a></li>
   <li><a href='/blog/categories/notes'>Notes (22)</a></li>
   <li><a href='/blog/categories/octopress'>Octopress (1)</a></li>
   <li><a href='/blog/categories/others'>Others (1)</a></li>
   <li><a href='/blog/categories/python'>Python (1)</a></li>
-  <li><a href='/blog/categories/vim'>Vim (1)</a></li>
+  <li><a href='/blog/categories/vim'>Vim (3)</a></li>
   <li><a href='/blog/categories/wsn'>Wsn (1)</a></li>
 </ul>
 </section>
@@ -787,6 +771,10 @@
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/06/08/octopresszeng-jia-fen-lei-biao-qian/">Octopress增加分类标签</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/06/08/octopressdai-ma-gao-liang/">Octopress代码高亮</a>
@@ -806,10 +794,6 @@
     
       <li class="post">
         <a href="/blog/2012/06/06/assemble_language_learn/">汇编语言学习</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/05/vim_regex_learning/">VIM正则表达式学习</a>
       </li>
     
   </ul>

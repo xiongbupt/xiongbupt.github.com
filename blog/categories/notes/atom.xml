@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Notes | Keep Learning]]></title>
   <link href="http://xiongbupt.github.com/blog/categories/notes/atom.xml" rel="self"/>
   <link href="http://xiongbupt.github.com/"/>
-  <updated>2012-06-07T22:55:13+08:00</updated>
+  <updated>2012-06-08T17:45:01+08:00</updated>
   <id>http://xiongbupt.github.com/</id>
   <author>
     <name><![CDATA[Xiongbupt]]></name>
@@ -94,16 +94,20 @@ smartcase   若只有小写，可匹配大小写；若含有大写，则严格�
 
 <h2>查找偏移</h2>
 
-<p><code>/pattern/2</code>，这个查找将会在单词pattern的后两行。 <br/>
-* 匹配一个可选项，使用<code>\=</code>，比如</p>
+<p><code>/pattern/2</code>，这个查找将会在单词pattern的后两行。</p>
 
-<blockquote><p>/folders\=</p></blockquote>
+<ul>
+<li>匹配一个可选项，使用<code>\=</code>，比如
+
+<blockquote><p>/folders\=</p></blockquote></li>
+</ul>
+
 
 <p>匹配的是"folder"和"folders"</p>
 
 <ul>
-<li><p>指定重复次数时，使用<code>\{n,m}</code>这样的形式。匹配n到m次，包括n和m，相当于一个闭区间。</p></li>
-<li><p>匹配尽可能少的字符使用'{-n,m}`。与上面的作用类似，区别在于尽可能少的匹配。</p></li>
+<li>指定重复次数时，使用<code>\{n,m}</code>这样的形式。匹配n到m次，包括n和m，相当于一个闭区间。</li>
+<li>匹配尽可能少的字符使用'{-n,m}`。与上面的作用类似，区别在于尽可能少的匹配。</li>
 </ul>
 
 
@@ -133,7 +137,7 @@ smartcase   若只有小写，可匹配大小写；若含有大写，则严格�
 <td></td>
 <td align="left">\D </td>
 <td align="left">非数位          </td>
-<td align="center">[<sup>0-9]</sup></td>
+<td align="center">[<code>^</code>0-9]</td>
 </tr>
 <tr>
 <td></td>
@@ -145,19 +149,19 @@ smartcase   若只有小写，可匹配大小写；若含有大写，则严格�
 <td></td>
 <td align="left">\X </td>
 <td align="left">非十六进制数位  </td>
-<td align="center">[<sup>0-9a-fA-F]</sup></td>
+<td align="center">[<code>^</code>0-9a-fA-F]</td>
 </tr>
 <tr>
 <td></td>
 <td align="left">\s </td>
 <td align="left">空白字符       </td>
-<td align="center">[  ]     (<Tab> 和 <Space>)</td>
+<td align="center">[  ]     (<code>&lt;Tab&gt;</code> 和 <code>&lt;Space&gt;</code>)</td>
 </tr>
 <tr>
 <td></td>
 <td align="left">\S </td>
 <td align="left">非空白字符        </td>
-<td align="center">[^     ]     (非 <Tab> 和 <Space>)</td>
+<td align="center">[<code>^</code>  ]     (非 <code>&lt;Tab&gt;</code> 和 <code>&lt;Space&gt;</code>)</td>
 </tr>
 <tr>
 <td></td>
@@ -169,7 +173,7 @@ smartcase   若只有小写，可匹配大小写；若含有大写，则严格�
 <td></td>
 <td align="left">\L </td>
 <td align="left">非小写字母        </td>
-<td align="center">[<sup>a-z]</sup></td>
+<td align="center">[<code>^</code>a-z]</td>
 </tr>
 <tr>
 <td></td>
@@ -181,7 +185,7 @@ smartcase   若只有小写，可匹配大小写；若含有大写，则严格�
 <td></td>
 <td align="left">\U </td>
 <td align="left">非大写字母        </td>
-<td align="center">[<sup>A-Z]</sup></td>
+<td align="center">[<code>^</code>A-Z]</td>
 </tr>
 </tbody>
 </table>

@@ -4,7 +4,7 @@
   <title><![CDATA[Keep Learning]]></title>
   <link href="http://xiongbupt.github.com/atom.xml" rel="self"/>
   <link href="http://xiongbupt.github.com/"/>
-  <updated>2012-06-07T22:55:13+08:00</updated>
+  <updated>2012-06-08T17:45:01+08:00</updated>
   <id>http://xiongbupt.github.com/</id>
   <author>
     <name><![CDATA[Xiongbupt]]></name>
@@ -12,6 +12,186 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Octopress代码高亮]]></title>
+    <link href="http://xiongbupt.github.com/blog/2012/06/08/octopressdai-ma-gao-liang/"/>
+    <updated>2012-06-08T08:27:00+08:00</updated>
+    <id>http://xiongbupt.github.com/blog/2012/06/08/octopressdai-ma-gao-liang</id>
+    <content type="html"><![CDATA[<p>现在博客已经基本搭建完毕，下面对从<code>jekyll bootstrap</code>搬迁到做一个基本介绍。首先是代码高亮部分，下面的文章主要来自于<a href="http://octopress.org/docs/blogging/code/" title="Octopress代码高亮">Octopress关于代码高亮部分</a>。文章主要是对上面的内容进行一个简单的翻译，以及简单介绍从<code>jekyll bootstrap</code>上面的代码移动到<code>Octopress</code>上面做一个简单的介绍。</p>
+
+<h2>共享代码片段</h2>
+
+<p>在博客上共享代码片段应该是简单的，并且代码应该具有简单的高亮功能。Octopress也具有这种功能，在<code>jekyll</code>上，其使用的是<code>pygment</code>来实现代码高亮的功能，Octopress实现的更好。在Octopress上面有下面几种选择： <br/>
+* 使用<a href="http://ethanschoonover.com/solarized" title="Solarized高亮">Solarized高亮</a>主题来实现（该方法未尝试，实际上不知道怎么弄，只是凭借个人的猜测）。
+* 使用Gist的代码内嵌。
+* 从自己的文件系统中插入代码片段，该代码具有下载链接。
+* 简单的内嵌代码块带有<code>&lt;div class='bogus-wrapper'&gt;&lt;notextile&gt;&lt;figure&gt;</code>和<code>&lt;figcaption&gt;</code>和可选的下载链接。
+* Pygments caching（似乎还是使用Pygnment来实现代码高亮）。
+* 通过javascript脚本使得代码具有行号。</p>
+
+<!--more-->
+
+
+<h3>Solarized高亮</h3>
+
+<p>这部分内容自己没有尝试，待更新。</p>
+
+<h3>反引号的代码块</h3>
+
+<p>同时使用<code>backtick_codelock</code>过滤器，可以使用Github的最适用的代码高亮块。使用三个反引号开始，后面跟着一个空格，接下来是高亮语言，具体语法如下所示：</p>
+
+<pre><code>  ``` [language] [title] [url] [link text]
+  code snippet
+  ```
+</code></pre>
+
+<p>按照上述方式便可以对相应的代码块进行高亮，如下面的例子。</p>
+
+<h4>example1（原文)</h4>
+
+<pre><code> ```
+ $sudo give me a hug
+ ```
+</code></pre>
+
+<p>按照上面的方式在文本中输入之后，产生的效果如下：
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$sudo give me a hug</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h4>example2带有说明和连接</h4>
+
+<pre><code> ``` ruby Discover if a number is prime http://www.noulakaz.net/weblog/2007/03/18/a-regular-expression-to-check-for-prime-numbers/ Source Article
+ class Fixnum
+   def prime?
+     ('1' * self) !~ /^1?$|^(11+?)\1+$/
+   end
+ end
+ ```
+</code></pre>
+
+<p>产生的代码片段如下：</p>
+
+<figure class='code'><figcaption><span>Discover if a number is prime </span><a href='http://www.noulakaz.net/weblog/2007/03/18/a-regular-expression-to-check-for-prime-numbers/'>Source Article</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Fixnum</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">prime?</span>
+</span><span class='line'>    <span class="p">(</span><span class="s1">&#39;1&#39;</span> <span class="o">*</span> <span class="nb">self</span><span class="p">)</span> <span class="o">!~</span> <span class="sr">/^1?$|^(11+?)\1+$/</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Gist代码内嵌</h3>
+
+<p>当使用这种方式的代码高亮时，仅仅需要的是gist的id，对gist不了解的可以上google搜索下，个人的理解是，gist对每段用户上传的代码段都会有一个对应的id，当用户给出对应的代码的id后，将会从gist上面下载对应的已经高亮的html文件，最终在用户的页面上显示出来。</p>
+
+<h4>语法</h4>
+
+<pre><code> \{\% gist gist_id [filename] \%\}
+</code></pre>
+
+<h4>example</h4>
+
+<pre><code> \{\% gist 996818 \%\}
+</code></pre>
+
+<p>上述代码的片段在Octopress中的markdown文件中输入之后，得到的效果如下：</p>
+
+<p>{% gist 996818 %}</p>
+
+<p>如果一个gist的id对应有多个文件，这时需要对想要高亮的文件添加文件名，具体语法如下所示：</p>
+
+<pre><code>  \{\% gist 1059334 svg_bullets.rb \%\}
+  \{\% gist 1059334 usage.scss \%\}
+</code></pre>
+
+<p>总体来说，gist代码高亮是很简单的，只是需要将代码上传到<a href="https://gist.github.com/">gist</a>，然后获取相应的id然后按照上面的语法进行设置即可。只是每次在写博客时，都需要对博客文章中的代码拷贝到网址上生成，在没有网时，代码高亮比较麻烦。</p>
+
+<h3>从本地文件中引入代码</h3>
+
+<p>这种方式在Arch上面有个小问题，在Arch上的报错如下所示：</p>
+
+<figure class='code'><figcaption><span>Arch error</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>Building site: <span class="nb">source</span> -&gt; public
+</span><span class='line'>  File <span class="s2">&quot;&lt;string&gt;&quot;</span>, line 1
+</span><span class='line'>    import sys; print sys.executable
+</span><span class='line'>                        ^
+</span><span class='line'>SyntaxError: invalid syntax
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>上网搜索之后在<a href="http://blog.gonzih.org/blog/2011/09/21/fix-octopress-pygments-error-on-arch-linux/">该网址</a>发现解决方法。 <br/>
+这种方式需要使用python2来完成代码高亮的操作，由于Arch的python指向的是python3，而python3无法完成该功能，因此需要在<code>plugin</code>文件夹中再添加一个新文件，指定在<code>Octopress</code>运行时使用的是python2，具体增加的文件内容如下所示，文件的名字为<code>ruby_python_arch_linux_fix.rb</code><br/>
+{% include_code Set the ruby to run python2.7 ruby/ruby_python_arch_linux_fix.rb %}</p>
+
+<p>在完成该操作之后，仍然报错，得到如下错误：</p>
+
+<figure class='code'><figcaption><span>Error message</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>LoadError: Could not open library <span class="s1">&#39;lib.so&#39;</span>: lib.so: cannot open shared object file: No such file or directory
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>参考<a href="https://github.com/tmm1/pygments.rb/issues/10">该网址</a>的由<code>elidos</code>提出的解决方法可以知道是<code>rubypython</code>自身的bug，需要修复，具体修改文件在Arch上面为<code>/usr/lib/ruby/gems/1.9.1/gems/rubypython-0.5.3/lib/rubypython/pythonexec.rb</code>，修改位置大概在126行左右，修改后的内容如下所示：</p>
+
+<figure class='code'><figcaption><span>fix the rubypython bug</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='diff'><span class='line'><span class="gd">--126 %x(#{@python} -c &quot;#{command}&quot;).chomp if @python</span>
+</span><span class='line'><span class="gi">++126 %x(&quot;#{@python} -c #{command}&quot;).chomp if @python</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>完成该修改之后，便可以使用这种包含代码的方式来进行代码高亮。 <br/>
+使用这种方式的语法也参见<a href="http://octopress.org/docs/blogging/code/" title="Octopress代码高亮">octopress手册</a>，此处不再进行详细说明，这种方式的代码是单独存放成一个文件保存在本地系统下，当代码长度较长，又不想放在博客的正文中时，使用该方法比较好。<br/>
+简单记录下这种方式的语法如下所示：（目前不知道为什么，在octopress中输入<code>{%</code>的方式都会进行代码解析，所以上面的<code>{%</code>都进行了添加了<code>\</code>来取消，在实际文章中输入的时候，将<code>\</code>取消掉）</p>
+
+<pre><code>\{\% include_code [title] [lang:language] path/to/file \%\}
+</code></pre>
+
+<p>其中的中括号的内容是可选的，具体语言便是这种方式，当需要强制高亮时，需要指定<code>lang:</code>这个参数，很好用。</p>
+
+<h3>使用Code Block的方式</h3>
+
+<p>目前自己的博客这种方式用的比较多，前面写的文章目前全部修改成为了这种方式，感觉这种方式和<code>pygnment</code>的方式差不多，之前全部采用的是<code>pygnment</code>的方式，利用正则表达式把所有文章的代码高亮全部改成了使用<code>code block</code>。它的具体语法如下所示：（与<code>pygnment</code>很相似，指定语言即可）</p>
+
+<pre><code>  \{\% codeblock [title] [lang:language] [url] [link text] \%\}
+  code snippet
+  \{\% endcodeblock \%\}
+</code></pre>
+
+<p>和之前描述的类似，中括号的内容是可选的。</p>
+
+<h4>使用正则表达式替换</h4>
+
+<p>这种方式可以替换博客内容，使得博客中所有文章的代码高亮使用<code>Code Block</code>。自己使用的是<code>sed</code>来完成的操作，似乎都没有用到正则表达式，只是简单的替换，做个简单的记录吧。</p>
+
+<h5>替换方法</h5>
+
+<p>进入到<code>source/_posts</code>目录下，在终端输入如下代码：</p>
+
+<figure class='code'><figcaption><span>Sed查看文章代码</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sed -n <span class="s1">&#39;s/\({%\ highlight\ \)/\1/p&#39;</span> *
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>上面将会把当前目录下的含有<code>{% highlight</code>的文件的那行都显示出来，中间会将含有该特殊字符的行都打印出来，中间可以看到自己的博客内容都用到了哪些类型文件的语法高亮，将对应的代码高亮进行替换即可。<br/>
+其实这种方式就是简单的搜索替换，应该算不上使用正则表达式了，只是写下来做下笔记了，防止以后再用具体操作如下所示：</p>
+
+<figure class='code'><figcaption><span>Sed替换文件内容</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sed -i <span class="s1">&#39;s/\({%\ highlight\ bash %}\)/{%\ codeblock\ lang:bash\ %}/&#39;</span> *
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Octopress添加标签]]></title>
@@ -98,16 +278,20 @@ smartcase   若只有小写，可匹配大小写；若含有大写，则严格�
 
 <h2>查找偏移</h2>
 
-<p><code>/pattern/2</code>，这个查找将会在单词pattern的后两行。 <br/>
-* 匹配一个可选项，使用<code>\=</code>，比如</p>
+<p><code>/pattern/2</code>，这个查找将会在单词pattern的后两行。</p>
 
-<blockquote><p>/folders\=</p></blockquote>
+<ul>
+<li>匹配一个可选项，使用<code>\=</code>，比如
+
+<blockquote><p>/folders\=</p></blockquote></li>
+</ul>
+
 
 <p>匹配的是&#8221;folder&#8221;和&#8221;folders&#8221;</p>
 
 <ul>
-<li><p>指定重复次数时，使用<code>\{n,m}</code>这样的形式。匹配n到m次，包括n和m，相当于一个闭区间。</p></li>
-<li><p>匹配尽可能少的字符使用&#8217;{-n,m}`。与上面的作用类似，区别在于尽可能少的匹配。</p></li>
+<li>指定重复次数时，使用<code>\{n,m}</code>这样的形式。匹配n到m次，包括n和m，相当于一个闭区间。</li>
+<li>匹配尽可能少的字符使用&#8217;{-n,m}`。与上面的作用类似，区别在于尽可能少的匹配。</li>
 </ul>
 
 
@@ -137,7 +321,7 @@ smartcase   若只有小写，可匹配大小写；若含有大写，则严格�
 <td></td>
 <td align="left">\D </td>
 <td align="left">非数位          </td>
-<td align="center">[<sup>0-9]</sup></td>
+<td align="center">[<code>^</code>0-9]</td>
 </tr>
 <tr>
 <td></td>
@@ -149,19 +333,19 @@ smartcase   若只有小写，可匹配大小写；若含有大写，则严格�
 <td></td>
 <td align="left">\X </td>
 <td align="left">非十六进制数位  </td>
-<td align="center">[<sup>0-9a-fA-F]</sup></td>
+<td align="center">[<code>^</code>0-9a-fA-F]</td>
 </tr>
 <tr>
 <td></td>
 <td align="left">\s </td>
 <td align="left">空白字符       </td>
-<td align="center">[  ]     (<Tab> 和 <Space>)</td>
+<td align="center">[  ]     (<code>&lt;Tab&gt;</code> 和 <code>&lt;Space&gt;</code>)</td>
 </tr>
 <tr>
 <td></td>
 <td align="left">\S </td>
 <td align="left">非空白字符        </td>
-<td align="center">[^     ]     (非 <Tab> 和 <Space>)</td>
+<td align="center">[<code>^</code>  ]     (非 <code>&lt;Tab&gt;</code> 和 <code>&lt;Space&gt;</code>)</td>
 </tr>
 <tr>
 <td></td>
@@ -173,7 +357,7 @@ smartcase   若只有小写，可匹配大小写；若含有大写，则严格�
 <td></td>
 <td align="left">\L </td>
 <td align="left">非小写字母        </td>
-<td align="center">[<sup>a-z]</sup></td>
+<td align="center">[<code>^</code>a-z]</td>
 </tr>
 <tr>
 <td></td>
@@ -185,7 +369,7 @@ smartcase   若只有小写，可匹配大小写；若含有大写，则严格�
 <td></td>
 <td align="left">\U </td>
 <td align="left">非大写字母        </td>
-<td align="center">[<sup>A-Z]</sup></td>
+<td align="center">[<code>^</code>A-Z]</td>
 </tr>
 </tbody>
 </table>
@@ -4089,527 +4273,6 @@ example:</p>
 <p>如果有标题，同样也可以有标签，允许创建表格的定位点。如果没有标签被创建，则标题将会作为标签。</p>
 
 <p>在一个表中可以通过一个单一的空行来创建多重标签。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[正则表达式学习]]></title>
-    <link href="http://xiongbupt.github.com/blog/2012/05/14/regex-learning/"/>
-    <updated>2012-05-14T00:00:00+08:00</updated>
-    <id>http://xiongbupt.github.com/blog/2012/05/14/regex-learning</id>
-    <content type="html"><![CDATA[<h2>不同程序中的regex的使用</h2>
-
-<h3>grep</h3>
-
-<table>
-<thead>
-<tr>
-<th></th>
-<th align="center">表达式</th>
-<th align="center">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td align="center">-E</td>
-<td align="center">扩展正则表达式  </td>
-</tr>
-<tr>
-<td></td>
-<td align="center">-G</td>
-<td align="center">基本正则表达式  </td>
-</tr>
-<tr>
-<td></td>
-<td align="center">-P</td>
-<td align="center">perl基本表达式  </td>
-</tr>
-<tr>
-<td></td>
-<td align="center">-o</td>
-<td align="center">仅仅输出匹配结果  </td>
-</tr>
-<tr>
-<td></td>
-<td align="center">-v</td>
-<td align="center">进行求非操作  </td>
-</tr>
-<tr>
-<td></td>
-<td align="center">-c</td>
-<td align="center">计算匹配的总数  </td>
-</tr>
-</tbody>
-</table>
-
-
-<h3>perl</h3>
-
-<table>
-<thead>
-<tr>
-<th></th>
-<th align="center">表达式</th>
-<th align="center">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td align="center">m/pattern/</td>
-<td align="center">搜索  </td>
-</tr>
-<tr>
-<td></td>
-<td align="center">s/pattern/pattern/</td>
-<td align="center">替换  </td>
-</tr>
-<tr>
-<td></td>
-<td align="center">qr/pattern/</td>
-<td align="center">返回一个regex对象供以后使用  </td>
-</tr>
-<tr>
-<td></td>
-<td align="center">split()</td>
-<td align="center">把一个字符串拆分成子字符串  </td>
-</tr>
-<tr>
-<td></td>
-<td align="center">\i</td>
-<td align="center">不区分大小写  </td>
-</tr>
-<tr>
-<td></td>
-<td align="center">\g</td>
-<td align="center">全局搜索  </td>
-</tr>
-<tr>
-<td></td>
-<td align="center">$&#8217;</td>
-<td align="center">匹配前面的所有东西  </td>
-</tr>
-<tr>
-<td></td>
-<td align="center">$`</td>
-<td align="center">匹配之后的所有东西  </td>
-</tr>
-<tr>
-<td></td>
-<td align="center">$&amp;</td>
-<td align="center">整个匹配的字符串  </td>
-</tr>
-</tbody>
-</table>
-
-
-<!--more-->
-
-
-<h2>匹配纯字符串</h2>
-
-<table>
-<thead>
-<tr>
-<th></th>
-<th align="center">表达式</th>
-<th align="center">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td align="center">\</td>
-<td align="center">用来对字符进行转义  </td>
-</tr>
-<tr>
-<td></td>
-<td align="center">.</td>
-<td align="center">可以用来表示任何字符  </td>
-</tr>
-</tbody>
-</table>
-
-
-<h2>匹配一组字符</h2>
-
-<p><code>[]</code>用来表示字符集合，出现在它们之间的字符可以使用。字符区间的关系。<br/>
-字符区间可以在<code>[]</code>中使用-来实现。<br/>
-注意：<br/>
-<code>-</code>只有在[]中使用时才有特殊的含义，在其他环境中使用时，不需要使用\进行转义。<br/>
-在字符区间中取非使用<code>^</code>元字符。<br/>
-注意：<br/>
-<code>^</code>的效果作用于给定字符集合里的所哟字符和字符区间，而不仅仅是紧跟在<code>^</code>后的那一个字符或字符区间。</p>
-
-<h2>使用元字符</h2>
-
-<p>对元字符转义需要用到\字符，这个字符对任何元字符都具有转义作用。<br/>
-配对的元字符不用作元字符时必须被转义。</p>
-
-<table>
-<thead>
-<tr>
-<th></th>
-<th align="center">正则表达式</th>
-<th align="center">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td align="center">[\b]</td>
-<td align="center">backtrace  </td>
-</tr>
-<tr>
-<td></td>
-<td align="center">\f</td>
-<td align="center">换页符  </td>
-</tr>
-<tr>
-<td></td>
-<td align="center">\n</td>
-<td align="center">换行符  </td>
-</tr>
-<tr>
-<td></td>
-<td align="center">\r</td>
-<td align="center">回车符  </td>
-</tr>
-<tr>
-<td></td>
-<td align="center">\t</td>
-<td align="center">制表符(Tab)  </td>
-</tr>
-<tr>
-<td></td>
-<td align="center">\v</td>
-<td align="center">垂直制表符  </td>
-</tr>
-</tbody>
-</table>
-
-
-<h2>匹配数字</h2>
-
-<table>
-<thead>
-<tr>
-<th></th>
-<th align="center">正则表达式</th>
-<th align="center">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td align="center">\d</td>
-<td align="center">任何一个数字字符，即[0-9]  </td>
-</tr>
-<tr>
-<td></td>
-<td align="center">\D</td>
-<td align="center">任何一个非数字字符，即[<code>^</code>0-9]  </td>
-</tr>
-</tbody>
-</table>
-
-
-<h2>匹配字母和数字（包括_)</h2>
-
-<table>
-<thead>
-<tr>
-<th></th>
-<th align="center">正则表达式</th>
-<th align="center">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td align="center">\w</td>
-<td align="center">[0-9a-zA-Z_]  </td>
-</tr>
-<tr>
-<td></td>
-<td align="center">\W</td>
-<td align="center">[<code>^</code>0-9a-zA-Z_]  </td>
-</tr>
-</tbody>
-</table>
-
-
-<h2>匹配空白</h2>
-
-<table>
-<thead>
-<tr>
-<th></th>
-<th align="center">正则表达式</th>
-<th align="center">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td align="center">\s</td>
-<td align="center">[\f\n\t\r\v ]  </td>
-</tr>
-<tr>
-<td></td>
-<td align="center">\S</td>
-<td align="center">[<code>^</code>\f\n\t\r\v ]  </td>
-</tr>
-</tbody>
-</table>
-
-
-<p>注意\b，即backtrace没有包含在\s中，因此也就灭有包含在\S中。</p>
-
-<h2>posix字符类</h2>
-
-<table>
-<thead>
-<tr>
-<th></th>
-<th align="center">正则表达式</th>
-<th align="center">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td align="center">[:alnum:]</td>
-<td align="center">任何一个字母或数字[a-zA-Z0-9]  </td>
-</tr>
-<tr>
-<td></td>
-<td align="center">[:alpha:]</td>
-<td align="center">任何一个字母[a-zA-Z]  </td>
-</tr>
-<tr>
-<td></td>
-<td align="center">[:blank:]</td>
-<td align="center">空格或制表符[\t ]  </td>
-</tr>
-<tr>
-<td></td>
-<td align="center">[:cntrl:]</td>
-<td align="center">ASCII控制字符(ASCII 0~31, 127)  </td>
-</tr>
-<tr>
-<td></td>
-<td align="center">[:digit:]</td>
-<td align="center">[0-9]  </td>
-</tr>
-<tr>
-<td></td>
-<td align="center">[:graph:]</td>
-<td align="center">[:print:]不包括空格  </td>
-</tr>
-<tr>
-<td></td>
-<td align="center">[:lower:]</td>
-<td align="center">[a-z]  </td>
-</tr>
-<tr>
-<td></td>
-<td align="center">[:punct:]</td>
-<td align="center">既不属于[:alnum:]，也不属于[:cntrl:]的字符  </td>
-</tr>
-<tr>
-<td></td>
-<td align="center">[:space:]</td>
-<td align="center">[\f\t\n\r\v ]  </td>
-</tr>
-<tr>
-<td></td>
-<td align="center">[:upper:]</td>
-<td align="center">[A-Z]  </td>
-</tr>
-<tr>
-<td></td>
-<td align="center">[:xdigit:]</td>
-<td align="center">[a-fA-F0-9]  </td>
-</tr>
-</tbody>
-</table>
-
-
-<h2>重复匹配</h2>
-
-<ul>
-<li>+出现1次及以上，不包括0次。（是一个元字符，需要使用\进行转义）<br/>
-在[]中出现的类似+，.这样的元字符可以不被转义，可以正常使用，但是转义了也没有坏处。</li>
-<li>*出现0次及以上，包括0次。（是一个元字符，需要使用\进行转义）</li>
-<li>?出现0次或者1次。（是一个元字符，需要使用\进行转义）</li>
-<li>{} 出现的次数，用来精确匹配。可以是一个确定的数字，也可以是一个区间。<br/>
-  如a{6} 出现6次a
-  a{3,5} 至少3次a，最多5次a<br/>
-  a{3,}  至少出现3次a，上限没有限制
-<strong>注意：</strong>
-在匹最好使用\/来进行匹配，防止不必要的麻烦。</li>
-</ul>
-
-
-<p>+,*,{n,}都是贪婪型匹配，每次都尽可能的匹配更长的字符。若想使用这些的懒惰型匹配，在这些后面添加一个?即可。</p>
-
-<table>
-<thead>
-<tr>
-<th></th>
-<th align="center">贪婪型</th>
-<th align="center">懒惰型</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td align="center">*</td>
-<td align="center">*?</td>
-</tr>
-<tr>
-<td></td>
-<td align="center">+</td>
-<td align="center">+?</td>
-</tr>
-<tr>
-<td></td>
-<td align="center">{n,}</td>
-<td align="center">{n,}?</td>
-</tr>
-</tbody>
-</table>
-
-
-<h2>位置匹配</h2>
-
-<table>
-<thead>
-<tr>
-<th></th>
-<th align="center">正则表达式</th>
-<th align="center">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td align="center">\b</td>
-<td align="center">单词边界（用于一个\w与一个\W之间的匹配)|</td>
-</tr>
-<tr>
-<td></td>
-<td align="center">\B</td>
-<td align="center">非单词边界</td>
-</tr>
-<tr>
-<td></td>
-<td align="center">^</td>
-<td align="center">字符串开头</td>
-</tr>
-<tr>
-<td></td>
-<td align="center">$</td>
-<td align="center">字符串结尾</td>
-</tr>
-</tbody>
-</table>
-
-
-<h2>使用子表达式</h2>
-
-<p><code>()</code>是元字符，使用它们时需要使用转义，用于将一个子表达式合并在一起组成一个完整的部分。<br/>
-<code>|</code>或者<code>,</code>是一个元字符，使用的时候需要使用转义。</p>
-
-<h2>回溯引用</h2>
-
-<p>指的是模式的后半部分引用在前半部分中定义的子表达式，可以把回溯表达式想象成变量。
-\1 代表前面模式里的第一个表达式。（需要用括号括起来）</p>
-
-<h3>大小写字母转换</h3>
-
-<table>
-<thead>
-<tr>
-<th></th>
-<th align="center">正则表达式</th>
-<th align="left">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td align="center">\E</td>
-<td align="left">结束\L或\U转换</td>
-</tr>
-<tr>
-<td></td>
-<td align="center">\l</td>
-<td align="left">下一个小写</td>
-</tr>
-<tr>
-<td></td>
-<td align="center">\L</td>
-<td align="left">\L和\E之间的全部小写</td>
-</tr>
-<tr>
-<td></td>
-<td align="center">\u</td>
-<td align="left">下一个大写</td>
-</tr>
-<tr>
-<td></td>
-<td align="center">\U</td>
-<td align="left">\U和\E之间的全部大写</td>
-</tr>
-</tbody>
-</table>
-
-
-<h2>前后查找</h2>
-
-<h3>向前查找</h3>
-
-<p>向前查找模式其实就是一个以<code>?=</code>开头的子表达式，需要匹配的文本跟在=的后面。找到=后面的即可，不消费它，即不把它包括在内。</p>
-
-<p>例子：</p>
-
-<blockquote><p>.+(?=:)</p></blockquote>
-
-<p><strong>提示：</strong><br/>
-任何一个子表达式都可以转换为一个向前查找表达式，只要给它加上一个?=前缀即可。</p>
-
-<h3>向后查找</h3>
-
-<blockquote><p><code>?&lt;=</code><br/>
-例子：
-(?&lt;=\$)</p>
-
-<pre><code>寻找$符号但是不消费它
-</code></pre>
-
-<p><strong>警告：</strong>向前查找模式的长度是可变的，它们可以包含<code>.</code>和<code>+</code>之类的元字符，长度很灵活。而向后查找模式只能是固定长度。</p>
-
-<h2>负向前查找</h2>
-
-<p>?!</p>
-
-<h3>负向后查找</h3>
-
-<p>?&lt;!</p></blockquote>
-
-<h2>嵌入式条件</h2>
-
-<p>Regex中的条件用<code>?</code>来定义</p>
-
-<h2>回溯引用中的条件</h2>
-
-<blockquote><p>?(backreferrenc)true-regex)<br/>
-?(backreferrenc)true-regex|false-regex)</p>
-
-<h3>前后查找条件</h3></blockquote>
 ]]></content>
   </entry>
   

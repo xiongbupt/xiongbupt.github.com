@@ -5,12 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>VIM正则表达式学习 - Keep Learning</title>
+  <title>Category: Octopress - Keep Learning</title>
   <meta name="author" content="Xiongbupt">
 
   
-  <meta name="description" content="VIM正则表达式 之前粗略的看了正则表达式的一些内容，但是在VIM中一直用的很少，刚才无意间看到了使用VIM对词进行大小写转换，中间出现了一些正则表达式的内容，从网上找了些内容，觉得可以留下来做个笔记，供以后自己参考。
-文章的主要内容参考该博客。 量词 VIM中的量词与perl相比 VIM &hellip;">
+  <meta name="description" content="Category: Octopress">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://xiongbupt.github.com/blog/2012/06/05/vim_regex_learning/">
+  <link rel="canonical" href="http://xiongbupt.github.comblog/categories/octopress/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
@@ -88,250 +87,35 @@
   <div id="main">
     <div id="content">
       <div>
-<article class="hentry" role="article">
+<article role="article">
   
   <header>
-    
-      <h1 class="entry-title">VIM正则表达式学习</h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-06-05T00:00:00+08:00" pubdate data-updated="true">Jun 5<span>th</span>, 2012</time>
-        
-      </p>
+    <h1 class="entry-title">Category: Octopress</h1>
     
   </header>
+  
+  <div id="blog-archives" class="category">
 
 
-<div class="entry-content"><h2>VIM正则表达式</h2>
 
-<p>之前粗略的看了正则表达式的一些内容，但是在VIM中一直用的很少，刚才无意间看到了使用VIM对词进行大小写转换，中间出现了一些正则表达式的内容，从网上找了些内容，觉得可以留下来做个笔记，供以后自己参考。<br/>
-文章的主要内容参考<a href="http://qianjigui.iteye.com/blog/368449" title="VIM中的正则表达式">该博客</a>。</p>
+  
+  <h2>2012</h2>
 
-<!--more-->
+<article>
+  
+<h1><a href="/blog/2012/06/08/octopressdai-ma-gao-liang/">Octopress代码高亮</a></h1>
+<time datetime="2012-06-08T08:27:00+08:00" pubdate><span class='month'>Jun</span> <span class='day'>08</span> <span class='year'>2012</span></time>
 
-
-<h3>量词</h3>
-
-<p>VIM中的量词与perl相比</p>
-
-<table>
-<thead>
-<tr>
-<th></th>
-<th align="center">VIM    </th>
-<th align="center">Perl   </th>
-<th align="center">意义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td align="center">*      </td>
-<td align="center">*      </td>
-<td align="center">0个或多个(匹配优先)</td>
-</tr>
-<tr>
-<td></td>
-<td align="center">+     </td>
-<td align="center">+      </td>
-<td align="center">1个或多个(匹配优先)</td>
-</tr>
-<tr>
-<td></td>
-<td align="center">\?或\= </td>
-<td align="center">?     </td>
-<td align="center">0个或1个(匹配优先)，\?不能在 ? 命令（逆向查找）中使用</td>
-</tr>
-<tr>
-<td></td>
-<td align="center">{n,m} </td>
-<td align="center">{n,m}  </td>
-<td align="center">n个到m个(匹配优先)</td>
-</tr>
-<tr>
-<td></td>
-<td align="center">{n,}  </td>
-<td align="center">{n,}   </td>
-<td align="center">最少n个(匹配优先)</td>
-</tr>
-<tr>
-<td></td>
-<td align="center">{,m}  </td>
-<td align="center">{,m}   </td>
-<td align="center">最多m个(匹配优先)</td>
-</tr>
-<tr>
-<td></td>
-<td align="center">{n}   </td>
-<td align="center">{n}    </td>
-<td align="center">恰好n个</td>
-</tr>
-<tr>
-<td></td>
-<td align="center">{-n,m}</td>
-<td align="center">{n,m}? </td>
-<td align="center">n个到m个(忽略优先)</td>
-</tr>
-<tr>
-<td></td>
-<td align="center">{-}   </td>
-<td align="center">*?     </td>
-<td align="center">0个或多个(忽略优先)</td>
-</tr>
-<tr>
-<td></td>
-<td align="center">{-1,} </td>
-<td align="center">+?     </td>
-<td align="center">1个或多个(忽略优先)</td>
-</tr>
-<tr>
-<td></td>
-<td align="center">{-,1} </td>
-<td align="center">??     </td>
-<td align="center">0个或1个(忽略优先)</td>
-</tr>
-</tbody>
-</table>
+<footer>
+  <span class="categories">posted in <a class='category' href='/blog/categories/octopress/'>Octopress</a></span>
+</footer>
 
 
-<h3>环视和固化分组</h3>
+</article>
 
-<p>这个内容之前没有接触过，只是简单的摘抄下来，后面再进行研究了。</p>
-
-<table>
-<thead>
-<tr>
-<th></th>
-<th align="center">vim        </th>
-<th align="center">Perl   </th>
-<th align="center">意义           </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td align="center">\@=        </td>
-<td align="center">(?=    </td>
-<td align="center">顺序环视</td>
-</tr>
-<tr>
-<td></td>
-<td align="center">\@!        </td>
-<td align="center">(?!    </td>
-<td align="center">顺序否定环视</td>
-</tr>
-<tr>
-<td></td>
-<td align="center">\@&lt;=       </td>
-<td align="center">(?&lt;=   </td>
-<td align="center">逆序环视</td>
-</tr>
-<tr>
-<td></td>
-<td align="center">\@&lt;!       </td>
-<td align="center">(?&lt;!   </td>
-<td align="center">逆序否定环视</td>
-</tr>
-<tr>
-<td></td>
-<td align="center">\@>        </td>
-<td align="center">(?>    </td>
-<td align="center">固化分组</td>
-</tr>
-<tr>
-<td></td>
-<td align="center">\%(atom)  </td>
-<td align="center">(?:    </td>
-<td align="center">非捕获型括号</td>
-</tr>
-</tbody>
-</table>
-
-
-<p>和perl稍有不同的是，vim中的环视和固化分组的模式的位置与perl不同。例如，查找紧跟在 foo 之后的 bar，perl将模式写在环视的括号内，而vim将模式写在环视的元字符之前。
-Perl的写法</p>
-
-<blockquote><p>/(?&lt;=foo)bar/
-vim的写法
-/(foo)\@&lt;=bar</p></blockquote>
 </div>
 
-
-  <footer>
-    <p class="meta">
-      
   
-
-<span class="byline author vcard">Posted by <span class="fn">Xiongbupt</span></span>
-
-      
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-06-05T00:00:00+08:00" pubdate data-updated="true">Jun 5<span>th</span>, 2012</time>
-      
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/notes/'>Notes</a>
-  
-</span>
-
-
-      <div id="tag_list">
-    Tags:
-    <ul id="tags_ul">
-
-        <li><a href="/blog/tags/VIM/">VIM</a></li>
-
-        <li><a href="/blog/tags/Regex/">Regex</a></li>
-
-    </ul>
-</div>
-
-    </p>
-    
-      <div class="sharing">
-  
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://xiongbupt.github.com/blog/2012/06/05/vim_regex_learning/" data-via="xiongbupt" data-counturl="http://xiongbupt.github.com/blog/2012/06/05/vim_regex_learning/" >Tweet</a>
-  
-  
-  <div class="g-plusone" data-size="medium"></div>
-  
-  
-</div>
-
-    
-    <p class="meta">
-      
-        <a class="basic-alignment left" href="/blog/2012/06/05/vim_regex_case/" title="Previous Post: VIM使用正则表达式改变大小写">&laquo; VIM使用正则表达式改变大小写</a>
-      
-      
-        <a class="basic-alignment right" href="/blog/2012/06/06/assemble_language_learn/" title="Next Post: 汇编语言学习">汇编语言学习 &raquo;</a>
-      
-    </p>
-  </footer>
 </article>
 
 </div>

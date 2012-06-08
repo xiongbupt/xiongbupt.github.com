@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Notes | Keep Learning]]></title>
   <link href="http://xiongbupt.github.com/blog/categories/notes/atom.xml" rel="self"/>
   <link href="http://xiongbupt.github.com/"/>
-  <updated>2012-06-08T18:50:35+08:00</updated>
+  <updated>2012-06-08T22:04:22+08:00</updated>
   <id>http://xiongbupt.github.com/</id>
   <author>
     <name><![CDATA[Xiongbupt]]></name>
@@ -29,48 +29,136 @@
 <!--more-->
 
 
-<p>创建一个新文件<code>source/_includes/post/tags.html</code>，整个文件的内容如下所示：</p>
+<p>创建一个新文件<code>source/_includes/post/tags.html</code>，整个文件的内容如下所示：<br/>
+{% codeblock  source/_includes/post/tags.html lang:html %}</p>
 
-<pre><code>&lt;div id="tag_list"&gt;
+<div id="tag_list">
     Tags:
-    &lt;ul id="tags_ul"&gt;
+    <ul id="tags_ul">
 {% for t in page.tags  %}
-        &lt;li&gt;&lt;a href="http://xiongbupt.github.com/tags/{{t}}/"&gt;{{t}}&lt;/a&gt;&lt;/li&gt;
+        <li><a href="http://xiongbupt.github.com/tags/{{t}}/">{{t}}</a></li>
 {% endfor %}
-    &lt;/ul&gt;
-&lt;/div&gt;
+    </ul>
+</div>
+
+
+<p>{% endcodeblock %}</p>
+
+<p>在<code>sass/custom/_styles.css</code>文件中添加如下内容：</p>
+
+<p>{% codeblock sass/custom/_styles.css lang:css %}
+div#tag_list {</p>
+
+<pre><code>font-size: 12pt;
 </code></pre>
 
-<p>在sass/custom/_styles.css文件中添加如下内容：</p>
+<p>}</p>
 
-<pre><code>div#tag_list {
-    font-size: 12pt;
-}
+<h1>tags_ul {</h1>
 
-#tags_ul {
-    display: inline;
-}
-
-#tags_ul li:last-child:after {
-  content: "";
-}
-
-#tags_ul li:after {
-  content: ", ";
-}
-
-#tags_ul li {
-    display: inline;
-}
+<pre><code>display: inline;
 </code></pre>
+
+<p>}</p>
+
+<h1>tags_ul li:last-child:after {</h1>
+
+<p>  content: "";
+}</p>
+
+<h1>tags_ul li:after {</h1>
+
+<p>  content: ", ";
+}</p>
+
+<h1>tags_ul li {</h1>
+
+<pre><code>display: inline;
+</code></pre>
+
+<p>}
+{% endcodeblock %}</p>
 
 <h3>创建tag文件和tag云</h3>
 
-<p>使用作者提供的perl脚本文件。</p>
+<p>使用作者提供的perl脚本文件，由于作者使用<code>Octopress</code>生成的文件是直接在public文件夹下面的，但是默认的<code>Octopress</code>生成的博客内容是在<code>/public/blog</code>文件夹下面的，因此作者的提供的perl文件需要进行一个小的改动，若没有改动将无法生成对应的tags，检查是否成功的办法是查看成功的生成了<code>source/_includes/custom/tag_cloud.html</code>文件，该文件的内容类似于下面的方式：</p>
+
+<p>{% codeblock source/_includes/custom/tag_cloud.html  lang:html %}</p>
+
+<div id='tag_cloud'>
+<a href="http://xiongbupt.github.com/blog/tags/6LoWPAN/" title="1 entry" class="tag_1">6LoWPAN</a>
+<a href="http://xiongbupt.github.com/blog/tags/Arch/" title="1 entry" class="tag_1">Arch</a>
+<a href="http://xiongbupt.github.com/blog/tags/AWK/" title="1 entry" class="tag_1">AWK</a>
+</div>
+
+
+<p>{% endcodeblock %}
+文章末尾附上修改后的<code>tagify.pl</code>文件。
+在添加了该代码之后，整个生成tag的操作便是下面的步骤
+{% codeblock 生成tags操作 lang:bash %}
+rake generate
+./tagify.pl
+rake generate
+{% endcodeblock %}
+上面的代码只是需要在每次有新的tag加入的时候需要执行，如果新添加的博客文章没有使用新的tag，则不需要执行这个步骤，只需要按照正常的操作即可。<br/>
+上面的操作一共干了三件事：</p>
+
+<ul>
+<li>生成<code>source/_includes/custom/tag_cloud.html</code>文件，文件内容如上所述。</li>
+<li>对于每个tag标签，在对应的目录下生成一个<code>index.markdown</code>文件，如对于<code>Linux</code>这个标签，将会创建<code>source/tags/Linux/index.markdown</code>这样一个文件。</li>
+<li>同时创建了一个<code>source/tags/index.markdown</code>的文件，可以在主页面被引用。</li>
+</ul>
+
 
 <h3>显示tag云标签</h3>
 
-<p>为了在右侧显示云标签，需要修改<code>_config.yaml</code>文件，添加</p>
+<p>为了在右侧显示云标签，需要修改<code>_config.yaml</code>文件，将<code>tag_cloud.html</code>文件添加到<code>default_asides</code>中，目前的博客内容没有显示该分类，若想添加云标签显示可以通过修改<code>_config.yml</code>通过添加该侧边栏完成该功能。<br/>
+创建<code>source/_includes/asides/tag_cloud.html</code>文件，该文件包含了<code>soure/_includes/custom/tag_cloud.html</code>文件（该文件是由<code>tagify.pl</code>脚本文件生成的），文件的内容如下所示：
+{% include_code source/_includes/asides/tag_cloud.html lang:html html/tag_cloud.html %}</p>
+
+<p>接下来修改<code>sass/custom/_styles.css</code>文件，添加标签的<code>css</code>示例，该文件内容如下所示：</p>
+
+<p>{% codeblock sass/custom/_styles.css lang:css %}
+.tag_1 {</p>
+
+<pre><code>font-weight: 200;
+font-size: 10pt;
+</code></pre>
+
+<p>}
+.tag_2 {</p>
+
+<pre><code>font-weight: 200;
+font-size: 12pt;
+</code></pre>
+
+<p>}
+...
+.tag_10 {</p>
+
+<pre><code>font-weight: 900;
+font-size: 24pt;
+</code></pre>
+
+<p>}
+{% endcodeblock %}</p>
+
+<p>最后在导航控制文件<code>source/_includes/custom/navigation.html</code>中增加<code>Tags</code>标签，具体修改文件如下所示：</p>
+
+<p>{% codeblock source/_includes/custom/navigation.html lang:html %}
+<li><a href="http://xiongbupt.github.com/">Home</a></li>
+<li><a href="http://xiongbupt.github.com/blog/archives">Archives</a></li>
++<li><a href="http://xiongbupt.github.com/tags/">Tags</a></li>
+<li><a href="http://xiongbupt.github.com/about/">About Me</a></li>
+{% endcodeblock %}</p>
+
+<h2>总结</h2>
+
+<p>完成上述操作之后，便可以在主页的首部出现一个<code>Tags</code>的导航键，同时可以添加<code>Tags</code>分类标签到页面右侧的侧边栏，目前Tags标签功能似乎不支持中文页面的分类，待测试。</p>
+
+<h3>代码附录</h3>
+
+<p>{% include_code 修改后的tagify.pl lang:perl perl/tagify.pl %}</p>
 ]]></content>
   </entry>
   

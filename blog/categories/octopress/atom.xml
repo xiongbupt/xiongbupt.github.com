@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | Keep Learning]]></title>
   <link href="http://xiongbupt.github.com/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://xiongbupt.github.com/"/>
-  <updated>2012-06-08T18:50:35+08:00</updated>
+  <updated>2012-06-08T22:04:22+08:00</updated>
   <id>http://xiongbupt.github.com/</id>
   <author>
     <name><![CDATA[Xiongbupt]]></name>
@@ -22,13 +22,17 @@
 
 <h2>共享代码片段</h2>
 
-<p>在博客上共享代码片段应该是简单的，并且代码应该具有简单的高亮功能。Octopress也具有这种功能，在<code>jekyll</code>上，其使用的是<code>pygment</code>来实现代码高亮的功能，Octopress实现的更好。在Octopress上面有下面几种选择： <br/>
-* 使用<a href="http://ethanschoonover.com/solarized" title="Solarized高亮">Solarized高亮</a>主题来实现（该方法未尝试，实际上不知道怎么弄，只是凭借个人的猜测）。
-* 使用Gist的代码内嵌。
-* 从自己的文件系统中插入代码片段，该代码具有下载链接。
-* 简单的内嵌代码块带有<code>&lt;figure&gt;</code>和<code>&lt;figcaption&gt;</code>和可选的下载链接。
-* Pygments caching（似乎还是使用Pygnment来实现代码高亮）。
-* 通过javascript脚本使得代码具有行号。</p>
+<p>在博客上共享代码片段应该是简单的，并且代码应该具有简单的高亮功能。Octopress也具有这种功能，在<code>jekyll</code>上，其使用的是<code>pygment</code>来实现代码高亮的功能，Octopress实现的更好。在Octopress上面有下面几种选择：</p>
+
+<ul>
+<li>使用<a href="http://ethanschoonover.com/solarized" title="Solarized高亮">Solarized高亮</a>主题来实现（该方法未尝试，实际上不知道怎么弄，只是凭借个人的猜测）。</li>
+<li>使用Gist的代码内嵌。</li>
+<li>从自己的文件系统中插入代码片段，该代码具有下载链接。</li>
+<li>简单的内嵌代码块带有<code>&lt;figure&gt;</code>和<code>&lt;figcaption&gt;</code>和可选的下载链接。</li>
+<li>Pygments caching（似乎还是使用Pygnment来实现代码高亮）。</li>
+<li>通过javascript脚本使得代码具有行号。</li>
+</ul>
+
 
 <!--more-->
 
@@ -89,12 +93,12 @@ end
 
 <h4>语法</h4>
 
-<pre><code> \{\% gist gist_id [filename] \%\}
+<pre><code> { % gist gist_id [filename] %}
 </code></pre>
 
 <h4>example</h4>
 
-<pre><code> \{\% gist 996818 \%\}
+<pre><code> { % gist 996818 %}
 </code></pre>
 
 <p>上述代码的片段在Octopress中的markdown文件中输入之后，得到的效果如下：</p>
@@ -103,8 +107,8 @@ end
 
 <p>如果一个gist的id对应有多个文件，这时需要对想要高亮的文件添加文件名，具体语法如下所示：</p>
 
-<pre><code>  \{\% gist 1059334 svg_bullets.rb \%\}
-  \{\% gist 1059334 usage.scss \%\}
+<pre><code>  { % gist 1059334 svg_bullets.rb %}
+  { % gist 1059334 usage.scss %}
 </code></pre>
 
 <p>总体来说，gist代码高亮是很简单的，只是需要将代码上传到<a href="https://gist.github.com/">gist</a>，然后获取相应的id然后按照上面的语法进行设置即可。只是每次在写博客时，都需要对博客文章中的代码拷贝到网址上生成，在没有网时，代码高亮比较麻烦。</p>
@@ -137,9 +141,9 @@ LoadError: Could not open library 'lib.so': lib.so: cannot open shared object fi
 </code>
 完成该修改之后，便可以使用这种包含代码的方式来进行代码高亮。 <br/>
 使用这种方式的语法也参见<a href="http://octopress.org/docs/blogging/code/" title="Octopress代码高亮">octopress手册</a>，此处不再进行详细说明，这种方式的代码是单独存放成一个文件保存在本地系统下，当代码长度较长，又不想放在博客的正文中时，使用该方法比较好。<br/>
-简单记录下这种方式的语法如下所示：（目前不知道为什么，在octopress中输入<code>{%</code>的方式都会进行代码解析，所以上面的<code>{%</code>都进行了添加了<code>\</code>来取消，在实际文章中输入的时候，将<code>\</code>取消掉）</p>
+简单记录下这种方式的语法如下所示：（目前不知道为什么，在octopress中输入{ %的方式都会进行代码解析，所以上面的{ %都进行了添加了<code></code>来取消，在实际文章中输入的时候，将<code></code>取消掉）</p>
 
-<pre><code>\{\% include_code [title] [lang:language] path/to/file \%\}
+<pre><code>{ % include_code [title] [lang:language] path/to/file %}
 </code></pre>
 
 <p>其中的中括号的内容是可选的，具体语言便是这种方式，当需要强制高亮时，需要指定<code>lang:</code>这个参数，很好用。</p>
@@ -148,9 +152,9 @@ LoadError: Could not open library 'lib.so': lib.so: cannot open shared object fi
 
 <p>目前自己的博客这种方式用的比较多，前面写的文章目前全部修改成为了这种方式，感觉这种方式和<code>pygnment</code>的方式差不多，之前全部采用的是<code>pygnment</code>的方式，利用正则表达式把所有文章的代码高亮全部改成了使用<code>code block</code>。它的具体语法如下所示：（与<code>pygnment</code>很相似，指定语言即可）</p>
 
-<pre><code>  \{\% codeblock [title] [lang:language] [url] [link text] \%\}
+<pre><code>  { % codeblock [title] [lang:language] [url] [link text] %}
   code snippet
-  \{\% endcodeblock \%\}
+  { % endcodeblock %}
 </code></pre>
 
 <p>和之前描述的类似，中括号的内容是可选的。</p>
@@ -163,12 +167,12 @@ LoadError: Could not open library 'lib.so': lib.so: cannot open shared object fi
 
 <p>进入到<code>source/_posts</code>目录下，在终端输入如下代码：
 <code>bash Sed查看文章代码
-sed -n 's/\({%\ highlight\ \)/\1/p' *
+sed -n 's/\(\ highlight\ \)/\1/p' *
 </code>
-上面将会把当前目录下的含有<code>{% highlight</code>的文件的那行都显示出来，中间会将含有该特殊字符的行都打印出来，中间可以看到自己的博客内容都用到了哪些类型文件的语法高亮，将对应的代码高亮进行替换即可。<br/>
+上面将会把当前目录下的含有{\% highlight的文件的那行都显示出来，中间会将含有该特殊字符的行都打印出来，中间可以看到自己的博客内容都用到了哪些类型文件的语法高亮，将对应的代码高亮进行替换即可。<br/>
 其实这种方式就是简单的搜索替换，应该算不上使用正则表达式了，只是写下来做下笔记了，防止以后再用具体操作如下所示：
 <code>bash Sed替换文件内容
-sed -i 's/\({%\ highlight\ bash %}\)/{%\ codeblock\ lang:bash\ %}/' *
+sed -i 's/\(\ highlight\ bash %}\)/\ codeblock\ lang:bash\ %}/' *
 </code></p>
 ]]></content>
   </entry>

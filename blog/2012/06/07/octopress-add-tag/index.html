@@ -80,7 +80,7 @@
   <li><a href="/">Home</a></li>
   <li><a href="/blog/archives">Archives</a></li>
   <li><a href="/blog/tags">Tags</a></li>
-  <li><a href="/about.html">About me</a></li>
+  <li><a href="/about">About me</a></li>
 </ul>
 
 </nav>
@@ -109,6 +109,8 @@
 
 <time datetime="2012-06-07T00:00:00+08:00" pubdate data-updated="true">Jun 7<span>th</span>, 2012</time>
         
+         | <a href="#disqus_thread">Comments</a>
+        
       </p>
     
   </header>
@@ -127,48 +129,827 @@
 
 <p>创建一个新文件<code>source/_includes/post/tags.html</code>，整个文件的内容如下所示：</p>
 
-<pre><code>&lt;div id="tag_list"&gt;
-    Tags:
-    &lt;ul id="tags_ul"&gt;
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>source/_includes/post/tags.html  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;tag_list&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    Tags:
+</span><span class='line'>    <span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">&quot;tags_ul&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/tags/Octopress/&quot;</span><span class="nt">&gt;</span>Octopress<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/tags/Learning/&quot;</span><span class="nt">&gt;</span>Learning<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nt">&lt;/ul&gt;</span>
+</span><span class='line'><span class="nt">&lt;/div&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-        &lt;li&gt;&lt;a href="/tags/VIM/"&gt;VIM&lt;/a&gt;&lt;/li&gt;
 
-        &lt;li&gt;&lt;a href="/tags/Learning/"&gt;Learning&lt;/a&gt;&lt;/li&gt;
+<p>在<code>sass/custom/_styles.css</code>文件中添加如下内容：</p>
 
-    &lt;/ul&gt;
-&lt;/div&gt;
-</code></pre>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>sass/custom/_styles.css  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nt">div</span><span class="nf">#tag_list</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">font-size</span><span class="o">:</span> <span class="m">12pt</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nf">#tags_ul</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">display</span><span class="o">:</span> <span class="k">inline</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nf">#tags_ul</span> <span class="nt">li</span><span class="nd">:last-child:after</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">content</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nf">#tags_ul</span> <span class="nt">li</span><span class="nd">:after</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">content</span><span class="o">:</span> <span class="s2">&quot;, &quot;</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nf">#tags_ul</span> <span class="nt">li</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">display</span><span class="o">:</span> <span class="k">inline</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<p>在sass/custom/_styles.css文件中添加如下内容：</p>
-
-<pre><code>div#tag_list {
-    font-size: 12pt;
-}
-
-#tags_ul {
-    display: inline;
-}
-
-#tags_ul li:last-child:after {
-  content: "";
-}
-
-#tags_ul li:after {
-  content: ", ";
-}
-
-#tags_ul li {
-    display: inline;
-}
-</code></pre>
 
 <h3>创建tag文件和tag云</h3>
 
-<p>使用作者提供的perl脚本文件。</p>
+<p>使用作者提供的perl脚本文件，由于作者使用<code>Octopress</code>生成的文件是直接在public文件夹下面的，但是默认的<code>Octopress</code>生成的博客内容是在<code>/public/blog</code>文件夹下面的，因此作者的提供的perl文件需要进行一个小的改动，若没有改动将无法生成对应的tags，检查是否成功的办法是查看成功的生成了<code>source/_includes/custom/tag_cloud.html</code>文件，该文件的内容类似于下面的方式：</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>source/_includes/custom/tag_cloud.html   </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&#39;tag_cloud&#39;</span><span class="nt">&gt;</span>
+</span><span class='line'><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;/blog/tags/6LoWPAN/&quot;</span> <span class="na">title=</span><span class="s">&quot;1 entry&quot;</span> <span class="na">class=</span><span class="s">&quot;tag_1&quot;</span><span class="nt">&gt;</span>6LoWPAN<span class="nt">&lt;/a&gt;</span>
+</span><span class='line'><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;/blog/tags/Arch/&quot;</span> <span class="na">title=</span><span class="s">&quot;1 entry&quot;</span> <span class="na">class=</span><span class="s">&quot;tag_1&quot;</span><span class="nt">&gt;</span>Arch<span class="nt">&lt;/a&gt;</span>
+</span><span class='line'><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;/blog/tags/AWK/&quot;</span> <span class="na">title=</span><span class="s">&quot;1 entry&quot;</span> <span class="na">class=</span><span class="s">&quot;tag_1&quot;</span><span class="nt">&gt;</span>AWK<span class="nt">&lt;/a&gt;</span>
+</span><span class='line'><span class="nt">&lt;/div&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>文章末尾附上修改后的<code>tagify.pl</code>文件。
+在添加了该代码之后，整个生成tag的操作便是下面的步骤</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>生成tags操作  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake generate
+</span><span class='line'>./tagify.pl
+</span><span class='line'>rake generate
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>上面的代码只是需要在每次有新的tag加入的时候需要执行，如果新添加的博客文章没有使用新的tag，则不需要执行这个步骤，只需要按照正常的操作即可。<br/>
+上面的操作一共干了三件事：</p>
+
+<ul>
+<li>生成<code>source/_includes/custom/tag_cloud.html</code>文件，文件内容如上所述。</li>
+<li>对于每个tag标签，在对应的目录下生成一个<code>index.markdown</code>文件，如对于<code>Linux</code>这个标签，将会创建<code>source/tags/Linux/index.markdown</code>这样一个文件。</li>
+<li>同时创建了一个<code>source/tags/index.markdown</code>的文件，可以在主页面被引用。</li>
+</ul>
+
 
 <h3>显示tag云标签</h3>
 
-<p>为了在右侧显示云标签，需要修改<code>_config.yaml</code>文件，添加</p>
+<p>为了在右侧显示云标签，需要修改<code>_config.yaml</code>文件，将<code>tag_cloud.html</code>文件添加到<code>default_asides</code>中，目前的博客内容没有显示该分类，若想添加云标签显示可以通过修改<code>_config.yml</code>通过添加该侧边栏完成该功能。<br/>
+创建<code>source/_includes/asides/tag_cloud.html</code>文件，该文件包含了<code>soure/_includes/custom/tag_cloud.html</code>文件（该文件是由<code>tagify.pl</code>脚本文件生成的），文件的内容如下所示：</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>source/_includes/asides/tag_cloud.html  (tag_cloud.html)</span> <a href='/downloads/code/html/tag_cloud.html'>download</a></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;section&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;h1&gt;</span>Tags<span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;tag_cloud&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>     {% include custom/tag_cloud.html %}
+</span><span class='line'>    <span class="nt">&lt;/div&gt;</span>
+</span><span class='line'><span class="nt">&lt;/section&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>接下来修改<code>sass/custom/_styles.css</code>文件，添加标签的<code>css</code>示例，该文件内容如下所示：</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>sass/custom/_styles.css  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nc">.tag_1</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">font-weight</span><span class="o">:</span> <span class="m">200</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">font-size</span><span class="o">:</span> <span class="m">10pt</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="nc">.tag_2</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">font-weight</span><span class="o">:</span> <span class="m">200</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">font-size</span><span class="o">:</span> <span class="m">12pt</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="o">...</span>
+</span><span class='line'><span class="nc">.tag_10</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">font-weight</span><span class="o">:</span> <span class="m">900</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">font-size</span><span class="o">:</span> <span class="m">24pt</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>最后在导航控制文件<code>source/_includes/custom/navigation.html</code>中增加<code>Tags</code>标签，具体修改文件如下所示：</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>source/_includes/custom/navigation.html  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/&quot;</span><span class="nt">&gt;</span>Home<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+</span><span class='line'><span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/blog/archives&quot;</span><span class="nt">&gt;</span>Archives<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+</span><span class='line'>+<span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/tags/&quot;</span><span class="nt">&gt;</span>Tags<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+</span><span class='line'><span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/about/&quot;</span><span class="nt">&gt;</span>About Me<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<h2>总结</h2>
+
+<p>完成上述操作之后，便可以在主页的首部出现一个<code>Tags</code>的导航键，同时可以添加<code>Tags</code>分类标签到页面右侧的侧边栏，目前Tags标签功能似乎不支持中文页面的分类，待测试。</p>
+
+<h3>代码附录</h3>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>修改后的tagify.pl  (tagify.pl)</span> <a href='/downloads/code/perl/tagify.pl'>download</a></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+<span class='line-number'>95</span>
+<span class='line-number'>96</span>
+<span class='line-number'>97</span>
+<span class='line-number'>98</span>
+<span class='line-number'>99</span>
+<span class='line-number'>100</span>
+<span class='line-number'>101</span>
+<span class='line-number'>102</span>
+<span class='line-number'>103</span>
+<span class='line-number'>104</span>
+<span class='line-number'>105</span>
+<span class='line-number'>106</span>
+<span class='line-number'>107</span>
+<span class='line-number'>108</span>
+<span class='line-number'>109</span>
+<span class='line-number'>110</span>
+<span class='line-number'>111</span>
+<span class='line-number'>112</span>
+<span class='line-number'>113</span>
+<span class='line-number'>114</span>
+<span class='line-number'>115</span>
+<span class='line-number'>116</span>
+<span class='line-number'>117</span>
+<span class='line-number'>118</span>
+<span class='line-number'>119</span>
+<span class='line-number'>120</span>
+<span class='line-number'>121</span>
+<span class='line-number'>122</span>
+<span class='line-number'>123</span>
+<span class='line-number'>124</span>
+<span class='line-number'>125</span>
+<span class='line-number'>126</span>
+<span class='line-number'>127</span>
+<span class='line-number'>128</span>
+<span class='line-number'>129</span>
+<span class='line-number'>130</span>
+<span class='line-number'>131</span>
+<span class='line-number'>132</span>
+<span class='line-number'>133</span>
+<span class='line-number'>134</span>
+<span class='line-number'>135</span>
+<span class='line-number'>136</span>
+<span class='line-number'>137</span>
+<span class='line-number'>138</span>
+<span class='line-number'>139</span>
+<span class='line-number'>140</span>
+<span class='line-number'>141</span>
+<span class='line-number'>142</span>
+<span class='line-number'>143</span>
+<span class='line-number'>144</span>
+<span class='line-number'>145</span>
+<span class='line-number'>146</span>
+<span class='line-number'>147</span>
+<span class='line-number'>148</span>
+<span class='line-number'>149</span>
+<span class='line-number'>150</span>
+<span class='line-number'>151</span>
+<span class='line-number'>152</span>
+<span class='line-number'>153</span>
+<span class='line-number'>154</span>
+<span class='line-number'>155</span>
+<span class='line-number'>156</span>
+<span class='line-number'>157</span>
+<span class='line-number'>158</span>
+<span class='line-number'>159</span>
+<span class='line-number'>160</span>
+<span class='line-number'>161</span>
+<span class='line-number'>162</span>
+<span class='line-number'>163</span>
+<span class='line-number'>164</span>
+<span class='line-number'>165</span>
+<span class='line-number'>166</span>
+<span class='line-number'>167</span>
+<span class='line-number'>168</span>
+<span class='line-number'>169</span>
+<span class='line-number'>170</span>
+<span class='line-number'>171</span>
+<span class='line-number'>172</span>
+<span class='line-number'>173</span>
+<span class='line-number'>174</span>
+<span class='line-number'>175</span>
+<span class='line-number'>176</span>
+<span class='line-number'>177</span>
+<span class='line-number'>178</span>
+<span class='line-number'>179</span>
+<span class='line-number'>180</span>
+<span class='line-number'>181</span>
+<span class='line-number'>182</span>
+<span class='line-number'>183</span>
+<span class='line-number'>184</span>
+<span class='line-number'>185</span>
+<span class='line-number'>186</span>
+<span class='line-number'>187</span>
+<span class='line-number'>188</span>
+<span class='line-number'>189</span>
+<span class='line-number'>190</span>
+<span class='line-number'>191</span>
+<span class='line-number'>192</span>
+<span class='line-number'>193</span>
+<span class='line-number'>194</span>
+<span class='line-number'>195</span>
+<span class='line-number'>196</span>
+<span class='line-number'>197</span>
+<span class='line-number'>198</span>
+<span class='line-number'>199</span>
+<span class='line-number'>200</span>
+<span class='line-number'>201</span>
+<span class='line-number'>202</span>
+<span class='line-number'>203</span>
+<span class='line-number'>204</span>
+<span class='line-number'>205</span>
+<span class='line-number'>206</span>
+<span class='line-number'>207</span>
+<span class='line-number'>208</span>
+<span class='line-number'>209</span>
+<span class='line-number'>210</span>
+<span class='line-number'>211</span>
+<span class='line-number'>212</span>
+<span class='line-number'>213</span>
+<span class='line-number'>214</span>
+<span class='line-number'>215</span>
+<span class='line-number'>216</span>
+<span class='line-number'>217</span>
+<span class='line-number'>218</span>
+<span class='line-number'>219</span>
+<span class='line-number'>220</span>
+<span class='line-number'>221</span>
+<span class='line-number'>222</span>
+<span class='line-number'>223</span>
+<span class='line-number'>224</span>
+<span class='line-number'>225</span>
+<span class='line-number'>226</span>
+<span class='line-number'>227</span>
+<span class='line-number'>228</span>
+<span class='line-number'>229</span>
+<span class='line-number'>230</span>
+<span class='line-number'>231</span>
+<span class='line-number'>232</span>
+<span class='line-number'>233</span>
+<span class='line-number'>234</span>
+<span class='line-number'>235</span>
+<span class='line-number'>236</span>
+<span class='line-number'>237</span>
+<span class='line-number'>238</span>
+<span class='line-number'>239</span>
+<span class='line-number'>240</span>
+<span class='line-number'>241</span>
+<span class='line-number'>242</span>
+<span class='line-number'>243</span>
+<span class='line-number'>244</span>
+<span class='line-number'>245</span>
+<span class='line-number'>246</span>
+<span class='line-number'>247</span>
+<span class='line-number'>248</span>
+<span class='line-number'>249</span>
+<span class='line-number'>250</span>
+<span class='line-number'>251</span>
+<span class='line-number'>252</span>
+<span class='line-number'>253</span>
+<span class='line-number'>254</span>
+<span class='line-number'>255</span>
+<span class='line-number'>256</span>
+<span class='line-number'>257</span>
+<span class='line-number'>258</span>
+<span class='line-number'>259</span>
+<span class='line-number'>260</span>
+<span class='line-number'>261</span>
+<span class='line-number'>262</span>
+<span class='line-number'>263</span>
+<span class='line-number'>264</span>
+<span class='line-number'>265</span>
+<span class='line-number'>266</span>
+<span class='line-number'>267</span>
+<span class='line-number'>268</span>
+<span class='line-number'>269</span>
+<span class='line-number'>270</span>
+<span class='line-number'>271</span>
+<span class='line-number'>272</span>
+<span class='line-number'>273</span>
+<span class='line-number'>274</span>
+<span class='line-number'>275</span>
+<span class='line-number'>276</span>
+<span class='line-number'>277</span>
+<span class='line-number'>278</span>
+<span class='line-number'>279</span>
+<span class='line-number'>280</span>
+<span class='line-number'>281</span>
+<span class='line-number'>282</span>
+<span class='line-number'>283</span>
+<span class='line-number'>284</span>
+<span class='line-number'>285</span>
+<span class='line-number'>286</span>
+<span class='line-number'>287</span>
+<span class='line-number'>288</span>
+<span class='line-number'>289</span>
+<span class='line-number'>290</span>
+<span class='line-number'>291</span>
+<span class='line-number'>292</span>
+<span class='line-number'>293</span>
+<span class='line-number'>294</span>
+<span class='line-number'>295</span>
+<span class='line-number'>296</span>
+<span class='line-number'>297</span>
+<span class='line-number'>298</span>
+<span class='line-number'>299</span>
+<span class='line-number'>300</span>
+<span class='line-number'>301</span>
+<span class='line-number'>302</span>
+<span class='line-number'>303</span>
+<span class='line-number'>304</span>
+<span class='line-number'>305</span>
+<span class='line-number'>306</span>
+<span class='line-number'>307</span>
+<span class='line-number'>308</span>
+<span class='line-number'>309</span>
+<span class='line-number'>310</span>
+<span class='line-number'>311</span>
+<span class='line-number'>312</span>
+<span class='line-number'>313</span>
+<span class='line-number'>314</span>
+<span class='line-number'>315</span>
+<span class='line-number'>316</span>
+<span class='line-number'>317</span>
+<span class='line-number'>318</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="c1">#!/usr/bin/perl</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">use</span> <span class="n">strict</span><span class="p">;</span>
+</span><span class='line'><span class="k">use</span> <span class="n">warnings</span><span class="p">;</span>
+</span><span class='line'><span class="k">use</span> <span class="nn">File::</span><span class="n">Find</span><span class="p">;</span>
+</span><span class='line'><span class="k">use</span> <span class="nn">HTML::</span><span class="n">TreeBuilder</span><span class="p">;</span>
+</span><span class='line'><span class="k">use</span> <span class="nn">Getopt::</span><span class="n">Long</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">my</span> <span class="nv">$octopress_root</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">my</span> <span class="nv">$options_read</span> <span class="o">=</span> <span class="n">GetOptions</span><span class="p">(</span><span class="s">&quot;dir=s&quot;</span><span class="p">,</span> <span class="o">\</span><span class="nv">$octopress_root</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">############################################################</span>
+</span><span class='line'><span class="k">unless</span> <span class="p">(</span><span class="nv">$options_read</span> <span class="o">&amp;&amp;</span> <span class="nv">$octopress_root</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">print</span> <span class="s">&quot;\n&quot;</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">print</span> <span class="s">&quot;\n&quot;</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">print</span> <span class="s">&quot;usage: tagify.pl --dir d\n&quot;</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">print</span> <span class="s">&quot;\n&quot;</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">print</span> <span class="s">&quot;where d is the root octopress directory\n&quot;</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">print</span> <span class="s">&quot;   - the parent of source, public, etc.\n&quot;</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">print</span> <span class="s">&quot;\n&quot;</span><span class="p">;</span>
+</span><span class='line'>    <span class="nb">exit</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># The tag cloud HTML gets saved into this file.</span>
+</span><span class='line'><span class="c1"># This file is included by two others: </span>
+</span><span class='line'><span class="c1">#  a) The file used for the sidebar aside</span>
+</span><span class='line'><span class="c1">#  b) The page used to display all tags </span>
+</span><span class='line'><span class="c1">#     (accessible as /tags/index.html)</span>
+</span><span class='line'><span class="c1">#</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$custom_file</span> <span class="o">=</span> <span class="s">&quot;$octopress_root/source/_includes&quot;</span><span class="o">.</span>
+</span><span class='line'>                  <span class="s">&quot;/custom/tag_cloud.html&quot;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># This is the data structure that contains all the tag </span>
+</span><span class='line'><span class="c1"># data parsed by the HTML files.</span>
+</span><span class='line'><span class="c1"># It&#39;s key is the tag name (not case-normalized).</span>
+</span><span class='line'><span class="c1"># The value is another hash.  That hash has 2 keys:</span>
+</span><span class='line'><span class="c1">#  count - number of pages with that tag</span>
+</span><span class='line'><span class="c1">#  range_num - a number from 1 - 10 indicating </span>
+</span><span class='line'><span class="c1">#              popularity (see below)</span>
+</span><span class='line'><span class="c1">#  pages - an array of hashes</span>
+</span><span class='line'><span class="c1">#</span>
+</span><span class='line'><span class="c1">#  Each hash in the pages array has 3 keys: </span>
+</span><span class='line'><span class="c1">#  title - the HTML title of the post</span>
+</span><span class='line'><span class="c1">#  file  - the full file name of the HTML file</span>
+</span><span class='line'><span class="c1">#  categories - yet another hash</span>
+</span><span class='line'><span class="c1">#</span>
+</span><span class='line'><span class="c1">#  The categories hash has two keys: </span>
+</span><span class='line'><span class="c1">#  href - the url to the category page (as determined</span>
+</span><span class='line'><span class="c1">#         by OctoPress)</span>
+</span><span class='line'><span class="c1">#  text - the name of the category (as displayed by </span>
+</span><span class='line'><span class="c1">#         Octopress)</span>
+</span><span class='line'><span class="c1">#</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$tag_data</span>      <span class="o">=</span> <span class="p">{</span> <span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># This function populates the tag_data data structure</span>
+</span><span class='line'><span class="c1">#</span>
+</span><span class='line'><span class="n">find</span><span class="p">(</span><span class="o">\&amp;</span><span class="n">getTags</span><span class="p">,</span> <span class="s">&quot;$octopress_root/public/blog&quot;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Find the number of times the most popular tag is used</span>
+</span><span class='line'><span class="c1">#</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$max</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>  <span class="c1"># start with 1, not 0 to prevent a </span>
+</span><span class='line'>              <span class="c1"># divide-by-zero error later</span>
+</span><span class='line'>              <span class="c1"># if none of the posts have tags</span>
+</span><span class='line'><span class="k">foreach</span> <span class="k">my</span> <span class="nv">$tag</span> <span class="p">(</span><span class="nb">keys</span> <span class="nv">%$tag_data</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nv">$tag_data</span><span class="o">-&gt;</span><span class="p">{</span><span class="nv">$tag</span><span class="p">}</span><span class="o">-&gt;</span><span class="p">{</span><span class="n">count</span><span class="p">}</span> <span class="o">=</span> <span class="nb">scalar</span><span class="p">(</span><span class="nv">@</span><span class="p">{</span><span class="nv">$tag_data</span><span class="o">-&gt;</span><span class="p">{</span><span class="nv">$tag</span><span class="p">}</span><span class="o">-&gt;</span><span class="p">{</span><span class="n">pages</span><span class="p">}});</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="nv">$tag_data</span><span class="o">-&gt;</span><span class="p">{</span><span class="nv">$tag</span><span class="p">}</span><span class="o">-&gt;</span><span class="p">{</span><span class="n">count</span><span class="p">}</span> <span class="o">&gt;</span> <span class="nv">$max</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nv">$max</span> <span class="o">=</span> <span class="nv">$tag_data</span><span class="o">-&gt;</span><span class="p">{</span><span class="nv">$tag</span><span class="p">}</span><span class="o">-&gt;</span><span class="p">{</span><span class="n">count</span><span class="p">};</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Assign each tag a range number from 1 - 10</span>
+</span><span class='line'><span class="c1"># based on popularity.  This range number will</span>
+</span><span class='line'><span class="c1"># be used along with CSS to print tags with</span>
+</span><span class='line'><span class="c1"># the appropriate size.</span>
+</span><span class='line'><span class="c1">#</span>
+</span><span class='line'><span class="k">foreach</span> <span class="k">my</span> <span class="nv">$tag</span> <span class="p">(</span><span class="nb">keys</span> <span class="nv">%$tag_data</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nv">$tag_data</span><span class="o">-&gt;</span><span class="p">{</span><span class="nv">$tag</span><span class="p">}</span><span class="o">-&gt;</span><span class="p">{</span><span class="n">range_num</span><span class="p">}</span> <span class="o">=</span>
+</span><span class='line'>      <span class="nb">int</span><span class="p">((</span><span class="nv">$tag_data</span><span class="o">-&gt;</span><span class="p">{</span><span class="nv">$tag</span><span class="p">}</span><span class="o">-&gt;</span><span class="p">{</span><span class="n">count</span><span class="p">}</span> <span class="o">/</span> <span class="nv">$max</span><span class="p">)</span>
+</span><span class='line'>          <span class="o">*</span> <span class="mi">10</span>
+</span><span class='line'>          <span class="o">+</span> <span class="mf">0.5</span><span class="p">);</span> <span class="c1"># nearest whole number</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="nv">$tag_data</span><span class="o">-&gt;</span><span class="p">{</span><span class="nv">$tag</span><span class="p">}</span><span class="o">-&gt;</span><span class="p">{</span><span class="n">range_num</span><span class="p">}</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nv">$tag_data</span><span class="o">-&gt;</span><span class="p">{</span><span class="nv">$tag</span><span class="p">}</span><span class="o">-&gt;</span><span class="p">{</span><span class="n">range_num</span><span class="p">}</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>        <span class="c1"># we want 1-10, not 0-10</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Write the tag cloud file</span>
+</span><span class='line'><span class="c1">#</span>
+</span><span class='line'><span class="nb">open</span> <span class="p">(</span><span class="n">O</span><span class="p">,</span> <span class="s">&quot;&gt;$custom_file&quot;</span><span class="p">)</span> <span class="o">||</span> <span class="nb">die</span><span class="p">;</span>
+</span><span class='line'><span class="k">print</span> <span class="n">O</span> <span class="s">&quot;&lt;div id=&#39;tag_cloud&#39;&gt;\n&quot;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># sort by tag name, case insensitive</span>
+</span><span class='line'><span class="c1">#</span>
+</span><span class='line'><span class="k">foreach</span> <span class="k">my</span> <span class="nv">$tag</span> <span class="p">(</span><span class="nb">sort</span> <span class="p">{</span> <span class="nb">lc</span><span class="p">(</span><span class="nv">$a</span><span class="p">)</span> <span class="ow">cmp</span> <span class="nb">lc</span><span class="p">(</span><span class="nv">$b</span><span class="p">)}</span>
+</span><span class='line'>                      <span class="nb">keys</span> <span class="nv">%$tag_data</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1"># give each tag anchor a title, </span>
+</span><span class='line'>    <span class="c1"># for screen readers and the like</span>
+</span><span class='line'>    <span class="c1">#</span>
+</span><span class='line'>    <span class="k">my</span> <span class="nv">$plural</span> <span class="o">=</span> <span class="s">&quot;y&quot;</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="nv">$tag_data</span><span class="o">-&gt;</span><span class="p">{</span><span class="nv">$tag</span><span class="p">}</span><span class="o">-&gt;</span><span class="p">{</span><span class="n">count</span><span class="p">}</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nv">$plural</span> <span class="o">=</span> <span class="s">&#39;ies&#39;</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">print</span> <span class="n">O</span> <span class="sx">qq[&lt;a href=&quot;/blog/tags/$tag/&quot; ]</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">print</span> <span class="n">O</span> <span class="sx">qq[title=&quot;$tag_data-&gt;{$tag}-&gt;{count} entr$plural&quot; ]</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">print</span> <span class="n">O</span> <span class="sx">qq[class=&quot;tag_$tag_data-&gt;{$tag}-&gt;{range_num}&quot;&gt;]</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">print</span> <span class="n">O</span> <span class="sx">qq[$tag]</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">print</span> <span class="n">O</span> <span class="sx">qq[&lt;/a&gt;\n]</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="k">print</span> <span class="n">O</span> <span class="s">&quot;&lt;/div&gt;\n&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="nb">close</span> <span class="n">O</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Now save the individual tag files</span>
+</span><span class='line'><span class="c1"># First, clear out the directory because we&#39;re gonna </span>
+</span><span class='line'><span class="c1"># regenerate all the files.</span>
+</span><span class='line'><span class="c1">#</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$tag_dir</span> <span class="o">=</span> <span class="s">&quot;$octopress_root/source/blog/tags&quot;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># If source/tags exists but is a file</span>
+</span><span class='line'><span class="c1">#</span>
+</span><span class='line'><span class="nb">die</span> <span class="s">&quot;source/blog/tags is a file&quot;</span> <span class="k">if</span> <span class="p">(</span><span class="o">-</span><span class="n">f</span> <span class="nv">$tag_dir</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Create the directory if it doesn&#39;t exist</span>
+</span><span class='line'><span class="c1">#</span>
+</span><span class='line'><span class="k">if</span> <span class="p">(</span><span class="o">!-</span><span class="n">d</span> <span class="nv">$tag_dir</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nb">mkdir</span> <span class="nv">$tag_dir</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">createTagsIndexMarkdown</span><span class="p">(</span><span class="nv">$tag_dir</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>    <span class="c1"># Delete all directories under source/tags.</span>
+</span><span class='line'>    <span class="c1"># We don&#39;t want to delete everything because we </span>
+</span><span class='line'>    <span class="c1"># need to preserve tags/index.markdown in case </span>
+</span><span class='line'>    <span class="c1"># something was modified there.</span>
+</span><span class='line'>    <span class="c1">#</span>
+</span><span class='line'>    <span class="k">my</span> <span class="nv">$dirs</span> <span class="o">=</span> <span class="sb">`find $tag_dir/* -type d`</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">my</span> <span class="nv">@dirs</span> <span class="o">=</span> <span class="nb">split</span><span class="p">(</span><span class="sr">/[\r\n]+/</span><span class="p">,</span> <span class="nv">$dirs</span><span class="p">);</span>
+</span><span class='line'>    <span class="k">foreach</span> <span class="k">my</span> <span class="nv">$dir</span> <span class="p">(</span><span class="nv">@dirs</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="sb">`/bin/rm -rf $dir`</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Make a file for each tag.</span>
+</span><span class='line'><span class="c1">#</span>
+</span><span class='line'><span class="k">foreach</span> <span class="k">my</span> <span class="nv">$tag</span> <span class="p">(</span><span class="nb">keys</span> <span class="nv">%$tag_data</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">makeTagFile</span><span class="p">(</span><span class="nv">$tag</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="c1">##  ####################################################</span>
+</span><span class='line'><span class="c1">##  Functions</span>
+</span><span class='line'><span class="c1">##  ####################################################</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">sub </span><span class="nf">makeTagFile</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">my</span> <span class="nv">$tag</span> <span class="o">=</span> <span class="nb">shift</span><span class="p">;</span>
+</span><span class='line'>    <span class="nb">mkdir</span> <span class="s">&quot;source/blog/tags/$tag&quot;</span>
+</span><span class='line'>      <span class="o">||</span>
+</span><span class='line'>      <span class="nb">die</span> <span class="s">&quot;Couldn&#39;t make directory source/blog/tags/$tag&quot;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nb">open</span> <span class="p">(</span><span class="n">O</span><span class="p">,</span> <span class="s">&quot;&gt; source/blog/tags/$tag/index.markdown&quot;</span><span class="p">)</span>
+</span><span class='line'>      <span class="o">||</span>
+</span><span class='line'>      <span class="nb">die</span> <span class="s">&quot;Can&#39;t open source/blog/tags/$tag/index.markdown&quot;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">print</span> <span class="n">O</span> <span class="sx">qq^---</span>
+</span><span class='line'><span class="sx">layout: page</span>
+</span><span class='line'><span class="sx">title: Tag&amp;#58; $tag</span>
+</span><span class='line'><span class="sx">footer: false</span>
+</span><span class='line'><span class="sx">---</span>
+</span><span class='line'>
+</span><span class='line'><span class="sx">&lt;div id=&quot;blog-archives&quot; class=&quot;category&quot;&gt;</span>
+</span><span class='line'><span class="sx">^</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">my</span> <span class="nv">$year</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1"># Sort by file name descending</span>
+</span><span class='line'>    <span class="c1"># This is the same as sorting by date descending</span>
+</span><span class='line'>    <span class="c1">#</span>
+</span><span class='line'>    <span class="k">foreach</span> <span class="k">my</span> <span class="nv">$file</span> <span class="p">(</span>
+</span><span class='line'>               <span class="nb">sort</span> <span class="p">{</span> <span class="nv">$b</span><span class="o">-&gt;</span><span class="p">{</span><span class="n">file</span><span class="p">}</span> <span class="ow">cmp</span> <span class="nv">$a</span><span class="o">-&gt;</span><span class="p">{</span><span class="n">file</span><span class="p">}</span> <span class="p">}</span>
+</span><span class='line'>                    <span class="nv">@</span><span class="p">{</span><span class="nv">$tag_data</span><span class="o">-&gt;</span><span class="p">{</span><span class="nv">$tag</span><span class="p">}</span><span class="o">-&gt;</span><span class="p">{</span><span class="n">pages</span><span class="p">}})</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c1"># Get the year month and date</span>
+</span><span class='line'>        <span class="c1">#</span>
+</span><span class='line'>        <span class="k">my</span> <span class="p">(</span><span class="nv">$yyyy</span><span class="p">,</span> <span class="nv">$mm</span><span class="p">,</span> <span class="nv">$dd</span><span class="p">)</span> <span class="o">=</span> <span class="nv">$file</span><span class="o">-&gt;</span><span class="p">{</span><span class="n">file</span><span class="p">}</span> <span class="o">=~</span>
+</span><span class='line'>            <span class="sr">m!(\d\d\d\d)/(\d\d)/(\d\d)/!</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c1"># The HTML and associated logic here mimics</span>
+</span><span class='line'>        <span class="c1"># the HTML of the category pages - print </span>
+</span><span class='line'>        <span class="c1"># a H2 for every new year</span>
+</span><span class='line'>        <span class="c1">#</span>
+</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="nv">$yyyy</span> <span class="o">!=</span> <span class="nv">$year</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="nv">$year</span> <span class="o">=</span> <span class="nv">$yyyy</span><span class="p">;</span>
+</span><span class='line'>            <span class="k">print</span> <span class="n">O</span> <span class="s">&quot;&lt;h2&gt;$year&lt;/h2&gt;\n&quot;</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c1"># Construct the URL &amp; date string</span>
+</span><span class='line'>        <span class="c1">#</span>
+</span><span class='line'>        <span class="k">my</span> <span class="nv">$url</span> <span class="o">=</span> <span class="nv">$file</span><span class="o">-&gt;</span><span class="p">{</span><span class="n">file</span><span class="p">};</span>
+</span><span class='line'>        <span class="nv">$url</span> <span class="o">=~</span> <span class="sr">s/^$octopress_root\/public//</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">my</span> <span class="nv">$title</span> <span class="o">=</span> <span class="nv">$file</span><span class="o">-&gt;</span><span class="p">{</span><span class="n">title</span><span class="p">};</span>
+</span><span class='line'>        <span class="k">my</span> <span class="nv">@months</span> <span class="o">=</span> <span class="sx">qw ( </span><span class="n">x</span> <span class="n">Jan</span> <span class="n">Feb</span> <span class="n">Mar</span> <span class="n">Apr</span> <span class="n">May</span> <span class="n">Jun</span>
+</span><span class='line'>                          <span class="n">Jul</span> <span class="n">Aug</span> <span class="n">Sep</span> <span class="n">Oct</span> <span class="n">Nov</span> <span class="n">Dec</span> <span class="p">);</span>
+</span><span class='line'>        <span class="k">my</span> <span class="nv">$mon</span> <span class="o">=</span> <span class="nv">$months</span><span class="p">[</span><span class="nv">$mm</span> <span class="o">*</span> <span class="mi">1</span><span class="p">];</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">print</span> <span class="n">O</span> <span class="sx">qq[</span>
+</span><span class='line'><span class="sx">&lt;article&gt;</span>
+</span><span class='line'><span class="sx">&lt;h1&gt;&lt;a href=&quot;$url&quot;&gt;$title&lt;/a&gt;&lt;/h1&gt;</span>
+</span><span class='line'><span class="sx">&lt;time datetime=&quot;$yyyy-$mm-${dd}T00:00:00-06:00&quot; pubdate&gt;&lt;span class=&#39;month&#39;&gt;$mon&lt;/span&gt; &lt;span class=&#39;day&#39;&gt;$dd&lt;/span&gt; &lt;span class=&#39;year&#39;&gt;$yyyy&lt;/span&gt;&lt;/time&gt;</span>
+</span><span class='line'><span class="sx">&lt;footer&gt;</span>
+</span><span class='line'><span class="sx">&lt;span class=&quot;categories&quot;&gt;posted in </span>
+</span><span class='line'><span class="sx">]</span><span class="p">;</span>
+</span><span class='line'>        <span class="c1"># Print each category, separated by commas</span>
+</span><span class='line'>        <span class="c1">#</span>
+</span><span class='line'>        <span class="k">print</span> <span class="n">O</span> <span class="nb">join</span><span class="p">(</span><span class="s">&quot;, &quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="nb">map</span> <span class="p">{</span> <span class="s">&quot;&lt;a href=&#39;$_-&gt;{href}&#39;&gt;$_-&gt;{text}&lt;/a&gt;&quot;</span> <span class="p">}</span>
+</span><span class='line'>                <span class="nv">@</span><span class="p">{</span><span class="nv">$file</span><span class="o">-&gt;</span><span class="p">{</span><span class="n">categories</span><span class="p">}}</span>
+</span><span class='line'>            <span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">print</span> <span class="n">O</span> <span class="sx">qq[&lt;/span&gt;</span>
+</span><span class='line'><span class="sx">&lt;/footer&gt;</span>
+</span><span class='line'><span class="sx">&lt;/article&gt;</span>
+</span><span class='line'><span class="sx">]</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">print</span> <span class="n">O</span> <span class="s">&quot;&lt;/div&gt;\n&quot;</span><span class="p">;</span>
+</span><span class='line'>    <span class="nb">close</span> <span class="n">O</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="k">sub </span><span class="nf">getTags</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">my</span> <span class="nv">$file</span> <span class="o">=</span> <span class="nv">$</span><span class="nn">File::Find::</span><span class="nv">name</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1"># Only parse files that look like posts</span>
+</span><span class='line'>    <span class="c1">#</span>
+</span><span class='line'>    <span class="k">return</span> <span class="k">unless</span> <span class="nv">$file</span> <span class="o">=~</span><span class="sr"> /\.html$/</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">return</span> <span class="k">unless</span> <span class="nv">$file</span> <span class="o">=~</span><span class="sr"> </span>
+</span><span class='line'><span class="sr">          /^$octopress_root\/public\/blog\/\d{4}\/\d{2}\/\d{2}\//</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1"># Read the contents of the HTML file</span>
+</span><span class='line'>    <span class="c1">#</span>
+</span><span class='line'>    <span class="nb">open</span> <span class="p">(</span><span class="n">HTML</span><span class="p">,</span> <span class="nv">$_</span><span class="p">)</span> <span class="o">||</span> <span class="nb">die</span> <span class="s">&quot;Can&#39;t open $file&quot;</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">my</span> <span class="nv">$contents</span> <span class="o">=</span> <span class="nb">join</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">,</span> <span class="sr">&lt;HTML&gt;</span><span class="p">);</span>
+</span><span class='line'>    <span class="nb">close</span> <span class="n">HTML</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">my</span> <span class="nv">$tree</span> <span class="o">=</span> <span class="nn">HTML::</span><span class="n">TreeBuilder</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">();</span>
+</span><span class='line'>    <span class="nv">$tree</span><span class="o">-&gt;</span><span class="n">parse</span><span class="p">(</span><span class="nv">$contents</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1"># Get the title</span>
+</span><span class='line'>    <span class="c1">#</span>
+</span><span class='line'>    <span class="k">my</span> <span class="nv">$title</span> <span class="o">=</span> <span class="nv">$tree</span><span class="o">-&gt;</span><span class="n">look_down</span><span class="p">(</span><span class="n">_tag</span>  <span class="o">=&gt;</span> <span class="s">&quot;h1&quot;</span><span class="p">,</span>
+</span><span class='line'>                                 <span class="n">class</span> <span class="o">=&gt;</span> <span class="s">&quot;entry-title&quot;</span><span class="p">);</span>
+</span><span class='line'>    <span class="nv">$title</span> <span class="o">=</span> <span class="nv">$title</span><span class="o">-&gt;</span><span class="n">as_trimmed_text</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1"># Get the categories</span>
+</span><span class='line'>    <span class="c1">#</span>
+</span><span class='line'>    <span class="k">my</span> <span class="nv">$category_ent</span> <span class="o">=</span> <span class="nv">$tree</span><span class="o">-&gt;</span><span class="n">look_down</span><span class="p">(</span><span class="n">_tag</span>  <span class="o">=&gt;</span> <span class="s">&quot;span&quot;</span><span class="p">,</span>
+</span><span class='line'>                                        <span class="n">class</span> <span class="o">=&gt;</span> <span class="s">&quot;categories&quot;</span><span class="p">);</span>
+</span><span class='line'>    <span class="k">my</span> <span class="nv">@as</span> <span class="o">=</span> <span class="nv">$category_ent</span><span class="o">-&gt;</span><span class="n">look_down</span><span class="p">(</span><span class="n">_tag</span>  <span class="o">=&gt;</span> <span class="s">&quot;a&quot;</span><span class="p">,</span>
+</span><span class='line'>                                      <span class="n">class</span> <span class="o">=&gt;</span> <span class="s">&quot;category&quot;</span><span class="p">);</span>
+</span><span class='line'>    <span class="k">my</span> <span class="nv">@categories</span> <span class="o">=</span> <span class="p">();</span>
+</span><span class='line'>    <span class="k">foreach</span> <span class="k">my</span> <span class="nv">$a</span> <span class="p">(</span><span class="nv">@as</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nb">push</span><span class="p">(</span><span class="nv">@categories</span><span class="p">,</span>
+</span><span class='line'>            <span class="p">{</span> <span class="n">href</span> <span class="o">=&gt;</span> <span class="nv">$a</span><span class="o">-&gt;</span><span class="n">attr</span><span class="p">(</span><span class="s">&#39;href&#39;</span><span class="p">),</span>
+</span><span class='line'>              <span class="n">text</span> <span class="o">=&gt;</span> <span class="nv">$a</span><span class="o">-&gt;</span><span class="n">as_trimmed_text</span>
+</span><span class='line'>            <span class="p">});</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1"># Get the tags</span>
+</span><span class='line'>    <span class="c1">#</span>
+</span><span class='line'>    <span class="k">my</span> <span class="nv">$ul</span> <span class="o">=</span> <span class="nv">$tree</span><span class="o">-&gt;</span><span class="n">look_down</span><span class="p">(</span><span class="s">&quot;_tag&quot;</span><span class="p">,</span> <span class="s">&quot;ul&quot;</span><span class="p">,</span>
+</span><span class='line'>                              <span class="s">&quot;id&quot;</span>  <span class="p">,</span> <span class="s">&quot;tags_ul&quot;</span><span class="p">);</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="nv">$ul</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">my</span> <span class="nv">@items</span> <span class="o">=</span> <span class="nv">$ul</span><span class="o">-&gt;</span><span class="n">look_down</span><span class="p">(</span><span class="s">&quot;_tag&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;li&quot;</span><span class="p">);</span>
+</span><span class='line'>        <span class="k">foreach</span> <span class="k">my</span> <span class="nv">$item</span> <span class="p">(</span><span class="nv">@items</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="k">my</span> <span class="nv">$tag</span> <span class="o">=</span> <span class="nv">$item</span><span class="o">-&gt;</span><span class="n">as_trimmed_text</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="c1"># Finally, populate the data structure</span>
+</span><span class='line'>            <span class="c1">#</span>
+</span><span class='line'>            <span class="nb">push</span> <span class="p">(</span><span class="nv">@</span><span class="p">{</span><span class="nv">$tag_data</span><span class="o">-&gt;</span><span class="p">{</span><span class="nv">$tag</span><span class="p">}</span><span class="o">-&gt;</span><span class="p">{</span><span class="n">pages</span><span class="p">}},</span>
+</span><span class='line'>                <span class="p">{</span> <span class="n">title</span>      <span class="o">=&gt;</span> <span class="nv">$title</span><span class="p">,</span>
+</span><span class='line'>                  <span class="n">file</span>       <span class="o">=&gt;</span> <span class="nv">$file</span><span class="p">,</span>
+</span><span class='line'>                  <span class="n">categories</span> <span class="o">=&gt;</span> <span class="o">\</span><span class="nv">@categories</span>
+</span><span class='line'>          <span class="p">}</span> <span class="p">);</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>        <span class="c1"># no tags in this document</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nv">$tree</span><span class="o">-&gt;</span><span class="nb">delete</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># This function creates a default </span>
+</span><span class='line'><span class="c1"># source/tags/index.markdown</span>
+</span><span class='line'><span class="c1">#</span>
+</span><span class='line'><span class="k">sub </span><span class="nf">createTagsIndexMarkdown</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">my</span> <span class="nv">$tag_dir</span> <span class="o">=</span> <span class="nb">shift</span><span class="p">;</span>
+</span><span class='line'>    <span class="nb">open</span> <span class="p">(</span><span class="n">O</span><span class="p">,</span> <span class="s">&quot;&gt;$tag_dir/index.markdown&quot;</span><span class="p">);</span>
+</span><span class='line'>    <span class="k">print</span> <span class="n">O</span> <span class="sx">qq[---</span>
+</span><span class='line'><span class="sx">layout: page</span>
+</span><span class='line'><span class="sx">title: Tags</span>
+</span><span class='line'><span class="sx">footer: false</span>
+</span><span class='line'><span class="sx">---</span>
+</span><span class='line'>
+</span><span class='line'><span class="sx">&lt;div class=&quot;tag_page&quot;&gt;</span>
+</span><span class='line'><span class="sx"> {% include custom/tag_cloud.html %}</span>
+</span><span class='line'><span class="sx">&lt;/div&gt;</span>
+</span><span class='line'><span class="sx">]</span><span class="p">;</span>
+</span><span class='line'>    <span class="nb">close</span> <span class="n">O</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 </div>
 
 
@@ -205,7 +986,7 @@
     Tags:
     <ul id="tags_ul">
 
-        <li><a href="/blog/tags/VIM/">VIM</a></li>
+        <li><a href="/blog/tags/Octopress/">Octopress</a></li>
 
         <li><a href="/blog/tags/Learning/">Learning</a></li>
 

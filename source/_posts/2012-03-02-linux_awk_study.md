@@ -11,9 +11,10 @@ awk以花括号分隔命令，命令以'{}'围起来？
 
 -F用来标志分隔符是什么，如下面
 
-{% highlight bash%}
+<!--more-->
+{% codeblock lang:bash %}
 $awk -F ":" '{print $1 $2}' /etc/passwd
-{% endhighlight %}
+{% endcodeblock %}
 
 意味着以:（冒号）为分隔符，打印/etc/passwd每行的第一个和第二个字符。
 
@@ -26,40 +27,40 @@ END区域可以用于设置awk在处理文本完之后进行汇总处理。
 
 ###使用正则表达式
 
-{% highlight bash %}
+{% codeblock lang:bash %}
 awk '/xiong/ {print }' a
-{% endhighlight %}
+{% endcodeblock %}
 
 打印文件a中含有xiong的一整行，这个可以与正则表达式紧密的结合。如下行，打印含有浮点数的整行。
 
-{% highlight bash %}
+{% codeblock lang:bash %}
 awk '/\[0-9\]+\\.\[0-9\]\*/ {print}' a
-{% endhighlight %}
+{% endcodeblock %}
 
 ###使用判断符号
 awk支持==，>，<，>=，<=，!=同时它还支持~(包含),!~(不包含)。可以使用这些条件符号进行判断，来进行输出处理。如下行：
 
-{% highlight bash %}
+{% codeblock lang:bash %}
 awk '$1 == "xiong" {print $3}' a
-{% endhighlight %}
+{% endcodeblock %}
 
 仅仅在a文件的第一个字符为xiong时输出该行的第3个变量。
 
-{% highlight bash %}
+{% codeblock lang:bash %}
 awk '$5 ~ /root/ {print $3}' a
-{% endhighlight %}
+{% endcodeblock %}
 
 仅仅在a文件的第5个参数含有root时输出第3个参量。
 
 awk也支持类似于c语言的条件判断处理，如上面的那条语句可以写成下面的判断形式
 
-{% highlight bash %}
+{% codeblock lang:bash %}
 {
     if( $5 ~ /root/) {
         print $3
     }
 }
-{% endhighlight %}
+{% endcodeblock %}
 
 
 ###awk算术支持
@@ -88,11 +89,11 @@ awk的数组从下标1开始。
 
 如下所示：
 
-{% highlight bash%}
+{% codeblock lang:bash %}
 for ( x in myarray ) {
 	print myarray[x]
 }
-{% endhighlight %}
+{% endcodeblock %}
 
 上述的输出不知道哪个会放在前面，即无法判断是myarray[1]先出现还是myarray[2]先出现，它是无序的。
 

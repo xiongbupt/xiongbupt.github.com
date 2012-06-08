@@ -13,10 +13,10 @@ DECLARE_WAIT_QUEUE_HEAD
 >DECLARE_WAIT_QUEUE_HEAD(name)
 
 动态初始化一个等待队列
-{% highlight c %}
+{% codeblock lang:c %}
 wait_queue_head_t name;
 init_waitqueue_head(&name)
-{% endhighlight %}
+{% endcodeblock %}
 
 >add_wait_queue()   
 用来将一个进程添加到等待队列，该函数在获得必要的自旋锁后，使用`__add_wait_queue()`函数来完成队列添加工作

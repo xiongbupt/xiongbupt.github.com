@@ -8,6 +8,15 @@ footer: false
 <h2>2012</h2>
 
 <article>
+<h1><a href="/blog/2012/05/23/markdown-syntax/index.html">Markdown基本使用</a></h1>
+<time datetime="2012-05-23T00:00:00-06:00" pubdate><span class='month'>May</span> <span class='day'>23</span> <span class='year'>2012</span></time>
+<footer>
+<span class="categories">posted in 
+<a href='/blog/categories/notes/'>Notes</a></span>
+</footer>
+</article>
+
+<article>
 <h1><a href="/blog/2012/05/22/learning-markdown/index.html">Markdown基本语法学习</a></h1>
 <time datetime="2012-05-22T00:00:00-06:00" pubdate><span class='month'>May</span> <span class='day'>22</span> <span class='year'>2012</span></time>
 <footer>

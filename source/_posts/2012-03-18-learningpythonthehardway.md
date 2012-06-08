@@ -14,6 +14,7 @@ tags: [Python, Learning]
 
 打开文件，括号中的文件应该使用引号来表达，使用字符串，不能单单的使用名字。open返回的是文件描述符，对文件描述符的操作可以使用pydoc2 file来查看对应的操作。
 
+<!--more-->
 python中的打印信息%r和%s的区别主要是%r是按照输入的来打印，而%s是python采用的猜测用户想要看到的信息来进行输出
 
 假设使用file为使用open返回的描述符，下面是一些日常操作的函数
@@ -26,11 +27,11 @@ python中的打印信息%r和%s的区别主要是%r是按照输入的来打印�
 python中以写的方式打开文件将会将文件的内容清空，无需使用truncate()再次将文件的内容清空
 
 python中使用def定义函数，如下所示
-{% highlight python%}
+{% codeblock lang:python %}
 def functiona(*args):
 test
 print()
-{% endhighlight %}
+{% endcodeblock %}
 
 ###python函数书写检查步骤
 
@@ -52,12 +53,12 @@ python函数调用检查步骤
 
 
 python中return可以连续返回多个值，以逗号分隔，多个数值可以按照顺序赋值给对应的变量，按照返回顺序如
-{% highlight python %}
+{% codeblock lang:python %}
 def function():
     ruturn a, b, c
 
 a1, b1, c1 = function()
-{% endhighlight %}
+{% endcodeblock %}
 
 python中似乎有全局变量这种东西
 
@@ -93,14 +94,14 @@ python中的if判断表达式后面的语句应该缩进4个空格来代表其�
 
 python中的if-else组合如下所示
 
-{% highlight python %}
+{% codeblock lang:python %}
 if statement:
     if-code-part
 elif statement2:
     elif-code-part
 else:
     other-parts
-{% endhighlight %}
+{% endcodeblock %}
 
 
 python中的range([start], stop[,step])
@@ -123,7 +124,7 @@ and 逻辑与
 
 del 删除列表中的某项，使用索引来删除，也可以删除一个范围。比如：
 
-{% highlight python %}
+{% codeblock lang:python %}
 >>> a = [-1, 1, 66.25, 333, 333, 1234.5]
 >>> del a[0] #删除a列表中的第一个元素
 >>> a
@@ -134,7 +135,7 @@ del 删除列表中的某项，使用索引来删除，也可以删除一个范�
 >>> del a[:] #删除a列表中的所有元素
 >>> a
 []
-{% endhighlight %}
+{% endcodeblock %}
 
 from 从某些模块中引入一些功能
 

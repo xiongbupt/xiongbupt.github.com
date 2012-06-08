@@ -7,22 +7,23 @@ tags: [MySQL, Learning]
 ##CH7 数据生成、转换和操作
 ###使用字符串数据
 字符类型有CHAR，VARCHAR，TEXT类型，各种的范围不同，第二章中有详细的说明。
-创建一个仅仅包含字符的表如下所示：
-{% highlight sql %}
+创建一个仅仅包含字符的表如下所示：  
+{% codeblock Create_table lang:sql %}
 mysql> CREATE TABLE string_tbl
     -> (char_fld CHAR(30),
     -> vchar_fld VARCHAR(30),
     -> text_fld TEXT
     -> );
-{% endhighlight %}
+{% endcodeblock %}
+<!--more-->
 ####生成字符串
-生成字符串最简单的方式是用一对单引号将需要使用的字符串括起来。在向表中插入字符串数据时，保证长度不会超过设定的最大值。
-{% highlight sql %}
+生成字符串最简单的方式是用一对单引号将需要使用的字符串括起来。在向表中插入字符串数据时，保证长度不会超过设定的最大值。  
+{% codeblock Insert data lang:sql %}
 mysql> INSERT INTO string_tbl (char_fld, vchar_fld, text_fld)
     -> VALUES ('This is char data',
     -> 'This is varchar data',
     -> 'This is text data');
-{% endhighlight %}
+{% endcodeblock %}
 
 #####包含单引号
 通过在单引号前面添加一个单引号来转义该单引号。*在MySQL中可以使用反斜杠\\来作为转义符。*
@@ -33,25 +34,25 @@ mysql> INSERT INTO string_tbl (char_fld, vchar_fld, text_fld)
 ####操作字符串
 一共有两类操作字符串的函数，分别是返回<font color="red">数字</font>的和返回<font color="red">字符串</font>的。
 #####返回数字的字符串函数
-`length()`函数，返回字符串的长度。
-{% highlight sql %}
+`length()`函数，返回字符串的长度。  
+{% codeblock lang:sql %}
 mysql> SELECT LENGTH(char_fld) char_length,
     -> LENGTH(vchar_fld) varchar_length,
     -> LENGTH(text_fld) text_length
     -> FROM string_tbl;
-{% endhighlight %}
-`position()`函数，返回子字符串在字符串的位置。
-{% highlight sql %}
+{% endcodeblock %}
+`position()`函数，返回子字符串在字符串的位置。  
+{% codeblock lang:sql %}
 mysql> SELECT POSITION('charcters' IN vchar_fld)
     -> FROM string_tbl;
-{% endhighlight %}
+{% endcodeblock %}
 上面这个`POSITION`函数的返回值，当没有匹配的时候，返回0，当匹配了的时候，返回匹配的位置。注意这个第一位置为1，不是0。
 
-如果希望指定搜索开始的位置，而不是默认的0那个位置，可以使用`locate`函数。与`position`类似，但是可以接受可选的第三个参数，指定开始的位置。
-{% highlight sql %}
+如果希望指定搜索开始的位置，而不是默认的0那个位置，可以使用`locate`函数。与`position`类似，但是可以接受可选的第三个参数，指定开始的位置。  
+{% codeblock lang:sql %}
 mysql> SELECT LOCATE('is', vchar_fld, 5)
     -> FROM string_tbl;
-{% endhighlight %}
+{% endcodeblock %}
 
 `strcmp()`函数，有三种返回值，
 
@@ -64,8 +65,8 @@ mysql> SELECT LOCATE('is', vchar_fld, 5)
 
 除了`strcmp`函数之外，对于比较还可以使用`like`或者`regex`操作符来比较字符串。这些比较的结果为1（true）或0（false）。
 
-ex1：
-{% highlight sql %}
+ex1：  
+{% codeblock lang:sql %}
 mysql> SELECT name, name LIKE "%ns" ends_in_ns
     -> FROM department;
 +----------------+------------+
@@ -76,10 +77,10 @@ mysql> SELECT name, name LIKE "%ns" ends_in_ns
 | Administration |          0 |
 +----------------+------------+
 3 rows in set (0.00 sec)
-{% endhighlight %}
+{% endcodeblock %}
 
-ex2:
-{% highlight sql %}
+ex2:  
+{% codeblock lang:sql %}
 mysql> SELECT cust_id, cust_type_cd, fed_id,
     -> fed_id REGEXP '.{3}-.{2}-.{4}' is_ss_no_format
     -> FROM customer;
@@ -100,11 +101,11 @@ mysql> SELECT cust_id, cust_type_cd, fed_id,
 |      12 | B            | 04-3333333  |               0 |
 |      13 | B            | 04-4444444  |               0 |
 +---------+--------------+-------------+-----------------+
-{% endhighlight %}
+{% endcodeblock %}
 
 #####返回字符串的字符串函数
-可以使用`concat()`来替换字符列所存储的数据。
-{% highlight sql %}
+可以使用`concat()`来替换字符列所存储的数据。  
+{% codeblock lang:sql %}
 mysql> DELETE FROM string_tbl;
 Query OK, 1 row affected (0.09 sec)
 
@@ -123,10 +124,10 @@ mysql> SELECT text_fld FROM string_tbl;
 | This string was 29 characters, but now it is longer |
 +-----------------------------------------------------+
 1 row in set (0.00 sec)
-{% endhighlight %}
+{% endcodeblock %}
 `insert()`函数接受四个参数：原始字符串、字符串操作开始的位置、需要替换的字符数以及替换字符串。  
-ex1：
-{% highlight sql %}
+ex1：  
+{% codeblock lang:sql %}
 mysql> SELECT INSERT('goodbye world', 9, 0, 'cruel ') string;
 +---------------------+
 | string              |
@@ -134,10 +135,10 @@ mysql> SELECT INSERT('goodbye world', 9, 0, 'cruel ') string;
 | goodbye cruel world |
 +---------------------+
 1 row in set (0.00 sec)
-{% endhighlight %}
+{% endcodeblock %}
 如上所示，若第三个参数为0，则不会发生替换，第二个位置开始的字符将会向右移动，相当于插入操作了。  
 如果第三个操作数不为0，则从第二个操作数指定的位置开始，延续第三个操作数那么长的字符均将会被抹去，替换成为第四个字符串指定的内容。如下所示：  
-{% highlight sql %}
+{% codeblock lang:sql %}
 mysql> SELECT INSERT('goodbye world', 1, 7, 'hello ') string;
 +--------------+
 | string       |
@@ -160,9 +161,9 @@ mysql> SELECT INSERT('goodbye world', 1, 1, 'hello ') string;
 | hello oodbye world |
 +--------------------+
 1 row in set (0.00 sec)
-{% endhighlight %}
-`replace()`函数完成替换功能，但是它是全部替换。如下所示：
-{% highlight sql %}
+{% endcodeblock %}
+`replace()`函数完成替换功能，但是它是全部替换。如下所示：  
+{% codeblock lang:sql %}
 mysql> SELECT REPLACE('goodbye world', 'goodbye', 'hello')
     -> FROM dual;
 +----------------------------------------------+
@@ -178,7 +179,7 @@ mysql> SELECT REPLACE('goodbye goodbye hello world', 'goodbye', 'hello') string;
 | hello hello hello world |
 +-------------------------+
 1 row in set (0.00 sec)
-{% endhighlight %}
+{% endcodeblock %}
 ###使用数值数据
 ####执行算术函数
 |函数名|描述|
@@ -195,7 +196,7 @@ mysql> SELECT REPLACE('goodbye goodbye hello world', 'goodbye', 'hello') string;
 |Tan(x)|正切
 
 `mod(x,y)`用于取余操作，如下所示：
-{% highlight sql %}
+{% codeblock lang:sql %}
 mysql> SELECT MOD(10, 4);
 +------------+
 | MOD(10, 4) |
@@ -203,10 +204,10 @@ mysql> SELECT MOD(10, 4);
 |          2 |
 +------------+
 1 row in set (0.00 sec)
-{% endhighlight %}
+{% endcodeblock %}
 
 `POW(x,y)`用于求幂操作，如下所示：
-{% highlight sql %}
+{% codeblock lang:sql %}
 mysql> SELECT POWER(2, 10);
 +--------------+
 | POWER(2, 10) |
@@ -214,7 +215,7 @@ mysql> SELECT POWER(2, 10);
 |         1024 |
 +--------------+
 1 row in set (0.00 sec)
-{% endhighlight %}
+{% endcodeblock %}
 ####控制数字的精度
 
 * `ceil()`向上取整。
@@ -223,7 +224,7 @@ mysql> SELECT POWER(2, 10);
 * `truncate()`小数点后长度截短，不进行进位。
 
 例子如下所示：
-{% highlight sql %}
+{% codeblock lang:sql %}
 mysql> SELECT CEIL(72.445), FLOOR(72.445);
 +--------------+---------------+
 | CEIL(72.445) | FLOOR(72.445) |
@@ -252,10 +253,10 @@ mysql> SELECT TRUNCATE(72.909, 1), TRUNCATE(72.909, 2),  TRUNCATE(72.909, 3);
 |                72.9 |               72.90 |              72.909 |
 +---------------------+---------------------+---------------------+
 1 row in set (0.00 sec)
-{% endhighlight %}
+{% endcodeblock %}
 ####处理有符号数
 `SIGN()`函数根据正负数返回值。正数返回1，负数返回-1，零返回0。如下所示：
-{% highlight sql %}
+{% codeblock lang:sql %}
 mysql> SELECT SIGN(-10), SIGN(10.1), SIGN(0);
 +-----------+------------+---------+
 | SIGN(-10) | SIGN(10.1) | SIGN(0) |
@@ -263,9 +264,9 @@ mysql> SELECT SIGN(-10), SIGN(10.1), SIGN(0);
 |        -1 |          1 |       0 |
 +-----------+------------+---------+
 1 row in set (0.00 sec)
-{% endhighlight %}
+{% endcodeblock %}
 `ABS()`函数返回绝对值，如下所示：
-{% highlight sql %}
+{% codeblock lang:sql %}
 mysql> SELECT ABS(-10), ABS(10.1), ABS(0);
 +----------+-----------+--------+
 | ABS(-10) | ABS(10.1) | ABS(0) |
@@ -273,11 +274,11 @@ mysql> SELECT ABS(-10), ABS(10.1), ABS(0);
 |       10 |      10.1 |      0 |
 +----------+-----------+--------+
 1 row in set (0.00 sec)
-{% endhighlight %}
+{% endcodeblock %}
 ###使用时间数据
 ####处理时区
 查看当前系统时区以及会话所取的时区如下所示：
-{% highlight sql %}
+{% codeblock lang:sql %}
 mysql> SELECT @@global.time_zone, @@session.time_zone;
 +--------------------+---------------------+
 | @@global.time_zone | @@session.time_zone |
@@ -285,7 +286,7 @@ mysql> SELECT @@global.time_zone, @@session.time_zone;
 | SYSTEM             | SYSTEM              |
 +--------------------+---------------------+
 1 row in set (0.00 sec)
-{% endhighlight %}
+{% endcodeblock %}
 ####生成时间数据
 可以使用下面任意一种方法产生时间数据：
 * 从已有的date、datetime和time列中复制数据；
@@ -293,7 +294,7 @@ mysql> SELECT @@global.time_zone, @@session.time_zone;
 * 构建可以被服务器识别的代表日期的字符串。
 #####从字符串到日期的转换
 `cast()`函数
-{% highlight sql %}
+{% codeblock lang:sql %}
 mysql> SELECT CAST('2012-05-24 18:40:00' AS DATETIME);
 +-----------------------------------------+
 | CAST('2012-05-24 18:40:00' AS DATETIME) |
@@ -317,11 +318,11 @@ mysql> SELECT CAST('2012-05-24 18:40:00' AS DATE);
 | 2012-05-24                          |
 +-------------------------------------+
 1 row in set (0.00 sec)
-{% endhighlight %}
+{% endcodeblock %}
 #####产生日期的函数
 当提供的字符串不满足`CAST()`函数操作的字符串时，需要将对应的字符串进行转换，可以使用`str_to_date()`函数。该函数的使用之后生成的字符串将可以被`CAST()`函数使用。
 `str_to_date()`
-{% highlight sql %}
+{% codeblock lang:sql %}
 mysql> SELECT STR_TO_DATE('September 17, 2012', '%M %d, %Y');
 +------------------------------------------------+
 | STR_TO_DATE('September 17, 2012', '%M %d, %Y') |
@@ -336,7 +337,7 @@ mysql> SELECT CAST(STR_TO_DATE('September 17, 2012', '%M %d, %Y') AS DATE);
 | 2012-09-17                                                   |
 +--------------------------------------------------------------+
 1 row in set (0.00 sec)
-{% endhighlight %}
+{% endcodeblock %}
 
 |日期格式部件|描述|
 |:----------:|:-----:|
@@ -357,7 +358,7 @@ mysql> SELECT CAST(STR_TO_DATE('September 17, 2012', '%M %d, %Y') AS DATE);
 `str_to_date`根据字符串内容返回`datetime`、`date`、或者`time`类型值，如果格式字符串只包含%H，%i或%s，将会返回`TIME`值。
 
 如果需要产生当前日期/时间，可以调用内建函数，`CURRENT_DATE()`，`CURRENT_TIME()`，`CURRENT_TIMESTAMP()`
-{% highlight sql %}
+{% codeblock lang:sql %}
 mysql> SELECT CURRENT_DATE(), CURRENT_TIME(), CURRENT_TIMESTAMP();
 +----------------+----------------+---------------------+
 | CURRENT_DATE() | CURRENT_TIME() | CURRENT_TIMESTAMP() |
@@ -365,11 +366,11 @@ mysql> SELECT CURRENT_DATE(), CURRENT_TIME(), CURRENT_TIMESTAMP();
 | 2012-05-25     | 02:56:43       | 2012-05-25 02:56:43 |
 +----------------+----------------+---------------------+
 1 row in set (0.00 sec)
-{% endhighlight %}  
+{% endcodeblock %}  
 ####操作时间数据
 #####返回日期的函数
 `DATE_ADD()`，接收一个日期型的值作为参数，返回另一个日期，如下所示： 
-{% highlight sql %}
+{% codeblock lang:sql %}
 mysql> SELECT DATE_ADD(CURRENT_DATE(), INTERVAL 5 DAY);
 +------------------------------------------+
 | DATE_ADD(CURRENT_DATE(), INTERVAL 5 DAY) |
@@ -377,7 +378,7 @@ mysql> SELECT DATE_ADD(CURRENT_DATE(), INTERVAL 5 DAY);
 | 2012-05-30                               |
 +------------------------------------------+
 1 row in set (0.00 sec)
-{% endhighlight %}
+{% endcodeblock %}
 其中第二个参数包含了3个元素：<font color ="red">`INTERVAL`关键字、所需要增加的数量以及时间间隔类型</font>
 
 |间隔名称|描述|
@@ -392,7 +393,7 @@ mysql> SELECT DATE_ADD(CURRENT_DATE(), INTERVAL 5 DAY);
 |Hour_second|小时、分钟和秒钟数，中间用":"隔开
 |Year_month|年份和月份，中间用"-"隔开
 `last_day()`函数返回当前月份的最后一天。 
-{% highlight sql %}
+{% codeblock lang:sql %}
 mysql> SELECT LAST_DAY(CURRENT_DATE());
 +--------------------------+
 | LAST_DAY(CURRENT_DATE()) |
@@ -423,12 +424,12 @@ mysql> SELECT LAST_DAY(CAST(CURRENT_DATE() AS TIME));
 | NULL                                   |
 +----------------------------------------+
 1 row in set, 2 warnings (0.00 sec)
-{% endhighlight %}
+{% endcodeblock %}
 
 `convert_tz()`函数将一个时区的datetime值转换为另一个时区的datetime值。
 #####返回字符串的时间函数
 返回字符串的函数大多用于提取日期或时间的一部分。`dayname()`可以确定某一日是星期几：
-{% highlight sql %}
+{% codeblock lang:sql %}
 mysql> SELECT DAYNAME(CURRENT_DATE());
 +-------------------------+
 | DAYNAME(CURRENT_DATE()) |
@@ -436,9 +437,9 @@ mysql> SELECT DAYNAME(CURRENT_DATE());
 | Friday                  |
 +-------------------------+
 1 row in set (0.00 sec)
-{% endhighlight %}
+{% endcodeblock %}
 推荐使用`EXTRACT()`函数从时间中获取当前的年月日等。
-{% highlight sql %}
+{% codeblock lang:sql %}
 mysql> SELECT EXTRACT(YEAR FROM CURRENT_DATE());
 +-----------------------------------+
 | EXTRACT(YEAR FROM CURRENT_DATE()) |
@@ -453,12 +454,12 @@ mysql> SELECT EXTRACT(MINUTE FROM CURRENT_TIMESTAMP());
 |                                       36 |
 +------------------------------------------+
 1 row in set (0.00 sec)
-{% endhighlight %}
+{% endcodeblock %}
 #####返回数字的时间函数
 `datediff()`计算两个日期的相差天数。
 ###转换函数
 使用'CAST()`函数完成转换功能。
-{% highlight sql %}
+{% codeblock lang:sql %}
 mysql> SELECT CAST('1456328' AS SIGNED INTEGER);
 +-----------------------------------+
 | CAST('1456328' AS SIGNED INTEGER) |
@@ -474,4 +475,4 @@ mysql> SELECT CAST('-1456328' AS SIGNED INTEGER);
 |                           -1456328 |
 +------------------------------------+
 1 row in set (0.00 sec)
-{% endhighlight %}
+{% endcodeblock %}

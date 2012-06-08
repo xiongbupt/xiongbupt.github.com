@@ -8,11 +8,11 @@ footer: false
 <h2>2012</h2>
 
 <article>
-<h1><a href="/blog/2012/06/07/octopress-add-tag/index.html">Octopress增加Tag标签</a></h1>
+<h1><a href="/blog/2012/06/07/octopress-add-tag/index.html">Octopress添加标签</a></h1>
 <time datetime="2012-06-07T00:00:00-06:00" pubdate><span class='month'>Jun</span> <span class='day'>07</span> <span class='year'>2012</span></time>
 <footer>
 <span class="categories">posted in 
-<a href='/blog/categories/octopress/'>Octopress</a></span>
+<a href='/blog/categories/notes/'>Notes</a></span>
 </footer>
 </article>
 
@@ -80,7 +80,7 @@ footer: false
 </article>
 
 <article>
-<h1><a href="/blog/2012/05/23/markdown-syntax/index.html">Markdown Syntax</a></h1>
+<h1><a href="/blog/2012/05/23/markdown-syntax/index.html">Markdown基本使用</a></h1>
 <time datetime="2012-05-23T00:00:00-06:00" pubdate><span class='month'>May</span> <span class='day'>23</span> <span class='year'>2012</span></time>
 <footer>
 <span class="categories">posted in 

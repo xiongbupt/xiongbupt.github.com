@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "markdown syntax"
+title: "Markdown基本使用"
 category: Notes
-tags: [Learning]
+tags: [Learning, Markdown]
 ---
 ##链接
 如果需要在页面插入链接，使用尖括号\<\>括起来便可以了。
@@ -15,10 +15,10 @@ tags: [Learning]
 
 [链接][lable1]
 按照上述方式，在文章中另起一行，通常是在文章的末尾，添加
-    \[lable1\]:http://www.google.com
+    [lable1]:http://www.google.com
 [lable1]:http://www.google.com
 将对应的链接完成即可。注意使用的是中括号和一个冒号，后面添加对应的链接地址。
-
+<!--more-->
 同样也可以使用链接和标题的方式
 [lable2]:http://www.google.com "对应的标题"
 
@@ -47,9 +47,9 @@ tags: [Learning]
 ##原文输出
     如果一段文字已经有序，或者包含有html中的语法，不想让其再进行解释，只需要将这些文字缩进至少四个空格或一个Tab宽度即可。它对应着html中的<pre>标签。
 比如下面的例子
-{% highlight c linenos %}
+{% codeblock lang:c %}
   printf("hello world");
-{% endhighlight %}
+{% endcodeblock %}
 <pre>
 <code>
 printf("hello world");
@@ -67,12 +67,12 @@ html中的两种列表分别为无序列表和有序列表，分别使用  <ul><
 
 对应的html代码为
 
-{% highlight html linenos %}
+{% codeblock lang:html %}
 <ul>
 <li>first</li>
 <li>second</li>
 </ul>
-{% endhighlight %}
+{% endcodeblock %}
 
 <ul>
 <li>first</li>
@@ -94,12 +94,12 @@ html中的两种列表分别为无序列表和有序列表，分别使用  <ul><
 <li>第2条</li>
 </ol>
 
-{% highlight html linenos %}
+{% codeblock lang:html %}
 <ol>
 <li>第一条</li>
 <li>第2条</li>
 </ol>
-{% endhighlight %}
+{% endcodeblock %}
 
 ##转义符
 在markdown中使用"\\"来实现转义。
@@ -143,11 +143,11 @@ google
 
 对应的HTML代码均为
 
-{% highlight html linenos %}
+{% codeblock lang:html %}
     <p>google</p>
     <hr/>
     <p>google</p>
-{% endhighlight %}
+{% endcodeblock %}
 
 <p>google</p>
 <hr/>
@@ -177,7 +177,7 @@ google
 </blockquote>
 
 
-{% highlight html linenos %}
+{% codeblock lang:html %}
 <blockquote>
 <p>google</p>
 
@@ -186,7 +186,7 @@ google
 </blockquote>
 
 </blockquote>
-{% endhighlight %}
+{% endcodeblock %}
 
 表示HTML中的    `"<code>"`标记的\`同样可以嵌套。如果希望插入一个该符号而不愿意被翻译成为`"<code>"`，可以使用"`"  
 
@@ -195,13 +195,13 @@ html代码为
 
 <code>`</code>
 
-{% highlight html linenos %}
+{% codeblock lang:html %}
 <code>'</code>
-{% endhighlight %}
+{% endcodeblock %}
 
 
 ##c语言测试
-{% highlight c linenos %}
+{% codeblock lang:c %}
 #include <stdio.h>
 
 int main(void) {
@@ -209,11 +209,11 @@ int main(void) {
   printf("Your ID: %d", i);
   return 0;
 }
-{% endhighlight %}
+{% endcodeblock %}
 ##bash测试
-{% highlight bash linenos %}
+{% codeblock lang:bash %}
 cd ~
-{% endhighlight %}
+{% endcodeblock %}
 
 ##语法高亮简述
 使用pygmentize生成对应的css文件，然后在default.html中修改文件，使用对应的css文件，即可开启语法高亮。

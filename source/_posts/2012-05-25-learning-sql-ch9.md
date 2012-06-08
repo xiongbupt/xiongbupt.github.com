@@ -4,9 +4,9 @@ title: "Learning SQL CH9"
 category: Notes
 tags: [MySQL, Learning]
 ---
-#子查询
+##子查询
 可以用于4种SQL语句中。
-##什么是子查询
+###什么是子查询
 子查询是包含在另一个SQL语句内部的查询。子查询总是由括号括起来，并且通常在包含语句之前执行。
 子查询可以返回的结果集为：
 
@@ -15,16 +15,17 @@ tags: [MySQL, Learning]
 * 多列多行
 
 当子查询的结果为单列单行时，它可以被用作等式的一个条件中的一个表达式，如果返回结果多于一行，它可以被比较，不能被用于等式判断）。
+<!--more-->
 ##子查询类型
 根据子查询是否独立可以分为非关联子查询（查询完全独立）和关联子查询（引用包含语句中的列）。
-##非关联子查询
+###非关联子查询
 可以独立执行。  
 非关联的返回单行单列的子查询是<font color ="red">标量子查询。</font>
 子查询中可以使用各种查询语句（6个）。
 单一事务不能等于多个事务的集合。
-###多行单列子查询
-####in和not in运算符
-{% highlight sql %}
+####多行单列子查询
+#####in和not in运算符
+{% codeblock lang:sql %}
 mysql> SELECT branch_id, name, city
     -> FROM branch
     -> WHERE name IN ('Headquarters', 'Quincy Branch');
@@ -81,25 +82,25 @@ mysql> SELECT emp_id, fname, lname, title FROM employee WHERE emp_id NOT IN (SEL
 |     18 | Rick     | Tulman   | Teller         |
 +--------+----------+----------+----------------+
 11 rows in set (0.00 sec)
-{% endhighlight %}
+{% endcodeblock %}
 <font color ="red">注意上面在使用`NOT IN`的时候该子句中的`WHERE superior_emp_id IS NOT NULL`</font>
-####all运算符
-####any运算符
-###多列子查询
-##关联子查询
+#####all运算符
+#####any运算符
+####多列子查询
+###关联子查询
 关联子查询为每一个候选行，即可能成为结果的行执行一遍。
-###exists运算符
+####exists运算符
 exists运算符是构造包含关联子查询条件的最常用运算符。
 在使用select语句时，经常使用的是`select 1`或者`select \*`
-###关联子查询操作数据
+####关联子查询操作数据
 <font color ="red">**切记，在MySQL中delete语句使用关联子查询时，无论如何都不能使用表别名。**</font>
-##何时使用子查询
-###子查询作为数据源
-####数据加工
-####面向任务的子查询
-####过滤条件 中的子查询
-####子查询作为表达式生成器
-##子查询总结
+###何时使用子查询
+####子查询作为数据源
+#####数据加工
+#####面向任务的子查询
+#####过滤条件 中的子查询
+#####子查询作为表达式生成器
+###子查询总结
 
 * 返回结果可以是单行单列，单列多行以及多列多行
 * 可以独立于包含语句（非关联子查询）

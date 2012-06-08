@@ -4,7 +4,7 @@ title: "Tomcat MySQL"
 category: Others
 tags: [Tomcat]
 ---
-{% highlight java %}
+{% codeblock lang:java %}
 org.apache.jasper.JasperException: javax.servlet.ServletException: com.mysql.jdbc.CommunicationsException: Communications link failure due to underlying exception: 
 
 ** BEGIN NESTED EXCEPTION ** 
@@ -14,6 +14,7 @@ MESSAGE: java.net.ConnectException: Connection refused
 
 STACKTRACE:
 
+<!--more-->
 java.net.SocketException: java.net.ConnectException: Connection refused
 	at com.mysql.jdbc.StandardSocketFactory.connect(StandardSocketFactory.java:156)
 	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:276)
@@ -48,5 +49,5 @@ java.net.SocketException: java.net.ConnectException: Connection refused
 
 
 ** END NESTED EXCEPTION **
-{% endhighlight %}
+{% endcodeblock %}
 在使用tomcat与mysql时，出现了上述错误，原因是由于mysql中的配置中禁用了网络的连接。在arch环境下，通过编辑/etc/mysql/my.cnf文件，将`skip-networking`这个选项注释掉即可。

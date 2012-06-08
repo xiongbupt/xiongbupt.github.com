@@ -12,6 +12,7 @@ ctrl+d DELETE
 ctrl+j BACKSPACE  
 stty --all查看当前终端的所有ctrl配置。  
 在shell中，使用help中的通配符时，需要使用`''`将对应的通配符引用起来，如help 're*'; help 're??'等。  
+<!--more-->
 ###第二章 Command-Line Editing
 改变shell的编辑模式使用set命名  
 set -o emacs 或者 set -o vi  

@@ -50,7 +50,7 @@ default_asides: [asides/categories_sidebar.html, asides/recent_posts.html, aside
 # Each layout uses the default asides, but they can have their own asides instead. Simply uncomment the lines below
 # and add an array with the asides you want to use.
 # blog_index_asides: 
-# post_asides:
+# post_asides: []
 # page_asides:
 
 # ----------------------- #
@@ -69,6 +69,10 @@ category_sidebar: true
 # and don't forget to add 'asides/categories_tag.html' to @default_asides if you want to enable it.
 category_tag_cloud: true
 # ----------------------- #
+# siderbar                #
+# ----------------------- #
+#sidebar : collapse
+# ----------------------- #
 #   3rd Party Settings    #
 # ----------------------- #
 
@@ -83,7 +87,7 @@ twitter_user: xiongbupt
 twitter_tweet_count: 0
 twitter_show_replies: false
 twitter_follow_button: true
-twitter_show_follower_count: false
+twitter_show_follower_count: true
 twitter_tweet_button: true
 
 # Google +1
@@ -105,7 +109,7 @@ delicious_count: 3
 
 # Disqus Comments
 disqus_short_name: xiongbupt
-disqus_show_comment_count: false
+disqus_show_comment_count: true
 
 # Google Analytics
 google_analytics_tracking_id: UA-32449808-1

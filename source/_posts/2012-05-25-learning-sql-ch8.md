@@ -6,7 +6,7 @@ tags: [MySQL, Learning]
 ---
 ##分组与聚集
 使用`GROUP`来完成分组的功能，如下图所示：
-{% highlight sql %}
+{% codeblock lang:sql %}
 mysql> SELECT open_emp_id
     -> FROM account
     -> GROUP BY open_emp_id;
@@ -19,9 +19,10 @@ mysql> SELECT open_emp_id
 |          16 |
 +-------------+
 4 rows in set (0.00 sec)
-{% endhighlight %}
+{% endcodeblock %}
 `COUNT()`称为聚集函数，可以计算每个分组的行数，如下面的例子所示。本例相对于上例来说仅仅添加了`COUNT()`函数来完成聚集功能。
-{% highlight sql %}
+<!--more-->
+{% codeblock lang:sql %}
 mysql> SELECT open_emp_id, COUNT(*) how_many
     -> FROM account
     -> GROUP BY open_emp_id;
@@ -34,10 +35,10 @@ mysql> SELECT open_emp_id, COUNT(*) how_many
 |          16 |        6 |
 +-------------+----------+
 4 rows in set (0.00 sec)
-{% endhighlight %}
+{% endcodeblock %}
 上例说明，通过联合使用`group by`子句和`count()`聚集函数，可以在不查看原始数据的情况下，精确满足业务问题对数据的需要。  
 <font color ="red">**使用group函数时，不应该在`WHERE`子句中使用聚集函数`COUNT()`。因为在评估`WHERE`子句时分组还没有被创建。因此必须在`HAVING()`子句中使用分组过滤条件。**</font>
-{% highlight sql %}
+{% codeblock lang:sql %}
 mysql> SELECT open_emp_id, COUNT(*) how_many
     -> FROM account
     -> GROUP BY open_emp_id
@@ -50,7 +51,7 @@ mysql> SELECT open_emp_id, COUNT(*) how_many
 |          16 |        6 |
 +-------------+----------+
 3 rows in set (0.00 sec)
-{% endhighlight %}
+{% endcodeblock %}
 ###聚集函数
 聚集函数对某个分组的所有行执行特定的操作。
 
@@ -77,7 +78,7 @@ mysql> SELECT open_emp_id, COUNT(*) how_many
 `GROUP BY`后面跟着的是一个表达式
 ####产生合计数
 使用`WITH ROLLUP`，示例如下：
-{% highlight sql %}
+{% codeblock lang:sql %}
 mysql> SELECT product_cd, open_branch_id,
     -> SUM(avail_balance) avail_balance
     -> FROM account
@@ -108,7 +109,7 @@ mysql> SELECT product_cd, open_branch_id,
 | NULL       |           NULL |     170754.46 |
 +------------+----------------+---------------+
 21 rows in set (0.00 sec)
-{% endhighlight %}
+{% endcodeblock %}
 ###分组过滤条件
 当使用分组数据时，不能使用`WHERE`子句，过滤子句应该使用`HAVING`子句。在分组之后如果需要对数据应用过滤条件，可以在`HAVING`子句中放置这些条件。
 可以在`HAVING`子句中包含未在`SELECT`子句中出现的聚集函数。

@@ -8,24 +8,6 @@ footer: false
 <h2>2012</h2>
 
 <article>
-<h1><a href="/blog/2012/06/08/octopressdai-ma-gao-liang/index.html">Octopress代码高亮</a></h1>
-<time datetime="2012-06-08T00:00:00-06:00" pubdate><span class='month'>Jun</span> <span class='day'>08</span> <span class='year'>2012</span></time>
-<footer>
-<span class="categories">posted in 
-<a href='/blog/categories/octopress/'>Octopress</a></span>
-</footer>
-</article>
-
-<article>
-<h1><a href="/blog/2012/06/06/octopress_use/index.html">Octopress尝试记录</a></h1>
-<time datetime="2012-06-06T00:00:00-06:00" pubdate><span class='month'>Jun</span> <span class='day'>06</span> <span class='year'>2012</span></time>
-<footer>
-<span class="categories">posted in 
-<a href='/blog/categories/linux/'>Linux</a></span>
-</footer>
-</article>
-
-<article>
 <h1><a href="/blog/2012/06/01/git-lab-use/index.html">Git小项目基本操作</a></h1>
 <time datetime="2012-06-01T00:00:00-06:00" pubdate><span class='month'>Jun</span> <span class='day'>01</span> <span class='year'>2012</span></time>
 <footer>
@@ -75,7 +57,7 @@ footer: false
 <time datetime="2012-03-30T00:00:00-06:00" pubdate><span class='month'>Mar</span> <span class='day'>30</span> <span class='year'>2012</span></time>
 <footer>
 <span class="categories">posted in 
-<a href='/blog/categories/linux/'>Linux</a></span>
+<a href='/blog/categories/vim/'>VIM</a></span>
 </footer>
 </article>
 
@@ -129,7 +111,7 @@ footer: false
 <time datetime="2012-03-06T00:00:00-06:00" pubdate><span class='month'>Mar</span> <span class='day'>06</span> <span class='year'>2012</span></time>
 <footer>
 <span class="categories">posted in 
-<a href='/blog/categories/linux/'>Linux</a></span>
+<a href='/blog/categories/vim/'>VIM</a></span>
 </footer>
 </article>
 
@@ -147,7 +129,7 @@ footer: false
 <time datetime="2012-03-02T00:00:00-06:00" pubdate><span class='month'>Mar</span> <span class='day'>02</span> <span class='year'>2012</span></time>
 <footer>
 <span class="categories">posted in 
-<a href='/blog/categories/linux/'>Linux</a></span>
+<a href='/blog/categories/notes/'>Notes</a></span>
 </footer>
 </article>
 

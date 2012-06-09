@@ -21,7 +21,16 @@ footer: false
 <time datetime="2012-06-05T00:00:00-06:00" pubdate><span class='month'>Jun</span> <span class='day'>05</span> <span class='year'>2012</span></time>
 <footer>
 <span class="categories">posted in 
-<a href='/blog/categories/notes/'>Notes</a></span>
+<a href='/blog/categories/vim/'>VIM</a></span>
+</footer>
+</article>
+
+<article>
+<h1><a href="/blog/2012/06/05/vim_regex_case/index.html">VIM使用正则表达式改变大小写</a></h1>
+<time datetime="2012-06-05T00:00:00-06:00" pubdate><span class='month'>Jun</span> <span class='day'>05</span> <span class='year'>2012</span></time>
+<footer>
+<span class="categories">posted in 
+<a href='/blog/categories/vim/'>VIM</a></span>
 </footer>
 </article>
 
@@ -30,7 +39,7 @@ footer: false
 <time datetime="2012-03-30T00:00:00-06:00" pubdate><span class='month'>Mar</span> <span class='day'>30</span> <span class='year'>2012</span></time>
 <footer>
 <span class="categories">posted in 
-<a href='/blog/categories/linux/'>Linux</a></span>
+<a href='/blog/categories/vim/'>VIM</a></span>
 </footer>
 </article>
 
@@ -39,7 +48,7 @@ footer: false
 <time datetime="2012-03-06T00:00:00-06:00" pubdate><span class='month'>Mar</span> <span class='day'>06</span> <span class='year'>2012</span></time>
 <footer>
 <span class="categories">posted in 
-<a href='/blog/categories/linux/'>Linux</a></span>
+<a href='/blog/categories/vim/'>VIM</a></span>
 </footer>
 </article>
 </div>

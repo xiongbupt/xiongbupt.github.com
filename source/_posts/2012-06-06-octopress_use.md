@@ -3,7 +3,7 @@ layout: post
 title: "Octopress尝试记录"
 category: Octopress
 comments: true
-tags: [Linux]
+tags: [Octopress, Github, Learning]
 ---
 本文主要是参考Octopress的[官方网址][lab1]进行操作，之前使用了[google][lab2]搜索了若干参考，但是操作之后出现了错误，推翻重来之后，写下这篇记录，方便自己以后使用。  
 首先介绍下自己的环境Arch，由于之前已经使用了github的个人博客，但是之前使用的是jekyll的方式，自己不会调整那些主题，感觉有些不方便，上网找了下，发现似乎Octopress相对来说比较简单，于是在这种情况下尝试使用Octopress。至于在github上创建个人博客主页，在这里不做说明，在Octopress环境下，自己相当不清楚。

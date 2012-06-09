@@ -3,7 +3,7 @@ layout: post
 title: "Octopress添加标签"
 category: Octopress
 comments: true
-tags: [Octopress, Learning]
+tags: [Octopress, Learning, Github]
 toc: true
 ---
 

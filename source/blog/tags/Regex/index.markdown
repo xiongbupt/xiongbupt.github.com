@@ -12,7 +12,7 @@ footer: false
 <time datetime="2012-06-05T00:00:00-06:00" pubdate><span class='month'>Jun</span> <span class='day'>05</span> <span class='year'>2012</span></time>
 <footer>
 <span class="categories">posted in 
-<a href='/blog/categories/notes/'>Notes</a></span>
+<a href='/blog/categories/vim/'>VIM</a></span>
 </footer>
 </article>
 

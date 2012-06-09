@@ -4,7 +4,7 @@ title: "Octopress代码高亮"
 date: 2012-06-08 08:27
 comments: true
 categories: [Octopress]
-tags: [Linux, Learning, Octopress]
+tags: [Learning, Octopress, Github]
 ---
 
 现在博客已经基本搭建完毕，下面对从`jekyll bootstrap`搬迁到做一个基本介绍。首先是代码高亮部分，下面的文章主要来自于[Octopress关于代码高亮部分][lab1]。文章主要是对上面的内容进行一个简单的翻译，以及简单介绍从`jekyll bootstrap`上面的代码移动到`Octopress`上面做一个简单的介绍。

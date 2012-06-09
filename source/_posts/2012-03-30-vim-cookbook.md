@@ -7,7 +7,9 @@ tags: [VIM, Linux]
 转载自[vim_cook_book][1]
 
 字符翻转
->xp
+{% codeblock lang:bash %}
+xp
+{% endcodeblock %}
 
 可交换的替换单词
 {% codeblock lang:bash %}
@@ -21,16 +23,16 @@ n               #搜索下一个idiot
 {% codeblock lang:bash %}
 %s/\<idiot\>/manager/gc #直接在命令行模式下进行输入，使用全局替换的方式
 {% endcodeblock %}
-/\<idiot\>/ 	
+/\\<idiot\\>/ 	
 >This text specifies the text we are looking for wand want. The \< tells Vim to match a word start and the \> tells Vim to match the end of a word.  
->\<表明匹配的是一个单词的开始，\>表明匹配的是一个单词的结束。
+>\\<表明匹配的是一个单词的开始，\\>表明匹配的是一个单词的结束。
 
 <!--more-->
 检查Makefile错误的好方法，由于命令是以tab开始的，若是空格将有错误
 {% codeblock lang:bash %}
 :set list
 {% endcodeblock %}
-可以显示出空格和tab的区别，tab是^I
+可以显示出空格和tab的区别，tab是`^I`
 
 vim读取man文件
 {% codeblock lang:bash %}

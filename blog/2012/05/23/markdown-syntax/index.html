@@ -1,0 +1,656 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Markdown基本使用 - Keep Learning</title>
+  <meta name="author" content="Xiongbupt">
+
+  
+  <meta name="description" content="链接 如果需要在页面插入链接，使用尖括号&lt;>括起来便可以了。 如果需要为一段文字加上链接，使用如下方式
+文字,google （ href="http://" 为链接加上标题可如下所示
+文字，google 链接
+按照上述方式，在文章中另起一行，通常是在文章的末尾，添加 [lable1]: &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://xiongbupt.github.com/blog/2012/05/23/markdown-syntax/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Keep Learning" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Ruge+Boogie|Ruthie|Flavors|Rancho|Galdeano' rel='stylesheet' type='text/css'>
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32449808-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Keep Learning</a></h1>
+  
+    <h2>伪程序员记录点滴</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:xiongbupt.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/blog/tags">Tags</a></li>
+  <li><a href="/about">About me</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Markdown基本使用</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-23T00:00:00+08:00" pubdate data-updated="true">May 23<span>rd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h2>链接</h2>
+
+<p>如果需要在页面插入链接，使用尖括号&lt;>括起来便可以了。</p>
+
+<p>如果需要为一段文字加上链接，使用如下方式
+<a href="http://www.google.com">文字,google</a> （ <a> href="http://" </a></p>
+
+<p>为链接加上标题可如下所示
+<a href="http://www.google.com" title="对应的标题">文字，google</a></p>
+
+<p><a href="http://www.google.com">链接</a>
+按照上述方式，在文章中另起一行，通常是在文章的末尾，添加</p>
+
+<pre><code>[lable1]:http://www.google.com
+</code></pre>
+
+<p>将对应的链接完成即可。注意使用的是中括号和一个冒号，后面添加对应的链接地址。</p>
+
+<!--more-->
+
+
+<p>同样也可以使用链接和标题的方式</p>
+
+<h2>图片</h2>
+
+<p><img src="%E5%AF%B9%E5%BA%94%E7%9A%84%E5%9B%BE%E7%89%87%E7%9A%84%E5%9C%B0%E5%9D%80" title="标签" alt="插入图片" />
+<img src="www.google.com" alt="" title="描述"></p>
+
+<h2>标题格式</h2>
+
+<p>通过输入####来确定标题格式，一共有6级
+或者是使用====和----来确定标题。后面这种只能提供两种级别的。</p>
+
+<h1> </h1>
+
+
+<h2>粗体和斜体</h2>
+
+<p>文字两边各加一个星号( * )或者下划线（ _ )表示斜体。
+各加对应的两个符号表示粗体。
+各加对应的三个符号表示粗斜体。
+<strong> 粗体</strong>
+<em>斜体</em>
+<strong><em> 粗斜体</em></strong></p>
+
+<h2>引用内容</h2>
+
+<p>使用>（大于号）即可，相当于html中的blockquote</p>
+
+<blockquote><p>引用</p></blockquote>
+
+<blockquote>引用</blockquote>
+
+
+<h2>原文输出</h2>
+
+<pre><code>如果一段文字已经有序，或者包含有html中的语法，不想让其再进行解释，只需要将这些文字缩进至少四个空格或一个Tab宽度即可。它对应着html中的&lt;pre&gt;标签。
+</code></pre>
+
+<p>比如下面的例子</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'>  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;hello world&quot;</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<pre>
+<code>
+printf("hello world");
+</code>
+</pre>
+
+
+<h2>列表</h2>
+
+<p>html中的两种列表分别为无序列表和有序列表，分别使用  <ul></ul> 和<ol></ol>括起来。
+在markdown中，对于无序列表，只需要在列表前面加上一个星号( * )、或加号( + )、或减号( - )即可。
+* first
+* second
+- third
++ fourth</p>
+
+<p>对应的html代码为</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;ul&gt;</span>
+</span><span class='line'><span class="nt">&lt;li&gt;</span>first<span class="nt">&lt;/li&gt;</span>
+</span><span class='line'><span class="nt">&lt;li&gt;</span>second<span class="nt">&lt;/li&gt;</span>
+</span><span class='line'><span class="nt">&lt;/ul&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<ul>
+<li>first</li>
+<li>second</li>
+</ul>
+
+
+<p>对于有序列表，只需要在第一条前添加一个数字，后跟一个英文句号，次好即可仍旧使用加或星或减。无论第一个条目前加的数字是什么，列表都会从1开始计数。</p>
+
+<ol>
+<li>第1条</li>
+<li>第2条</li>
+<li>第3条abc</li>
+<li>第4条</li>
+<li>第5条</li>
+</ol>
+
+
+<p>对应的html代码</p>
+
+<ol>
+<li>第一条</li>
+<li>第2条</li>
+</ol>
+
+
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;ol&gt;</span>
+</span><span class='line'><span class="nt">&lt;li&gt;</span>第一条<span class="nt">&lt;/li&gt;</span>
+</span><span class='line'><span class="nt">&lt;li&gt;</span>第2条<span class="nt">&lt;/li&gt;</span>
+</span><span class='line'><span class="nt">&lt;/ol&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<h2>转义符</h2>
+
+<p>在markdown中使用"\"来实现转义。
+比如
+<a href="http://www.google.com">链接</a>
+在加上转义之后变为<br/>
+[链接](http://www.google.com)</p>
+
+<p>比如*号的输出，为了输出三个星号
+***输出3个星号***</p>
+
+<h2>HTML实体</h2>
+
+<p>在HTML中有两个特殊含义的字符，分别是"&lt; "和" &amp; "</p>
+
+<h2>换行符</h2>
+
+<p>在一行的末尾使用两个以上的空格表示HTML中的一个换行符“&lt;br/>"</p>
+
+<pre><code>&lt;br/&gt;表示换行符
+</code></pre>
+
+<h2>段落</h2>
+
+<pre><code>在HTML中，使用”&lt;p&gt;&lt;/p&gt;“括起来的内容称为一个段落。在markdonw中，两段之间有一个空行就可以在翻译的时候翻译成一个段落。
+</code></pre>
+
+<h2>水平线</h2>
+
+<pre><code>HTML中，“&lt;hr/&gt;"标记可以在页面中输出一条横线，在Markdonw中，使用三个以上的星号”*“或减号"-"可以起到同样的作用。
+</code></pre>
+
+<p>星号和减号之间可以有空格；如果减号没有空格，必须在一个段落中，即在含有三个以上无空格分隔的减号的行的前后都要有一个空行。</p>
+
+<p>比如下面的<br/>
+google</p>
+
+<hr />
+
+<p>google</p>
+
+<p>与</p>
+
+<p>google</p>
+
+<hr />
+
+<p>google</p>
+
+<p>google</p>
+
+<hr />
+
+<p>google</p>
+
+<p>对应的HTML代码均为</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>    <span class="nt">&lt;p&gt;</span>google<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;hr/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;p&gt;</span>google<span class="nt">&lt;/p&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<p>google</p>
+
+
+<hr/>
+
+
+<p>google</p>
+
+
+<p>google</p>
+
+<hr />
+
+<p>google</p>
+
+<h2>嵌套</h2>
+
+<p>在markdown中可以使用嵌套。
+比如下面的代码</p>
+
+<blockquote><p>google</p>
+
+<blockquote><p>google
+对应的html标签为</p></blockquote></blockquote>
+
+<blockquote>
+<p>google</p>
+
+<blockquote>
+<p>google</p>
+</blockquote>
+
+</blockquote>
+
+
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;blockquote&gt;</span>
+</span><span class='line'><span class="nt">&lt;p&gt;</span>google<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;blockquote&gt;</span>
+</span><span class='line'><span class="nt">&lt;p&gt;</span>google<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'><span class="nt">&lt;/blockquote&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;/blockquote&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>表示HTML中的    <code>"&lt;code&gt;"</code>标记的`同样可以嵌套。如果希望插入一个该符号而不愿意被翻译成为<code>"&lt;code&gt;"</code>，可以使用"`"</p>
+
+<p><code>`</code>
+html代码为</p>
+
+<p><code>`</code></p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;code&gt;</span>&#39;<span class="nt">&lt;/code&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<h2>c语言测试</h2>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cp">#include &lt;stdio.h&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">9527</span><span class="p">;</span>
+</span><span class='line'>  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Your ID: %d&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<h2>bash测试</h2>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd</span> ~
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<h2>语法高亮简述</h2>
+
+<p>使用pygmentize生成对应的css文件，然后在default.html中修改文件，使用对应的css文件，即可开启语法高亮。</p>
+
+<pre>
+<code>
+    { % highlight bash linenos % }
+    { % endhighlight % }
+</code>
+</pre>
+
+
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Xiongbupt</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-23T00:00:00+08:00" pubdate data-updated="true">May 23<span>rd</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/notes/'>Notes</a>
+  
+</span>
+
+
+      <div id="tag_list">
+    Tags:
+    <ul id="tags_ul">
+
+        <li><a href="/blog/tags/Learning/">Learning</a></li>
+
+        <li><a href="/blog/tags/Markdown/">Markdown</a></li>
+
+    </ul>
+</div>
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://xiongbupt.github.com/blog/2012/05/23/markdown-syntax/" data-via="xiongbupt" data-counturl="http://xiongbupt.github.com/blog/2012/05/23/markdown-syntax/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/05/23/learning-sql/" title="Previous Post: Learning SQL(ch4-ch6)">&laquo; Learning SQL(ch4-ch6)</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/05/24/learning-sql-ch7/" title="Next Post: Learning SQL ch7">Learning SQL ch7 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    
+<section>
+<h1>分类</h1>
+<ul>
+  <li><a href='/blog/categories/c语言'>C语言 (1)</a></li>
+  <li><a href='/blog/categories/git'>Git (3)</a></li>
+  <li><a href='/blog/categories/linux'>Linux (8)</a></li>
+  <li><a href='/blog/categories/notes'>Notes (21)</a></li>
+  <li><a href='/blog/categories/octopress'>Octopress (4)</a></li>
+  <li><a href='/blog/categories/others'>Others (1)</a></li>
+  <li><a href='/blog/categories/python'>Python (1)</a></li>
+  <li><a href='/blog/categories/vim'>Vim (4)</a></li>
+  <li><a href='/blog/categories/wsn'>Wsn (1)</a></li>
+</ul>
+</section>
+
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/06/08/octopresszeng-jia-fen-lei-biao-qian/">Octopress增加分类标签</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/08/octopressdai-ma-gao-liang/">Octopress代码高亮</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/07/octopress-add-tag/">Octopress添加标签</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/06/vim_help_read/">VIM用户手册27笔记</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/06/octopress_use/">Octopress尝试记录</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/06/assemble_language_learn/">汇编语言学习</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/xiongbupt">@xiongbupt</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'xiongbupt',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("xiongbupt", 0, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/xiongbupt" class="twitter-follow-button" data-show-count="true">Follow @xiongbupt</a>
+  
+</section>
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/110480695522271115757?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Xiongbupt -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'xiongbupt';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

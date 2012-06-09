@@ -1,0 +1,1350 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Learning SQL ch7 - Keep Learning</title>
+  <meta name="author" content="Xiongbupt">
+
+  
+  <meta name="description" content="CH7 数据生成、转换和操作 使用字符串数据 字符类型有CHAR，VARCHAR，TEXT类型，各种的范围不同，第二章中有详细的说明。
+创建一个仅仅包含字符的表如下所示： Create_table 1
+2
+3
+4
+5
+mysql&gt; CREATE TABLE string_tbl -&gt &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://xiongbupt.github.com/blog/2012/05/24/learning-sql-ch7/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Keep Learning" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Ruge+Boogie|Ruthie|Flavors|Rancho|Galdeano' rel='stylesheet' type='text/css'>
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32449808-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Keep Learning</a></h1>
+  
+    <h2>伪程序员记录点滴</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:xiongbupt.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/blog/tags">Tags</a></li>
+  <li><a href="/about">About me</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Learning SQL Ch7</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-24T00:00:00+08:00" pubdate data-updated="true">May 24<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h2>CH7 数据生成、转换和操作</h2>
+
+<h3>使用字符串数据</h3>
+
+<p>字符类型有CHAR，VARCHAR，TEXT类型，各种的范围不同，第二章中有详细的说明。
+创建一个仅仅包含字符的表如下所示：</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Create_table  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">string_tbl</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="p">(</span><span class="n">char_fld</span> <span class="nb">CHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="n">vchar_fld</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="n">text_fld</span> <span class="nb">TEXT</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<!--more-->
+
+
+<h4>生成字符串</h4>
+
+<p>生成字符串最简单的方式是用一对单引号将需要使用的字符串括起来。在向表中插入字符串数据时，保证长度不会超过设定的最大值。</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Insert data  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">string_tbl</span> <span class="p">(</span><span class="n">char_fld</span><span class="p">,</span> <span class="n">vchar_fld</span><span class="p">,</span> <span class="n">text_fld</span><span class="p">)</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">&#39;This is char data&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="s1">&#39;This is varchar data&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="s1">&#39;This is text data&#39;</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<h5>包含单引号</h5>
+
+<p>通过在单引号前面添加一个单引号来转义该单引号。<em>在MySQL中可以使用反斜杠\来作为转义符。</em></p>
+
+<h5>包含特殊字符</h5>
+
+<p>通过使用MySQL中自带的<code>char</code>函数，可以将数字转成对应的字符。对于ASCII字符集，使用<code>CHAR(number)</code>可以返回ASCII的值为number的数所对应的字符。<br/>
+可以使用<code>concat()</code>函数来连接若干字符串，一些可以输入，另外一些可以通过<code>char()</code>函数生成。<br/>
+如果需要通过字符查询该字符的ASCII的值，可以通过调用<code>ascii</code>函数，该函数将会返回对应字符的ASCII值。</p>
+
+<h4>操作字符串</h4>
+
+<p>一共有两类操作字符串的函数，分别是返回<font color="red">数字</font>的和返回<font color="red">字符串</font>的。</p>
+
+<h5>返回数字的字符串函数</h5>
+
+<p><code>length()</code>函数，返回字符串的长度。</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">LENGTH</span><span class="p">(</span><span class="n">char_fld</span><span class="p">)</span> <span class="k">char_length</span><span class="p">,</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">LENGTH</span><span class="p">(</span><span class="n">vchar_fld</span><span class="p">)</span> <span class="n">varchar_length</span><span class="p">,</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">LENGTH</span><span class="p">(</span><span class="n">text_fld</span><span class="p">)</span> <span class="n">text_length</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">string_tbl</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p><code>position()</code>函数，返回子字符串在字符串的位置。</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">POSITION</span><span class="p">(</span><span class="s1">&#39;charcters&#39;</span> <span class="k">IN</span> <span class="n">vchar_fld</span><span class="p">)</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">string_tbl</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>上面这个<code>POSITION</code>函数的返回值，当没有匹配的时候，返回0，当匹配了的时候，返回匹配的位置。注意这个第一位置为1，不是0。</p>
+
+<p>如果希望指定搜索开始的位置，而不是默认的0那个位置，可以使用<code>locate</code>函数。与<code>position</code>类似，但是可以接受可选的第三个参数，指定开始的位置。</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">LOCATE</span><span class="p">(</span><span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="n">vchar_fld</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">string_tbl</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p><code>strcmp()</code>函数，有三种返回值，</p>
+
+<ul>
+<li>-1，第一个字符串的排序位于第二个字符串之前；</li>
+<li>0，两个字符串相同；</li>
+<li>1，第一个字符串的排序位于第二个字符串之后。</li>
+</ul>
+
+
+<p><font color ="red">在<strong>MySQL中，<code>strcmp</code>对小写不区分，也因为这，会导致在比较的两个字符是对应的大小写时，会出现相应的结果
+</strong></font></p>
+
+<p>除了<code>strcmp</code>函数之外，对于比较还可以使用<code>like</code>或者<code>regex</code>操作符来比较字符串。这些比较的结果为1（true）或0（false）。</p>
+
+<p>ex1：</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> <span class="n">name</span> <span class="k">LIKE</span> <span class="ss">&quot;%ns&quot;</span> <span class="n">ends_in_ns</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">department</span><span class="p">;</span>
+</span><span class='line'><span class="o">+</span><span class="c1">----------------+------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="n">name</span>           <span class="o">|</span> <span class="n">ends_in_ns</span> <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">----------------+------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="n">Operations</span>     <span class="o">|</span>          <span class="mi">1</span> <span class="o">|</span>
+</span><span class='line'><span class="o">|</span> <span class="n">Loans</span>          <span class="o">|</span>          <span class="mi">1</span> <span class="o">|</span>
+</span><span class='line'><span class="o">|</span> <span class="n">Administration</span> <span class="o">|</span>          <span class="mi">0</span> <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">----------------+------------+</span>
+</span><span class='line'><span class="mi">3</span> <span class="k">rows</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>ex2:</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">cust_id</span><span class="p">,</span> <span class="n">cust_type_cd</span><span class="p">,</span> <span class="n">fed_id</span><span class="p">,</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="n">fed_id</span> <span class="n">REGEXP</span> <span class="s1">&#39;.{3}-.{2}-.{4}&#39;</span> <span class="n">is_ss_no_format</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">customer</span><span class="p">;</span>
+</span><span class='line'><span class="o">+</span><span class="c1">---------+--------------+-------------+-----------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="n">cust_id</span> <span class="o">|</span> <span class="n">cust_type_cd</span> <span class="o">|</span> <span class="n">fed_id</span>      <span class="o">|</span> <span class="n">is_ss_no_format</span> <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">---------+--------------+-------------+-----------------+</span>
+</span><span class='line'><span class="o">|</span>       <span class="mi">1</span> <span class="o">|</span> <span class="n">I</span>            <span class="o">|</span> <span class="mi">111</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">1111</span> <span class="o">|</span>               <span class="mi">1</span> <span class="o">|</span>
+</span><span class='line'><span class="o">|</span>       <span class="mi">2</span> <span class="o">|</span> <span class="n">I</span>            <span class="o">|</span> <span class="mi">222</span><span class="o">-</span><span class="mi">22</span><span class="o">-</span><span class="mi">2222</span> <span class="o">|</span>               <span class="mi">1</span> <span class="o">|</span>
+</span><span class='line'><span class="o">|</span>       <span class="mi">3</span> <span class="o">|</span> <span class="n">I</span>            <span class="o">|</span> <span class="mi">333</span><span class="o">-</span><span class="mi">33</span><span class="o">-</span><span class="mi">3333</span> <span class="o">|</span>               <span class="mi">1</span> <span class="o">|</span>
+</span><span class='line'><span class="o">|</span>       <span class="mi">4</span> <span class="o">|</span> <span class="n">I</span>            <span class="o">|</span> <span class="mi">444</span><span class="o">-</span><span class="mi">44</span><span class="o">-</span><span class="mi">4444</span> <span class="o">|</span>               <span class="mi">1</span> <span class="o">|</span>
+</span><span class='line'><span class="o">|</span>       <span class="mi">5</span> <span class="o">|</span> <span class="n">I</span>            <span class="o">|</span> <span class="mi">555</span><span class="o">-</span><span class="mi">55</span><span class="o">-</span><span class="mi">5555</span> <span class="o">|</span>               <span class="mi">1</span> <span class="o">|</span>
+</span><span class='line'><span class="o">|</span>       <span class="mi">6</span> <span class="o">|</span> <span class="n">I</span>            <span class="o">|</span> <span class="mi">666</span><span class="o">-</span><span class="mi">66</span><span class="o">-</span><span class="mi">6666</span> <span class="o">|</span>               <span class="mi">1</span> <span class="o">|</span>
+</span><span class='line'><span class="o">|</span>       <span class="mi">7</span> <span class="o">|</span> <span class="n">I</span>            <span class="o">|</span> <span class="mi">777</span><span class="o">-</span><span class="mi">77</span><span class="o">-</span><span class="mi">7777</span> <span class="o">|</span>               <span class="mi">1</span> <span class="o">|</span>
+</span><span class='line'><span class="o">|</span>       <span class="mi">8</span> <span class="o">|</span> <span class="n">I</span>            <span class="o">|</span> <span class="mi">888</span><span class="o">-</span><span class="mi">88</span><span class="o">-</span><span class="mi">8888</span> <span class="o">|</span>               <span class="mi">1</span> <span class="o">|</span>
+</span><span class='line'><span class="o">|</span>       <span class="mi">9</span> <span class="o">|</span> <span class="n">I</span>            <span class="o">|</span> <span class="mi">999</span><span class="o">-</span><span class="mi">99</span><span class="o">-</span><span class="mi">9999</span> <span class="o">|</span>               <span class="mi">1</span> <span class="o">|</span>
+</span><span class='line'><span class="o">|</span>      <span class="mi">10</span> <span class="o">|</span> <span class="n">B</span>            <span class="o">|</span> <span class="mi">04</span><span class="o">-</span><span class="mi">1111111</span>  <span class="o">|</span>               <span class="mi">0</span> <span class="o">|</span>
+</span><span class='line'><span class="o">|</span>      <span class="mi">11</span> <span class="o">|</span> <span class="n">B</span>            <span class="o">|</span> <span class="mi">04</span><span class="o">-</span><span class="mi">2222222</span>  <span class="o">|</span>               <span class="mi">0</span> <span class="o">|</span>
+</span><span class='line'><span class="o">|</span>      <span class="mi">12</span> <span class="o">|</span> <span class="n">B</span>            <span class="o">|</span> <span class="mi">04</span><span class="o">-</span><span class="mi">3333333</span>  <span class="o">|</span>               <span class="mi">0</span> <span class="o">|</span>
+</span><span class='line'><span class="o">|</span>      <span class="mi">13</span> <span class="o">|</span> <span class="n">B</span>            <span class="o">|</span> <span class="mi">04</span><span class="o">-</span><span class="mi">4444444</span>  <span class="o">|</span>               <span class="mi">0</span> <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">---------+--------------+-------------+-----------------+</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<h5>返回字符串的字符串函数</h5>
+
+<p>可以使用<code>concat()</code>来替换字符列所存储的数据。</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">DELETE</span> <span class="k">FROM</span> <span class="n">string_tbl</span><span class="p">;</span>
+</span><span class='line'><span class="n">Query</span> <span class="n">OK</span><span class="p">,</span> <span class="mi">1</span> <span class="k">row</span> <span class="n">affected</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">09</span> <span class="n">sec</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">string_tbl</span> <span class="p">(</span><span class="n">text_fld</span><span class="p">)</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">&#39;This string was 29 characters&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="n">Query</span> <span class="n">OK</span><span class="p">,</span> <span class="mi">1</span> <span class="k">row</span> <span class="n">affected</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">11</span> <span class="n">sec</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">UPDATE</span> <span class="n">string_tbl</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">SET</span> <span class="n">text_fld</span> <span class="o">=</span> <span class="n">CONCAT</span><span class="p">(</span><span class="n">text_fld</span><span class="p">,</span> <span class="s1">&#39;, but now it is longer&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="n">Query</span> <span class="n">OK</span><span class="p">,</span> <span class="mi">1</span> <span class="k">row</span> <span class="n">affected</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">10</span> <span class="n">sec</span><span class="p">)</span>
+</span><span class='line'><span class="k">Rows</span> <span class="n">matched</span><span class="p">:</span> <span class="mi">1</span>  <span class="n">Changed</span><span class="p">:</span> <span class="mi">1</span>  <span class="n">Warnings</span><span class="p">:</span> <span class="mi">0</span>
+</span><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">text_fld</span> <span class="k">FROM</span> <span class="n">string_tbl</span><span class="p">;</span>
+</span><span class='line'><span class="o">+</span><span class="c1">-----------------------------------------------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="n">text_fld</span>                                            <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">-----------------------------------------------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="n">This</span> <span class="n">string</span> <span class="n">was</span> <span class="mi">29</span> <span class="n">characters</span><span class="p">,</span> <span class="n">but</span> <span class="n">now</span> <span class="n">it</span> <span class="k">is</span> <span class="n">longer</span> <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">-----------------------------------------------------+</span>
+</span><span class='line'><span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p><code>insert()</code>函数接受四个参数：原始字符串、字符串操作开始的位置、需要替换的字符数以及替换字符串。<br/>
+ex1：</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">INSERT</span><span class="p">(</span><span class="s1">&#39;goodbye world&#39;</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;cruel &#39;</span><span class="p">)</span> <span class="n">string</span><span class="p">;</span>
+</span><span class='line'><span class="o">+</span><span class="c1">---------------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="n">string</span>              <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">---------------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="n">goodbye</span> <span class="n">cruel</span> <span class="n">world</span> <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">---------------------+</span>
+</span><span class='line'><span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>如上所示，若第三个参数为0，则不会发生替换，第二个位置开始的字符将会向右移动，相当于插入操作了。<br/>
+如果第三个操作数不为0，则从第二个操作数指定的位置开始，延续第三个操作数那么长的字符均将会被抹去，替换成为第四个字符串指定的内容。如下所示：</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">INSERT</span><span class="p">(</span><span class="s1">&#39;goodbye world&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;hello &#39;</span><span class="p">)</span> <span class="n">string</span><span class="p">;</span>
+</span><span class='line'><span class="o">+</span><span class="c1">--------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="n">string</span>       <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">--------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="n">hello</span>  <span class="n">world</span> <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">--------------+</span>
+</span><span class='line'><span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</span><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">INSERT</span><span class="p">(</span><span class="s1">&#39;goodbye world&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;hello &#39;</span><span class="p">)</span> <span class="n">string</span><span class="p">;</span>
+</span><span class='line'><span class="o">+</span><span class="c1">-------------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="n">string</span>            <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">-------------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="n">hello</span> <span class="n">odbye</span> <span class="n">world</span> <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">-------------------+</span>
+</span><span class='line'><span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">INSERT</span><span class="p">(</span><span class="s1">&#39;goodbye world&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;hello &#39;</span><span class="p">)</span> <span class="n">string</span><span class="p">;</span>
+</span><span class='line'><span class="o">+</span><span class="c1">--------------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="n">string</span>             <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">--------------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="n">hello</span> <span class="n">oodbye</span> <span class="n">world</span> <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">--------------------+</span>
+</span><span class='line'><span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p><code>replace()</code>函数完成替换功能，但是它是全部替换。如下所示：</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">REPLACE</span><span class="p">(</span><span class="s1">&#39;goodbye world&#39;</span><span class="p">,</span> <span class="s1">&#39;goodbye&#39;</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">)</span>
+</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">dual</span><span class="p">;</span>
+</span><span class='line'><span class="o">+</span><span class="c1">----------------------------------------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="k">REPLACE</span><span class="p">(</span><span class="s1">&#39;goodbye world&#39;</span><span class="p">,</span> <span class="s1">&#39;goodbye&#39;</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">)</span> <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">----------------------------------------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="n">hello</span> <span class="n">world</span>                                  <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">----------------------------------------------+</span>
+</span><span class='line'><span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</span><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">REPLACE</span><span class="p">(</span><span class="s1">&#39;goodbye goodbye hello world&#39;</span><span class="p">,</span> <span class="s1">&#39;goodbye&#39;</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">)</span> <span class="n">string</span><span class="p">;</span>
+</span><span class='line'><span class="o">+</span><span class="c1">-------------------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="n">string</span>                  <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">-------------------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="n">hello</span> <span class="n">hello</span> <span class="n">hello</span> <span class="n">world</span> <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">-------------------------+</span>
+</span><span class='line'><span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<h3>使用数值数据</h3>
+
+<h4>执行算术函数</h4>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="center">函数名</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td align="center">Acos(x)</td>
+<td align="center">反余弦</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">Asin(x)</td>
+<td align="center">反正弦</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">Atan(x)</td>
+<td align="center">反正切</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">Cos(x)</td>
+<td align="center">余弦</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">Cot(x)</td>
+<td align="center">余切</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">Exp(x)</td>
+<td align="center">e的x次方</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">Ln(x)</td>
+<td align="center">x的自然对数</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">Sin(x)</td>
+<td align="center">正弦</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">Sqrt(x)</td>
+<td align="center">x的平方根</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">Tan(x)</td>
+<td align="center">正切</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><code>mod(x,y)</code>用于取余操作，如下所示：</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">MOD</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+</span><span class='line'><span class="o">+</span><span class="c1">------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="k">MOD</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">------------+</span>
+</span><span class='line'><span class="o">|</span>          <span class="mi">2</span> <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">------------+</span>
+</span><span class='line'><span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p><code>POW(x,y)</code>用于求幂操作，如下所示：</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">POWER</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+</span><span class='line'><span class="o">+</span><span class="c1">--------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="n">POWER</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">--------------+</span>
+</span><span class='line'><span class="o">|</span>         <span class="mi">1024</span> <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">--------------+</span>
+</span><span class='line'><span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<h4>控制数字的精度</h4>
+
+<ul>
+<li><code>ceil()</code>向上取整。</li>
+<li><code>floor()</code>向下取整。</li>
+<li><code>round()</code>四舍五入。</li>
+<li><code>truncate()</code>小数点后长度截短，不进行进位。</li>
+</ul>
+
+
+<p>例子如下所示：</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">CEIL</span><span class="p">(</span><span class="mi">72</span><span class="p">.</span><span class="mi">445</span><span class="p">),</span> <span class="n">FLOOR</span><span class="p">(</span><span class="mi">72</span><span class="p">.</span><span class="mi">445</span><span class="p">);</span>
+</span><span class='line'><span class="o">+</span><span class="c1">--------------+---------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="n">CEIL</span><span class="p">(</span><span class="mi">72</span><span class="p">.</span><span class="mi">445</span><span class="p">)</span> <span class="o">|</span> <span class="n">FLOOR</span><span class="p">(</span><span class="mi">72</span><span class="p">.</span><span class="mi">445</span><span class="p">)</span> <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">--------------+---------------+</span>
+</span><span class='line'><span class="o">|</span>           <span class="mi">73</span> <span class="o">|</span>            <span class="mi">72</span> <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">--------------+---------------+</span>
+</span><span class='line'><span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</span><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">ROUND</span><span class="p">(</span><span class="mi">72</span><span class="p">.</span><span class="mi">449</span><span class="p">),</span> <span class="n">ROUND</span><span class="p">(</span><span class="mi">72</span><span class="p">.</span><span class="mi">5001</span><span class="p">),</span>  <span class="n">ROUND</span><span class="p">(</span><span class="mi">72</span><span class="p">.</span><span class="mi">500</span><span class="p">);</span>
+</span><span class='line'><span class="o">+</span><span class="c1">---------------+----------------+---------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="n">ROUND</span><span class="p">(</span><span class="mi">72</span><span class="p">.</span><span class="mi">449</span><span class="p">)</span> <span class="o">|</span> <span class="n">ROUND</span><span class="p">(</span><span class="mi">72</span><span class="p">.</span><span class="mi">5001</span><span class="p">)</span> <span class="o">|</span> <span class="n">ROUND</span><span class="p">(</span><span class="mi">72</span><span class="p">.</span><span class="mi">500</span><span class="p">)</span> <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">---------------+----------------+---------------+</span>
+</span><span class='line'><span class="o">|</span>            <span class="mi">72</span> <span class="o">|</span>             <span class="mi">73</span> <span class="o">|</span>            <span class="mi">73</span> <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">---------------+----------------+---------------+</span>
+</span><span class='line'><span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</span><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">ROUND</span><span class="p">(</span><span class="mi">72</span><span class="p">.</span><span class="mi">909</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">ROUND</span><span class="p">(</span><span class="mi">72</span><span class="p">.</span><span class="mi">909</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>  <span class="n">ROUND</span><span class="p">(</span><span class="mi">72</span><span class="p">.</span><span class="mi">909</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+</span><span class='line'><span class="o">+</span><span class="c1">------------------+------------------+------------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="n">ROUND</span><span class="p">(</span><span class="mi">72</span><span class="p">.</span><span class="mi">909</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">|</span> <span class="n">ROUND</span><span class="p">(</span><span class="mi">72</span><span class="p">.</span><span class="mi">909</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">|</span> <span class="n">ROUND</span><span class="p">(</span><span class="mi">72</span><span class="p">.</span><span class="mi">909</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">------------------+------------------+------------------+</span>
+</span><span class='line'><span class="o">|</span>             <span class="mi">72</span><span class="p">.</span><span class="mi">9</span> <span class="o">|</span>            <span class="mi">72</span><span class="p">.</span><span class="mi">91</span> <span class="o">|</span>           <span class="mi">72</span><span class="p">.</span><span class="mi">909</span> <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">------------------+------------------+------------------+</span>
+</span><span class='line'><span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</span><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">TRUNCATE</span><span class="p">(</span><span class="mi">72</span><span class="p">.</span><span class="mi">909</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="k">TRUNCATE</span><span class="p">(</span><span class="mi">72</span><span class="p">.</span><span class="mi">909</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>  <span class="k">TRUNCATE</span><span class="p">(</span><span class="mi">72</span><span class="p">.</span><span class="mi">909</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+</span><span class='line'><span class="o">+</span><span class="c1">---------------------+---------------------+---------------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="k">TRUNCATE</span><span class="p">(</span><span class="mi">72</span><span class="p">.</span><span class="mi">909</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">|</span> <span class="k">TRUNCATE</span><span class="p">(</span><span class="mi">72</span><span class="p">.</span><span class="mi">909</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">|</span> <span class="k">TRUNCATE</span><span class="p">(</span><span class="mi">72</span><span class="p">.</span><span class="mi">909</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">---------------------+---------------------+---------------------+</span>
+</span><span class='line'><span class="o">|</span>                <span class="mi">72</span><span class="p">.</span><span class="mi">9</span> <span class="o">|</span>               <span class="mi">72</span><span class="p">.</span><span class="mi">90</span> <span class="o">|</span>              <span class="mi">72</span><span class="p">.</span><span class="mi">909</span> <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">---------------------+---------------------+---------------------+</span>
+</span><span class='line'><span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<h4>处理有符号数</h4>
+
+<p><code>SIGN()</code>函数根据正负数返回值。正数返回1，负数返回-1，零返回0。如下所示：</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">SIGN</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">),</span> <span class="n">SIGN</span><span class="p">(</span><span class="mi">10</span><span class="p">.</span><span class="mi">1</span><span class="p">),</span> <span class="n">SIGN</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span class='line'><span class="o">+</span><span class="c1">-----------+------------+---------+</span>
+</span><span class='line'><span class="o">|</span> <span class="n">SIGN</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">)</span> <span class="o">|</span> <span class="n">SIGN</span><span class="p">(</span><span class="mi">10</span><span class="p">.</span><span class="mi">1</span><span class="p">)</span> <span class="o">|</span> <span class="n">SIGN</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">-----------+------------+---------+</span>
+</span><span class='line'><span class="o">|</span>        <span class="o">-</span><span class="mi">1</span> <span class="o">|</span>          <span class="mi">1</span> <span class="o">|</span>       <span class="mi">0</span> <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">-----------+------------+---------+</span>
+</span><span class='line'><span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p><code>ABS()</code>函数返回绝对值，如下所示：</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">ABS</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">),</span> <span class="k">ABS</span><span class="p">(</span><span class="mi">10</span><span class="p">.</span><span class="mi">1</span><span class="p">),</span> <span class="k">ABS</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span class='line'><span class="o">+</span><span class="c1">----------+-----------+--------+</span>
+</span><span class='line'><span class="o">|</span> <span class="k">ABS</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">)</span> <span class="o">|</span> <span class="k">ABS</span><span class="p">(</span><span class="mi">10</span><span class="p">.</span><span class="mi">1</span><span class="p">)</span> <span class="o">|</span> <span class="k">ABS</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">----------+-----------+--------+</span>
+</span><span class='line'><span class="o">|</span>       <span class="mi">10</span> <span class="o">|</span>      <span class="mi">10</span><span class="p">.</span><span class="mi">1</span> <span class="o">|</span>      <span class="mi">0</span> <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">----------+-----------+--------+</span>
+</span><span class='line'><span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<h3>使用时间数据</h3>
+
+<h4>处理时区</h4>
+
+<p>查看当前系统时区以及会话所取的时区如下所示：</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="o">@@</span><span class="k">global</span><span class="p">.</span><span class="n">time_zone</span><span class="p">,</span> <span class="o">@@</span><span class="k">session</span><span class="p">.</span><span class="n">time_zone</span><span class="p">;</span>
+</span><span class='line'><span class="o">+</span><span class="c1">--------------------+---------------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="o">@@</span><span class="k">global</span><span class="p">.</span><span class="n">time_zone</span> <span class="o">|</span> <span class="o">@@</span><span class="k">session</span><span class="p">.</span><span class="n">time_zone</span> <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">--------------------+---------------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="k">SYSTEM</span>             <span class="o">|</span> <span class="k">SYSTEM</span>              <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">--------------------+---------------------+</span>
+</span><span class='line'><span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<h4>生成时间数据</h4>
+
+<p>可以使用下面任意一种方法产生时间数据：
+* 从已有的date、datetime和time列中复制数据；
+* 执行返回date、datetime和time型数据的内建函数；
+* 构建可以被服务器识别的代表日期的字符串。</p>
+
+<h5>从字符串到日期的转换</h5>
+
+<p><code>cast()</code>函数</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">CAST</span><span class="p">(</span><span class="s1">&#39;2012-05-24 18:40:00&#39;</span> <span class="k">AS</span> <span class="n">DATETIME</span><span class="p">);</span>
+</span><span class='line'><span class="o">+</span><span class="c1">-----------------------------------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="k">CAST</span><span class="p">(</span><span class="s1">&#39;2012-05-24 18:40:00&#39;</span> <span class="k">AS</span> <span class="n">DATETIME</span><span class="p">)</span> <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">-----------------------------------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="mi">2012</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">24</span> <span class="mi">18</span><span class="p">:</span><span class="mi">40</span><span class="p">:</span><span class="mi">00</span>                     <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">-----------------------------------------+</span>
+</span><span class='line'><span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">CAST</span><span class="p">(</span><span class="s1">&#39;2012-05-24 18:40:00&#39;</span> <span class="k">AS</span> <span class="n">TIME</span><span class="p">);</span>
+</span><span class='line'><span class="o">+</span><span class="c1">-------------------------------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="k">CAST</span><span class="p">(</span><span class="s1">&#39;2012-05-24 18:40:00&#39;</span> <span class="k">AS</span> <span class="n">TIME</span><span class="p">)</span> <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">-------------------------------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="mi">18</span><span class="p">:</span><span class="mi">40</span><span class="p">:</span><span class="mi">00</span>                            <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">-------------------------------------+</span>
+</span><span class='line'><span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">CAST</span><span class="p">(</span><span class="s1">&#39;2012-05-24 18:40:00&#39;</span> <span class="k">AS</span> <span class="nb">DATE</span><span class="p">);</span>
+</span><span class='line'><span class="o">+</span><span class="c1">-------------------------------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="k">CAST</span><span class="p">(</span><span class="s1">&#39;2012-05-24 18:40:00&#39;</span> <span class="k">AS</span> <span class="nb">DATE</span><span class="p">)</span> <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">-------------------------------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="mi">2012</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">24</span>                          <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">-------------------------------------+</span>
+</span><span class='line'><span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<h5>产生日期的函数</h5>
+
+<p>当提供的字符串不满足<code>CAST()</code>函数操作的字符串时，需要将对应的字符串进行转换，可以使用<code>str_to_date()</code>函数。该函数的使用之后生成的字符串将可以被<code>CAST()</code>函数使用。
+<code>str_to_date()</code></p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">STR_TO_DATE</span><span class="p">(</span><span class="s1">&#39;September 17, 2012&#39;</span><span class="p">,</span> <span class="s1">&#39;%M %d, %Y&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="o">+</span><span class="c1">------------------------------------------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="n">STR_TO_DATE</span><span class="p">(</span><span class="s1">&#39;September 17, 2012&#39;</span><span class="p">,</span> <span class="s1">&#39;%M %d, %Y&#39;</span><span class="p">)</span> <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">------------------------------------------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="mi">2012</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">17</span>                                     <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">------------------------------------------------+</span>
+</span><span class='line'><span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</span><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">CAST</span><span class="p">(</span><span class="n">STR_TO_DATE</span><span class="p">(</span><span class="s1">&#39;September 17, 2012&#39;</span><span class="p">,</span> <span class="s1">&#39;%M %d, %Y&#39;</span><span class="p">)</span> <span class="k">AS</span> <span class="nb">DATE</span><span class="p">);</span>
+</span><span class='line'><span class="o">+</span><span class="c1">--------------------------------------------------------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="k">CAST</span><span class="p">(</span><span class="n">STR_TO_DATE</span><span class="p">(</span><span class="s1">&#39;September 17, 2012&#39;</span><span class="p">,</span> <span class="s1">&#39;%M %d, %Y&#39;</span><span class="p">)</span> <span class="k">AS</span> <span class="nb">DATE</span><span class="p">)</span> <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">--------------------------------------------------------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="mi">2012</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">17</span>                                                   <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">--------------------------------------------------------------+</span>
+</span><span class='line'><span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="center">日期格式部件</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td align="center">%M</td>
+<td align="center">月名称（1~12）</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">%m</td>
+<td align="center">月序号（01-12）</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">%d</td>
+<td align="center">日序号（01-31）</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">%j</td>
+<td align="center">日在一年中的序号（01-366）</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">%W</td>
+<td align="center">星期名称</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">%Y</td>
+<td align="center">4位数表示年份</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">%y</td>
+<td align="center">两位数字表示年份</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">%H</td>
+<td align="center">小时（00～23）</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">%h</td>
+<td align="center">小时（01～12）</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">%i</td>
+<td align="center">分钟（00～59）</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">%s</td>
+<td align="center">秒钟（00～59）</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">%f</td>
+<td align="center">微妙（000000～999999）</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">%p</td>
+<td align="center">A.M.或P.M.</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><code>str_to_date</code>根据字符串内容返回<code>datetime</code>、<code>date</code>、或者<code>time</code>类型值，如果格式字符串只包含%H，%i或%s，将会返回<code>TIME</code>值。</p>
+
+<p>如果需要产生当前日期/时间，可以调用内建函数，<code>CURRENT_DATE()</code>，<code>CURRENT_TIME()</code>，<code>CURRENT_TIMESTAMP()</code></p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">CURRENT_DATE</span><span class="p">(),</span> <span class="k">CURRENT_TIME</span><span class="p">(),</span> <span class="k">CURRENT_TIMESTAMP</span><span class="p">();</span>
+</span><span class='line'><span class="o">+</span><span class="c1">----------------+----------------+---------------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="k">CURRENT_DATE</span><span class="p">()</span> <span class="o">|</span> <span class="k">CURRENT_TIME</span><span class="p">()</span> <span class="o">|</span> <span class="k">CURRENT_TIMESTAMP</span><span class="p">()</span> <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">----------------+----------------+---------------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="mi">2012</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">25</span>     <span class="o">|</span> <span class="mi">02</span><span class="p">:</span><span class="mi">56</span><span class="p">:</span><span class="mi">43</span>       <span class="o">|</span> <span class="mi">2012</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">25</span> <span class="mi">02</span><span class="p">:</span><span class="mi">56</span><span class="p">:</span><span class="mi">43</span> <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">----------------+----------------+---------------------+</span>
+</span><span class='line'><span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<h4>操作时间数据</h4>
+
+<h5>返回日期的函数</h5>
+
+<p><code>DATE_ADD()</code>，接收一个日期型的值作为参数，返回另一个日期，如下所示：</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">DATE_ADD</span><span class="p">(</span><span class="k">CURRENT_DATE</span><span class="p">(),</span> <span class="nb">INTERVAL</span> <span class="mi">5</span> <span class="k">DAY</span><span class="p">);</span>
+</span><span class='line'><span class="o">+</span><span class="c1">------------------------------------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="n">DATE_ADD</span><span class="p">(</span><span class="k">CURRENT_DATE</span><span class="p">(),</span> <span class="nb">INTERVAL</span> <span class="mi">5</span> <span class="k">DAY</span><span class="p">)</span> <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">------------------------------------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="mi">2012</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">30</span>                               <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">------------------------------------------+</span>
+</span><span class='line'><span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>其中第二个参数包含了3个元素：<font color ="red"><code>INTERVAL</code>关键字、所需要增加的数量以及时间间隔类型</font></p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="center">间隔名称</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td align="center">Second</td>
+<td align="center">秒</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">Minute</td>
+<td align="center">分钟</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">Hour</td>
+<td align="center">小时</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">Day</td>
+<td align="center">天数</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">Month</td>
+<td align="center">月份</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">Year</td>
+<td align="center">年份</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">Minute_second</td>
+<td align="center">分钟数和秒钟数，中间用":"隔开</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">Hour_second</td>
+<td align="center">小时、分钟和秒钟数，中间用":"隔开</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">Year_month</td>
+<td align="center">年份和月份，中间用"-"隔开</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><code>last_day()</code>函数返回当前月份的最后一天。</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">LAST_DAY</span><span class="p">(</span><span class="k">CURRENT_DATE</span><span class="p">());</span>
+</span><span class='line'><span class="o">+</span><span class="c1">--------------------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="n">LAST_DAY</span><span class="p">(</span><span class="k">CURRENT_DATE</span><span class="p">())</span> <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">--------------------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="mi">2012</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">31</span>               <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">--------------------------+</span>
+</span><span class='line'><span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</span><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">LAST_DAY</span><span class="p">(</span><span class="k">CAST</span><span class="p">(</span><span class="k">CURRENT_DATE</span><span class="p">()</span> <span class="k">AS</span> <span class="n">DATETIME</span><span class="p">));</span>
+</span><span class='line'><span class="o">+</span><span class="c1">--------------------------------------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="n">LAST_DAY</span><span class="p">(</span><span class="k">CAST</span><span class="p">(</span><span class="k">CURRENT_DATE</span><span class="p">()</span> <span class="k">AS</span> <span class="n">DATETIME</span><span class="p">))</span> <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">--------------------------------------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="mi">2012</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">31</span>                                 <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">--------------------------------------------+</span>
+</span><span class='line'><span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span> <span class="n">sec</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">LAST_DAY</span><span class="p">(</span><span class="k">CAST</span><span class="p">(</span><span class="k">CURRENT_DATE</span><span class="p">()</span> <span class="k">AS</span> <span class="nb">DATE</span><span class="p">));</span>
+</span><span class='line'><span class="o">+</span><span class="c1">----------------------------------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="n">LAST_DAY</span><span class="p">(</span><span class="k">CAST</span><span class="p">(</span><span class="k">CURRENT_DATE</span><span class="p">()</span> <span class="k">AS</span> <span class="nb">DATE</span><span class="p">))</span> <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">----------------------------------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="mi">2012</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">31</span>                             <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">----------------------------------------+</span>
+</span><span class='line'><span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">LAST_DAY</span><span class="p">(</span><span class="k">CAST</span><span class="p">(</span><span class="k">CURRENT_DATE</span><span class="p">()</span> <span class="k">AS</span> <span class="n">TIME</span><span class="p">));</span>
+</span><span class='line'><span class="o">+</span><span class="c1">----------------------------------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="n">LAST_DAY</span><span class="p">(</span><span class="k">CAST</span><span class="p">(</span><span class="k">CURRENT_DATE</span><span class="p">()</span> <span class="k">AS</span> <span class="n">TIME</span><span class="p">))</span> <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">----------------------------------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="k">NULL</span>                                   <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">----------------------------------------+</span>
+</span><span class='line'><span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span><span class="p">,</span> <span class="mi">2</span> <span class="n">warnings</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p><code>convert_tz()</code>函数将一个时区的datetime值转换为另一个时区的datetime值。</p>
+
+<h5>返回字符串的时间函数</h5>
+
+<p>返回字符串的函数大多用于提取日期或时间的一部分。<code>dayname()</code>可以确定某一日是星期几：</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">DAYNAME</span><span class="p">(</span><span class="k">CURRENT_DATE</span><span class="p">());</span>
+</span><span class='line'><span class="o">+</span><span class="c1">-------------------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="n">DAYNAME</span><span class="p">(</span><span class="k">CURRENT_DATE</span><span class="p">())</span> <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">-------------------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="n">Friday</span>                  <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">-------------------------+</span>
+</span><span class='line'><span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>推荐使用<code>EXTRACT()</code>函数从时间中获取当前的年月日等。</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">EXTRACT</span><span class="p">(</span><span class="k">YEAR</span> <span class="k">FROM</span> <span class="k">CURRENT_DATE</span><span class="p">());</span>
+</span><span class='line'><span class="o">+</span><span class="c1">-----------------------------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="k">EXTRACT</span><span class="p">(</span><span class="k">YEAR</span> <span class="k">FROM</span> <span class="k">CURRENT_DATE</span><span class="p">())</span> <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">-----------------------------------+</span>
+</span><span class='line'><span class="o">|</span>                              <span class="mi">2012</span> <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">-----------------------------------+</span>
+</span><span class='line'><span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</span><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">EXTRACT</span><span class="p">(</span><span class="k">MINUTE</span> <span class="k">FROM</span> <span class="k">CURRENT_TIMESTAMP</span><span class="p">());</span>
+</span><span class='line'><span class="o">+</span><span class="c1">------------------------------------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="k">EXTRACT</span><span class="p">(</span><span class="k">MINUTE</span> <span class="k">FROM</span> <span class="k">CURRENT_TIMESTAMP</span><span class="p">())</span> <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">------------------------------------------+</span>
+</span><span class='line'><span class="o">|</span>                                       <span class="mi">36</span> <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">------------------------------------------+</span>
+</span><span class='line'><span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<h5>返回数字的时间函数</h5>
+
+<p><code>datediff()</code>计算两个日期的相差天数。</p>
+
+<h3>转换函数</h3>
+
+<p>使用'CAST()`函数完成转换功能。</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">CAST</span><span class="p">(</span><span class="s1">&#39;1456328&#39;</span> <span class="k">AS</span> <span class="n">SIGNED</span> <span class="nb">INTEGER</span><span class="p">);</span>
+</span><span class='line'><span class="o">+</span><span class="c1">-----------------------------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="k">CAST</span><span class="p">(</span><span class="s1">&#39;1456328&#39;</span> <span class="k">AS</span> <span class="n">SIGNED</span> <span class="nb">INTEGER</span><span class="p">)</span> <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">-----------------------------------+</span>
+</span><span class='line'><span class="o">|</span>                           <span class="mi">1456328</span> <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">-----------------------------------+</span>
+</span><span class='line'><span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">CAST</span><span class="p">(</span><span class="s1">&#39;-1456328&#39;</span> <span class="k">AS</span> <span class="n">SIGNED</span> <span class="nb">INTEGER</span><span class="p">);</span>
+</span><span class='line'><span class="o">+</span><span class="c1">------------------------------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="k">CAST</span><span class="p">(</span><span class="s1">&#39;-1456328&#39;</span> <span class="k">AS</span> <span class="n">SIGNED</span> <span class="nb">INTEGER</span><span class="p">)</span> <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">------------------------------------+</span>
+</span><span class='line'><span class="o">|</span>                           <span class="o">-</span><span class="mi">1456328</span> <span class="o">|</span>
+</span><span class='line'><span class="o">+</span><span class="c1">------------------------------------+</span>
+</span><span class='line'><span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Xiongbupt</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-24T00:00:00+08:00" pubdate data-updated="true">May 24<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/notes/'>Notes</a>
+  
+</span>
+
+
+      <div id="tag_list">
+    Tags:
+    <ul id="tags_ul">
+
+        <li><a href="/blog/tags/MySQL/">MySQL</a></li>
+
+        <li><a href="/blog/tags/Learning/">Learning</a></li>
+
+    </ul>
+</div>
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://xiongbupt.github.com/blog/2012/05/24/learning-sql-ch7/" data-via="xiongbupt" data-counturl="http://xiongbupt.github.com/blog/2012/05/24/learning-sql-ch7/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/05/23/markdown-syntax/" title="Previous Post: Markdown基本使用">&laquo; Markdown基本使用</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/05/25/learning-sql-ch8/" title="Next Post: Learning SQL Ch8">Learning SQL Ch8 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    
+<section>
+<h1>分类</h1>
+<ul>
+  <li><a href='/blog/categories/c语言'>C语言 (1)</a></li>
+  <li><a href='/blog/categories/git'>Git (3)</a></li>
+  <li><a href='/blog/categories/linux'>Linux (8)</a></li>
+  <li><a href='/blog/categories/notes'>Notes (21)</a></li>
+  <li><a href='/blog/categories/octopress'>Octopress (4)</a></li>
+  <li><a href='/blog/categories/others'>Others (1)</a></li>
+  <li><a href='/blog/categories/python'>Python (1)</a></li>
+  <li><a href='/blog/categories/vim'>Vim (4)</a></li>
+  <li><a href='/blog/categories/wsn'>Wsn (1)</a></li>
+</ul>
+</section>
+
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/06/08/octopresszeng-jia-fen-lei-biao-qian/">Octopress增加分类标签</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/08/octopressdai-ma-gao-liang/">Octopress代码高亮</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/07/octopress-add-tag/">Octopress添加标签</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/06/vim_help_read/">VIM用户手册27笔记</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/06/octopress_use/">Octopress尝试记录</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/06/assemble_language_learn/">汇编语言学习</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/xiongbupt">@xiongbupt</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'xiongbupt',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("xiongbupt", 0, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/xiongbupt" class="twitter-follow-button" data-show-count="true">Follow @xiongbupt</a>
+  
+</section>
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/110480695522271115757?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Xiongbupt -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'xiongbupt';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

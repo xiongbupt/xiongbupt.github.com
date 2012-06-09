@@ -1,0 +1,417 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Git基本使用 - Keep Learning</title>
+  <meta name="author" content="Xiongbupt">
+
+  
+  <meta name="description" content="git log branch_a..branch_b
+显示branch_b有而branch_a没有的历史。
+git log branch_b..branch_a
+显示branch_a有而branch_b没有的历史。 git log origin/master..HEAD &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://xiongbupt.github.com/blog/2012/05/31/git-basic/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Keep Learning" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Ruge+Boogie|Ruthie|Flavors|Rancho|Galdeano' rel='stylesheet' type='text/css'>
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32449808-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Keep Learning</a></h1>
+  
+    <h2>伪程序员记录点滴</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:xiongbupt.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/blog/tags">Tags</a></li>
+  <li><a href="/about">About me</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Git基本使用</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-31T00:00:00+08:00" pubdate data-updated="true">May 31<span>st</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><code>git log branch_a..branch_b</code><br/>
+显示branch_b有而branch_a没有的历史。<br/>
+<code>git log branch_b..branch_a</code><br/>
+显示branch_a有而branch_b没有的历史。</p>
+
+<p><code>git log origin/master..HEAD</code><br/>
+查看将会把什么推送到远端的master分支</p>
+
+<p><code>git show HEAD</code> <br/>
+<code>git show HEAD^</code><br/>
+<code>git show HEAD~</code><br/>
+^符号显示的是祖先，<sup>2显示的是第二父提交</sup></p>
+
+<p>~显示的是父提交，~2显示的是父提交的父提交</p>
+
+<p><code>git log reA..reB</code><br/>
+<code>git log ^reA reB</code><br/>
+<code>git log reB --not reA</code><br/>
+上述三个命令等价，均是指包含reB而不包含reA</p>
+
+<!--more-->
+
+
+<p><code>git log refA refB ^refC</code><br/>
+<code>git log refA refB --not refC</code><br/>
+<code>...</code>三点描述符，显示的是并集减去交集<br/>
+<code>git log --left-right master...experiment</code></p>
+
+<h3>交互式暂存</h3>
+
+<p><code>git add -i</code>进入交互界面，输入数字进行选择</p>
+
+<h3>存储</h3>
+
+<p><code>git statsh</code>
+当想切换分支，但是又不想将当前的工作提交到暂存区时，可以使用该指令。该指令将会把当前的工作状态暂存起来，采用堆栈的形式存储起来。当需要恢复暂存区的工作内容时，可以使用<code>git stash list</code>查看当前堆栈里面的暂存态。使用<code>git stash apply stash@{2}</code>将会恢复<code>git stash list</code>显示的第二个暂存。如果没有指明名字，直接使用<code>git stash apply</code>将会默认恢复最近的那次暂存。<br/>
+<code>git stash apply</code>只是会应用存储，而不会将存储删除，如果需要删除存储，需要使用<code>git stash drop stash@{2}</code>来将相应的存储进行删除。<br/>
+注意，<code>git stash apply</code>这个命令的使用不需要工作分支与当时使用<code>git stash</code>存储的分支在一个目录下，也就是说可以在分支a上存储，然后在分支b上使用<code>git stash apply</code>将在分支a上存储的内容应用到分支b上。git将会采用自动融合的机制，如果出现冲突，会要求解决冲突之后才能应用存储。</p>
+
+<h2>重写历史</h2>
+
+<h3>改变最近一次提交</h3>
+
+<p>修改最后一次的声明，输入下面的命令即可</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$git</span> commit --amend
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>如果在依次提交之后，发现还有文件没有增加进来，可以使用git add。发现文件需要删除，使用git rm。在完成这些操作之后，使用git commit --amend操作来进行修正。这样，便会将这次更新合并到上次的更新上去。注意不要在推送之后再使用这个方法。</p>
+
+<h3>修改多次提交说明</h3>
+
+<h2>自定义GIT</h2>
+
+<pre><code>git config --global core.autocrlf true
+</code></pre>
+
+<p>根据不同平台，将换行符进行替换。
+开启该选项后，git可以在代码提交时，自动将行结束符CRLF替换为LF，而在签出代码时将LF替换为CRLF。该选项在windows平台和Linux平台的共同使用时使用。</p>
+
+<pre><code>git config --global core.autocrlf input
+</code></pre>
+
+<p>该选项将把git设置为在输入时将crlf转换为lf，而在输出时不转换。</p>
+
+<p>如果都在windows下开发，且仅仅在windows下运行，可以设置为false取消此功能，把回车符记录在库中。</p>
+
+<pre><code>git config --global core.autocrlf false
+</code></pre>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Xiongbupt</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-31T00:00:00+08:00" pubdate data-updated="true">May 31<span>st</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/git/'>Git</a>
+  
+</span>
+
+
+      <div id="tag_list">
+    Tags:
+    <ul id="tags_ul">
+
+        <li><a href="/blog/tags/Git/">Git</a></li>
+
+        <li><a href="/blog/tags/Linux/">Linux</a></li>
+
+        <li><a href="/blog/tags/Learning/">Learning</a></li>
+
+    </ul>
+</div>
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://xiongbupt.github.com/blog/2012/05/31/git-basic/" data-via="xiongbupt" data-counturl="http://xiongbupt.github.com/blog/2012/05/31/git-basic/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/05/31/git/" title="Previous Post: Git server">&laquo; Git server</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/06/01/git-lab-use/" title="Next Post: Git小项目基本操作">Git小项目基本操作 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    
+<section>
+<h1>分类</h1>
+<ul>
+  <li><a href='/blog/categories/c语言'>C语言 (1)</a></li>
+  <li><a href='/blog/categories/git'>Git (3)</a></li>
+  <li><a href='/blog/categories/linux'>Linux (8)</a></li>
+  <li><a href='/blog/categories/notes'>Notes (21)</a></li>
+  <li><a href='/blog/categories/octopress'>Octopress (4)</a></li>
+  <li><a href='/blog/categories/others'>Others (1)</a></li>
+  <li><a href='/blog/categories/python'>Python (1)</a></li>
+  <li><a href='/blog/categories/vim'>Vim (4)</a></li>
+  <li><a href='/blog/categories/wsn'>Wsn (1)</a></li>
+</ul>
+</section>
+
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/06/08/octopresszeng-jia-fen-lei-biao-qian/">Octopress增加分类标签</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/08/octopressdai-ma-gao-liang/">Octopress代码高亮</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/07/octopress-add-tag/">Octopress添加标签</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/06/vim_help_read/">VIM用户手册27笔记</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/06/octopress_use/">Octopress尝试记录</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/06/assemble_language_learn/">汇编语言学习</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/xiongbupt">@xiongbupt</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'xiongbupt',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("xiongbupt", 0, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/xiongbupt" class="twitter-follow-button" data-show-count="true">Follow @xiongbupt</a>
+  
+</section>
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/110480695522271115757?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Xiongbupt -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'xiongbupt';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

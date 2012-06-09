@@ -1,0 +1,430 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Octopress尝试记录 - Keep Learning</title>
+  <meta name="author" content="Xiongbupt">
+
+  
+  <meta name="description" content="本文主要是参考Octopress的官方网址进行操作，之前使用了google搜索了若干参考，但是操作之后出现了错误，推翻重来之后，写下这篇记录，方便自己以后使用。
+首先介绍下自己的环境Arch，由于之前已经使用了github的个人博客，但是之前使用的是jekyll的方式，自己不会调整那些主题， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://xiongbupt.github.com/blog/2012/06/06/octopress_use/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Keep Learning" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Ruge+Boogie|Ruthie|Flavors|Rancho|Galdeano' rel='stylesheet' type='text/css'>
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32449808-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Keep Learning</a></h1>
+  
+    <h2>伪程序员记录点滴</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:xiongbupt.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/blog/tags">Tags</a></li>
+  <li><a href="/about">About me</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Octopress尝试记录</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-06T00:00:00+08:00" pubdate data-updated="true">Jun 6<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>本文主要是参考Octopress的<a href="http://octopress.org/" title="OCTOPRESS 手册">官方网址</a>进行操作，之前使用了<a href="http://www.google.com/" title="GOOGLE">google</a>搜索了若干参考，但是操作之后出现了错误，推翻重来之后，写下这篇记录，方便自己以后使用。<br/>
+首先介绍下自己的环境Arch，由于之前已经使用了github的个人博客，但是之前使用的是jekyll的方式，自己不会调整那些主题，感觉有些不方便，上网找了下，发现似乎Octopress相对来说比较简单，于是在这种情况下尝试使用Octopress。至于在github上创建个人博客主页，在这里不做说明，在Octopress环境下，自己相当不清楚。</p>
+
+<!--more-->
+
+
+<p>由于Arch已经安装了ruby，且版本是1.9.3高于octopress要求的1.9.2，使用<code>pacman</code>的方式安装了ruby之后便没有必要再安装ruby了。按照<code>arch wiki</code>中所说的方式安装rvm即可。在这些基本工作完成之后，开始安装Octopress。</p>
+
+<h2>Octopress环境配置</h2>
+
+<p>git clone git://github.com/imathis/octopress.git octopress<br/>
+cd octopress    # If you use RVM, You'll be asked if you trust the .rvmrc file (say yes).<br/>
+gem install bundler<br/>
+bundle install<br/>
+rake install</p>
+
+<h2>Github用户页面设置</h2>
+
+<p>参照Octopress上的将页面部署到github的<a href="http://octopress.org/docs/deploying/github/" title="OCTOPRESS Github介绍">手册</a>。<br/>
+Github Pages服务要求用户使用master分支作为Web服务器上的公共目录，当直接输入用户的web网址时，重定向的是master分支的目录。因此，可以创建一个source分支来工作，然后将生成的内容推送到master分支。Octopress可以通过使用下面的命令完成上面的任务：<br/>
+<code>rake setup_github_pages</code><br/>
+上面的操作将会完成下面的操作：</p>
+
+<ul>
+<li>请求用户输入个人的Github可读可写地址，使用ssh的目录，如git@github.com:xiongbupt/xiongbupt.github.com.git这样的地址，在输入上面的命令之后，要求输入地址时输入这样一个地址即可。</li>
+<li>将本来octopress分支的远端分支有origin重命名为octopress，相当于工作目录内有两个远端分支。</li>
+<li>将个人的Github Pages作为默认的远程origin分支。</li>
+<li>将当前分支由master转换为source分支。</li>
+<li>根据之前自身输入的地址来配置个人博客的地址。</li>
+<li>在_deploy目录下创建一个master分支用于来布置。<br/>
+接下来使用<br/>
+rake generate<br/>
+rake deploy<br/>
+这两个操作将会完成下面的任务：生成网页内容，将将生成的网页内容拷贝到<code>_deploy/</code>文件夹内，将这些文件添加到git跟踪目录下，提交然后将这些文件推送到master分支。因此在完成内容编辑之后，简单使用上面的两个命令就将会本地完成的编辑内容推送到远程的服务器端。</li>
+</ul>
+
+
+<p><strong>不要忘记</strong>将源文件推送到自己的远程分支。使用下面的操作即可完成操作：<br/>
+git add .
+git commit -m '提交说明'
+git push origin source</p>
+
+<p><strong>注意：</strong>目前Github网站设置的默认分支是最新提交的分支，因此如果在网页显示有问题时，可以登录到Github网站上查看是否自己的版本库的默认分支是否为master分支，将默认分支调整为master即可在网页上显示内容。</p>
+
+<h2>Github工程页面设置</h2>
+
+<p>Github允许对于已存在的开源工程添加一个网页说明。Github会搜索工程目录下的gh-pages分支，然后将这些内容置于可以访问的类似于<code>http://username.github.com/project</code>。</p>
+
+<p>可以通过下面的方式来公布自己的工程<code>gh-pages</code>。<br/>
+rake setup_github_pages</p>
+
+<p>这个操作将会：
+* 请求工程目录库的网址url
+* 将当前的origin本来指向的远程仓库imathis/octopress重命名为octopress
+* 确定博客将被配置为一个子目录
+* 在工程下新建_deploy文件夹，在该文件夹下建立gh-pages分支，准备配置该分支</p>
+
+<p>接下来运行：  <br/>
+rake generate
+rake deploy
+这将会生成博客内容，将生成的文件拷贝到<code>_deploy/</code>文件夹内，将它们加入到git同步库中，提交并将这些文件推送到master分支。</p>
+
+<p>现在已经对网站的内容进行了一次提交，但是同样也应该对网站的博客的源代码进行提交。在添加了自己工程的网址作为远端仓库之后，可以进行提交，如下所示：      <br/>
+git remote add origin (your repo url)
+#set your new origin as the default branch
+git config.branch.master.remote origin</p>
+
+<p>在完成上述设置之后便可以使用<code>git push</code>进行推送了。</p>
+
+<h2>自定义域名</h2>
+
+<p>首先需要在<code>source</code>文件夹下创建一个名字为<code>CNAME</code>的文件，然后将自己的域名输入到该文件中，如下所示： <br/>
+echo 'your-domain.com' >> source/CNAME</p>
+
+<p>接下来在域名的注册处添加域名记录。具体介绍参考<a href="http://octopress.org/docs/deploying/github/" title="OCTOPRESS Github介绍">octopress</a>的介绍，此处不做详细描述。</p>
+
+<p>sed -n 's/(category:\ )([)(\w<em>)(])/\1\3/p' </em>.md</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Xiongbupt</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-06T00:00:00+08:00" pubdate data-updated="true">Jun 6<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/octopress/'>Octopress</a>
+  
+</span>
+
+
+      <div id="tag_list">
+    Tags:
+    <ul id="tags_ul">
+
+        <li><a href="/blog/tags/Octopress/">Octopress</a></li>
+
+        <li><a href="/blog/tags/Github/">Github</a></li>
+
+        <li><a href="/blog/tags/Learning/">Learning</a></li>
+
+    </ul>
+</div>
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://xiongbupt.github.com/blog/2012/06/06/octopress_use/" data-via="xiongbupt" data-counturl="http://xiongbupt.github.com/blog/2012/06/06/octopress_use/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/06/06/assemble_language_learn/" title="Previous Post: 汇编语言学习">&laquo; 汇编语言学习</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/06/06/vim_help_read/" title="Next Post: VIM用户手册27笔记">VIM用户手册27笔记 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    
+<section>
+<h1>分类</h1>
+<ul>
+  <li><a href='/blog/categories/c语言'>C语言 (1)</a></li>
+  <li><a href='/blog/categories/git'>Git (3)</a></li>
+  <li><a href='/blog/categories/linux'>Linux (8)</a></li>
+  <li><a href='/blog/categories/notes'>Notes (21)</a></li>
+  <li><a href='/blog/categories/octopress'>Octopress (4)</a></li>
+  <li><a href='/blog/categories/others'>Others (1)</a></li>
+  <li><a href='/blog/categories/python'>Python (1)</a></li>
+  <li><a href='/blog/categories/vim'>Vim (4)</a></li>
+  <li><a href='/blog/categories/wsn'>Wsn (1)</a></li>
+</ul>
+</section>
+
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/06/08/octopresszeng-jia-fen-lei-biao-qian/">Octopress增加分类标签</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/08/octopressdai-ma-gao-liang/">Octopress代码高亮</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/07/octopress-add-tag/">Octopress添加标签</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/06/vim_help_read/">VIM用户手册27笔记</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/06/octopress_use/">Octopress尝试记录</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/06/assemble_language_learn/">汇编语言学习</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/xiongbupt">@xiongbupt</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'xiongbupt',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("xiongbupt", 0, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/xiongbupt" class="twitter-follow-button" data-show-count="true">Follow @xiongbupt</a>
+  
+</section>
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/110480695522271115757?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Xiongbupt -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'xiongbupt';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://xiongbupt.github.com/blog/2012/06/06/octopress_use/';
+        var disqus_url = 'http://xiongbupt.github.com/blog/2012/06/06/octopress_use/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

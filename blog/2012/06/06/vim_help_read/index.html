@@ -1,0 +1,455 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>VIM用户手册27笔记 - Keep Learning</title>
+  <meta name="author" content="Xiongbupt">
+
+  
+  <meta name="description" content="VIM的查找命令与模式，这章节和正则表达式相关，可以重点查阅下。 大小写忽略 ignorecase 忽视大小写
+smartcase 若只有小写，可匹配大小写；若含有大写，则严格匹配 特定模式中的大小写可以使用\C来严格匹配，\c可以用来通用匹配，不区分大小写 无折返查找 :set &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://xiongbupt.github.com/blog/2012/06/06/vim_help_read/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Keep Learning" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Ruge+Boogie|Ruthie|Flavors|Rancho|Galdeano' rel='stylesheet' type='text/css'>
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32449808-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Keep Learning</a></h1>
+  
+    <h2>伪程序员记录点滴</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:xiongbupt.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/blog/tags">Tags</a></li>
+  <li><a href="/about">About me</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">VIM用户手册27笔记</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-06T00:00:00+08:00" pubdate data-updated="true">Jun 6<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>VIM的查找命令与模式，这章节和正则表达式相关，可以重点查阅下。</p>
+
+<h2>大小写忽略</h2>
+
+<p>ignorecase  忽视大小写<br/>
+smartcase   若只有小写，可匹配大小写；若含有大写，则严格匹配  <br/>
+特定模式中的大小写可以使用\C来严格匹配，\c可以用来通用匹配，不区分大小写</p>
+
+<h2>无折返查找</h2>
+
+<p><code>:set nowrapscan</code>简单的说就是在查找到文件结束处后不再返回文件开始处重新查找。</p>
+
+<!--more-->
+
+
+<h2>查找偏移</h2>
+
+<p><code>/pattern/2</code>，这个查找将会在单词pattern的后两行。</p>
+
+<ul>
+<li>匹配一个可选项，使用<code>\=</code>，比如
+
+<blockquote><p>/folders\=</p></blockquote></li>
+</ul>
+
+
+<p>匹配的是"folder"和"folders"</p>
+
+<ul>
+<li>指定重复次数时，使用<code>\{n,m}</code>这样的形式。匹配n到m次，包括n和m，相当于一个闭区间。</li>
+<li>匹配尽可能少的字符使用'{-n,m}`。与上面的作用类似，区别在于尽可能少的匹配。</li>
+</ul>
+
+
+<h2>多选一</h2>
+
+<p>或的运算符是<code>\|</code>。</p>
+
+<h2>字符范围</h2>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="left">项    </th>
+<th align="left">匹配         </th>
+<th align="center">相当于 </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td align="left">\d </td>
+<td align="left">数位         </td>
+<td align="center">[0-9]</td>
+</tr>
+<tr>
+<td></td>
+<td align="left">\D </td>
+<td align="left">非数位          </td>
+<td align="center">[<code>^</code>0-9]</td>
+</tr>
+<tr>
+<td></td>
+<td align="left">\x </td>
+<td align="left">十六进制数位 </td>
+<td align="center">[0-9a-fA-F]</td>
+</tr>
+<tr>
+<td></td>
+<td align="left">\X </td>
+<td align="left">非十六进制数位  </td>
+<td align="center">[<code>^</code>0-9a-fA-F]</td>
+</tr>
+<tr>
+<td></td>
+<td align="left">\s </td>
+<td align="left">空白字符       </td>
+<td align="center">[  ]     (<code>&lt;Tab&gt;</code> 和 <code>&lt;Space&gt;</code>)</td>
+</tr>
+<tr>
+<td></td>
+<td align="left">\S </td>
+<td align="left">非空白字符        </td>
+<td align="center">[<code>^</code>  ]     (非 <code>&lt;Tab&gt;</code> 和 <code>&lt;Space&gt;</code>)</td>
+</tr>
+<tr>
+<td></td>
+<td align="left">\l </td>
+<td align="left">小写字母       </td>
+<td align="center">[a-z]</td>
+</tr>
+<tr>
+<td></td>
+<td align="left">\L </td>
+<td align="left">非小写字母        </td>
+<td align="center">[<code>^</code>a-z]</td>
+</tr>
+<tr>
+<td></td>
+<td align="left">\u </td>
+<td align="left">大写字母       </td>
+<td align="center">[A-Z]</td>
+</tr>
+<tr>
+<td></td>
+<td align="left">\U </td>
+<td align="left">非大写字母        </td>
+<td align="center">[<code>^</code>A-Z]</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Xiongbupt</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-06T00:00:00+08:00" pubdate data-updated="true">Jun 6<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/notes/'>Notes</a>
+  
+</span>
+
+
+      <div id="tag_list">
+    Tags:
+    <ul id="tags_ul">
+
+        <li><a href="/blog/tags/VIM/">VIM</a></li>
+
+        <li><a href="/blog/tags/Learning/">Learning</a></li>
+
+    </ul>
+</div>
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://xiongbupt.github.com/blog/2012/06/06/vim_help_read/" data-via="xiongbupt" data-counturl="http://xiongbupt.github.com/blog/2012/06/06/vim_help_read/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/06/06/octopress_use/" title="Previous Post: Octopress尝试记录">&laquo; Octopress尝试记录</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/06/07/octopress-add-tag/" title="Next Post: Octopress添加标签">Octopress添加标签 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    
+<section>
+<h1>分类</h1>
+<ul>
+  <li><a href='/blog/categories/c语言'>C语言 (1)</a></li>
+  <li><a href='/blog/categories/git'>Git (3)</a></li>
+  <li><a href='/blog/categories/linux'>Linux (8)</a></li>
+  <li><a href='/blog/categories/notes'>Notes (21)</a></li>
+  <li><a href='/blog/categories/octopress'>Octopress (4)</a></li>
+  <li><a href='/blog/categories/others'>Others (1)</a></li>
+  <li><a href='/blog/categories/python'>Python (1)</a></li>
+  <li><a href='/blog/categories/vim'>Vim (4)</a></li>
+  <li><a href='/blog/categories/wsn'>Wsn (1)</a></li>
+</ul>
+</section>
+
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/06/08/octopresszeng-jia-fen-lei-biao-qian/">Octopress增加分类标签</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/08/octopressdai-ma-gao-liang/">Octopress代码高亮</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/07/octopress-add-tag/">Octopress添加标签</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/06/vim_help_read/">VIM用户手册27笔记</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/06/octopress_use/">Octopress尝试记录</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/06/assemble_language_learn/">汇编语言学习</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/xiongbupt">@xiongbupt</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'xiongbupt',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("xiongbupt", 0, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/xiongbupt" class="twitter-follow-button" data-show-count="true">Follow @xiongbupt</a>
+  
+</section>
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/110480695522271115757?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Xiongbupt -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'xiongbupt';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

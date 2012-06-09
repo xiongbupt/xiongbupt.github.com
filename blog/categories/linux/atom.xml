@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Linux | Keep Learning]]></title>
+  <link href="http://xiongbupt.github.com/blog/categories/linux/atom.xml" rel="self"/>
+  <link href="http://xiongbupt.github.com/"/>
+  <updated>2012-06-09T15:38:47+08:00</updated>
+  <id>http://xiongbupt.github.com/</id>
+  <author>
+    <name><![CDATA[Xiongbupt]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Debian安装记录]]></title>
+    <link href="http://xiongbupt.github.com/blog/2012/04/01/debian/"/>
+    <updated>2012-04-01T00:00:00+08:00</updated>
+    <id>http://xiongbupt.github.com/blog/2012/04/01/debian</id>
+    <content type="html"><![CDATA[<h2>添加用户至sudo用户组并去除密码</h2>
+
+<p>visudo修改为不需要密码，将</p>
+
+<blockquote><p>%sudo ALL=(ALL):ALL<br/>
+修改为
+%sudo ALL=(ALL) NOPASSWD: ALL<br/>
+将用户user_name添加至sudo用户组<br/>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>adduser user_name sudo
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+重新登录后，user_name用户即已经位于sudo用户组中。</p></blockquote>
+
+<!--more-->
+
+
+<h2>安装基本的软件</h2>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo dpkg -i wireless-crda-1.14_i386.deb
+</span><span class='line'>sudo dpkg -i linux-headers-2.6.30-02063010_2.6.30-02063010_all.deb
+</span><span class='line'>sudo dpkg -i linux-headers-2.6.30-02063010-generic_2.6.30-02063010_all.deb
+</span><span class='line'>sudo dpkg -i linux-image-2.6.30-***.deb
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>参照<a href="http://bbs.byr.cn/#!article/Linux/82799">北邮人论坛的linux版块</a>，设置debian的源
+之后使用<code>sudo apt-get install</code>安装了
+* vim
+* ctags
+* cscope
+* vim-gtk
+* ibus
+* vim-doc
+* vim-scripts
+* gcc
+* locales
+* nautilus-open-terminal
+* make
+* build-essential</p>
+
+<h2>将默认编辑器由gedit转换为gvim</h2>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo cp /etc/gnome/defaults.list /etc/gnome/defaults.list.backup
+</span><span class='line'>sduo vim /etc/gnome/defaults.list
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+将该文件中的<code>gedit.desktop</code>全部替换为<code>gvim.desktop</code></p>
+
+<h2>添加ifconfig等命令到普通用户</h2>
+
+<p>修改<code>/etc/profile</code>，将第7行的PATH中添加<code>/sbin</code></p>
+
+<h2>安装中文字体</h2>
+
+<ul>
+<li>tty-wqy-zenhei</li>
+<li>tty-wqy-microhei</li>
+<li>xfonts-intl-chinese</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Linux定时器]]></title>
+    <link href="http://xiongbupt.github.com/blog/2012/03/26/linux_timer/"/>
+    <updated>2012-03-26T00:00:00+08:00</updated>
+    <id>http://xiongbupt.github.com/blog/2012/03/26/linux_timer</id>
+    <content type="html"><![CDATA[<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="kt">int</span> <span class="n">mod_timer</span><span class="p">(</span><span class="k">struct</span> <span class="n">timer_list</span> <span class="o">*</span><span class="n">timer</span><span class="err">，</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">expires</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+该函数负责修改内核定时器timer的超时字段expires。该函数可以修改激活和没有激活的内核定时器的超时时间，并把它们都设置为激活状态；返回值为0表示修改的内核定时器在修改之前处于未激活状态，返回值为1表示修改的内核定时器在修改之前处于已激活状态。</p>
+
+<!--more-->
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">del_timer</span><span class="p">(</span><span class="n">sturct</span> <span class="n">timer_list</span> <span class="o">*</span><span class="n">timer</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+返回值为0表示修删的内核定时器在删除之前处于未激活状态，返回值为1表示删除的内核定时器在删除之前处于已激活状态。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Linux内核活动]]></title>
+    <link href="http://xiongbupt.github.com/blog/2012/03/07/linux_kernel_activity/"/>
+    <updated>2012-03-07T00:00:00+08:00</updated>
+    <id>http://xiongbupt.github.com/blog/2012/03/07/linux_kernel_activity</id>
+    <content type="html"><![CDATA[<h3>中断</h3>
+
+<h4>中断类型</h4>
+
+<p>同步中断和异常<br/>
+异步中断：一般由硬件产生<br/>
+硬件IRQ，中断控制器</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Learing bash笔记]]></title>
+    <link href="http://xiongbupt.github.com/blog/2012/03/04/linux_bash/"/>
+    <updated>2012-03-04T00:00:00+08:00</updated>
+    <id>http://xiongbupt.github.com/blog/2012/03/04/linux_bash</id>
+    <content type="html"><![CDATA[<h3>第一章</h3>
+
+<p>cd - ：返回到之前的文件夹。用于工作路径的跳转。<br/>
+\ ' "引用键，可以取消特殊字符的含义，各个功能有强弱，其中'为强取消."为若取消，\仅仅取消一个字符的含义。使用上面这三个可以在命令过长时取消回车的含义，一般终端会提示>作为提示符号。<br/>
+ctrl+m在终端中相当于回车<br/>
+ctrl+d DELETE<br/>
+ctrl+j BACKSPACE<br/>
+stty --all查看当前终端的所有ctrl配置。<br/>
+在shell中，使用help中的通配符时，需要使用<code>''</code>将对应的通配符引用起来，如help 're*'; help 're??'等。</p>
+
+<!--more-->
+
+
+<h3>第二章 Command-Line Editing</h3>
+
+<p>改变shell的编辑模式使用set命名<br/>
+set -o emacs 或者 set -o vi<br/>
+vi模式编辑中的一些基本知识</p>
+
+<h4>字符移动</h4>
+
+<p>vi模式中有两种词的概念，一种是non-blank，这些就是所有的非空字符便是这种概念，另一种是word，这些是仅仅由字母数字以及_组成的，其他的均不算。<br/>
+h 左移一个字符<br/>
+l 右移一个字符<br/>
+w 右移一个词word<br/>
+b 左移一个词word<br/>
+W 下一个non-blank的开始<br/>
+B 前一个non-blank的开始<br/>
+e 当前词word的最后<br/>
+E 当前词non-blank的最后<br/>
+0 行的开始<br/>
+^ non-blank的开始<br/>
+$ 行的结束</p>
+
+<h4>插入改变文本</h4>
+
+<p>i<br/>
+a append<br/>
+I beginning<br/>
+A end of line<br/>
+R</p>
+
+<h4>删除指令</h4>
+
+<p>dh 向后删除一个字符<br/>
+dl 向前删除一个字符<br/>
+db 向后删除一个词<br/>
+dw 向前删除一个词<br/>
+dB 向后删除一个非空区域<br/>
+dW向前删除一个非空区域<br/>
+d$ 删除到行尾<br/>
+d0 删除到行首</p>
+
+<p>D d$<br/>
+dd 0d$<br/>
+C c$<br/>
+cc 0c$<br/>
+X dl<br/>
+x dh</p>
+
+<h4>历史中穿梭</h4>
+
+<p>k - backward<br/>
+j + forward<br/>
+G   move to line given by repeat count<br/>
+/string search backward<br/>
+?string search forward<br/>
+n       repeat the same as previous<br/>
+N       repeat in opposite direction of previous</p>
+
+<h4>字符寻找</h4>
+
+<p>fx move right <br/>
+Fx move left<br/>
+tx move right (until, back one space)<br/>
+Tx move left (until, forward one space)<br/>
+; redo last finding<br/>
+, redo last finding in opposite direction</p>
+
+<h4>文本补全</h4>
+
+<p>ESC \<br/>
+*</p>
+
+<h4>混杂命令</h4>
+
+<p>~ 翻转大小写<br/>
+- 将上一个命令的最后一个参数添加到当前行<br/>
+ctrl-l 清空屏幕<br/>
+# 注释符号<br/>
+注意上述命令均需在vi的命令模式下输入，不能在输入模式下输入</p>
+
+<h5>fc</h5>
+
+<p>fc -l列出之前的命令，带编号。</p>
+
+<h4>bash快捷键</h4>
+
+<p>C-A 行开始<br/>
+C-E 行结束<br/>
+C-F 右移<br/>
+C-B 左移<br/>
+C-K 整行删除<br/>
+C-P 向上翻阅历史命令<br/>
+C-N 向下翻阅历史命令<br/>
+C-R 搜索历史命令</p>
+
+<h4>bash自定义中最重要四种特征</h4>
+
+<p>特殊文件：.bashrc,.bash_log,.bash_profile<br/>
+别名：alias<br/>
+变量：var=value(等号两侧不能有空格）<br/>
+选项</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Linux进程学习]]></title>
+    <link href="http://xiongbupt.github.com/blog/2012/03/01/linux_process/"/>
+    <updated>2012-03-01T00:00:00+08:00</updated>
+    <id>http://xiongbupt.github.com/blog/2012/03/01/linux_process</id>
+    <content type="html"><![CDATA[<h2>Linux进程调度与管理</h2>
+
+<h3>Linux进程状态</h3>
+
+<p>Linux进程描述符使用的结构体为task_struct，结构体的定义位于include/linux/sched.h文件中。该结构体很复杂，包含了一个进程应该包含的所有信息。</p>
+
+<p>进程可以处于的状态包括：</p>
+
+<p>TASK_RUNNING:进程当前正在运行或者处于待运行的队列中；</p>
+
+<p>TASK_INTERRUPTIBLE:进程处于休眠队列中，可以被中断唤醒或者被信号唤醒。其中被信号唤醒为伪唤醒，每次进程被唤醒时需要对唤醒的条件进行判断，若不符合条件则继续休眠。</p>
+
+<p>TASK_UNINTERRUPTIBLE:进程同样位于休眠队列中，但是只能够被中断所唤醒，忽略信号。这种情况可以用于在驱动程序中，等待硬件初始化中使用，防止对硬件进行其他操作。</p>
+
+<p>TASK_STOPPED:进程被终止，如被调试器缩终止。</p>
+
+<p>TASK_TRACED:进程被追踪了，用来和TASK_STOPPED所区分。</p>
+
+<p>EXIT_ZOMBIE:子进程终止，但是父进程没有调用wait()系列函数，子进程无法正常退出，处于这种状态。</p>
+
+<p>EXIT_DEAD:在适当的wait()调用之后当程序还没有完全从系统中移除时，防止其他线程再次调用wait()系列函数时处的状态。</p>
+]]></content>
+  </entry>
+  
+</feed>

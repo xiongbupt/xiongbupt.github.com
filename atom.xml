@@ -4,7 +4,7 @@
   <title><![CDATA[Keep Learning]]></title>
   <link href="http://xiongbupt.github.com/atom.xml" rel="self"/>
   <link href="http://xiongbupt.github.com/"/>
-  <updated>2012-06-08T17:35:00+08:00</updated>
+  <updated>2012-06-09T15:38:47+08:00</updated>
   <id>http://xiongbupt.github.com/</id>
   <author>
     <name><![CDATA[Xiongbupt]]></name>
@@ -249,6 +249,8 @@
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
 </pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;tag_list&quot;</span><span class="nt">&gt;</span>
 </span><span class='line'>    Tags:
 </span><span class='line'>    <span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">&quot;tags_ul&quot;</span><span class="nt">&gt;</span>
@@ -256,6 +258,8 @@
 </span><span class='line'>        <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/tags/Octopress/&quot;</span><span class="nt">&gt;</span>Octopress<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
 </span><span class='line'>
 </span><span class='line'>        <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/tags/Learning/&quot;</span><span class="nt">&gt;</span>Learning<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/tags/Github/&quot;</span><span class="nt">&gt;</span>Github<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
 </span><span class='line'>
 </span><span class='line'>    <span class="nt">&lt;/ul&gt;</span>
 </span><span class='line'><span class="nt">&lt;/div&gt;</span>

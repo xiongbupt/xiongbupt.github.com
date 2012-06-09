@@ -9,7 +9,8 @@
   <meta name="author" content="Xiongbupt">
 
   
-  <meta name="description" content="转载自vim_cook_book 字符翻转 xp 可交换的替换单词 1
+  <meta name="description" content="转载自vim_cook_book 字符翻转 1
+xp 可交换的替换单词 1
 2
 3
 4
@@ -19,7 +20,7 @@
 cwmanager #将idiot替换为manager
 n #搜索下一个idiot
 . #重复上面的替换操作 1
-%s/\&lt; &hellip;">
+%s/\& &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -120,7 +121,10 @@ n #搜索下一个idiot
 
 <p>字符翻转</p>
 
-<blockquote><p>xp</p></blockquote>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>xp
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>可交换的替换单词</p>
 
@@ -144,10 +148,10 @@ n #搜索下一个idiot
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
-<p>/&lt;idiot>/</p>
+<p>/\&lt;idiot\>/</p>
 
 <blockquote><p>This text specifies the text we are looking for wand want. The &lt; tells Vim to match a word start and the > tells Vim to match the end of a word.<br/>
-&lt;表明匹配的是一个单词的开始，>表明匹配的是一个单词的结束。</p></blockquote>
+\&lt;表明匹配的是一个单词的开始，\>表明匹配的是一个单词的结束。</p></blockquote>
 
 <!--more-->
 
@@ -159,7 +163,7 @@ n #搜索下一个idiot
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
-<p>可以显示出空格和tab的区别，tab是<sup>I</sup></p>
+<p>可以显示出空格和tab的区别，tab是<code>^I</code></p>
 
 <p>vim读取man文件</p>
 
@@ -282,12 +286,12 @@ n #搜索下一个idiot
 <ul>
   <li><a href='/blog/categories/c语言'>C语言 (1)</a></li>
   <li><a href='/blog/categories/git'>Git (3)</a></li>
-  <li><a href='/blog/categories/linux'>Linux (9)</a></li>
+  <li><a href='/blog/categories/linux'>Linux (8)</a></li>
   <li><a href='/blog/categories/notes'>Notes (21)</a></li>
   <li><a href='/blog/categories/octopress'>Octopress (4)</a></li>
   <li><a href='/blog/categories/others'>Others (1)</a></li>
   <li><a href='/blog/categories/python'>Python (1)</a></li>
-  <li><a href='/blog/categories/vim'>Vim (3)</a></li>
+  <li><a href='/blog/categories/vim'>Vim (4)</a></li>
   <li><a href='/blog/categories/wsn'>Wsn (1)</a></li>
 </ul>
 </section>

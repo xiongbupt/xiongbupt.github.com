@@ -108,7 +108,7 @@
 
 <div class="entry-content"><p>下面的主要介绍的是Arch下面，对<a href="http://book.douban.com/subject/3735649/" title="一个操作系统的实现">Orange'S一个操作系统的实现</a>，这本书的笔记。</p>
 
-<h1>Arch下工具安装</h1>
+<h2>Arch下工具安装</h2>
 
 <p>文章介绍的汇编器为nasm，在arch下安装相当简单</p>
 
@@ -121,7 +121,7 @@
 
 <p>在完成上述操作后，该书介绍的基本工具便已经完备了，接下来便是对bochs进行配置了。</p>
 
-<h1>bochs配置</h1>
+<h2>bochs配置</h2>
 
 <p>bochs的示例配置文件位于<code>/usr/share/doc/bochs/bochsrc-sample.txt</code>，将该配置文件拷贝出来，位于自己工作目录下，并重新命名为bochsrc。这样在每次启动bochs时，便没有必要使用<code>-f</code>来指定使用的配置文件名。</p>
 
@@ -146,7 +146,7 @@
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
-<h1>汇编文件编译及制作启动软盘</h1>
+<h2>汇编文件编译及制作启动软盘</h2>
 
 <p>按照书中第一章节中的介绍，将启动软盘的代码敲入，然后使用nasm编译，使用bximage生成一个虚拟的软盘，接着使用dd工具将对应的编译生成的文件拷贝到相应的软盘工具中。接下来的工作按照书中介绍的内容继续即可。</p>
 

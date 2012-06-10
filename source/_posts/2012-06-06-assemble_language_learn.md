@@ -14,6 +14,7 @@ tags: [Learning, 汇编]
 2. IP=IP+所读取的指令长度，从而指向下一条指令；
 3. 执行指令，转到步骤1，重复这个过程。
 
+<!--more-->
 在8086CPU加电启动或复位后，<kbd>CS</kbd>和<kbd>IP</kbd>被设置为`CS=F000H，IP=FFFFH`。  
 CPU只认定由`CS：IP`指向内存单元中的内容为指令。  
 

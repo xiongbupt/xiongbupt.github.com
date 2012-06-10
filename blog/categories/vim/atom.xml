@@ -4,7 +4,7 @@
   <title><![CDATA[Category: VIM | Keep Learning]]></title>
   <link href="http://xiongbupt.github.com/blog/categories/vim/atom.xml" rel="self"/>
   <link href="http://xiongbupt.github.com/"/>
-  <updated>2012-06-10T20:49:49+08:00</updated>
+  <updated>2012-06-10T20:51:46+08:00</updated>
   <id>http://xiongbupt.github.com/</id>
   <author>
     <name><![CDATA[Xiongbupt]]></name>
@@ -166,13 +166,13 @@
 
 <p>和perl稍有不同的是，vim中的环视和固化分组的模式的位置与perl不同。例如，查找紧跟在 foo 之后的 bar，perl将模式写在环视的括号内，而vim将模式写在环视的元字符之前。
 Perl的写法
-{% codeblock lang:perl %}
-/(?&lt;=foo)bar/
-{% endcodeblock %}
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="sr">/(?&amp;lt;=foo)bar/</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 vim的写法
-{% codeblock lang:bash %}
-/(foo)\@&lt;=bar
-{% endcodeblock %}</p>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>/<span class="o">(</span>foo<span class="o">)</span><span class="se">\@</span>&amp;lt;<span class="o">=</span>bar
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 ]]></content>
   </entry>
   
@@ -197,14 +197,14 @@ vim的写法
 
 <ul>
 <li>将整篇文档内容全部小写
-{% codeblock lang:bash %}
-:%s/.*/\L&amp;/g
-{% endcodeblock %}
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>:%s/.*/<span class="se">\L</span>&amp;amp;/g
+</span></code></pre></td></tr></table></div></figure></notextile></div>
   &amp;是一个用来表明匹配前面全部的回溯引用的记录符号。</li>
 <li>将紧跟着&lt;后面的字符全部大写，比如在HTML标签中使用。
-{% codeblock lang:bash %}
-:%s/&lt;(\w*)/&lt;\U\1/g
-{% endcodeblock %}</li>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>:%s/&amp;lt;<span class="o">(</span><span class="se">\w</span>*<span class="o">)</span>/&amp;lt;<span class="se">\U\1</span>/g
+</span></code></pre></td></tr></table></div></figure></notextile></div></li>
 </ul>
 
 
@@ -233,14 +233,14 @@ vim的写法
 <p>上面的三个操作均是将一文中的几个关键词转换为大写操作，显然方法2显得很不合适，方法1和方法3要高明许多。</p>
 
 <p>将HTML标签全部大写<br/>
-{% codeblock lang:html %}
-:%s/&lt;\/\=(\w+)>/\U&amp;/g
-{% endcodeblock %}</p>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>:%s/<span class="ni">&amp;lt;</span>\/\=(\w+)&gt;/\U<span class="ni">&amp;amp;</span>/g
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>将HTML标签全部小写<br/>
-{% codeblock lang:html %}
-%s/&lt;\/\=(\w+)>/\L&amp;/g
-{% endcodeblock %}</p>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>%s/<span class="ni">&amp;lt;</span>\/\=(\w+)&gt;/\L<span class="ni">&amp;amp;</span>/g
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>上面的例子中的<code>\=</code>可以替换成为<code>\?</code>，两个符号的意思都是匹配0个或者1个。</p>
 ]]></content>
@@ -254,22 +254,26 @@ vim的写法
     <content type="html"><![CDATA[<p>转载自<a href="http://www.oualline.com/vim-cook.html" title="vim_cook_book">vim_cook_book</a></p>
 
 <p>字符翻转
-{% codeblock lang:bash %}
-xp
-{% endcodeblock %}</p>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>xp
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>可交换的替换单词
-{% codeblock lang:bash %}
-1G              #到第一行
-/idiot<enter>   #搜索单词idiot
-cwmanager       #将idiot替换为manager
-n               #搜索下一个idiot
-.               #重复上面的替换操作
-{% endcodeblock %}</p>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>1G              <span class="c">#到第一行</span>
+</span><span class='line'>/idiot&lt;enter&gt;   <span class="c">#搜索单词idiot</span>
+</span><span class='line'>cwmanager       <span class="c">#将idiot替换为manager</span>
+</span><span class='line'>n               <span class="c">#搜索下一个idiot</span>
+</span><span class='line'>.               <span class="c">#重复上面的替换操作</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<p>{% codeblock lang:bash %}
-%s/&lt;idiot>/manager/gc #直接在命令行模式下进行输入，使用全局替换的方式
-{% endcodeblock %}
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>%s/&amp;lt;idiot&gt;/manager/gc <span class="c">#直接在命令行模式下进行输入，使用全局替换的方式</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 /\&lt;idiot\>/</p>
 
 <blockquote><p>This text specifies the text we are looking for wand want. The &lt; tells Vim to match a word start and the > tells Vim to match the end of a word.<br/>
@@ -279,25 +283,25 @@ n               #搜索下一个idiot
 
 
 <p>检查Makefile错误的好方法，由于命令是以tab开始的，若是空格将有错误
-{% codeblock lang:bash %}
-:set list
-{% endcodeblock %}
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>:set list
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 可以显示出空格和tab的区别，tab是<code>^I</code></p>
 
 <p>vim读取man文件
-{% codeblock lang:bash %}
-man subject|ul -i|vim -
-{% endcodeblock %}</p>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>man subject|ul -i|vim -
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>vim移除行末的空格
-{% codeblock lang:bash %}
-:1,$s/[tab]*$//
-{% endcodeblock %}</p>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>:1,<span class="nv">$s</span>/<span class="o">[</span>tab<span class="o">]</span>*<span class="nv">$/</span>/
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>将Last, First改为First Last
-{% codeblock lang:bash %}
-:1,$s/([<sup>,]<em>),(.</em>$)/\2\1/</sup>
-{% endcodeblock %}</p>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>:1,<span class="nv">$s</span>/<span class="o">([</span>&lt;sup&gt;,<span class="o">]</span>&lt;em&gt;<span class="o">)</span>,<span class="o">(</span>.&lt;/em&gt;<span class="nv">$)</span>/<span class="se">\2\1</span>/&lt;/sup&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <blockquote><p>The ( ... ) delimiters are used to inform the editor that the text that matches the regular expression side is to be treated special.<br/>
 (...)分隔符告知编辑器将括号内的内容应该被当做正则表达式来对待（？？？）</p></blockquote>
@@ -314,9 +318,9 @@ man subject|ul -i|vim -
 
 <p>上述操作中，*代表的是光标所在位置，在普通模式下，输入中间的命令，将会得到后面的效果</p>
 
-<p>{% codeblock lang:bash %}
-vim --startuptime timefile the_file_you_want_to_edit
-{% endcodeblock %}
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>vim --startuptime timefile the_file_you_want_to_edit
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 查看vim启动时间所占用的时间比</p>
 
 <p>set list查看不可见字符</p>

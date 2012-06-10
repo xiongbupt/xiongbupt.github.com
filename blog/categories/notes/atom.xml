@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Notes | Keep Learning]]></title>
   <link href="http://xiongbupt.github.com/blog/categories/notes/atom.xml" rel="self"/>
   <link href="http://xiongbupt.github.com/"/>
-  <updated>2012-06-10T20:49:49+08:00</updated>
+  <updated>2012-06-10T20:51:46+08:00</updated>
   <id>http://xiongbupt.github.com/</id>
   <author>
     <name><![CDATA[Xiongbupt]]></name>
@@ -127,9 +127,10 @@ nasm -f elf -o myfile.o -MD myfile.dep myfile.asm</p>
 
 <h3>NASM语言的布局</h3>
 
-<p>{% codeblock NASM语言的布局 lang:nasm %}
-label:  instruction     operands        ;comment
-{% endcodeblock %}
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>NASM语言的布局  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='nasm'><span class='line'><span class="nl">label:</span>  <span class="nf">instruction</span>     <span class="nv">operands</span>        <span class="c1">;comment</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 NASM语句中空格是可以任意多的。NASM使用\来作为一行的换行符指示后面还是当前行的继续。</p>
 
 <h3>伪指令</h3>
@@ -316,38 +317,56 @@ smartcase   若只有小写，可匹配大小写；若含有大写，则严格�
 </ol>
 
 
+<!--more-->
+
+
 <p>在8086CPU加电启动或复位后，<kbd>CS</kbd>和<kbd>IP</kbd>被设置为<code>CS=F000H，IP=FFFFH</code>。<br/>
 CPU只认定由<code>CS：IP</code>指向内存单元中的内容为指令。</p>
 
 <h2>第三章 寄存器（内存访问）</h2>
 
 <p>当CPU要读写一个内存单元时，必须指定内存单元的段地址与偏移地址。在8086CPU中，使用的是<code>DS</code>来指定段地址，当将段地址传送进入<code>DS</code>寄存器时，必须再依靠另外一个寄存器来将该数值传送进入到<code>DS</code>中，不支持直接将数据传送到<code>DS</code>寄存器中。比如想要从内存单元10000H中读取数据到<code>al</code>中，可以采用如下操作：
-{% codeblock lang:nasm %}
-mov bx, 1000H
-mov ds, bx
-mov al, [0]
-{% endcodeblock %}
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='nasm'><span class='line'><span class="nf">mov</span> <span class="nb">bx</span><span class="p">,</span> <span class="mh">1000H</span>
+</span><span class='line'><span class="nf">mov</span> <span class="nb">ds</span><span class="p">,</span> <span class="nb">bx</span>
+</span><span class='line'><span class="nf">mov</span> <span class="nb">al</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 注意上面代码中<code>[0]</code>这个部分是不可缺少的，表示的是一个内存偏移单元而不是一个数。<br/>
 8086CPU的入栈和出栈操作都是以字为单位的。在任意时刻，SS：SP指向栈顶元素，栈的段地址寄存器为<code>SS</code>，偏移地址寄存器为<code>SP</code>。</p>
 
 <h2>第四章 第一个程序</h2>
 
-<p>{% codeblock lang:nasm %}
-assume cs:codesg
-codesg segment
-start:  mov ax, 0123H</p>
-
-<pre><code>    mov bx, 0456H
-    add ax, bx
-    add ax, ax
-
-    mov ax, 4c00H
-    int 21H
-</code></pre>
-
-<p>codesg ends
-end
-{% endcodeblock %}
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='nasm'><span class='line'><span class="nf">assume</span> <span class="nb">cs</span><span class="p">:</span><span class="nv">codesg</span>
+</span><span class='line'><span class="nf">codesg</span> <span class="ow">seg</span><span class="nv">ment</span>
+</span><span class='line'><span class="nl">start:</span>  <span class="nf">mov</span> <span class="nb">ax</span><span class="p">,</span> <span class="mh">0123H</span><span class="o">&lt;/</span><span class="nv">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">&lt;</span><span class="nf">pre</span><span class="o">&gt;&lt;</span><span class="nv">code</span><span class="o">&gt;</span>    <span class="nv">mov</span> <span class="nb">bx</span><span class="p">,</span> <span class="mh">0456H</span>
+</span><span class='line'>    <span class="nf">add</span> <span class="nb">ax</span><span class="p">,</span> <span class="nb">bx</span>
+</span><span class='line'>    <span class="nf">add</span> <span class="nb">ax</span><span class="p">,</span> <span class="nb">ax</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nf">mov</span> <span class="nb">ax</span><span class="p">,</span> <span class="mh">4c00H</span>
+</span><span class='line'>    <span class="nf">int</span> <span class="mh">21H</span>
+</span><span class='line'><span class="err">&lt;/</span><span class="nf">code</span><span class="o">&gt;&lt;/</span><span class="nv">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">&lt;</span><span class="nf">p</span><span class="o">&gt;</span><span class="nv">codesg</span> <span class="nv">ends</span>
+</span><span class='line'><span class="nf">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 汇编语言中有两种类型的指令，分别为<code>伪指令</code>和<code>汇编指令</code>。<code>segment和ends</code>是一对成对使用的<code>伪指令</code>，用来定义一个段。一个有意义的汇编程序至少有一个段，这个段用来存储程序。<code>end</code>是指定程序结束的标记。<code>assume</code>用于假设某个寄存器与<code>segment ends</code>指定的名称相关联。</p>
 
 <h2>第五章 [bx]和loop指令</h2>
@@ -357,31 +376,53 @@ end
 <h2>第六章 包含多个段的程序</h2>
 
 <p>这章节主要介绍程序中可以有多个段，比如代码段、数据段和栈等，整个代码的架构可以使用下面的方式
-{% codeblock lang:nasm %}
-assume cs:code, ds:date, ss:stack
-date segment</p>
-
-<pre><code>dw 0123H, 0234H, 0123H
-</code></pre>
-
-<p>date ends
-stack segment</p>
-
-<pre><code>dw 0, 0, 0,0
-</code></pre>
-
-<p>stack ends
-code segment
-start:  code here</p>
-
-<pre><code>    "
-    "
-    "
-</code></pre>
-
-<p>code ends
-end start
-{% endcodeblock %}</p>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='nasm'><span class='line'><span class="nf">assume</span> <span class="nb">cs</span><span class="p">:</span><span class="nv">code</span><span class="p">,</span> <span class="nb">ds</span><span class="p">:</span><span class="nv">date</span><span class="p">,</span> <span class="nb">ss</span><span class="p">:</span><span class="nv">stack</span>
+</span><span class='line'><span class="nf">date</span> <span class="ow">seg</span><span class="nv">ment</span><span class="o">&lt;/</span><span class="nv">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">&lt;</span><span class="nf">pre</span><span class="o">&gt;&lt;</span><span class="nv">code</span><span class="o">&gt;</span><span class="nv">dw</span> <span class="mh">0123H</span><span class="p">,</span> <span class="mh">0234H</span><span class="p">,</span> <span class="mh">0123H</span>
+</span><span class='line'><span class="err">&lt;/</span><span class="nf">code</span><span class="o">&gt;&lt;/</span><span class="nv">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">&lt;</span><span class="nf">p</span><span class="o">&gt;</span><span class="nv">date</span> <span class="nv">ends</span>
+</span><span class='line'><span class="nf">stack</span> <span class="ow">seg</span><span class="nv">ment</span><span class="o">&lt;/</span><span class="nv">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">&lt;</span><span class="nf">pre</span><span class="o">&gt;&lt;</span><span class="nv">code</span><span class="o">&gt;</span><span class="nv">dw</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="mi">0</span>
+</span><span class='line'><span class="err">&lt;/</span><span class="nf">code</span><span class="o">&gt;&lt;/</span><span class="nv">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">&lt;</span><span class="nf">p</span><span class="o">&gt;</span><span class="nv">stack</span> <span class="nv">ends</span>
+</span><span class='line'><span class="nf">code</span> <span class="ow">seg</span><span class="nv">ment</span>
+</span><span class='line'><span class="nl">start:</span>  <span class="nf">code</span> <span class="nv">here</span><span class="o">&lt;/</span><span class="nv">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">&lt;</span><span class="nf">pre</span><span class="o">&gt;&lt;</span><span class="nv">code</span><span class="o">&gt;</span>    <span class="err">&quot;</span>
+</span><span class='line'>    <span class="err">&quot;</span>
+</span><span class='line'>    <span class="err">&quot;</span>
+</span><span class='line'><span class="err">&lt;/</span><span class="nf">code</span><span class="o">&gt;&lt;/</span><span class="nv">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">&lt;</span><span class="nf">p</span><span class="o">&gt;</span><span class="nv">code</span> <span class="nv">ends</span>
+</span><span class='line'><span class="nf">end</span> <span class="nv">start</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>第七章 更灵活的定位内存地址的方法</h2>
 
@@ -546,16 +587,23 @@ end start
 
 <p>按照书中的推荐配置，bochsrc-sample.txt文件很大，上面有很多不需要的配置选项，按照书中的指示，将bochsrc文件中配置精简为如下所示：</p>
 
-<p>{% codeblock lang:bash %}
-megs:   32
-floppya: 1_44=a.img, status=inserted
-romimage: file=/usr/share/bochs/BIOS-bochs-latest
-vgaromimage: file=/usr/share/bochs/VGABIOS-lgpl-latest
-boot: floppy
-log: bochsout.txt
-mouse: enabled=0
-keyboard_mapping: enabled=1, map=/usr/share/bochs/keymaps/x11-pc-us.map
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>megs:   32
+</span><span class='line'>floppya: <span class="nv">1_44</span><span class="o">=</span>a.img, <span class="nv">status</span><span class="o">=</span>inserted
+</span><span class='line'>romimage: <span class="nv">file</span><span class="o">=</span>/usr/share/bochs/BIOS-bochs-latest
+</span><span class='line'>vgaromimage: <span class="nv">file</span><span class="o">=</span>/usr/share/bochs/VGABIOS-lgpl-latest
+</span><span class='line'>boot: floppy
+</span><span class='line'>log: bochsout.txt
+</span><span class='line'>mouse: <span class="nv">enabled</span><span class="o">=</span>0
+</span><span class='line'>keyboard_mapping: <span class="nv">enabled</span><span class="o">=</span>1, <span class="nv">map</span><span class="o">=</span>/usr/share/bochs/keymaps/x11-pc-us.map
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h1>汇编文件编译及制作启动软盘</h1>
 
@@ -563,32 +611,57 @@ keyboard_mapping: enabled=1, map=/usr/share/bochs/keymaps/x11-pc-us.map
 
 <h2>附录：汇编代码</h2>
 
-<p>{% codeblock lang:nasm %}</p>
-
-<pre><code>org     07c00h
-mov     ax, cs
-mov     ds, ax
-mov     es, ax
-call    DispStr
-jmp     $       ;jump to this line, be a dead loop
-</code></pre>
-
-<p>DispStr:</p>
-
-<pre><code>mov     ax, BootMessage
-mov     bp, ax
-mov     cx, 16      ;the length of string
-mov     ax, 01301h  ;make the font on the screen
-mov     bx, 000ch
-mov     dl, 0
-int     10h
-ret
-</code></pre>
-
-<p>BootMessage:        db      "Hello, Os world!"
-times   510-($-$$)  db  0
-dw      0xaa55
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class='nasm'><span class='line'><span class="err">&lt;/</span><span class="nf">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">&lt;</span><span class="nf">pre</span><span class="o">&gt;&lt;</span><span class="nv">code</span><span class="o">&gt;</span><span class="nv">org</span>     <span class="mh">07c00h</span>
+</span><span class='line'><span class="nf">mov</span>     <span class="nb">ax</span><span class="p">,</span> <span class="nb">cs</span>
+</span><span class='line'><span class="nf">mov</span>     <span class="nb">ds</span><span class="p">,</span> <span class="nb">ax</span>
+</span><span class='line'><span class="nf">mov</span>     <span class="nb">es</span><span class="p">,</span> <span class="nb">ax</span>
+</span><span class='line'><span class="nf">call</span>    <span class="nb">Disp</span><span class="nv">Str</span>
+</span><span class='line'><span class="nf">jmp</span>     <span class="kc">$</span>       <span class="c1">;jump to this line, be a dead loop</span>
+</span><span class='line'><span class="err">&lt;/</span><span class="nf">code</span><span class="o">&gt;&lt;/</span><span class="nv">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">&lt;</span><span class="nf">p</span><span class="o">&gt;</span><span class="nb">Disp</span><span class="nv">Str</span><span class="p">:</span><span class="o">&lt;/</span><span class="nv">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">&lt;</span><span class="nf">pre</span><span class="o">&gt;&lt;</span><span class="nv">code</span><span class="o">&gt;</span><span class="nv">mov</span>     <span class="nb">ax</span><span class="p">,</span> <span class="nv">BootMessage</span>
+</span><span class='line'><span class="nf">mov</span>     <span class="nb">bp</span><span class="p">,</span> <span class="nb">ax</span>
+</span><span class='line'><span class="nf">mov</span>     <span class="nb">cx</span><span class="p">,</span> <span class="mi">16</span>      <span class="c1">;the length of string</span>
+</span><span class='line'><span class="nf">mov</span>     <span class="nb">ax</span><span class="p">,</span> <span class="mh">01301h</span>  <span class="c1">;make the font on the screen</span>
+</span><span class='line'><span class="nf">mov</span>     <span class="nb">bx</span><span class="p">,</span> <span class="mh">000ch</span>
+</span><span class='line'><span class="nf">mov</span>     <span class="nb">dl</span><span class="p">,</span> <span class="mi">0</span>
+</span><span class='line'><span class="nf">int</span>     <span class="mh">10h</span>
+</span><span class='line'><span class="nf">ret</span>
+</span><span class='line'><span class="err">&lt;/</span><span class="nf">code</span><span class="o">&gt;&lt;/</span><span class="nv">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">&lt;</span><span class="nf">p</span><span class="o">&gt;</span><span class="nv">BootMessage</span><span class="p">:</span>        <span class="nv">db</span>      <span class="s">&quot;Hello, Os world!&quot;</span>
+</span><span class='line'><span class="kd">times</span>   <span class="mi">510</span><span class="o">-</span><span class="p">(</span><span class="kc">$</span><span class="o">-</span><span class="kc">$$</span><span class="p">)</span>  <span class="nv">db</span>  <span class="mi">0</span>
+</span><span class='line'><span class="kd">dw</span>      <span class="mh">0xaa55</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 ]]></content>
   </entry>
   

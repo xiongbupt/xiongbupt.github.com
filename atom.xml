@@ -4,7 +4,7 @@
   <title><![CDATA[Keep Learning]]></title>
   <link href="http://xiongbupt.github.com/atom.xml" rel="self"/>
   <link href="http://xiongbupt.github.com/"/>
-  <updated>2012-06-10T20:49:35+08:00</updated>
+  <updated>2012-06-10T20:51:46+08:00</updated>
   <id>http://xiongbupt.github.com/</id>
   <author>
     <name><![CDATA[Xiongbupt]]></name>
@@ -1455,6 +1455,9 @@ echo &#8216;your-domain.com&#8217; >> source/CNAME</p>
 <li>IP=IP+所读取的指令长度，从而指向下一条指令；</li>
 <li>执行指令，转到步骤1，重复这个过程。</li>
 </ol>
+
+
+<!--more-->
 
 
 <p>在8086CPU加电启动或复位后，<kbd>CS</kbd>和<kbd>IP</kbd>被设置为<code>CS=F000H，IP=FFFFH</code>。<br/>

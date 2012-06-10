@@ -8,6 +8,15 @@ footer: false
 <h2>2012</h2>
 
 <article>
+<h1><a href="/blog/2012/06/10/nasmzhai-yao/index.html">Nasm摘要</a></h1>
+<time datetime="2012-06-10T00:00:00-06:00" pubdate><span class='month'>Jun</span> <span class='day'>10</span> <span class='year'>2012</span></time>
+<footer>
+<span class="categories">posted in 
+<a href='/blog/categories/notes/'>Notes</a></span>
+</footer>
+</article>
+
+<article>
 <h1><a href="/blog/2012/06/08/octopresszeng-jia-fen-lei-biao-qian/index.html">Octopress增加分类标签</a></h1>
 <time datetime="2012-06-08T00:00:00-06:00" pubdate><span class='month'>Jun</span> <span class='day'>08</span> <span class='year'>2012</span></time>
 <footer>

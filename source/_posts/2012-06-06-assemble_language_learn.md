@@ -2,7 +2,7 @@
 layout: post
 title: "汇编语言学习"
 category: Notes
-tags: [Learning, OS]
+tags: [Learning, 汇编]
 ---
 本书主要记录的在学习王爽编著的[《汇编语言》][lab1]中的一些记录。
 ##第二章 寄存器（CPU原理）

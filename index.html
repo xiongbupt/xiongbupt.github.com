@@ -341,7 +341,240 @@ smartcase   若只有小写，可匹配大小写；若含有大写，则严格�
   </header>
 
 
-  <div class="entry-content">
+  <div class="entry-content"><p>本书主要记录的在学习王爽编著的<a href="http://book.douban.com/subject/3037562/" title="汇编语言">《汇编语言》</a>中的一些记录。</p>
+
+<h2>第二章 寄存器（CPU原理）</h2>
+
+<p>8086中内存地址的访问是由基地址加上偏移地址组成的物理地址，而这个基地址主要是由段寄存器提供的，在8086中有4个段寄存器，分别是CS，DS，SS和ES。<br/>
+<kbd>CS</kbd>为代码段寄存器，<kbd>IP</kbd>为指令指针寄存器，在8086机中，任意时刻，CPU将CS：IP指向的内容当做指令执行。<br/>
+8086CPU的工作过程如下所示：</p>
+
+<ol>
+<li>从CS：IP指向的内存单元读取指令，读取的指令进入指令缓冲器；</li>
+<li>IP=IP+所读取的指令长度，从而指向下一条指令；</li>
+<li>执行指令，转到步骤1，重复这个过程。</li>
+</ol>
+
+
+<p>在8086CPU加电启动或复位后，<kbd>CS</kbd>和<kbd>IP</kbd>被设置为<code>CS=F000H，IP=FFFFH</code>。<br/>
+CPU只认定由<code>CS：IP</code>指向内存单元中的内容为指令。</p>
+
+<h2>第三章 寄存器（内存访问）</h2>
+
+<p>当CPU要读写一个内存单元时，必须指定内存单元的段地址与偏移地址。在8086CPU中，使用的是<code>DS</code>来指定段地址，当将段地址传送进入<code>DS</code>寄存器时，必须再依靠另外一个寄存器来将该数值传送进入到<code>DS</code>中，不支持直接将数据传送到<code>DS</code>寄存器中。比如想要从内存单元10000H中读取数据到<code>al</code>中，可以采用如下操作：</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='nasm'><span class='line'><span class="nf">mov</span> <span class="nb">bx</span><span class="p">,</span> <span class="mh">1000H</span>
+</span><span class='line'><span class="nf">mov</span> <span class="nb">ds</span><span class="p">,</span> <span class="nb">bx</span>
+</span><span class='line'><span class="nf">mov</span> <span class="nb">al</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>注意上面代码中<code>[0]</code>这个部分是不可缺少的，表示的是一个内存偏移单元而不是一个数。<br/>
+8086CPU的入栈和出栈操作都是以字为单位的。在任意时刻，SS：SP指向栈顶元素，栈的段地址寄存器为<code>SS</code>，偏移地址寄存器为<code>SP</code>。</p>
+
+<h2>第四章 第一个程序</h2>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='nasm'><span class='line'><span class="nf">assume</span> <span class="nb">cs</span><span class="p">:</span><span class="nv">codesg</span>
+</span><span class='line'><span class="nf">codesg</span> <span class="ow">seg</span><span class="nv">ment</span>
+</span><span class='line'><span class="nl">start:</span>  <span class="nf">mov</span> <span class="nb">ax</span><span class="p">,</span> <span class="mh">0123H</span>
+</span><span class='line'>        <span class="nf">mov</span> <span class="nb">bx</span><span class="p">,</span> <span class="mh">0456H</span>
+</span><span class='line'>        <span class="nf">add</span> <span class="nb">ax</span><span class="p">,</span> <span class="nb">bx</span>
+</span><span class='line'>        <span class="nf">add</span> <span class="nb">ax</span><span class="p">,</span> <span class="nb">ax</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nf">mov</span> <span class="nb">ax</span><span class="p">,</span> <span class="mh">4c00H</span>
+</span><span class='line'>        <span class="nf">int</span> <span class="mh">21H</span>
+</span><span class='line'>
+</span><span class='line'><span class="nf">codesg</span> <span class="nv">ends</span>
+</span><span class='line'><span class="nf">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>汇编语言中有两种类型的指令，分别为<code>伪指令</code>和<code>汇编指令</code>。<code>segment和ends</code>是一对成对使用的<code>伪指令</code>，用来定义一个段。一个有意义的汇编程序至少有一个段，这个段用来存储程序。<code>end</code>是指定程序结束的标记。<code>assume</code>用于假设某个寄存器与<code>segment ends</code>指定的名称相关联。</p>
+
+<h2>第五章 [bx]和loop指令</h2>
+
+<p>寄存器中的内容也可作为偏移指令，在使用<code>loop</code>时，每次执行完一次之后，寄存器<code>CX</code>的值都将会减1，因此可以将循环次数放入到<code>CX</code>寄存器中，然后再使用<code>loop</code>来实现循环操作。</p>
+
+<h2>第六章 包含多个段的程序</h2>
+
+<p>这章节主要介绍程序中可以有多个段，比如代码段、数据段和栈等，整个代码的架构可以使用下面的方式</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='nasm'><span class='line'><span class="nf">assume</span> <span class="nb">cs</span><span class="p">:</span><span class="nv">code</span><span class="p">,</span> <span class="nb">ds</span><span class="p">:</span><span class="nv">date</span><span class="p">,</span> <span class="nb">ss</span><span class="p">:</span><span class="nv">stack</span>
+</span><span class='line'><span class="nf">date</span> <span class="ow">seg</span><span class="nv">ment</span>
+</span><span class='line'>    <span class="kd">dw</span> <span class="mh">0123H</span><span class="p">,</span> <span class="mh">0234H</span><span class="p">,</span> <span class="mh">0123H</span>
+</span><span class='line'><span class="nf">date</span> <span class="nv">ends</span>
+</span><span class='line'><span class="nf">stack</span> <span class="ow">seg</span><span class="nv">ment</span>
+</span><span class='line'>    <span class="kd">dw</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="mi">0</span>
+</span><span class='line'><span class="nf">stack</span> <span class="nv">ends</span>
+</span><span class='line'><span class="nf">code</span> <span class="ow">seg</span><span class="nv">ment</span>
+</span><span class='line'><span class="nl">start:</span>  <span class="nf">code</span> <span class="nv">here</span>
+</span><span class='line'>        <span class="err">&quot;</span>
+</span><span class='line'>        <span class="err">&quot;</span>
+</span><span class='line'>        <span class="err">&quot;</span>
+</span><span class='line'><span class="nf">code</span> <span class="nv">ends</span>
+</span><span class='line'><span class="nf">end</span> <span class="nv">start</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>第七章 更灵活的定位内存地址的方法</h2>
+
+<p>这章节主要介绍的是内存寻址的方式，增加了<code>bx</code>寄存器寻址的方式内容，同时引入了<code>SI</code>和<code>DI</code>这两个寄存器的寻址方式，其中<code>SI</code>和<code>DI</code>这两个提供的方式和<code>bx</code>相似，但是这两个寄存器不能分成两个8位寄存器。<br/>
+总共的寻址方式可以总结为如下几种：</p>
+
+<ol>
+<li>[idata]用一个常量表示地址用于直接定位一个内存单元；</li>
+<li>[bx]用一个变量表示内存地址，用于间接定位一个内存单元；</li>
+<li>[bx+idata]用一个变量和常量定义一个内存单元；</li>
+<li>[bx+si]用两个变量；</li>
+<li>[bx+di+idata]用两个变量和一个常量定义。</li>
+</ol>
+
+
+<h2>第八章 数据处理的两个基本问题</h2>
+
+<p>这两个基本问题是：</p>
+
+<ul>
+<li>处理的数据在什么地方？</li>
+<li>要处理的数据有多长？</li>
+</ul>
+
+
+<p>对于数据存储在什么地方这个问题，根据书上的例子，摘抄如下：</p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="left">机器码     </th>
+<th align="left">汇编指令           </th>
+<th align="left">指令执行前数据的位置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td align="left">8E1E0000   </td>
+<td align="left">mov bx, [0]        </td>
+<td align="left">内存，ds:0单元</td>
+</tr>
+<tr>
+<td></td>
+<td align="left">89C3       </td>
+<td align="left">mov bx, ax         </td>
+<td align="left">CPU内部，ax寄存器</td>
+</tr>
+<tr>
+<td></td>
+<td align="left">BB0100     </td>
+<td align="left">mov bx, 1          </td>
+<td align="left">CPU内部，指令缓冲器</td>
+</tr>
+</tbody>
+</table>
+
+
+<p>对于数据的长度，可以有下面三种方法：</p>
+
+<ul>
+<li>通过寄存器名指定要处理的数据的尺寸；</li>
+<li>在没有寄存器名存在的情况下，用操作符<code>X ptr</code>指明内存单元的长度，其中<code>X</code>在汇编指令中可以为<code>word</code>或<code>byte</code></li>
+<li>使用其他方法</li>
+</ul>
+
+
+<p>这章节还介绍了几个其他指令，分别为<code>div 除法指令</code>，<code>dd双字节伪指令</code>，<code>dup操作符重复指令</code>。</p>
+
+<h2>第九章 转移指令的原理</h2>
+
+<p>可以修改<kbd>IP</kbd>，或同时修改<kbd>CS</kbd>和<kbd>IP</kbd>的指令统称为转移指令。<br/>
+操作符<kbd>offset</kbd>在汇编语言中是由编译器处理的符号，它的功能是取得编号的偏移地址。<br/>
+<kbd>jmp</kbd>为无条件转义指令，可以只修改<kbd>IP</kbd>，也可以同时修改<kbd>CS和IP</kbd>。</p>
+
+<h2>第十章 call和ret指令</h2>
+
+<p><kbd>call</kbd>和<kbd>ret</kbd>指令都是转移指令，它们都修改<kbd>IP</kbd>，或同时修改<kbd>CS</kbd>和<kbd>IP</kbd>。</p>
+
+<h2>第十一章 标志寄存器</h2>
+
+<p>这章节主要介绍的是CPU进行操作之后，在标识寄存器中各标志位的含义，其主要作用如下所示：</p>
+
+<ol>
+<li>用来存储相关指令的某些执行结果；</li>
+<li>用来为CPU执行相关指令提供行为依据；</li>
+<li>用来控制CPU的相关工作方式。</li>
+</ol>
+
+
+<p>标志寄存器共有16位，其中有意义的为0、2、4、6、7、8、9、10、11这几位，其余的位均没有意义。</p>
+
+<h2>第十二章 内中断</h2>
+
+<p>中断分为内中断和外中断，其中产生内中断的方式主要有下面几种：</p>
+
+<ul>
+<li>除法错误，比如在<kbd>div指令</kbd>产生除法溢出，中断类型码为：0</li>
+<li>单步执行，中断类型码为：1；</li>
+<li>执行<kbd>int0指令</kbd>中断类型码为：4;</li>
+<li><p>执行<kbd>int指令</kbd>中断类型码为对应的整形数。</p>
+
+<h2>第十三章 int指令</h2>
+
+<p>CPU执行<kbd>int n</kbd>指令，相当于引发一个n号中断的中断过程，执行过程如下：</p></li>
+<li><p>取中断类型码n；</p></li>
+<li>标志寄存器入栈，IF=0，TF=0；</li>
+<li>CS，IP入栈；</li>
+<li>IP=(n<em>4)，(CS)=(n</em>4+2)</li>
+</ul>
+
+
+<p>BIOS主要包含的内容：</p>
+
+<ul>
+<li>硬件系统的检测和初始化程序；</li>
+<li>外部中断和内部中断例程；</li>
+<li>用于对硬件设备进行I/O操作的中断例程；</li>
+<li>其他和硬件系统相关的中断例程。
+
+<h2>第十四章 端口</h2>
+
+对端口的操作使用的是<kbd>in</kbd>，<kbd>out</kbd>指令。
+
+<h2>第十五章 外中断</h2>
+
+<p>CPU通过端口和外部设备进行联系。<br/>
+一共有两类中断，<kbd>可屏蔽中断</kbd>和<kbd>不可屏蔽中断</kbd>。不可屏蔽中断用的中断号固定为2。</p></li>
+</ul>
+
 </div>
   
   

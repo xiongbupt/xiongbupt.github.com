@@ -5,7 +5,7 @@ category: Notes
 tags: [OS, Learning]
 ---
 下面的主要介绍的是Arch下面，对[Orange'S一个操作系统的实现][lab1]，这本书的笔记。
-#Arch下工具安装
+##Arch下工具安装
 文章介绍的汇编器为nasm，在arch下安装相当简单
 >pacman -S nasm
 
@@ -14,7 +14,7 @@ tags: [OS, Learning]
 
 在完成上述操作后，该书介绍的基本工具便已经完备了，接下来便是对bochs进行配置了。
 
-#bochs配置
+##bochs配置
 bochs的示例配置文件位于`/usr/share/doc/bochs/bochsrc-sample.txt`，将该配置文件拷贝出来，位于自己工作目录下，并重新命名为bochsrc。这样在每次启动bochs时，便没有必要使用`-f`来指定使用的配置文件名。
 
 按照书中的推荐配置，bochsrc-sample.txt文件很大，上面有很多不需要的配置选项，按照书中的指示，将bochsrc文件中配置精简为如下所示：
@@ -30,7 +30,7 @@ mouse: enabled=0
 keyboard_mapping: enabled=1, map=/usr/share/bochs/keymaps/x11-pc-us.map
 {% endcodeblock %}
 
-#汇编文件编译及制作启动软盘
+##汇编文件编译及制作启动软盘
 按照书中第一章节中的介绍，将启动软盘的代码敲入，然后使用nasm编译，使用bximage生成一个虚拟的软盘，接着使用dd工具将对应的编译生成的文件拷贝到相应的软盘工具中。接下来的工作按照书中介绍的内容继续即可。
 
 ##附录：汇编代码

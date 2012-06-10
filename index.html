@@ -9,8 +9,7 @@
   <meta name="author" content="Xiongbupt">
 
   
-  <meta name="description" content="
-">
+  <meta name="description" content="还是为了看这本书，又找了下nasm的学习资料，在网上找到了这个网址，应该是nasm的官方参考手册，重点打算看下前面三章，做下笔记。 介绍 什么是NASM NASM是一种面向80x86和x86-64的新型汇编语言，其出现主要是为了可移植性和可修改性。 运行NASM NASM语法 nasm -f [- &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -81,6 +80,119 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/06/10/nasmzhai-yao/">Nasm摘要</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-10T15:22:00+08:00" pubdate data-updated="true">Jun 10<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>还是为了看<a href="http://book.douban.com/subject/3735649/" title="一个操作系统的实现">这本书</a>，又找了下nasm的学习资料，在网上找到了这个<a href="http://www.nasm.us/doc/nasmdoc0.html" title="nasm手册">网址</a>，应该是nasm的官方参考手册，重点打算看下前面三章，做下笔记。</p>
+
+<h2>介绍</h2>
+
+<h3>什么是NASM</h3>
+
+<p>NASM是一种面向80x86和x86-64的新型汇编语言，其出现主要是为了可移植性和可修改性。</p>
+
+<h2>运行NASM</h2>
+
+<h3>NASM语法</h3>
+
+<p><kbd>nasm -f <format> <filename> [-o <output>]</kbd></p>
+
+<h4><kbd>-o</kbd>选项：指定输出文件名</h4>
+
+<p>NASM会根据文件的名字自动来生成输出文件名，对于WIN32和Unix系列输出的文件名的方式不一样，但是都是会将后缀去掉，NASM不关心后缀究竟是什么，只是按照不同的平台输出对应的后缀名。<br/>
+如果指定了<kbd>-o</kbd>选项，将会按照<kbd>-o</kbd>的选项的文件名产生文件，如果<kbd>-o</kbd>指定的文件已经存在则会将已存在的文件覆盖除非指定的输出的文件名为汇编源文件，在这种情况下将会输出警告，同时NASM将会生成一个名为<kbd>nasm.out</kbd>的文件。在<kbd>-o</kbd>选项和输出的文件名之间可以有空格也可以没有。</p>
+
+<h4><kbd>-f</kbd>选项指定输出文件的格式</h4>
+
+<p><kbd>-f</kbd>选项指定输出文件的格式，如果没有指定的话，NASM将会按照其默认格式输出，一般输出的是bin格式。在<code>-f</code>和输出格式之间的空格是可选的，比如<kbd>-f elf</kbd>和<kbd>-felf</kbd>都是合法的。</p>
+
+<h4><kbd>-l</kbd>选项生成文件清单</h4>
+
+<p>如果指定-l选项，将会生成一个汇编生成的文件。在该文件，左侧是地址和产生的代码，右侧是实际的汇编代码。</p>
+
+<h4><kbd>-M</kbd>选项生成Makefile的依赖关系</h4>
+
+<p>如果使用该选项，将会在标准输出上生成Makefile的依赖关系。</p>
+
+<h4><kbd>-MG</kbd>选项生成Makefile的依赖关系</h4>
+
+<p>该选项和上面的选项的区别在与如果存在一个不存在的文件的依赖关系，它将会假定产生了该文件，同时将未加文件前缀的名字输出到标准输出上。</p>
+
+<h4><kbd>-MF</kbd>选项将Makefile的依赖关系输出到文件</h4>
+
+<p>这个选项一般和-M或者-MG同时使用，将依赖关系生成一个文件。<br/>
+nams -M -MF myfle.dep myfile.asm</p>
+
+<h4><kbd>-MD</kbd>选项汇编并且生成依赖关系</h4>
+
+<p>-MD选项可以作为-M和-MF的联合体。但是与-M或者-MG不同的是，-MD选项不会禁止汇编器的正常操作。比如：<br/>
+nasm -f elf -o myfile.o -MD myfile.dep myfile.asm</p>
+
+<h4><kbd>-MT</kbd>选项：目的文件文件名</h4>
+
+<p>功能与-o一样。</p>
+
+<h4><kbd>-MQ</kbd>选项：指定目的文件文件名</h4>
+
+<p>功能与-MT类似，只是其指定了被引用的字符具有特殊含义。</p>
+
+<h4><kbd>-MP</kbd>选项：省略中间输出</h4>
+
+<p>使用该选项将会省略中间的输出。</p>
+
+<h4><kbd>-F</kbd>选项：选择Debug的格式</h4>
+
+<h4><kbd>-g</kbd>选项：允许调试信息</h4>
+
+<h4><kbd>-x</kbd>选项：选择生成错误报告的格式</h4>
+
+<h4><kbd>-z</kbd>选项：将错误信息输出到文件</h4>
+
+<h4><kbd>-s</kbd>选项：将错误信息输出到标准输出</h4>
+
+<h4><kbd>-i</kbd>选项：在搜索目录中添加搜索路径</h4>
+
+<h3>MASM用户指南</h3>
+
+<p>下文主要介绍NASM与MASM的区别</p>
+
+<h4>NASM区分大小写</h4>
+
+<p>一个最简单的区别就是NASM是区分大小写的。</p>
+
+<h4>NASM对内存的使用需要使用方括号</h4>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -725,56 +837,6 @@ CPU只认定由<code>CS：IP</code>指向内存单元中的内容为指令。</p
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/06/01/git-lab-use/">Git小项目基本操作</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-06-01T00:00:00+08:00" pubdate data-updated="true">Jun 1<span>st</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>Git个人电脑操作</h2>
-
-<p>Git版本控制有三个区域，分别是工作目录、暂存区和git目录。
-<img src="/images/fig0101-tn.png" title="Git 本地操作" alt="Git的本地操作" /></p>
-
-<p>平时的工作都在工作目录中完成，在修改完代码之后，需要将修改的代码加入到暂存区，这个通过<code>git add</code>操作完成。当需要将暂存区域里的代码提交进入git工作目录时，需要使用<code>git commit</code>来完成。</p>
-
-<p>上面描述的两个命令<code>git add</code>和<code>git commit</code>是在本地目录工作中用到的主要命令。当需要删除文件时，使用的是<code>git rm</code>命令。</p>
-
-<p>在使用<code>git commit</code>将本地工作的内容提交到git工作目录之后，本地代码的修改工作便已经完成。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/06/01/git-lab-use/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -792,7 +854,7 @@ CPU只认定由<code>CS：IP</code>指向内存单元中的内容为指令。</p
   <li><a href='/blog/categories/c语言'>C语言 (1)</a></li>
   <li><a href='/blog/categories/git'>Git (3)</a></li>
   <li><a href='/blog/categories/linux'>Linux (8)</a></li>
-  <li><a href='/blog/categories/notes'>Notes (21)</a></li>
+  <li><a href='/blog/categories/notes'>Notes (22)</a></li>
   <li><a href='/blog/categories/octopress'>Octopress (4)</a></li>
   <li><a href='/blog/categories/others'>Others (1)</a></li>
   <li><a href='/blog/categories/python'>Python (1)</a></li>
@@ -804,6 +866,10 @@ CPU只认定由<code>CS：IP</code>指向内存单元中的内容为指令。</p
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/06/10/nasmzhai-yao/">nasm摘要</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/06/08/octopresszeng-jia-fen-lei-biao-qian/">Octopress增加分类标签</a>
@@ -823,10 +889,6 @@ CPU只认定由<code>CS：IP</code>指向内存单元中的内容为指令。</p
     
       <li class="post">
         <a href="/blog/2012/06/06/octopress_use/">Octopress尝试记录</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/06/assemble_language_learn/">汇编语言学习</a>
       </li>
     
   </ul>

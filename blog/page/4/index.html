@@ -9,12 +9,7 @@
   <meta name="author" content="Xiongbupt">
 
   
-  <meta name="description" content="IEEE 802.15.4 MAC帧控制字段中帧类型的数值
-信标帧：000
-数据帧：001
-确认帧：010
-命令帧：011
-">
+  <meta name="description" content="问题 A,B都是整数并且 A>1, B>1，求 ┌ A/B ┐ 即 A/B 的上取整。 当A/B 整除，往上取整返回值 为 A/B。 当不整除，返回值是 int(A/B) + 1 这个算法的一个应用：如果你有一个动态增长的缓冲区，增长的步长是 B,某一次缓冲区申请的大小是 A，这个时候， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -85,6 +80,55 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/03/21/linux_inf/">取整操作</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-21T00:00:00+08:00" pubdate data-updated="true">Mar 21<span>st</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>问题</h2>
+
+<p>A,B都是整数并且 A>1, B>1，求 ┌ A/B ┐ 即 A/B 的上取整。</p>
+
+<p>当A/B 整除，往上取整返回值 为 A/B。</p>
+
+<p>当不整除，返回值是 int(A/B) + 1</p>
+
+<p>这个算法的一个应用：如果你有一个动态增长的缓冲区，增长的步长是 B,某一次缓冲区申请的大小是 A，这个时候，就可以用这个算法，计算出缓冲区的一个合适大小了，正好可以容纳A，并且不会过于得多，多余部分不会比B多。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/03/21/linux_inf/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -544,62 +588,6 @@ stty &#8211;all查看当前终端的所有ctrl配置。<br/>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/03/01/linux_process/">Linux进程学习</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-03-01T00:00:00+08:00" pubdate data-updated="true">Mar 1<span>st</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>Linux进程调度与管理</h2>
-
-<h3>Linux进程状态</h3>
-
-<p>Linux进程描述符使用的结构体为task_struct，结构体的定义位于include/linux/sched.h文件中。该结构体很复杂，包含了一个进程应该包含的所有信息。</p>
-
-<p>进程可以处于的状态包括：</p>
-
-<p>TASK_RUNNING:进程当前正在运行或者处于待运行的队列中；</p>
-
-<p>TASK_INTERRUPTIBLE:进程处于休眠队列中，可以被中断唤醒或者被信号唤醒。其中被信号唤醒为伪唤醒，每次进程被唤醒时需要对唤醒的条件进行判断，若不符合条件则继续休眠。</p>
-
-<p>TASK_UNINTERRUPTIBLE:进程同样位于休眠队列中，但是只能够被中断所唤醒，忽略信号。这种情况可以用于在驱动程序中，等待硬件初始化中使用，防止对硬件进行其他操作。</p>
-
-<p>TASK_STOPPED:进程被终止，如被调试器缩终止。</p>
-
-<p>TASK_TRACED:进程被追踪了，用来和TASK_STOPPED所区分。</p>
-
-<p>EXIT_ZOMBIE:子进程终止，但是父进程没有调用wait()系列函数，子进程无法正常退出，处于这种状态。</p>
-
-<p>EXIT_DEAD:在适当的wait()调用之后当程序还没有完全从系统中移除时，防止其他线程再次调用wait()系列函数时处的状态。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/5/">&larr; Older</a>
@@ -619,7 +607,7 @@ stty &#8211;all查看当前终端的所有ctrl配置。<br/>
   <li><a href='/blog/categories/c语言'>C语言 (1)</a></li>
   <li><a href='/blog/categories/git'>Git (3)</a></li>
   <li><a href='/blog/categories/linux'>Linux (8)</a></li>
-  <li><a href='/blog/categories/notes'>Notes (21)</a></li>
+  <li><a href='/blog/categories/notes'>Notes (22)</a></li>
   <li><a href='/blog/categories/octopress'>Octopress (4)</a></li>
   <li><a href='/blog/categories/others'>Others (1)</a></li>
   <li><a href='/blog/categories/python'>Python (1)</a></li>
@@ -631,6 +619,10 @@ stty &#8211;all查看当前终端的所有ctrl配置。<br/>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/06/10/nasmzhai-yao/">nasm摘要</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/06/08/octopresszeng-jia-fen-lei-biao-qian/">Octopress增加分类标签</a>
@@ -650,10 +642,6 @@ stty &#8211;all查看当前终端的所有ctrl配置。<br/>
     
       <li class="post">
         <a href="/blog/2012/06/06/octopress_use/">Octopress尝试记录</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/06/assemble_language_learn/">汇编语言学习</a>
       </li>
     
   </ul>

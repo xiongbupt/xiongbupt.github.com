@@ -9,10 +9,7 @@
   <meta name="author" content="Xiongbupt">
 
   
-  <meta name="description" content="git log branch_a..branch_b
-显示branch_b有而branch_a没有的历史。
-git log branch_b..branch_a
-显示branch_a有而branch_b没有的历史。 git log origin/master..HEAD &hellip;">
+  <meta name="description" content="Git个人电脑操作 Git版本控制有三个区域，分别是工作目录、暂存区和git目录。 平时的工作都在工作目录中完成，在修改完代码之后，需要将修改的代码加入到暂存区，这个通过git add操作完成。当需要将暂存区域里的代码提交进入git工作目录时，需要使用git commit来完成。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -83,6 +80,56 @@ git log branch_b..branch_a
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/06/01/git-lab-use/">Git小项目基本操作</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-01T00:00:00+08:00" pubdate data-updated="true">Jun 1<span>st</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>Git个人电脑操作</h2>
+
+<p>Git版本控制有三个区域，分别是工作目录、暂存区和git目录。
+<img src="/images/fig0101-tn.png" title="Git 本地操作" alt="Git的本地操作" /></p>
+
+<p>平时的工作都在工作目录中完成，在修改完代码之后，需要将修改的代码加入到暂存区，这个通过<code>git add</code>操作完成。当需要将暂存区域里的代码提交进入git工作目录时，需要使用<code>git commit</code>来完成。</p>
+
+<p>上面描述的两个命令<code>git add</code>和<code>git commit</code>是在本地目录工作中用到的主要命令。当需要删除文件时，使用的是<code>git rm</code>命令。</p>
+
+<p>在使用<code>git commit</code>将本地工作的内容提交到git工作目录之后，本地代码的修改工作便已经完成。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/06/01/git-lab-use/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -645,101 +692,6 @@ git log branch_b..branch_a
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/05/22/learning-sql/">Learning SQL(ch1-ch3)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-22T00:00:00+08:00" pubdate data-updated="true">May 22<span>nd</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>CH1 背景知识</h2>
-
-<h3>术语</h3>
-
-<table>
-<thead>
-<tr>
-<th></th>
-<th align="center">术  语  </th>
-<th align="left">   定义 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td align="center">实  体  </td>
-<td align="left">数据库用户所关注的对象，如顾客、部门、地理等。</td>
-</tr>
-<tr>
-<td></td>
-<td align="center">列      </td>
-<td align="left">存储在表中的独立数据片段。                    </td>
-</tr>
-<tr>
-<td></td>
-<td align="center">行      </td>
-<td align="left">所有列的一个集合，完整地描述了一个实体或实体上的某种行为，也称之为记录。</td>
-</tr>
-<tr>
-<td></td>
-<td align="center">表      </td>
-<td align="left">行的集合，既可以保存在内存中（未持久化），也可以保存在存储设备中（已持久化）。</td>
-</tr>
-<tr>
-<td></td>
-<td align="center">结果表  </td>
-<td align="left"> 未持久化的表的另一个名字，一般为查询的结果。</td>
-</tr>
-<tr>
-<td></td>
-<td align="center">主 键   </td>
-<td align="left"> 用于唯一标识表中每个行的一个或多个列。</td>
-</tr>
-<tr>
-<td></td>
-<td align="center">外 键   </td>
-<td align="left">一个或多个用于标识其他表中某一行的列。</td>
-</tr>
-</tbody>
-</table>
-
-
-<h3>SQL语句分类</h3>
-
-<p>通过SQL方案语句所创建的所有数据库元素都被存储在一个特殊的表集合，即数据字典中。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/05/22/learning-sql/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -759,7 +711,7 @@ git log branch_b..branch_a
   <li><a href='/blog/categories/c语言'>C语言 (1)</a></li>
   <li><a href='/blog/categories/git'>Git (3)</a></li>
   <li><a href='/blog/categories/linux'>Linux (8)</a></li>
-  <li><a href='/blog/categories/notes'>Notes (21)</a></li>
+  <li><a href='/blog/categories/notes'>Notes (22)</a></li>
   <li><a href='/blog/categories/octopress'>Octopress (4)</a></li>
   <li><a href='/blog/categories/others'>Others (1)</a></li>
   <li><a href='/blog/categories/python'>Python (1)</a></li>
@@ -771,6 +723,10 @@ git log branch_b..branch_a
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/06/10/nasmzhai-yao/">nasm摘要</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/06/08/octopresszeng-jia-fen-lei-biao-qian/">Octopress增加分类标签</a>
@@ -790,10 +746,6 @@ git log branch_b..branch_a
     
       <li class="post">
         <a href="/blog/2012/06/06/octopress_use/">Octopress尝试记录</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/06/assemble_language_learn/">汇编语言学习</a>
       </li>
     
   </ul>

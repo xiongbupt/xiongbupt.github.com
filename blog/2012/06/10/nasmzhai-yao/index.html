@@ -114,6 +114,9 @@
 
 <p>NASM是一种面向80x86和x86-64的新型汇编语言，其出现主要是为了可移植性和可修改性。</p>
 
+<!--more-->
+
+
 <h2>运行NASM</h2>
 
 <h3>NASM语法</h3>
@@ -184,6 +187,82 @@ nasm -f elf -o myfile.o -MD myfile.dep myfile.asm</p>
 <p>一个最简单的区别就是NASM是区分大小写的。</p>
 
 <h4>NASM对内存的使用需要使用方括号</h4>
+
+<p>与MASM相比较来说，NASM的目的是对所有语句，尽可能的将一条语句与对应的机器码对应起来。对内存地址的引用都需要使用中括号。相对于MASM中的间接寻址等方式，NASM中的所有和内存相关的操作均需要添加中括号。因此在NASM中也就没有<code>offset</code>这样的关键字，比如在MASM中的<code>mov ax, table[bx]</code>在NASM中是非法的，必须转为<code>mov ax, [table+bx]</code>。</p>
+
+<h4>NASM不支持存储变量类型</h4>
+
+<p>在MASM中，对变量的说明的同时还指定了变量的类型，但是NASM中仅仅记录了变量的开始位置，不会记录任何有关变量类型的说明。因此在对变量赋值操作时，需要指定赋值的大小，因此NASM不支持例如<code>LODS, MOVS, STOS, SCAS, CMPS, INS, OUTS</code>等指令，而仅仅支持<code>LODSB, MOVSW, SCASD</code>，这几种支持的操作都明确指定了操作数的大小。</p>
+
+<h4>NASM不使用<kbd>ASSUME</kbd></h4>
+
+<p>作为NASM的一个简化动机，NASM不支持使用<kbd>ASSUME</kbd>，NASM不会跟踪在段寄存器中存放的是什么值，并且不会自动生成段前缀。</p>
+
+<h4>NASM不支持内存模型</h4>
+
+<p>NASM不支持16比特的内存模型，程序员自己负责<code>jmp</code>等指令是否为近转移或是远转移。同时对于<code>RET</code>指令，也是程序员自己负责。NASM将<code>RET</code>作为<code>RETN</code>的一个可选模式。</p>
+
+<h4>浮点数的区别</h4>
+
+<p>NASM使用不同的名字来命名浮点数，在MASM中，对于浮点数将会命名为类似于<code>ST(0)</code>或<code>ST(1)</code>等类似的方式，可在NASM中，将会命名为<code>st0</code>，<code>st1</code>等方式。</p>
+
+<h4>其他区别</h4>
+
+<p>由于历史的原因，NASM使用关键字<kbd>TWORD</kbd>而MASM使用的是<kbd>TBYTE</kbd>。<br/>
+除了上述区别之外，宏和指令性的工作在MASM和NASM中也是不同的。</p>
+
+<h2>NASM语言</h2>
+
+<h3>NASM语言的布局</h3>
+
+<figure class='code'><figcaption><span>NASM语言的布局  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='nasm'><span class='line'><span class="nl">label:</span>  <span class="nf">instruction</span>     <span class="nv">operands</span>        <span class="c1">;comment</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>NASM语句中空格是可以任意多的。NASM使用\来作为一行的换行符指示后面还是当前行的继续。</p>
+
+<h3>伪指令</h3>
+
+<p>NASM中支持的伪指令包括<kbd>DB,DW,DD,DQ,DT,DO</kbd>和<kbd>DY；RESB，RESW，RESD，RESQ，REST，RESO和RESY</kbd>；以及<kbd>INCBIN，EQU，TIMES</kbd></p>
+
+<h4>DB及同类：声明已初始化数据</h4>
+
+<h4>RESB及同类：声明未初始化数据</h4>
+
+<h4>INCBIN：包含而外的二进制文件</h4>
+
+<h4>EQU：定义常量</h4>
+
+<h4>TIMES：重复指令或数据</h4>
+
+<h3>有效的地址</h3>
+
+<p>语法非常简单，就是在有效地址的变量加上中括号即可。</p>
+
+<h3>常量</h3>
+
+<p>NASM包括四种类型的常量，分别是数字、字符、字符串和浮点数</p>
+
+<h3>表达式</h3>
+
+<p>在NASM中的表达式与C语言中的类似。表达式被当做64位整型数计算然后再被调整到合适的尺寸。NASM在表达式中支持两个特殊的符号，用来计算当前汇编语言的位置，分别是<kbd>$</kbd>和<kbd>$$</kbd>操作符。<br/>
+<kbd>$</kbd>操作符用来计算包含该符号的表达式在汇编语言中的起始位置；<kbd>$$</kbd>用来计算当前区域的其实位置。所以可以通过使用<kbd>$-$$</kbd>来计算当前位置与段起始处的距离。</p>
+
+<h4><kbd>|</kbd>按位或</h4>
+
+<h4><kbd><sup></kbd>按位异或</sup></h4>
+
+<h4><kbd>&amp;</kbd>按位与</h4>
+
+<h4><kbd>>></kbd>和<kbd>&lt;&lt;</kbd>移位操作符</h4>
+
+<h4><kbd>+</kbd> <kbd>-</kbd>：加减操作符</h4>
+
+<h4><kbd>*</kbd>,<kbd>/</kbd>,<kbd>//</kbd>,<kbd>%</kbd>, <kbd>%%</kbd>：乘法和除法表达式</h4>
+
+<h4>一元操作符：<kbd>+</kbd>,<kbd>-</kbd>,<kbd>~</kbd>,<kbd>!</kbd>,<kbd>SEG</kbd></h4>
 </div>
 
 

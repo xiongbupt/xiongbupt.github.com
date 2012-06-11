@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Notes | Keep Learning]]></title>
   <link href="http://xiongbupt.github.com/blog/categories/notes/atom.xml" rel="self"/>
   <link href="http://xiongbupt.github.com/"/>
-  <updated>2012-06-10T20:54:39+08:00</updated>
+  <updated>2012-06-11T15:16:50+08:00</updated>
   <id>http://xiongbupt.github.com/</id>
   <author>
     <name><![CDATA[Xiongbupt]]></name>
@@ -12,6 +12,160 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[UTICODE编码记录]]></title>
+    <link href="http://xiongbupt.github.com/blog/2012/06/11/uticodebian-ma-ji-lu/"/>
+    <updated>2012-06-11T11:29:00+08:00</updated>
+    <id>http://xiongbupt.github.com/blog/2012/06/11/uticodebian-ma-ji-lu</id>
+    <content type="html"><![CDATA[<p>今天查看师兄以前写的笔记，中间看到一个UNICODE和UTF-8编码的内容，于是在网上找了下资料，现在对这点有一点点了解，主要参考了<a href="http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html">阮老师的这篇文章</a>，先记录下笔记吧。</p>
+
+<h2>UNICODE编码由来</h2>
+
+<p>在20世纪60年代，美国指定了ASCII编码体系，将英语字符与二进制位的关系做了统一的规定，这就是ASCII编码，并且一直沿用到今天。ASCII一共规定了128个字符的编码，只占用了一个字节的后7位，最高位始终为0。</p>
+
+<p>但是不同的国家的字符符号不一样，为了适应这种情况，就出现了UNICODE。<br/>
+UNICODE目前可以容纳100多万个符号，每个符号的编码都不一样。</p>
+
+<!--more-->
+
+
+<h2>UNICODE的问题</h2>
+
+<p>UNCIDOE仅仅是一个符号集，它仅仅规定了符号的二进制代码，并没有规定符号如何存储。这就造成了下面两种结果：</p>
+
+<ul>
+<li>出现了UNICODE的多种存储方式；</li>
+<li>UNICODE在很长时间无法推广，直到互联网出现。</li>
+</ul>
+
+
+<h2>UTF-8</h2>
+
+<p>目前UTF-8（UCS Transformation Format-8-bit）是互联网使用最广的一种编码，在<a href="http://en.wikipedia.org/wiki/UTF-8" title="WIKI UTF-8">WIKI</a>上其说明UTF-8是为了向后兼容ASCII码，同时也是为了避免在UTF-16和UTF-32中出现的复杂的大端序、小端序和字节符号序列，具统计目前有超过一半的Web网页使用的是UTF-8编码格式。IETF工作组也要求所有的网络协议表明字符集所使用的编码并且要求必须支持UTF-8。</p>
+
+<p>最开始UTF-8的设计图可以在下表中清晰的反应出来：</p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="right">Bits</th>
+<th align="left">Last Code Point</th>
+<th align="center">Byte 1</th>
+<th align="center">Byte 2</th>
+<th align="center">Byte 3</th>
+<th align="center">Byte 4</th>
+<th align="center">Byte 5</th>
+<th align="center">Byte 6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td align="right">7   </td>
+<td align="left">U+007F     </td>
+<td align="center">0xxxxxxx</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td align="right">11  </td>
+<td align="left">U+07FF     </td>
+<td align="center">110xxxxx</td>
+<td align="center">10xxxxxx</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td align="right">16  </td>
+<td align="left">U+FFFF     </td>
+<td align="center">1110xxxx</td>
+<td align="center">10xxxxxx</td>
+<td align="center">10xxxxxx</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td align="right">21  </td>
+<td align="left">U+1FFFFF   </td>
+<td align="center">11110xxx</td>
+<td align="center">10xxxxxx</td>
+<td align="center">10xxxxxx</td>
+<td align="center">10xxxxxx</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td align="right">25  </td>
+<td align="left">U+3FFFFFF  </td>
+<td align="center">111110xx</td>
+<td align="center">10xxxxxx</td>
+<td align="center">10xxxxxx</td>
+<td align="center">10xxxxxx</td>
+<td align="center">10xxxxxx</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td align="right">31  </td>
+<td align="left">U+7FFFFFFF </td>
+<td align="center">1111110x</td>
+<td align="center">10xxxxxx</td>
+<td align="center">10xxxxxx</td>
+<td align="center">10xxxxxx</td>
+<td align="center">10xxxxxx</td>
+<td align="center">10xxxxxx|</td>
+</tr>
+</tbody>
+</table>
+
+
+<p>最开始UTF-8的设计如上图所示，但是在<a href="http://tools.ietf.org/html/rfc3629" title="rfc3629">RFC 3629</a>中UTF-8被截短了，目前UTF-8的最大值为U+10FFFF，因此所有的5字节和6字节的编码都被取消掉了。</p>
+
+<p>UTF-8的编码即是将UNICODE对应的编码值以上表的方式编码出来即可。因此所有的ASCII码都是以一个字节的方式编码，其他的字符集会根据对应的UNICODE的编码值进行编码。比如<code>美</code>对应的UNICODE的值为7F8E，在上表中可以查看出其使用3字节编码即可，7F8E的二进制表示为0111 1111 1000 1110因此其UTF-8的编码为E7 BE 8E。就是将UNICODE的二进制值填充到UTF-8中的x上，完成编码。 <br/>
+注意，UTF-8仅仅是UNICODE的一种编码方式。</p>
+
+<h2>UTF-8的bomb字符</h2>
+
+<p>在编辑器打开一个文本文件时，其是怎么判断打开文件的编码格式？下面是个人的理解，编辑器应该会对打开的文件进行编码猜测，但是如果文件没有提供对应的编码标志的话，其就会按照自己的猜测文件编码格式将文本文件打开。如果编辑器猜测的编码与文件的实际编码不一致，就会出现乱码现象。但是如果文本文件提供了自身的编码方式，并且编辑器也可以理解即解释这种编码方式的话，应该就可以将文本文件按照正确的形式显现出来。</p>
+
+<p>上面的那段主要是为了引出UTF-8的bomb字符。参考<a href="http://www.i-alive.com/post/8/">这篇博客</a>，可以知道UTF-8的bomb为字符：EF BB BF。按照文中的方式，在VIM中使用16进制的方式<kbd>:%!xxd</kbd>，将文本文件打开，可以看出对应文字的UTF-8编码，在自己的环境下，使用的是UTF-8的编码格式，VIM似乎就已经将该bomb值去掉了。但是通过设置<kbd>:set bomb</kbd>可以将bomb保留，通过<kbd>:set nobomb</kbd>可以将文件的bomb去除。</p>
+
+<p>在这种情形下想到以前从Linux系统向Windows系统下拷贝文本文件时，有时候会出现乱码现象，猜想会不会是由于VIM将文件的bomb去除了，而Windows使用的编码默认不是UTF-8编码，其编辑器猜测编码的格式猜测错了，导致乱码，于是在Linux系统下拷贝了两个简单的带有汉字的文件到Windows系统下，这两个文件分别使用<kbd>:set bomb</kbd>和<kbd>:set nobomb</kbd>的方式将UTF-8的编码信息保留和去除。</p>
+
+<p>在Windows下使用记事本打开这两个文件时，汉字都可以正常的显示，但是由于Linux和Windows的换行方式不一致，会出现一些黑的方框；在写字板中打开文件时，带有bomb编码信息的文本文件可以正常的显示汉字，但是去除了bomb信息的文本文件出现了乱码。</p>
+
+<p>上面的现象应该可以说明Windows下面的记事本猜测编码格式正确，但是写字板猜测错误，可写字板对Linux下的换行符可以正常的显示。如果为了在Windows下正确的打开Linux下带有中文字符的文本文件，同时换行符也正常显示的话，可以在保存文件之前输入<kbd>:set bomb</kbd>将文本文件的编码格式保存下。</p>
+
+<h3>附录</h3>
+
+<p>VIM中使用16进制的方式打开文件 <kbd>:%!xxd</kbd>   <br/>
+VIM中在打开16进制的方式中编辑完文件之后保存 <kbd>:%!xxd -r</kbd>  <br/>
+VIM保存UTF-8文件的bomb信息 <kbd>:set bomb</kbd>   <br/>
+VIM中去除文件的bomb信息 <kbd>:set nobomb</kbd>    <br/>
+UTF－8：一个汉字＝3个字节</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[OS实现之保护模式]]></title>
+    <link href="http://xiongbupt.github.com/blog/2012/06/10/osshi-xian-zhi-bao-hu-mo-shi/"/>
+    <updated>2012-06-10T20:57:00+08:00</updated>
+    <id>http://xiongbupt.github.com/blog/2012/06/10/osshi-xian-zhi-bao-hu-mo-shi</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[nasm摘要]]></title>
@@ -127,10 +281,9 @@ nasm -f elf -o myfile.o -MD myfile.dep myfile.asm</p>
 
 <h3>NASM语言的布局</h3>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>NASM语言的布局  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='nasm'><span class='line'><span class="nl">label:</span>  <span class="nf">instruction</span>     <span class="nv">operands</span>        <span class="c1">;comment</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<p>{% codeblock NASM语言的布局 lang:nasm %}
+label:  instruction     operands        ;comment
+{% endcodeblock %}
 NASM语句中空格是可以任意多的。NASM使用\来作为一行的换行符指示后面还是当前行的继续。</p>
 
 <h3>伪指令</h3>
@@ -326,47 +479,32 @@ CPU只认定由<code>CS：IP</code>指向内存单元中的内容为指令。</p
 <h2>第三章 寄存器（内存访问）</h2>
 
 <p>当CPU要读写一个内存单元时，必须指定内存单元的段地址与偏移地址。在8086CPU中，使用的是<code>DS</code>来指定段地址，当将段地址传送进入<code>DS</code>寄存器时，必须再依靠另外一个寄存器来将该数值传送进入到<code>DS</code>中，不支持直接将数据传送到<code>DS</code>寄存器中。比如想要从内存单元10000H中读取数据到<code>al</code>中，可以采用如下操作：
-<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='nasm'><span class='line'><span class="nf">mov</span> <span class="nb">bx</span><span class="p">,</span> <span class="mh">1000H</span>
-</span><span class='line'><span class="nf">mov</span> <span class="nb">ds</span><span class="p">,</span> <span class="nb">bx</span>
-</span><span class='line'><span class="nf">mov</span> <span class="nb">al</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+{% codeblock lang:nasm %}
+mov bx, 1000H
+mov ds, bx
+mov al, [0]
+{% endcodeblock %}
 注意上面代码中<code>[0]</code>这个部分是不可缺少的，表示的是一个内存偏移单元而不是一个数。<br/>
 8086CPU的入栈和出栈操作都是以字为单位的。在任意时刻，SS：SP指向栈顶元素，栈的段地址寄存器为<code>SS</code>，偏移地址寄存器为<code>SP</code>。</p>
 
 <h2>第四章 第一个程序</h2>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='nasm'><span class='line'><span class="nf">assume</span> <span class="nb">cs</span><span class="p">:</span><span class="nv">codesg</span>
-</span><span class='line'><span class="nf">codesg</span> <span class="ow">seg</span><span class="nv">ment</span>
-</span><span class='line'><span class="nl">start:</span>  <span class="nf">mov</span> <span class="nb">ax</span><span class="p">,</span> <span class="mh">0123H</span><span class="o">&lt;/</span><span class="nv">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="err">&lt;</span><span class="nf">pre</span><span class="o">&gt;&lt;</span><span class="nv">code</span><span class="o">&gt;</span>    <span class="nv">mov</span> <span class="nb">bx</span><span class="p">,</span> <span class="mh">0456H</span>
-</span><span class='line'>    <span class="nf">add</span> <span class="nb">ax</span><span class="p">,</span> <span class="nb">bx</span>
-</span><span class='line'>    <span class="nf">add</span> <span class="nb">ax</span><span class="p">,</span> <span class="nb">ax</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="nf">mov</span> <span class="nb">ax</span><span class="p">,</span> <span class="mh">4c00H</span>
-</span><span class='line'>    <span class="nf">int</span> <span class="mh">21H</span>
-</span><span class='line'><span class="err">&lt;/</span><span class="nf">code</span><span class="o">&gt;&lt;/</span><span class="nv">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="err">&lt;</span><span class="nf">p</span><span class="o">&gt;</span><span class="nv">codesg</span> <span class="nv">ends</span>
-</span><span class='line'><span class="nf">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<p>{% codeblock lang:nasm %}
+assume cs:codesg
+codesg segment
+start:  mov ax, 0123H</p>
+
+<pre><code>    mov bx, 0456H
+    add ax, bx
+    add ax, ax
+
+    mov ax, 4c00H
+    int 21H
+</code></pre>
+
+<p>codesg ends
+end
+{% endcodeblock %}
 汇编语言中有两种类型的指令，分别为<code>伪指令</code>和<code>汇编指令</code>。<code>segment和ends</code>是一对成对使用的<code>伪指令</code>，用来定义一个段。一个有意义的汇编程序至少有一个段，这个段用来存储程序。<code>end</code>是指定程序结束的标记。<code>assume</code>用于假设某个寄存器与<code>segment ends</code>指定的名称相关联。</p>
 
 <h2>第五章 [bx]和loop指令</h2>
@@ -376,53 +514,31 @@ CPU只认定由<code>CS：IP</code>指向内存单元中的内容为指令。</p
 <h2>第六章 包含多个段的程序</h2>
 
 <p>这章节主要介绍程序中可以有多个段，比如代码段、数据段和栈等，整个代码的架构可以使用下面的方式
-<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-</pre></td><td class='code'><pre><code class='nasm'><span class='line'><span class="nf">assume</span> <span class="nb">cs</span><span class="p">:</span><span class="nv">code</span><span class="p">,</span> <span class="nb">ds</span><span class="p">:</span><span class="nv">date</span><span class="p">,</span> <span class="nb">ss</span><span class="p">:</span><span class="nv">stack</span>
-</span><span class='line'><span class="nf">date</span> <span class="ow">seg</span><span class="nv">ment</span><span class="o">&lt;/</span><span class="nv">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="err">&lt;</span><span class="nf">pre</span><span class="o">&gt;&lt;</span><span class="nv">code</span><span class="o">&gt;</span><span class="nv">dw</span> <span class="mh">0123H</span><span class="p">,</span> <span class="mh">0234H</span><span class="p">,</span> <span class="mh">0123H</span>
-</span><span class='line'><span class="err">&lt;/</span><span class="nf">code</span><span class="o">&gt;&lt;/</span><span class="nv">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="err">&lt;</span><span class="nf">p</span><span class="o">&gt;</span><span class="nv">date</span> <span class="nv">ends</span>
-</span><span class='line'><span class="nf">stack</span> <span class="ow">seg</span><span class="nv">ment</span><span class="o">&lt;/</span><span class="nv">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="err">&lt;</span><span class="nf">pre</span><span class="o">&gt;&lt;</span><span class="nv">code</span><span class="o">&gt;</span><span class="nv">dw</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="mi">0</span>
-</span><span class='line'><span class="err">&lt;/</span><span class="nf">code</span><span class="o">&gt;&lt;/</span><span class="nv">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="err">&lt;</span><span class="nf">p</span><span class="o">&gt;</span><span class="nv">stack</span> <span class="nv">ends</span>
-</span><span class='line'><span class="nf">code</span> <span class="ow">seg</span><span class="nv">ment</span>
-</span><span class='line'><span class="nl">start:</span>  <span class="nf">code</span> <span class="nv">here</span><span class="o">&lt;/</span><span class="nv">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="err">&lt;</span><span class="nf">pre</span><span class="o">&gt;&lt;</span><span class="nv">code</span><span class="o">&gt;</span>    <span class="err">&quot;</span>
-</span><span class='line'>    <span class="err">&quot;</span>
-</span><span class='line'>    <span class="err">&quot;</span>
-</span><span class='line'><span class="err">&lt;/</span><span class="nf">code</span><span class="o">&gt;&lt;/</span><span class="nv">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="err">&lt;</span><span class="nf">p</span><span class="o">&gt;</span><span class="nv">code</span> <span class="nv">ends</span>
-</span><span class='line'><span class="nf">end</span> <span class="nv">start</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+{% codeblock lang:nasm %}
+assume cs:code, ds:date, ss:stack
+date segment</p>
+
+<pre><code>dw 0123H, 0234H, 0123H
+</code></pre>
+
+<p>date ends
+stack segment</p>
+
+<pre><code>dw 0, 0, 0,0
+</code></pre>
+
+<p>stack ends
+code segment
+start:  code here</p>
+
+<pre><code>    "
+    "
+    "
+</code></pre>
+
+<p>code ends
+end start
+{% endcodeblock %}</p>
 
 <h2>第七章 更灵活的定位内存地址的方法</h2>
 
@@ -558,121 +674,6 @@ CPU只认定由<code>CS：IP</code>指向内存单元中的内容为指令。</p
 
 <p>CPU通过端口和外部设备进行联系。<br/>
 一共有两类中断，<kbd>可屏蔽中断</kbd>和<kbd>不可屏蔽中断</kbd>。不可屏蔽中断用的中断号固定为2。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[一个操作系统的实现笔记]]></title>
-    <link href="http://xiongbupt.github.com/blog/2012/06/05/os_impletion/"/>
-    <updated>2012-06-05T00:00:00+08:00</updated>
-    <id>http://xiongbupt.github.com/blog/2012/06/05/os_impletion</id>
-    <content type="html"><![CDATA[<p>下面的主要介绍的是Arch下面，对<a href="http://book.douban.com/subject/3735649/" title="一个操作系统的实现">Orange'S一个操作系统的实现</a>，这本书的笔记。</p>
-
-<h2>Arch下工具安装</h2>
-
-<p>文章介绍的汇编器为nasm，在arch下安装相当简单</p>
-
-<blockquote><p>pacman -S nasm</p></blockquote>
-
-<!--more-->
-
-
-<p>上面这条命令即可完成nasm汇编器的安装。对于虚拟机，使用的是bochs，在Arch下如果使用<code>pacman</code>安装的话，没有调试功能，对于后期的调试不方便。但是在Arch的AUR包中，已经有了bochs的调试版本，仅仅需要使用<code>yaourt -S bochs-with-debugger</code>即可将具有调试功能的bochs虚拟机安装上。</p>
-
-<p>在完成上述操作后，该书介绍的基本工具便已经完备了，接下来便是对bochs进行配置了。</p>
-
-<h2>bochs配置</h2>
-
-<p>bochs的示例配置文件位于<code>/usr/share/doc/bochs/bochsrc-sample.txt</code>，将该配置文件拷贝出来，位于自己工作目录下，并重新命名为bochsrc。这样在每次启动bochs时，便没有必要使用<code>-f</code>来指定使用的配置文件名。</p>
-
-<p>按照书中的推荐配置，bochsrc-sample.txt文件很大，上面有很多不需要的配置选项，按照书中的指示，将bochsrc文件中配置精简为如下所示：</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>megs:   32
-</span><span class='line'>floppya: <span class="nv">1_44</span><span class="o">=</span>a.img, <span class="nv">status</span><span class="o">=</span>inserted
-</span><span class='line'>romimage: <span class="nv">file</span><span class="o">=</span>/usr/share/bochs/BIOS-bochs-latest
-</span><span class='line'>vgaromimage: <span class="nv">file</span><span class="o">=</span>/usr/share/bochs/VGABIOS-lgpl-latest
-</span><span class='line'>boot: floppy
-</span><span class='line'>log: bochsout.txt
-</span><span class='line'>mouse: <span class="nv">enabled</span><span class="o">=</span>0
-</span><span class='line'>keyboard_mapping: <span class="nv">enabled</span><span class="o">=</span>1, <span class="nv">map</span><span class="o">=</span>/usr/share/bochs/keymaps/x11-pc-us.map
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<h2>汇编文件编译及制作启动软盘</h2>
-
-<p>按照书中第一章节中的介绍，将启动软盘的代码敲入，然后使用nasm编译，使用bximage生成一个虚拟的软盘，接着使用dd工具将对应的编译生成的文件拷贝到相应的软盘工具中。接下来的工作按照书中介绍的内容继续即可。</p>
-
-<h2>附录：汇编代码</h2>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-</pre></td><td class='code'><pre><code class='nasm'><span class='line'><span class="err">&lt;/</span><span class="nf">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="err">&lt;</span><span class="nf">pre</span><span class="o">&gt;&lt;</span><span class="nv">code</span><span class="o">&gt;</span><span class="nv">org</span>     <span class="mh">07c00h</span>
-</span><span class='line'><span class="nf">mov</span>     <span class="nb">ax</span><span class="p">,</span> <span class="nb">cs</span>
-</span><span class='line'><span class="nf">mov</span>     <span class="nb">ds</span><span class="p">,</span> <span class="nb">ax</span>
-</span><span class='line'><span class="nf">mov</span>     <span class="nb">es</span><span class="p">,</span> <span class="nb">ax</span>
-</span><span class='line'><span class="nf">call</span>    <span class="nb">Disp</span><span class="nv">Str</span>
-</span><span class='line'><span class="nf">jmp</span>     <span class="kc">$</span>       <span class="c1">;jump to this line, be a dead loop</span>
-</span><span class='line'><span class="err">&lt;/</span><span class="nf">code</span><span class="o">&gt;&lt;/</span><span class="nv">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="err">&lt;</span><span class="nf">p</span><span class="o">&gt;</span><span class="nb">Disp</span><span class="nv">Str</span><span class="p">:</span><span class="o">&lt;/</span><span class="nv">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="err">&lt;</span><span class="nf">pre</span><span class="o">&gt;&lt;</span><span class="nv">code</span><span class="o">&gt;</span><span class="nv">mov</span>     <span class="nb">ax</span><span class="p">,</span> <span class="nv">BootMessage</span>
-</span><span class='line'><span class="nf">mov</span>     <span class="nb">bp</span><span class="p">,</span> <span class="nb">ax</span>
-</span><span class='line'><span class="nf">mov</span>     <span class="nb">cx</span><span class="p">,</span> <span class="mi">16</span>      <span class="c1">;the length of string</span>
-</span><span class='line'><span class="nf">mov</span>     <span class="nb">ax</span><span class="p">,</span> <span class="mh">01301h</span>  <span class="c1">;make the font on the screen</span>
-</span><span class='line'><span class="nf">mov</span>     <span class="nb">bx</span><span class="p">,</span> <span class="mh">000ch</span>
-</span><span class='line'><span class="nf">mov</span>     <span class="nb">dl</span><span class="p">,</span> <span class="mi">0</span>
-</span><span class='line'><span class="nf">int</span>     <span class="mh">10h</span>
-</span><span class='line'><span class="nf">ret</span>
-</span><span class='line'><span class="err">&lt;/</span><span class="nf">code</span><span class="o">&gt;&lt;/</span><span class="nv">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="err">&lt;</span><span class="nf">p</span><span class="o">&gt;</span><span class="nv">BootMessage</span><span class="p">:</span>        <span class="nv">db</span>      <span class="s">&quot;Hello, Os world!&quot;</span>
-</span><span class='line'><span class="kd">times</span>   <span class="mi">510</span><span class="o">-</span><span class="p">(</span><span class="kc">$</span><span class="o">-</span><span class="kc">$$</span><span class="p">)</span>  <span class="nv">db</span>  <span class="mi">0</span>
-</span><span class='line'><span class="kd">dw</span>      <span class="mh">0xaa55</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Git server]]></title>
-    <link href="http://xiongbupt.github.com/blog/2012/05/31/git/"/>
-    <updated>2012-05-31T00:00:00+08:00</updated>
-    <id>http://xiongbupt.github.com/blog/2012/05/31/git</id>
-    <content type="html"><![CDATA[<h1>小型系统下GIT安装使用</h1>
-
-<p><a href="http://blog.prosight.me/index.php/2009/11/485">参考博客</a></p>
 ]]></content>
   </entry>
   

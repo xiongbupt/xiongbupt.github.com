@@ -4,7 +4,7 @@
   <title><![CDATA[Keep Learning]]></title>
   <link href="http://xiongbupt.github.com/atom.xml" rel="self"/>
   <link href="http://xiongbupt.github.com/"/>
-  <updated>2012-06-10T20:54:39+08:00</updated>
+  <updated>2012-06-11T15:16:38+08:00</updated>
   <id>http://xiongbupt.github.com/</id>
   <author>
     <name><![CDATA[Xiongbupt]]></name>
@@ -12,6 +12,160 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[UTICODE编码记录]]></title>
+    <link href="http://xiongbupt.github.com/blog/2012/06/11/uticodebian-ma-ji-lu/"/>
+    <updated>2012-06-11T11:29:00+08:00</updated>
+    <id>http://xiongbupt.github.com/blog/2012/06/11/uticodebian-ma-ji-lu</id>
+    <content type="html"><![CDATA[<p>今天查看师兄以前写的笔记，中间看到一个UNICODE和UTF-8编码的内容，于是在网上找了下资料，现在对这点有一点点了解，主要参考了<a href="http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html">阮老师的这篇文章</a>，先记录下笔记吧。</p>
+
+<h2>UNICODE编码由来</h2>
+
+<p>在20世纪60年代，美国指定了ASCII编码体系，将英语字符与二进制位的关系做了统一的规定，这就是ASCII编码，并且一直沿用到今天。ASCII一共规定了128个字符的编码，只占用了一个字节的后7位，最高位始终为0。</p>
+
+<p>但是不同的国家的字符符号不一样，为了适应这种情况，就出现了UNICODE。<br/>
+UNICODE目前可以容纳100多万个符号，每个符号的编码都不一样。</p>
+
+<!--more-->
+
+
+<h2>UNICODE的问题</h2>
+
+<p>UNCIDOE仅仅是一个符号集，它仅仅规定了符号的二进制代码，并没有规定符号如何存储。这就造成了下面两种结果：</p>
+
+<ul>
+<li>出现了UNICODE的多种存储方式；</li>
+<li>UNICODE在很长时间无法推广，直到互联网出现。</li>
+</ul>
+
+
+<h2>UTF-8</h2>
+
+<p>目前UTF-8（UCS Transformation Format-8-bit）是互联网使用最广的一种编码，在<a href="http://en.wikipedia.org/wiki/UTF-8" title="WIKI UTF-8">WIKI</a>上其说明UTF-8是为了向后兼容ASCII码，同时也是为了避免在UTF-16和UTF-32中出现的复杂的大端序、小端序和字节符号序列，具统计目前有超过一半的Web网页使用的是UTF-8编码格式。IETF工作组也要求所有的网络协议表明字符集所使用的编码并且要求必须支持UTF-8。</p>
+
+<p>最开始UTF-8的设计图可以在下表中清晰的反应出来：</p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="right">Bits</th>
+<th align="left">Last Code Point</th>
+<th align="center">Byte 1</th>
+<th align="center">Byte 2</th>
+<th align="center">Byte 3</th>
+<th align="center">Byte 4</th>
+<th align="center">Byte 5</th>
+<th align="center">Byte 6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td align="right">7   </td>
+<td align="left">U+007F     </td>
+<td align="center">0xxxxxxx</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td align="right">11  </td>
+<td align="left">U+07FF     </td>
+<td align="center">110xxxxx</td>
+<td align="center">10xxxxxx</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td align="right">16  </td>
+<td align="left">U+FFFF     </td>
+<td align="center">1110xxxx</td>
+<td align="center">10xxxxxx</td>
+<td align="center">10xxxxxx</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td align="right">21  </td>
+<td align="left">U+1FFFFF   </td>
+<td align="center">11110xxx</td>
+<td align="center">10xxxxxx</td>
+<td align="center">10xxxxxx</td>
+<td align="center">10xxxxxx</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td align="right">25  </td>
+<td align="left">U+3FFFFFF  </td>
+<td align="center">111110xx</td>
+<td align="center">10xxxxxx</td>
+<td align="center">10xxxxxx</td>
+<td align="center">10xxxxxx</td>
+<td align="center">10xxxxxx</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td align="right">31  </td>
+<td align="left">U+7FFFFFFF </td>
+<td align="center">1111110x</td>
+<td align="center">10xxxxxx</td>
+<td align="center">10xxxxxx</td>
+<td align="center">10xxxxxx</td>
+<td align="center">10xxxxxx</td>
+<td align="center">10xxxxxx|</td>
+</tr>
+</tbody>
+</table>
+
+
+<p>最开始UTF-8的设计如上图所示，但是在<a href="http://tools.ietf.org/html/rfc3629" title="rfc3629">RFC 3629</a>中UTF-8被截短了，目前UTF-8的最大值为U+10FFFF，因此所有的5字节和6字节的编码都被取消掉了。</p>
+
+<p>UTF-8的编码即是将UNICODE对应的编码值以上表的方式编码出来即可。因此所有的ASCII码都是以一个字节的方式编码，其他的字符集会根据对应的UNICODE的编码值进行编码。比如<code>美</code>对应的UNICODE的值为7F8E，在上表中可以查看出其使用3字节编码即可，7F8E的二进制表示为0111 1111 1000 1110因此其UTF-8的编码为E7 BE 8E。就是将UNICODE的二进制值填充到UTF-8中的x上，完成编码。 <br/>
+注意，UTF-8仅仅是UNICODE的一种编码方式。</p>
+
+<h2>UTF-8的bomb字符</h2>
+
+<p>在编辑器打开一个文本文件时，其是怎么判断打开文件的编码格式？下面是个人的理解，编辑器应该会对打开的文件进行编码猜测，但是如果文件没有提供对应的编码标志的话，其就会按照自己的猜测文件编码格式将文本文件打开。如果编辑器猜测的编码与文件的实际编码不一致，就会出现乱码现象。但是如果文本文件提供了自身的编码方式，并且编辑器也可以理解即解释这种编码方式的话，应该就可以将文本文件按照正确的形式显现出来。</p>
+
+<p>上面的那段主要是为了引出UTF-8的bomb字符。参考<a href="http://www.i-alive.com/post/8/">这篇博客</a>，可以知道UTF-8的bomb为字符：EF BB BF。按照文中的方式，在VIM中使用16进制的方式<kbd>:%!xxd</kbd>，将文本文件打开，可以看出对应文字的UTF-8编码，在自己的环境下，使用的是UTF-8的编码格式，VIM似乎就已经将该bomb值去掉了。但是通过设置<kbd>:set bomb</kbd>可以将bomb保留，通过<kbd>:set nobomb</kbd>可以将文件的bomb去除。</p>
+
+<p>在这种情形下想到以前从Linux系统向Windows系统下拷贝文本文件时，有时候会出现乱码现象，猜想会不会是由于VIM将文件的bomb去除了，而Windows使用的编码默认不是UTF-8编码，其编辑器猜测编码的格式猜测错了，导致乱码，于是在Linux系统下拷贝了两个简单的带有汉字的文件到Windows系统下，这两个文件分别使用<kbd>:set bomb</kbd>和<kbd>:set nobomb</kbd>的方式将UTF-8的编码信息保留和去除。</p>
+
+<p>在Windows下使用记事本打开这两个文件时，汉字都可以正常的显示，但是由于Linux和Windows的换行方式不一致，会出现一些黑的方框；在写字板中打开文件时，带有bomb编码信息的文本文件可以正常的显示汉字，但是去除了bomb信息的文本文件出现了乱码。</p>
+
+<p>上面的现象应该可以说明Windows下面的记事本猜测编码格式正确，但是写字板猜测错误，可写字板对Linux下的换行符可以正常的显示。如果为了在Windows下正确的打开Linux下带有中文字符的文本文件，同时换行符也正常显示的话，可以在保存文件之前输入<kbd>:set bomb</kbd>将文本文件的编码格式保存下。</p>
+
+<h3>附录</h3>
+
+<p>VIM中使用16进制的方式打开文件 <kbd>:%!xxd</kbd>   <br/>
+VIM中在打开16进制的方式中编辑完文件之后保存 <kbd>:%!xxd -r</kbd>  <br/>
+VIM保存UTF-8文件的bomb信息 <kbd>:set bomb</kbd>   <br/>
+VIM中去除文件的bomb信息 <kbd>:set nobomb</kbd>    <br/>
+UTF－8：一个汉字＝3个字节</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[OS实现之保护模式]]></title>
+    <link href="http://xiongbupt.github.com/blog/2012/06/10/osshi-xian-zhi-bao-hu-mo-shi/"/>
+    <updated>2012-06-10T20:57:00+08:00</updated>
+    <id>http://xiongbupt.github.com/blog/2012/06/10/osshi-xian-zhi-bao-hu-mo-shi</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[nasm摘要]]></title>
@@ -4077,886 +4231,6 @@ ex1：</p>
 
 
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Markdown基本使用]]></title>
-    <link href="http://xiongbupt.github.com/blog/2012/05/23/markdown-syntax/"/>
-    <updated>2012-05-23T00:00:00+08:00</updated>
-    <id>http://xiongbupt.github.com/blog/2012/05/23/markdown-syntax</id>
-    <content type="html"><![CDATA[<h2>链接</h2>
-
-<p>如果需要在页面插入链接，使用尖括号&lt;>括起来便可以了。</p>
-
-<p>如果需要为一段文字加上链接，使用如下方式
-<a href="http://www.google.com">文字,google</a> （ <a> href=&#8221;http://&#8221; </a></p>
-
-<p>为链接加上标题可如下所示
-<a href="http://www.google.com" title="对应的标题">文字，google</a></p>
-
-<p><a href="http://www.google.com">链接</a>
-按照上述方式，在文章中另起一行，通常是在文章的末尾，添加</p>
-
-<pre><code>[lable1]:http://www.google.com
-</code></pre>
-
-<p>将对应的链接完成即可。注意使用的是中括号和一个冒号，后面添加对应的链接地址。</p>
-
-<!--more-->
-
-
-<p>同样也可以使用链接和标题的方式</p>
-
-<h2>图片</h2>
-
-<p><img src="%E5%AF%B9%E5%BA%94%E7%9A%84%E5%9B%BE%E7%89%87%E7%9A%84%E5%9C%B0%E5%9D%80" title="标签" alt="插入图片" />
-<img src="www.google.com" alt="" title="描述"></p>
-
-<h2>标题格式</h2>
-
-<p>通过输入####来确定标题格式，一共有6级
-或者是使用====和&#8212;-来确定标题。后面这种只能提供两种级别的。</p>
-
-<h1> </h1>
-
-
-<h2>粗体和斜体</h2>
-
-<p>文字两边各加一个星号( * )或者下划线（ _ )表示斜体。
-各加对应的两个符号表示粗体。
-各加对应的三个符号表示粗斜体。
-<strong> 粗体</strong>
-<em>斜体</em>
-<strong><em> 粗斜体</em></strong></p>
-
-<h2>引用内容</h2>
-
-<p>使用>（大于号）即可，相当于html中的blockquote</p>
-
-<blockquote><p>引用</p></blockquote>
-
-<blockquote>引用</blockquote>
-
-
-<h2>原文输出</h2>
-
-<pre><code>如果一段文字已经有序，或者包含有html中的语法，不想让其再进行解释，只需要将这些文字缩进至少四个空格或一个Tab宽度即可。它对应着html中的&lt;pre&gt;标签。
-</code></pre>
-
-<p>比如下面的例子</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'>  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;hello world&quot;</span><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<pre>
-<code>
-printf("hello world");
-</code>
-</pre>
-
-
-<h2>列表</h2>
-
-<p>html中的两种列表分别为无序列表和有序列表，分别使用  <ul></ul> 和<ol></ol>括起来。
-在markdown中，对于无序列表，只需要在列表前面加上一个星号( * )、或加号( + )、或减号( - )即可。
-* first
-* second
-- third
-+ fourth</p>
-
-<p>对应的html代码为</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;ul&gt;</span>
-</span><span class='line'><span class="nt">&lt;li&gt;</span>first<span class="nt">&lt;/li&gt;</span>
-</span><span class='line'><span class="nt">&lt;li&gt;</span>second<span class="nt">&lt;/li&gt;</span>
-</span><span class='line'><span class="nt">&lt;/ul&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<ul>
-<li>first</li>
-<li>second</li>
-</ul>
-
-
-<p>对于有序列表，只需要在第一条前添加一个数字，后跟一个英文句号，次好即可仍旧使用加或星或减。无论第一个条目前加的数字是什么，列表都会从1开始计数。</p>
-
-<ol>
-<li>第1条</li>
-<li>第2条</li>
-<li>第3条abc</li>
-<li>第4条</li>
-<li>第5条</li>
-</ol>
-
-
-<p>对应的html代码</p>
-
-<ol>
-<li>第一条</li>
-<li>第2条</li>
-</ol>
-
-
-
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;ol&gt;</span>
-</span><span class='line'><span class="nt">&lt;li&gt;</span>第一条<span class="nt">&lt;/li&gt;</span>
-</span><span class='line'><span class="nt">&lt;li&gt;</span>第2条<span class="nt">&lt;/li&gt;</span>
-</span><span class='line'><span class="nt">&lt;/ol&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>转义符</h2>
-
-<p>在markdown中使用&#8221;&#34;来实现转义。
-比如
-<a href="http://www.google.com">链接</a>
-在加上转义之后变为<br/>
-[链接](http://www.google.com)</p>
-
-<p>比如*号的输出，为了输出三个星号
-***输出3个星号***</p>
-
-<h2>HTML实体</h2>
-
-<p>在HTML中有两个特殊含义的字符，分别是&#8221;&lt; &#8220;和&#8221; &amp; &#8221;</p>
-
-<h2>换行符</h2>
-
-<p>在一行的末尾使用两个以上的空格表示HTML中的一个换行符“&lt;br/>&#8221;</p>
-
-<pre><code>&lt;br/&gt;表示换行符
-</code></pre>
-
-<h2>段落</h2>
-
-<pre><code>在HTML中，使用”&lt;p&gt;&lt;/p&gt;“括起来的内容称为一个段落。在markdonw中，两段之间有一个空行就可以在翻译的时候翻译成一个段落。
-</code></pre>
-
-<h2>水平线</h2>
-
-<pre><code>HTML中，“&lt;hr/&gt;"标记可以在页面中输出一条横线，在Markdonw中，使用三个以上的星号”*“或减号"-"可以起到同样的作用。
-</code></pre>
-
-<p>星号和减号之间可以有空格；如果减号没有空格，必须在一个段落中，即在含有三个以上无空格分隔的减号的行的前后都要有一个空行。</p>
-
-<p>比如下面的<br/>
-google</p>
-
-<hr />
-
-<p>google</p>
-
-<p>与</p>
-
-<p>google</p>
-
-<hr />
-
-<p>google</p>
-
-<p>google</p>
-
-<hr />
-
-<p>google</p>
-
-<p>对应的HTML代码均为</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'>    <span class="nt">&lt;p&gt;</span>google<span class="nt">&lt;/p&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;hr/&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;p&gt;</span>google<span class="nt">&lt;/p&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<p>google</p>
-
-
-<hr/>
-
-
-<p>google</p>
-
-
-<p>google</p>
-
-<hr />
-
-<p>google</p>
-
-<h2>嵌套</h2>
-
-<p>在markdown中可以使用嵌套。
-比如下面的代码</p>
-
-<blockquote><p>google</p>
-
-<blockquote><p>google
-对应的html标签为</p></blockquote></blockquote>
-
-<blockquote>
-<p>google</p>
-
-<blockquote>
-<p>google</p>
-</blockquote>
-
-</blockquote>
-
-
-
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;blockquote&gt;</span>
-</span><span class='line'><span class="nt">&lt;p&gt;</span>google<span class="nt">&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;blockquote&gt;</span>
-</span><span class='line'><span class="nt">&lt;p&gt;</span>google<span class="nt">&lt;/p&gt;</span>
-</span><span class='line'><span class="nt">&lt;/blockquote&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;/blockquote&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>表示HTML中的    <code>"&lt;code&gt;"</code>标记的`同样可以嵌套。如果希望插入一个该符号而不愿意被翻译成为<code>"&lt;code&gt;"</code>，可以使用&#8221;`&#8221;</p>
-
-<p><code>`</code>
-html代码为</p>
-
-<p><code>`</code></p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;code&gt;</span>&#39;<span class="nt">&lt;/code&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>c语言测试</h2>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cp">#include &lt;stdio.h&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">9527</span><span class="p">;</span>
-</span><span class='line'>  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Your ID: %d&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
-</span><span class='line'>  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>bash测试</h2>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd</span> ~
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>语法高亮简述</h2>
-
-<p>使用pygmentize生成对应的css文件，然后在default.html中修改文件，使用对应的css文件，即可开启语法高亮。</p>
-
-<pre>
-<code>
-    { % highlight bash linenos % }
-    { % endhighlight % }
-</code>
-</pre>
-
-
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Learning SQL(ch4-ch6)]]></title>
-    <link href="http://xiongbupt.github.com/blog/2012/05/23/learning-sql/"/>
-    <updated>2012-05-23T00:00:00+08:00</updated>
-    <id>http://xiongbupt.github.com/blog/2012/05/23/learning-sql</id>
-    <content type="html"><![CDATA[<h2>CH4 过滤</h2>
-
-<p>在所有的SQL数据处理语句中（insert语句除外）都包含了可选的where子句，其中的过滤条件限制了SQL语句所需要的行数。select子句中包含的having子句也可以对分组数据进行条件过滤。</p>
-
-<h3>条件评估</h3>
-
-<h4>使用圆括号</h4>
-
-<p>当含有多个条件时，各个条件应该使用圆括号括起来。</p>
-
-<!--more-->
-
-
-<h4>使用not操作符</h4>
-
-<p>一般用的较少，相当于取反的操作。</p>
-
-<h3>构建条件</h3>
-
-<p>条件通常是由1个或多个包含1个到多个操作符的表达式构成。
-表达式的组成包括：</p>
-
-<ul>
-<li>数字</li>
-<li>表或视图中的列</li>
-<li>字符串</li>
-<li>内建函数，比如函数concat(&#8216;Learning&#8217;, &#8216;SQL&#8217;)</li>
-<li>子查询</li>
-<li>表达式列表</li>
-<li>比较操作符，比如=, !=, &lt;, >, &lt;>, LIKE, IN 和BEWEEN。</li>
-<li>算术操作符，比如+, -, *和/</li>
-</ul>
-
-
-<h3>条件类型</h3>
-
-<h4>相等条件</h4>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span><span class="k">SELECT</span> <span class="n">pt</span><span class="p">.</span><span class="n">name</span> <span class="n">product_type</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">name</span> <span class="n">product</span>
-</span><span class='line'><span class="o">-&gt;</span><span class="k">FROM</span> <span class="n">product</span> <span class="n">p</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">product_type</span> <span class="n">pt</span>
-</span><span class='line'><span class="o">-&gt;</span><span class="k">ON</span> <span class="n">p</span><span class="p">.</span><span class="n">product_type_cd</span> <span class="o">=</span> <span class="n">pt</span><span class="p">.</span><span class="n">product_type_cd</span>
-</span><span class='line'><span class="o">-&gt;</span><span class="k">WHERE</span> <span class="n">pt</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Customer Accounts&#39;</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>不等条件</h4>
-
-<p>构造不等条件时，可以从<code>!=</code>或者<code>&lt;&gt;</code>中任选一个</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span><span class="k">SELECT</span> <span class="n">pt</span><span class="p">.</span><span class="n">name</span> <span class="n">product_type</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">name</span> <span class="n">product</span>
-</span><span class='line'><span class="o">-&gt;</span><span class="k">FROM</span> <span class="n">product</span> <span class="n">p</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">product_type</span> <span class="n">pt</span>
-</span><span class='line'><span class="o">-&gt;</span><span class="k">ON</span> <span class="n">p</span><span class="p">.</span><span class="n">product_type_cd</span> <span class="o">=</span> <span class="n">pt</span><span class="p">.</span><span class="n">product_type_cd</span>
-</span><span class='line'><span class="o">-&gt;</span><span class="k">WHERE</span> <span class="n">pt</span><span class="p">.</span><span class="n">name</span> <span class="o">&lt;&gt;</span> <span class="s1">&#39;Customer Accounts&#39;</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>范围条件</h4>
-
-<p>使用&lt;，>等来构造范围</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">emp_id</span><span class="p">,</span> <span class="n">fname</span><span class="p">,</span> <span class="n">lname</span><span class="p">,</span> <span class="n">start_date</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">employee</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">start_date</span> <span class="o">&lt;</span> <span class="s1">&#39;2007-01-01&#39;</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">emp_id</span><span class="p">,</span> <span class="n">fname</span><span class="p">,</span> <span class="n">lname</span><span class="p">,</span> <span class="n">start_date</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">employee</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">start_date</span> <span class="o">&lt;</span> <span class="s1">&#39;2007-01-01&#39;</span><span class="p">;</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">AND</span> <span class="n">start_date</span> <span class="o">&gt;</span> <span class="s1">&#39;2005-01-01&#39;</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h5>使用BETWEEN条件符</h5>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">emp_id</span><span class="p">,</span> <span class="n">fname</span><span class="p">,</span> <span class="n">lname</span><span class="p">,</span> <span class="n">start_date</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">employee</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">start_date</span> <span class="k">BETWEEN</span> <span class="s1">&#39;2005-01-01&#39;</span> <span class="k">AND</span> <span class="s1">&#39;2007-01-01&#39;</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>注意BETWEEN后面的数的取值，紧接着的那个数应该小于AND后面的那个数，同时，这是一个闭区间。比如BETWEEN a AND b，则取值范围为[a,b]。</p>
-
-<p>使用BEWTEEN可以查询日期范围、数字范围，同时也可以查询字符串的范围。</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">account_id</span> <span class="p">,</span> <span class="n">product_cd</span><span class="p">,</span> <span class="n">cust_id</span> <span class="p">,</span> <span class="n">avail_balance</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">account</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">avail_balance</span> <span class="k">BETWEEN</span> <span class="mi">3000</span> <span class="k">AND</span> <span class="mi">5000</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>成员条件</h4>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">account_id</span><span class="p">,</span> <span class="n">product_cd</span><span class="p">,</span> <span class="n">cust_id</span><span class="p">,</span> <span class="n">avail_balance</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">account</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">product_cd</span> <span class="o">=</span> <span class="s1">&#39;CHK&#39;</span> <span class="k">OR</span> <span class="n">product_cd</span> <span class="o">=</span> <span class="s1">&#39;SAV&#39;</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">OR</span> <span class="n">product_cd</span> <span class="o">=</span> <span class="s1">&#39;CD&#39;</span> <span class="k">OR</span> <span class="n">product_cd</span> <span class="o">=</span> <span class="s1">&#39;MM&#39;</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>使用in来代替上面的多个输入</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">account_id</span><span class="p">,</span> <span class="n">product_cd</span><span class="p">,</span> <span class="n">cust_id</span><span class="p">,</span> <span class="n">avail_balance</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">account</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">product_cd</span> <span class="k">IN</span> <span class="p">(</span><span class="s1">&#39;CHK&#39;</span><span class="p">,</span> <span class="s1">&#39;SAV&#39;</span><span class="p">,</span> <span class="s1">&#39;CD&#39;</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>使用子查询</p>
-
-<p>使用not in</p>
-
-<h5>匹配条件</h5>
-
-<p>使用通配符</p>
-
-<table>
-<thead>
-<tr>
-<th></th>
-<th align="center">通配符</th>
-<th align="center">匹配</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td align="center">_</td>
-<td align="center">正好一个字符</td>
-</tr>
-<tr>
-<td></td>
-<td align="center">%</td>
-<td align="center">任意数字字符（包括0）</td>
-</tr>
-</tbody>
-</table>
-
-
-<p>使用正则表达式<br/>
-REGEXP</p>
-
-<h3>null关键字</h3>
-
-<p>null的使用场合包括如下几种</p>
-
-<ul>
-<li><strong>没有合适的值</strong></li>
-<li><strong>值未确定</strong></li>
-<li><strong>值未定义</strong></li>
-</ul>
-
-
-<p>当使用null时必须牢记以下两点</p>
-
-<ul>
-<li>表达式可以为null，但是不能等于null;</li>
-<li>两个null值彼此不能判断为相等。</li>
-</ul>
-
-
-<h2>CH5 多表查询</h2>
-
-<p>将位于两个表中的数据通过一个相同的关键字整合到一起的机制便是连接（<strong>join</strong>）。本章主要描述的是内连接（<strong>INNER JOIN</strong>）。</p>
-
-<h3>什么是连接</h3>
-
-<p>使用两个不同表中的列，这两个列的值是对应的，即这两个表中该列的值是相同的。通过使用这一列，从而实现在同一查询的结果集中包含来自两个表的列，这个操作被称为连接。</p>
-
-<h4>笛卡尔积</h4>
-
-<p>在<code>FROM</code>子句中包含两个表，并且使用<code>JOIN</code>隔开。如下所示：</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">e</span><span class="p">.</span><span class="n">fname</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">lname</span><span class="p">,</span> <span class="n">d</span><span class="p">.</span><span class="n">name</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">employee</span> <span class="n">e</span> <span class="k">JOIN</span> <span class="n">department</span> <span class="n">d</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>上面将会将这两个表中选出的东西做交叉乘积，类似于笛卡尔积的方式将返回结果。</p>
-
-<pre><code> &gt;笛卡尔积基本概念
- 有两个集合A,B，对于任意元素a属于A，元素b属于B。这两个集合的笛卡尔积表示的是C{c=(a,b)|a属于A，b属于B}
-</code></pre>
-
-<p>因此上述的结果与笛卡尔积的结果类似，不属于同一个表的两个结果返回。上面这种连接被称为交叉连接（<code>cross join</code>），在实际中用的较少。</p>
-
-<h4>内连接</h4>
-
-<p>为了将表的结果返回一个对应的值，需要使用内连接（<code>INNER JOIN</code>）。通过添加<code>ON</code>子句并可以达到这个目的。在使用内连接（<code>INNER JOIN</code>）时，如果两个表中出现了一个表中有而另一个表中对应的元素是缺失的情况下，将会把该对应的行去除。如果需要显示，需要使用外连接（<code>OUTER JOIN</code>），在后面会进行详细描述。
-下面是个例子</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">e</span><span class="p">.</span><span class="n">fname</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">lname</span><span class="p">,</span> <span class="n">d</span><span class="p">.</span><span class="n">name</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">employee</span> <span class="n">e</span> <span class="k">JOIN</span> <span class="n">department</span> <span class="n">d</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">ON</span> <span class="n">e</span><span class="p">.</span><span class="n">dept_id</span> <span class="o">=</span> <span class="n">d</span><span class="p">.</span><span class="n">dept_id</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>在上面的例子中，没有显示的指明是否为内连接，在默认的情况下是内连接，但是最好增加关键词<code>INNER</code>。如下所示：</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">e</span><span class="p">.</span><span class="n">fname</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">lname</span><span class="p">,</span> <span class="n">d</span><span class="p">.</span><span class="n">name</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">employee</span> <span class="n">e</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">department</span> <span class="n">d</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">ON</span> <span class="n">e</span><span class="p">.</span><span class="n">dept_id</span> <span class="o">=</span> <span class="n">d</span><span class="p">.</span><span class="n">dept_id</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>如果连接的两个表的列名是相同的，可以使用<code>USING</code>子句来代替<code>ON</code>子句，如下所示：</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">e</span><span class="p">.</span><span class="n">fname</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">lname</span><span class="p">,</span> <span class="n">d</span><span class="p">.</span><span class="n">name</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">employee</span> <span class="n">e</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">department</span> <span class="n">d</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">USING</span> <span class="p">(</span><span class="n">dept_id</span><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>ANSI连接语法</h4>
-
-<p>下面是一个使用旧语法的例子，在这个例子中没有<code>ON</code>子句，在<code>FROM</code>子句中定义各表的别名，并使用逗号隔开，然后在<code>WHERE</code>子句中包含连接条件。</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">e</span><span class="p">.</span><span class="n">fname</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">lname</span><span class="p">,</span> <span class="n">d</span><span class="p">.</span><span class="n">name</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">employee</span> <span class="n">e</span><span class="p">,</span> <span class="n">department</span> <span class="n">d</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">e</span><span class="p">.</span><span class="n">dept_id</span> <span class="o">=</span> <span class="n">d</span><span class="p">.</span><span class="n">dept_id</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>但是ANSI连接语法的优势如下：</p>
-
-<ul>
-<li>连接条件和过滤条件被分隔到两个子句（<code>ON</code>子句和<code>WHERE</code>子句），使查询语句更易理解；</li>
-<li>每两个表之间的连接条件都在它们自己的<code>ON</code>子句中列出，这样不容易错误地忽略了某些连接条件；</li>
-<li>使用SQL92连接语法的查询语句具有通用性。</li>
-</ul>
-
-
-<p>例子如下所示：</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">a</span><span class="p">.</span><span class="n">account_id</span><span class="p">,</span> <span class="n">a</span><span class="p">.</span><span class="n">cust_id</span><span class="p">,</span> <span class="n">a</span><span class="p">.</span><span class="n">open_date</span><span class="p">,</span> <span class="n">a</span><span class="p">.</span><span class="n">product_cd</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">account</span> <span class="n">a</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">employee</span> <span class="n">e</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">ON</span> <span class="n">a</span><span class="p">.</span><span class="n">open_emp_id</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">emp_id</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">branch</span> <span class="n">b</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">ON</span> <span class="n">e</span><span class="p">.</span><span class="n">assigned_branch_id</span> <span class="o">=</span> <span class="n">b</span><span class="p">.</span><span class="n">branch_id</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">e</span><span class="p">.</span><span class="n">start_date</span> <span class="o">&lt;</span> <span class="s1">&#39;2007-01-01&#39;</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">AND</span> <span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Teller&#39;</span> <span class="k">OR</span> <span class="n">e</span><span class="p">.</span><span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Head Teller&#39;</span><span class="p">)</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">AND</span> <span class="n">b</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Woburn Branch&#39;</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>连接3个或更多的表</h3>
-
-<p>两个表的连接中，<code>FROM</code>子句中包含了两个表名和一种连接类型，<code>ON</code>子句中指定两表是怎么连接的。
-对于三个表的连接中，<code>FROM</code>子句中包含了三个表名和两种连接类型，以及两个<code>ON</code>子句。
-两个表的例子：</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">select</span> <span class="n">a</span><span class="p">.</span><span class="n">account_id</span><span class="p">,</span> <span class="k">c</span><span class="p">.</span><span class="n">fed_id</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">account</span> <span class="n">a</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">customer</span> <span class="k">c</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">ON</span> <span class="n">a</span><span class="p">.</span><span class="n">cust_id</span> <span class="o">=</span> <span class="k">c</span><span class="p">.</span><span class="n">cust_id</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="k">c</span><span class="p">.</span><span class="n">cust_type_cd</span> <span class="o">=</span> <span class="s1">&#39;B&#39;</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>三个表的例子</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">a</span><span class="p">.</span><span class="n">account_id</span><span class="p">,</span> <span class="k">c</span><span class="p">.</span><span class="n">fed_id</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">fname</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">lname</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">account</span> <span class="n">a</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">customer</span> <span class="k">c</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">ON</span> <span class="n">a</span><span class="p">.</span><span class="n">cust_id</span> <span class="o">=</span> <span class="k">c</span><span class="p">.</span><span class="n">cust_id</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">employee</span> <span class="n">e</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">ON</span> <span class="n">a</span><span class="p">.</span><span class="n">open_emp_id</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">emp_id</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="k">c</span><span class="p">.</span><span class="n">cust_type_cd</span> <span class="o">=</span> <span class="s1">&#39;B&#39;</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>SQL是一种非过程化的语言，因此表的顺序不重要。如果需要对表的顺序进行强制规定，对于MySQL可以使用<code>STRAIGHT_JOIN</code>进行强制的规定。如下所示：</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">STRAIGHT_JOIN</span> <span class="n">a</span><span class="p">.</span><span class="n">account_id</span><span class="p">,</span> <span class="k">c</span><span class="p">.</span><span class="n">fed_id</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">fname</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">lname</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">account</span> <span class="n">a</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">customer</span> <span class="k">c</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">ON</span> <span class="n">a</span><span class="p">.</span><span class="n">cust_id</span> <span class="o">=</span> <span class="k">c</span><span class="p">.</span><span class="n">cust_id</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">employee</span> <span class="n">e</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">ON</span> <span class="n">a</span><span class="p">.</span><span class="n">open_emp_id</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">emp_id</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="k">c</span><span class="p">.</span><span class="n">cust_type_cd</span> <span class="o">=</span> <span class="s1">&#39;B&#39;</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>将子查询结果作为查询表</h4>
-
-<p>在使用这种方式的时候，将子<code>SELECT</code>语句返回的结果使用一个括号括起来，然后在后面添加一个别名，在前面使用<code>INNER JOIN</code>与该表连接，在后面使用<code>ON</code>子句进行连接。</p>
-
-<h4>连续两次使用同一表</h4>
-
-<p>在这种情况下，对同一个表使用两个不同的别名即可解决问题，其他的处理方式与两个不同的表的处理方式一样。</p>
-
-<h3>自连接</h3>
-
-<p>同样是表的别名，其他与多张不同的表一样。</p>
-
-<h3>相等连接和不等连接</h3>
-
-<p>除了可以使用等于号（=）之外还可以使用范围描述符。</p>
-
-<h3>连接条件和过滤条件</h3>
-
-<h2>CH6 使用集合</h2>
-
-<h3>集合理论</h3>
-
-<p>交（intersect)
-并（union）
-差（except）</p>
-
-<h3>示例</h3>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="mi">1</span> <span class="n">num</span><span class="p">,</span> <span class="s1">&#39;abc&#39;</span> <span class="n">str</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">UNION</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">SELECT</span> <span class="mi">9</span> <span class="n">num</span><span class="p">,</span> <span class="s1">&#39;efg&#39;</span> <span class="n">str</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>使用<code>SELECT</code>语句显示语句，然后使用<code>UNION</code>操作符将两个<code>SELECT</code>语句的内容进行并操作，在最终的结果中将会显示两行。</p>
-
-<h3>集合操作符</h3>
-
-<p>集合操作符包含两种修饰符，一个表示包含重复项，另一个表示去除重复项。</p>
-
-<h4><code>UNION</code>操作符</h4>
-
-<p><code>UNION ALL</code>保留重复项，<code>UNION</code>去除重复项。
-示例</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="s1">&#39;IND&#39;</span> <span class="n">type_cd</span><span class="p">,</span> <span class="n">cust_id</span><span class="p">,</span> <span class="n">lname</span> <span class="n">name</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">individual</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">UNION</span> <span class="k">ALL</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">SELECT</span> <span class="s1">&#39;BUS&#39;</span> <span class="n">type_cd</span><span class="p">,</span> <span class="n">cust_id</span><span class="p">,</span> <span class="n">name</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">business</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>示例2</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="s1">&#39;IND&#39;</span> <span class="n">type_cd</span><span class="p">,</span> <span class="n">cust_id</span><span class="p">,</span> <span class="n">lname</span> <span class="n">name</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">individual</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">UNION</span> <span class="k">ALL</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">SELECT</span> <span class="s1">&#39;BUS&#39;</span> <span class="n">type_cd</span><span class="p">,</span> <span class="n">cust_id</span><span class="p">,</span> <span class="n">name</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">business</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">UNION</span> <span class="k">ALL</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">SELECT</span> <span class="s1">&#39;BUS&#39;</span> <span class="n">type_cd</span><span class="p">,</span> <span class="n">cust_id</span><span class="p">,</span> <span class="n">name</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">business</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>示例3</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">emp_id</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">employee</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">assigned_branch_id</span> <span class="o">=</span> <span class="mi">2</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">AND</span> <span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="ss">&quot;Teller&quot;</span> <span class="k">OR</span> <span class="n">title</span> <span class="o">=</span> <span class="ss">&quot;Header Teller&quot;</span><span class="p">)</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">UNION</span> <span class="k">ALL</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">SELECT</span> <span class="k">DISTINCT</span> <span class="n">open_emp_id</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">account</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">open_branch_id</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>示例4</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">emp_id</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">employee</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">assigned_branch_id</span> <span class="o">=</span> <span class="mi">2</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">AND</span> <span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="ss">&quot;Teller&quot;</span> <span class="k">OR</span> <span class="n">title</span> <span class="o">=</span> <span class="ss">&quot;Header Teller&quot;</span><span class="p">)</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">UNION</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">SELECT</span> <span class="k">DISTINCT</span> <span class="n">open_emp_id</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">account</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">open_branch_id</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>intersect操作符</h4>
-
-<p>在MySQL中，没有实现intersect的操作。</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span> <span class="n">emp_id</span><span class="p">,</span> <span class="n">fname</span><span class="p">,</span> <span class="n">lname</span>
-</span><span class='line'><span class="k">FROM</span> <span class="n">employee</span>
-</span><span class='line'><span class="k">INTERSECT</span>
-</span><span class='line'><span class="k">SELECT</span> <span class="n">cust_id</span><span class="p">,</span> <span class="n">fname</span><span class="p">,</span> <span class="n">lname</span>
-</span><span class='line'><span class="k">FROM</span> <span class="n">individual</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>except操作符</h4>
-
-<p>MySQL中没有该操作符。</p>
-
-<h3>集合操作规则</h3>
-
-<h4>对复合查询结果排序</h4>
-
-<p>通常情况下，复合查询中两个查询对应列的名字是相同的，但是不是强制的，如下所示：</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">emp_id</span><span class="p">,</span> <span class="n">assigned_branch_id</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">employee</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Teller&#39;</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">UNION</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">SELECT</span> <span class="n">open_emp_id</span><span class="p">,</span> <span class="n">open_branch_id</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">account</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">product_cd</span> <span class="o">=</span> <span class="s1">&#39;SAV&#39;</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">emp_id</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>如果这两个列的名字不同，但是指定的是后面列的名字的话，会出错，如下所示：</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">emp_id</span><span class="p">,</span> <span class="n">assigned_branch_id</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">employee</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Teller&#39;</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">UNION</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">SELECT</span> <span class="n">open_emp_id</span><span class="p">,</span> <span class="n">open_branch_id</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">account</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">WHERE</span> <span class="n">product_cd</span> <span class="o">=</span> <span class="s1">&#39;SAV&#39;</span>
-</span><span class='line'>    <span class="o">-&gt;</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">open_emp_id</span><span class="p">;</span>
-</span><span class='line'><span class="n">ERROR</span> <span class="mi">1054</span> <span class="p">(</span><span class="mi">42</span><span class="n">S22</span><span class="p">):</span> <span class="k">Unknown</span> <span class="k">column</span> <span class="s1">&#39;open_emp_id&#39;</span> <span class="k">in</span> <span class="s1">&#39;order clause&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>集合操作符优先级</h4>
-
-<p>用不同的集合操作符构建复合查询时会产生不同的查询结果。当复合查询包含3个或3个以上的查询语句，它们以自顶向下的顺序被解析和执行。注意以下两点</p>
-
-<ul>
-<li>根据ANSI SQL标准，在调用集合操作时，intersect操作符比其他操作符具有更高的优先级；</li>
-<li>可以用圆括号对多个查询进行封装，以明确指定它们的执行顺序。</li>
-</ul>
-
-
-<p>但是需要注意的是<strong>在MySQL中还没有实现intersect操作符，并且也不允许在复合查询时使用括号。</strong></p>
 ]]></content>
   </entry>
   

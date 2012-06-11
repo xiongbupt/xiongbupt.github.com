@@ -9,7 +9,8 @@
   <meta name="author" content="Xiongbupt">
 
   
-  <meta name="description" content="问题 A,B都是整数并且 A>1, B>1，求 ┌ A/B ┐ 即 A/B 的上取整。 当A/B 整除，往上取整返回值 为 A/B。 当不整除，返回值是 int(A/B) + 1 这个算法的一个应用：如果你有一个动态增长的缓冲区，增长的步长是 B,某一次缓冲区申请的大小是 A，这个时候， &hellip;">
+  <meta name="description" content="网络字节序为大端序。
+">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +81,78 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/03/22/linux_cc2420_6lowpan/">6LoWPAN记录</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-22T00:00:00+08:00" pubdate data-updated="true">Mar 22<span>nd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>网络字节序为大端序。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/03/21/linux_tcp_ip/">Linux内核TCP/IP笔记</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-21T00:00:00+08:00" pubdate data-updated="true">Mar 21<span>st</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>内核其他模块和用户空间应用程序可能都想知道网络设备注册、注销、打开、关闭的时间，因此提供了两个产生事件通知的途径，即<code>netdev_chain</code>通知链和<code>netlink</code>的<code>RTMGRP_LINK</code>组播组。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -492,102 +565,6 @@ ZZ<br/>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/03/04/linux_bash/">Learing Bash笔记</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-03-04T00:00:00+08:00" pubdate data-updated="true">Mar 4<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h3>第一章</h3>
-
-<p>cd - ：返回到之前的文件夹。用于工作路径的跳转。<br/>
-\ &#8217; &#8220;引用键，可以取消特殊字符的含义，各个功能有强弱，其中&#8217;为强取消.&#8221;为若取消，\仅仅取消一个字符的含义。使用上面这三个可以在命令过长时取消回车的含义，一般终端会提示>作为提示符号。<br/>
-ctrl+m在终端中相当于回车<br/>
-ctrl+d DELETE<br/>
-ctrl+j BACKSPACE<br/>
-stty &#8211;all查看当前终端的所有ctrl配置。<br/>
-在shell中，使用help中的通配符时，需要使用<code>''</code>将对应的通配符引用起来，如help &#8216;re*&#8217;; help &#8216;re??&#8217;等。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/03/04/linux_bash/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/03/02/linux_awk_study/">AWK语言学习</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-03-02T00:00:00+08:00" pubdate data-updated="true">Mar 2<span>nd</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>awk</h2>
-
-<p>awk以花括号分隔命令，命令以&#8217;{}&#8217;围起来？</p>
-
-<p>其中<code>print</code>与<code>print $0</code>的作用相同，都是打印整整一行。<code>print $1 $2</code>则是打印改行的第1个和第2个内容。</p>
-
-<p>-F用来标志分隔符是什么，如下面</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/03/02/linux_awk_study/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/5/">&larr; Older</a>
@@ -607,7 +584,7 @@ stty &#8211;all查看当前终端的所有ctrl配置。<br/>
   <li><a href='/blog/categories/c语言'>C语言 (1)</a></li>
   <li><a href='/blog/categories/git'>Git (3)</a></li>
   <li><a href='/blog/categories/linux'>Linux (8)</a></li>
-  <li><a href='/blog/categories/notes'>Notes (22)</a></li>
+  <li><a href='/blog/categories/notes'>Notes (24)</a></li>
   <li><a href='/blog/categories/octopress'>Octopress (4)</a></li>
   <li><a href='/blog/categories/others'>Others (1)</a></li>
   <li><a href='/blog/categories/python'>Python (1)</a></li>
@@ -619,6 +596,14 @@ stty &#8211;all查看当前终端的所有ctrl配置。<br/>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/06/11/uticodebian-ma-ji-lu/">UTICODE编码记录</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/10/osshi-xian-zhi-bao-hu-mo-shi/">OS实现之保护模式</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/06/10/nasmzhai-yao/">nasm摘要</a>
@@ -634,14 +619,6 @@ stty &#8211;all查看当前终端的所有ctrl配置。<br/>
     
       <li class="post">
         <a href="/blog/2012/06/07/octopress-add-tag/">Octopress添加标签</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/06/vim_help_read/">VIM用户手册27笔记</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/06/octopress_use/">Octopress尝试记录</a>
       </li>
     
   </ul>

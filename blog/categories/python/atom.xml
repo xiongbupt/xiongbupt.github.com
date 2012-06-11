@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Python | Keep Learning]]></title>
   <link href="http://xiongbupt.github.com/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://xiongbupt.github.com/"/>
-  <updated>2012-06-10T20:54:39+08:00</updated>
+  <updated>2012-06-11T15:16:50+08:00</updated>
   <id>http://xiongbupt.github.com/</id>
   <author>
     <name><![CDATA[Xiongbupt]]></name>
@@ -20,15 +20,15 @@
     <id>http://xiongbupt.github.com/blog/2012/03/18/learningpythonthehardway</id>
     <content type="html"><![CDATA[<h2>python函数</h2>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="nb">raw_input</span><span class="p">([</span><span class="n">prompt</span><span class="p">])</span><span class="o">&lt;</span><span class="n">br</span><span class="o">/&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:python %}
+raw_input([prompt])<br/>
+{% endcodeblock %}</p>
 
 <p>在终端上显示prompt的提示符，在界面上输入东西之后，将输入的东西以string的形式返回到对应的变量中</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="nb">open</span><span class="p">()</span><span class="o">&lt;</span><span class="n">br</span><span class="o">/&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:python %}
+open()<br/>
+{% endcodeblock %}</p>
 
 <p>打开文件，括号中的文件应该使用引号来表达，使用字符串，不能单单的使用名字。open返回的是文件描述符，对文件描述符的操作可以使用pydoc2 file来查看对应的操作。</p>
 
@@ -51,13 +51,11 @@
 <p>python中以写的方式打开文件将会将文件的内容清空，无需使用truncate()再次将文件的内容清空</p>
 
 <p>python中使用def定义函数，如下所示
-<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">functiona</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
-</span><span class='line'><span class="n">test</span>
-</span><span class='line'><span class="k">print</span><span class="p">()</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+{% codeblock lang:python %}
+def functiona(*args):
+test
+print()
+{% endcodeblock %}</p>
 
 <h3>python函数书写检查步骤</h3>
 
@@ -84,48 +82,42 @@
 
 
 <p>python中return可以连续返回多个值，以逗号分隔，多个数值可以按照顺序赋值给对应的变量，按照返回顺序如
-<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">function</span><span class="p">():</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">ruturn</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">a1</span><span class="p">,</span> <span class="n">b1</span><span class="p">,</span> <span class="n">c1</span> <span class="o">=</span> <span class="n">function</span><span class="p">()</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+{% codeblock lang:python %}
+def function():</p>
+
+<pre><code>ruturn a, b, c
+</code></pre>
+
+<p>a1, b1, c1 = function()
+{% endcodeblock %}</p>
 
 <p>python中似乎有全局变量这种东西</p>
 
 <h3>python字符串操作函数</h3>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">string</span><span class="o">.</span><span class="n">split</span><span class="p">([</span><span class="n">sep</span><span class="p">[,</span><span class="n">maxsplit</span><span class="p">]])</span><span class="o">&lt;</span><span class="n">br</span><span class="o">/&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:python %}
+string.split([sep[,maxsplit]])<br/>
+{% endcodeblock %}</p>
 
 <pre><code>以分隔符sep来分隔字符串string。若指定maxsplit，则返回maxsplit+1个字符最多
 </code></pre>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="nb">sorted</span><span class="p">()</span> <span class="err">将字符串进行排序</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:python %}
+sorted() 将字符串进行排序
+{% endcodeblock %}</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="nb">list</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span> <span class="err">获取一个词然后将其从词组中删除，默认参数为</span><span class="o">-</span><span class="mi">1</span><span class="err">，即为最后一个</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:python %}
+list.pop() 获取一个词然后将其从词组中删除，默认参数为-1，即为最后一个
+{% endcodeblock %}</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">ex25</span> <span class="kn">import</span> <span class="o">*&lt;</span><span class="n">br</span><span class="o">/&gt;</span>
-</span><span class='line'><span class="err">引入</span><span class="n">ex25</span><span class="o">.</span><span class="n">py</span><span class="err">文件中的所有函数功能。</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:python %}
+from ex25 import *<br/>
+引入ex25.py文件中的所有函数功能。
+{% endcodeblock %}</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">ex25</span><span class="o">&lt;</span><span class="n">br</span><span class="o">/&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<p>{% codeblock lang:python %}
+import ex25<br/>
+{% endcodeblock %}
 在命令行中输入，引入ex25。</p>
 
 <p>python中的逻辑判断符号</p>
@@ -147,39 +139,23 @@
 
 <p>python中的if-else组合如下所示</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">if</span> <span class="n">statement</span><span class="p">:</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">if</span><span class="o">-</span><span class="n">code</span><span class="o">-</span><span class="n">part</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">elif</span> <span class="n">statement2</span><span class="p">:</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">elif</span><span class="o">-</span><span class="n">code</span><span class="o">-</span><span class="n">part</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">else</span><span class="p">:</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">other</span><span class="o">-</span><span class="n">parts</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:python %}
+if statement:</p>
+
+<pre><code>if-code-part
+</code></pre>
+
+<p>elif statement2:</p>
+
+<pre><code>elif-code-part
+</code></pre>
+
+<p>else:</p>
+
+<pre><code>other-parts
+</code></pre>
+
+<p>{% endcodeblock %}</p>
 
 <p>python中的range([start], stop[,step])</p>
 
@@ -207,31 +183,19 @@
 
 <p>del 删除列表中的某项，使用索引来删除，也可以删除一个范围。比如：</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">blockquote</span><span class="o">&gt;&lt;</span><span class="n">blockquote</span><span class="o">&gt;&lt;</span><span class="n">blockquote</span><span class="o">&gt;&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">66.25</span><span class="p">,</span> <span class="mi">333</span><span class="p">,</span> <span class="mi">333</span><span class="p">,</span> <span class="mf">1234.5</span><span class="p">]</span>
-</span><span class='line'><span class="k">del</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c">#删除a列表中的第一个元素</span>
-</span><span class='line'><span class="n">a</span>
-</span><span class='line'><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">66.25</span><span class="p">,</span> <span class="mi">333</span><span class="p">,</span> <span class="mi">333</span><span class="p">,</span> <span class="mf">1234.5</span><span class="p">]</span>
-</span><span class='line'><span class="k">del</span> <span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span> <span class="c">#删除a列表中的第2，3个元素</span>
-</span><span class='line'><span class="n">a</span>
-</span><span class='line'><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">66.25</span><span class="p">,</span> <span class="mf">1234.5</span><span class="p">]</span>
-</span><span class='line'><span class="k">del</span> <span class="n">a</span><span class="p">[:]</span> <span class="c">#删除a列表中的所有元素</span>
-</span><span class='line'><span class="n">a</span>
-</span><span class='line'><span class="p">[]</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p></blockquote></blockquote></blockquote>
+<p>{% codeblock lang:python %}</p>
+
+<blockquote><blockquote><blockquote><p>a = [-1, 1, 66.25, 333, 333, 1234.5]
+del a[0] #删除a列表中的第一个元素
+a
+[1, 66.25, 333, 333, 1234.5]
+del a[2:4] #删除a列表中的第2，3个元素
+a
+[1, 66.25, 1234.5]
+del a[:] #删除a列表中的所有元素
+a
+[]
+{% endcodeblock %}</p></blockquote></blockquote></blockquote>
 
 <p>from 从某些模块中引入一些功能</p>
 

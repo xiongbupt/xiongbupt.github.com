@@ -9,7 +9,9 @@
   <meta name="author" content="Xiongbupt">
 
   
-  <meta name="description" content="Git个人电脑操作 Git版本控制有三个区域，分别是工作目录、暂存区和git目录。 平时的工作都在工作目录中完成，在修改完代码之后，需要将修改的代码加入到暂存区，这个通过git add操作完成。当需要将暂存区域里的代码提交进入git工作目录时，需要使用git commit来完成。 &hellip;">
+  <meta name="description" content="VIM使用正则表达式改变字符大小写 转载自vim_wiki
+在VIM中使用正则表达式来改变单词的大小写是已经很简单的事情。
+只需要简单的将\U或者\L放在想要更改的回溯引用的前面，将\E放置在回溯引用的后面，VIM就会将回溯应用中的大小写进行相应的转换。使用\u和\l（这时不需要在最后使用\E） &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +82,101 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/06/05/vim_regex_case/">VIM使用正则表达式改变大小写</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-05T00:00:00+08:00" pubdate data-updated="true">Jun 5<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>VIM使用正则表达式改变字符大小写</h2>
+
+<p>转载自<a href="http://vim.wikia.com/wiki/Changing_case_with_regular_expressions" title="VIM中使用正则表达式">vim_wiki</a><br/>
+在VIM中使用正则表达式来改变单词的大小写是已经很简单的事情。<br/>
+只需要简单的将\U或者\L放在想要更改的回溯引用的前面，将\E放置在回溯引用的后面，VIM就会将回溯应用中的大小写进行相应的转换。使用\u和\l（这时不需要在最后使用\E）将会仅仅改变回溯引用中的第一个字符。</p>
+
+<pre><code>回溯引用是正则表达式中的一部分，用来表明匹配前面的一个部分。最常用的回溯表达式有&amp;,\1,\2,\3,...,\9。  
+</code></pre>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/06/05/vim_regex_case/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/06/05/os_impletion/">一个操作系统的实现笔记</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-05T00:00:00+08:00" pubdate data-updated="true">Jun 5<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>下面的主要介绍的是Arch下面，对<a href="http://book.douban.com/subject/3735649/" title="一个操作系统的实现">Orange&#8217;S一个操作系统的实现</a>，这本书的笔记。</p>
+
+<h2>Arch下工具安装</h2>
+
+<p>文章介绍的汇编器为nasm，在arch下安装相当简单</p>
+
+<blockquote><p>pacman -S nasm</p></blockquote>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/06/05/os_impletion/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -586,112 +683,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/05/23/markdown-syntax/">Markdown基本使用</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-23T00:00:00+08:00" pubdate data-updated="true">May 23<span>rd</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>链接</h2>
-
-<p>如果需要在页面插入链接，使用尖括号&lt;>括起来便可以了。</p>
-
-<p>如果需要为一段文字加上链接，使用如下方式
-<a href="http://www.google.com">文字,google</a> （ <a> href=&#8221;http://&#8221; </a></p>
-
-<p>为链接加上标题可如下所示
-<a href="http://www.google.com" title="对应的标题">文字，google</a></p>
-
-<p><a href="http://www.google.com">链接</a>
-按照上述方式，在文章中另起一行，通常是在文章的末尾，添加</p>
-
-<pre><code>[lable1]:http://www.google.com
-</code></pre>
-
-<p>将对应的链接完成即可。注意使用的是中括号和一个冒号，后面添加对应的链接地址。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/05/23/markdown-syntax/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/05/23/learning-sql/">Learning SQL(ch4-ch6)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-23T00:00:00+08:00" pubdate data-updated="true">May 23<span>rd</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>CH4 过滤</h2>
-
-<p>在所有的SQL数据处理语句中（insert语句除外）都包含了可选的where子句，其中的过滤条件限制了SQL语句所需要的行数。select子句中包含的having子句也可以对分组数据进行条件过滤。</p>
-
-<h3>条件评估</h3>
-
-<h4>使用圆括号</h4>
-
-<p>当含有多个条件时，各个条件应该使用圆括号括起来。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/05/23/learning-sql/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -711,7 +702,7 @@
   <li><a href='/blog/categories/c语言'>C语言 (1)</a></li>
   <li><a href='/blog/categories/git'>Git (3)</a></li>
   <li><a href='/blog/categories/linux'>Linux (8)</a></li>
-  <li><a href='/blog/categories/notes'>Notes (22)</a></li>
+  <li><a href='/blog/categories/notes'>Notes (24)</a></li>
   <li><a href='/blog/categories/octopress'>Octopress (4)</a></li>
   <li><a href='/blog/categories/others'>Others (1)</a></li>
   <li><a href='/blog/categories/python'>Python (1)</a></li>
@@ -723,6 +714,14 @@
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/06/11/uticodebian-ma-ji-lu/">UTICODE编码记录</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/10/osshi-xian-zhi-bao-hu-mo-shi/">OS实现之保护模式</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/06/10/nasmzhai-yao/">nasm摘要</a>
@@ -738,14 +737,6 @@
     
       <li class="post">
         <a href="/blog/2012/06/07/octopress-add-tag/">Octopress添加标签</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/06/vim_help_read/">VIM用户手册27笔记</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/06/octopress_use/">Octopress尝试记录</a>
       </li>
     
   </ul>

@@ -9,7 +9,7 @@
   <meta name="author" content="Xiongbupt">
 
   
-  <meta name="description" content="还是为了看这本书，又找了下nasm的学习资料，在网上找到了这个网址，应该是nasm的官方参考手册，重点打算看下前面三章，做下笔记。 介绍 什么是NASM NASM是一种面向80x86和x86-64的新型汇编语言，其出现主要是为了可移植性和可修改性。 ">
+  <meta name="description" content="今天查看师兄以前写的笔记，中间看到一个UNICODE和UTF-8编码的内容，于是在网上找了下资料，现在对这点有一点点了解，主要参考了阮老师的这篇文章，先记录下笔记吧。 UNICODE编码由来 在20世纪60年代，美国指定了ASCII编码体系，将英语字符与二进制位的关系做了统一的规定， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,90 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/06/11/uticodebian-ma-ji-lu/">UTICODE编码记录</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-11T11:29:00+08:00" pubdate data-updated="true">Jun 11<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>今天查看师兄以前写的笔记，中间看到一个UNICODE和UTF-8编码的内容，于是在网上找了下资料，现在对这点有一点点了解，主要参考了<a href="http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html">阮老师的这篇文章</a>，先记录下笔记吧。</p>
+
+<h2>UNICODE编码由来</h2>
+
+<p>在20世纪60年代，美国指定了ASCII编码体系，将英语字符与二进制位的关系做了统一的规定，这就是ASCII编码，并且一直沿用到今天。ASCII一共规定了128个字符的编码，只占用了一个字节的后7位，最高位始终为0。</p>
+
+<p>但是不同的国家的字符符号不一样，为了适应这种情况，就出现了UNICODE。<br/>
+UNICODE目前可以容纳100多万个符号，每个符号的编码都不一样。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/06/11/uticodebian-ma-ji-lu/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/06/10/osshi-xian-zhi-bao-hu-mo-shi/">OS实现之保护模式</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-10T20:57:00+08:00" pubdate data-updated="true">Jun 10<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -457,101 +541,6 @@ smartcase   若只有小写，可匹配大小写；若含有大写，则严格�
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/06/05/vim_regex_case/">VIM使用正则表达式改变大小写</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-06-05T00:00:00+08:00" pubdate data-updated="true">Jun 5<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>VIM使用正则表达式改变字符大小写</h2>
-
-<p>转载自<a href="http://vim.wikia.com/wiki/Changing_case_with_regular_expressions" title="VIM中使用正则表达式">vim_wiki</a><br/>
-在VIM中使用正则表达式来改变单词的大小写是已经很简单的事情。<br/>
-只需要简单的将\U或者\L放在想要更改的回溯引用的前面，将\E放置在回溯引用的后面，VIM就会将回溯应用中的大小写进行相应的转换。使用\u和\l（这时不需要在最后使用\E）将会仅仅改变回溯引用中的第一个字符。</p>
-
-<pre><code>回溯引用是正则表达式中的一部分，用来表明匹配前面的一个部分。最常用的回溯表达式有&amp;,\1,\2,\3,...,\9。  
-</code></pre>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/06/05/vim_regex_case/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/06/05/os_impletion/">一个操作系统的实现笔记</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-06-05T00:00:00+08:00" pubdate data-updated="true">Jun 5<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>下面的主要介绍的是Arch下面，对<a href="http://book.douban.com/subject/3735649/" title="一个操作系统的实现">Orange&#8217;S一个操作系统的实现</a>，这本书的笔记。</p>
-
-<h2>Arch下工具安装</h2>
-
-<p>文章介绍的汇编器为nasm，在arch下安装相当简单</p>
-
-<blockquote><p>pacman -S nasm</p></blockquote>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/06/05/os_impletion/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -569,7 +558,7 @@ smartcase   若只有小写，可匹配大小写；若含有大写，则严格�
   <li><a href='/blog/categories/c语言'>C语言 (1)</a></li>
   <li><a href='/blog/categories/git'>Git (3)</a></li>
   <li><a href='/blog/categories/linux'>Linux (8)</a></li>
-  <li><a href='/blog/categories/notes'>Notes (22)</a></li>
+  <li><a href='/blog/categories/notes'>Notes (24)</a></li>
   <li><a href='/blog/categories/octopress'>Octopress (4)</a></li>
   <li><a href='/blog/categories/others'>Others (1)</a></li>
   <li><a href='/blog/categories/python'>Python (1)</a></li>
@@ -581,6 +570,14 @@ smartcase   若只有小写，可匹配大小写；若含有大写，则严格�
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/06/11/uticodebian-ma-ji-lu/">UTICODE编码记录</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/10/osshi-xian-zhi-bao-hu-mo-shi/">OS实现之保护模式</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/06/10/nasmzhai-yao/">nasm摘要</a>
@@ -596,14 +593,6 @@ smartcase   若只有小写，可匹配大小写；若含有大写，则严格�
     
       <li class="post">
         <a href="/blog/2012/06/07/octopress-add-tag/">Octopress添加标签</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/06/vim_help_read/">VIM用户手册27笔记</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/06/octopress_use/">Octopress尝试记录</a>
       </li>
     
   </ul>

@@ -1,0 +1,487 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>UTICODE编码记录 - Keep Learning</title>
+  <meta name="author" content="Xiongbupt">
+
+  
+  <meta name="description" content="今天查看师兄以前写的笔记，中间看到一个UNICODE和UTF-8编码的内容，于是在网上找了下资料，现在对这点有一点点了解，主要参考了阮老师的这篇文章，先记录下笔记吧。 UNICODE编码由来 在20世纪60年代，美国指定了ASCII编码体系，将英语字符与二进制位的关系做了统一的规定， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://xiongbupt.github.com/blog/2012/06/11/uticodebian-ma-ji-lu/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Keep Learning" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Ruge+Boogie|Ruthie|Flavors|Rancho|Galdeano' rel='stylesheet' type='text/css'>
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32449808-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Keep Learning</a></h1>
+  
+    <h2>伪程序员记录点滴</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:xiongbupt.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/blog/tags">Tags</a></li>
+  <li><a href="/about">About me</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">UTICODE编码记录</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-11T11:29:00+08:00" pubdate data-updated="true">Jun 11<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>今天查看师兄以前写的笔记，中间看到一个UNICODE和UTF-8编码的内容，于是在网上找了下资料，现在对这点有一点点了解，主要参考了<a href="http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html">阮老师的这篇文章</a>，先记录下笔记吧。</p>
+
+<h2>UNICODE编码由来</h2>
+
+<p>在20世纪60年代，美国指定了ASCII编码体系，将英语字符与二进制位的关系做了统一的规定，这就是ASCII编码，并且一直沿用到今天。ASCII一共规定了128个字符的编码，只占用了一个字节的后7位，最高位始终为0。</p>
+
+<p>但是不同的国家的字符符号不一样，为了适应这种情况，就出现了UNICODE。<br/>
+UNICODE目前可以容纳100多万个符号，每个符号的编码都不一样。</p>
+
+<!--more-->
+
+
+<h2>UNICODE的问题</h2>
+
+<p>UNCIDOE仅仅是一个符号集，它仅仅规定了符号的二进制代码，并没有规定符号如何存储。这就造成了下面两种结果：</p>
+
+<ul>
+<li>出现了UNICODE的多种存储方式；</li>
+<li>UNICODE在很长时间无法推广，直到互联网出现。</li>
+</ul>
+
+
+<h2>UTF-8</h2>
+
+<p>目前UTF-8（UCS Transformation Format-8-bit）是互联网使用最广的一种编码，在<a href="http://en.wikipedia.org/wiki/UTF-8" title="WIKI UTF-8">WIKI</a>上其说明UTF-8是为了向后兼容ASCII码，同时也是为了避免在UTF-16和UTF-32中出现的复杂的大端序、小端序和字节符号序列，具统计目前有超过一半的Web网页使用的是UTF-8编码格式。IETF工作组也要求所有的网络协议表明字符集所使用的编码并且要求必须支持UTF-8。</p>
+
+<p>最开始UTF-8的设计图可以在下表中清晰的反应出来：</p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="right">Bits</th>
+<th align="left">Last Code Point</th>
+<th align="center">Byte 1</th>
+<th align="center">Byte 2</th>
+<th align="center">Byte 3</th>
+<th align="center">Byte 4</th>
+<th align="center">Byte 5</th>
+<th align="center">Byte 6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td align="right">7   </td>
+<td align="left">U+007F     </td>
+<td align="center">0xxxxxxx</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td align="right">11  </td>
+<td align="left">U+07FF     </td>
+<td align="center">110xxxxx</td>
+<td align="center">10xxxxxx</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td align="right">16  </td>
+<td align="left">U+FFFF     </td>
+<td align="center">1110xxxx</td>
+<td align="center">10xxxxxx</td>
+<td align="center">10xxxxxx</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td align="right">21  </td>
+<td align="left">U+1FFFFF   </td>
+<td align="center">11110xxx</td>
+<td align="center">10xxxxxx</td>
+<td align="center">10xxxxxx</td>
+<td align="center">10xxxxxx</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td align="right">25  </td>
+<td align="left">U+3FFFFFF  </td>
+<td align="center">111110xx</td>
+<td align="center">10xxxxxx</td>
+<td align="center">10xxxxxx</td>
+<td align="center">10xxxxxx</td>
+<td align="center">10xxxxxx</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td align="right">31  </td>
+<td align="left">U+7FFFFFFF </td>
+<td align="center">1111110x</td>
+<td align="center">10xxxxxx</td>
+<td align="center">10xxxxxx</td>
+<td align="center">10xxxxxx</td>
+<td align="center">10xxxxxx</td>
+<td align="center">10xxxxxx|</td>
+</tr>
+</tbody>
+</table>
+
+
+<p>最开始UTF-8的设计如上图所示，但是在<a href="http://tools.ietf.org/html/rfc3629" title="rfc3629">RFC 3629</a>中UTF-8被截短了，目前UTF-8的最大值为U+10FFFF，因此所有的5字节和6字节的编码都被取消掉了。</p>
+
+<p>UTF-8的编码即是将UNICODE对应的编码值以上表的方式编码出来即可。因此所有的ASCII码都是以一个字节的方式编码，其他的字符集会根据对应的UNICODE的编码值进行编码。比如<code>美</code>对应的UNICODE的值为7F8E，在上表中可以查看出其使用3字节编码即可，7F8E的二进制表示为0111 1111 1000 1110因此其UTF-8的编码为E7 BE 8E。就是将UNICODE的二进制值填充到UTF-8中的x上，完成编码。 <br/>
+注意，UTF-8仅仅是UNICODE的一种编码方式。</p>
+
+<h2>UTF-8的bomb字符</h2>
+
+<p>在编辑器打开一个文本文件时，其是怎么判断打开文件的编码格式？下面是个人的理解，编辑器应该会对打开的文件进行编码猜测，但是如果文件没有提供对应的编码标志的话，其就会按照自己的猜测文件编码格式将文本文件打开。如果编辑器猜测的编码与文件的实际编码不一致，就会出现乱码现象。但是如果文本文件提供了自身的编码方式，并且编辑器也可以理解即解释这种编码方式的话，应该就可以将文本文件按照正确的形式显现出来。</p>
+
+<p>上面的那段主要是为了引出UTF-8的bomb字符。参考<a href="http://www.i-alive.com/post/8/">这篇博客</a>，可以知道UTF-8的bomb为字符：EF BB BF。按照文中的方式，在VIM中使用16进制的方式<kbd>:%!xxd</kbd>，将文本文件打开，可以看出对应文字的UTF-8编码，在自己的环境下，使用的是UTF-8的编码格式，VIM似乎就已经将该bomb值去掉了。但是通过设置<kbd>:set bomb</kbd>可以将bomb保留，通过<kbd>:set nobomb</kbd>可以将文件的bomb去除。</p>
+
+<p>在这种情形下想到以前从Linux系统向Windows系统下拷贝文本文件时，有时候会出现乱码现象，猜想会不会是由于VIM将文件的bomb去除了，而Windows使用的编码默认不是UTF-8编码，其编辑器猜测编码的格式猜测错了，导致乱码，于是在Linux系统下拷贝了两个简单的带有汉字的文件到Windows系统下，这两个文件分别使用<kbd>:set bomb</kbd>和<kbd>:set nobomb</kbd>的方式将UTF-8的编码信息保留和去除。</p>
+
+<p>在Windows下使用记事本打开这两个文件时，汉字都可以正常的显示，但是由于Linux和Windows的换行方式不一致，会出现一些黑的方框；在写字板中打开文件时，带有bomb编码信息的文本文件可以正常的显示汉字，但是去除了bomb信息的文本文件出现了乱码。</p>
+
+<p>上面的现象应该可以说明Windows下面的记事本猜测编码格式正确，但是写字板猜测错误，可写字板对Linux下的换行符可以正常的显示。如果为了在Windows下正确的打开Linux下带有中文字符的文本文件，同时换行符也正常显示的话，可以在保存文件之前输入<kbd>:set bomb</kbd>将文本文件的编码格式保存下。</p>
+
+<h3>附录</h3>
+
+<p>VIM中使用16进制的方式打开文件 <kbd>:%!xxd</kbd>   <br/>
+VIM中在打开16进制的方式中编辑完文件之后保存 <kbd>:%!xxd -r</kbd>  <br/>
+VIM保存UTF-8文件的bomb信息 <kbd>:set bomb</kbd>   <br/>
+VIM中去除文件的bomb信息 <kbd>:set nobomb</kbd>    <br/>
+UTF－8：一个汉字＝3个字节</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Xiongbupt</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-11T11:29:00+08:00" pubdate data-updated="true">Jun 11<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/notes/'>Notes</a>
+  
+</span>
+
+
+      <div id="tag_list">
+    Tags:
+    <ul id="tags_ul">
+
+        <li><a href="/blog/tags/VIM/">VIM</a></li>
+
+        <li><a href="/blog/tags/Learning/">Learning</a></li>
+
+        <li><a href="/blog/tags/UTF-8/">UTF-8</a></li>
+
+    </ul>
+</div>
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://xiongbupt.github.com/blog/2012/06/11/uticodebian-ma-ji-lu/" data-via="xiongbupt" data-counturl="http://xiongbupt.github.com/blog/2012/06/11/uticodebian-ma-ji-lu/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/06/10/osshi-xian-zhi-bao-hu-mo-shi/" title="Previous Post: OS实现之保护模式">&laquo; OS实现之保护模式</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    
+<section>
+<h1>分类</h1>
+<ul>
+  <li><a href='/blog/categories/c语言'>C语言 (1)</a></li>
+  <li><a href='/blog/categories/git'>Git (3)</a></li>
+  <li><a href='/blog/categories/linux'>Linux (8)</a></li>
+  <li><a href='/blog/categories/notes'>Notes (24)</a></li>
+  <li><a href='/blog/categories/octopress'>Octopress (4)</a></li>
+  <li><a href='/blog/categories/others'>Others (1)</a></li>
+  <li><a href='/blog/categories/python'>Python (1)</a></li>
+  <li><a href='/blog/categories/vim'>Vim (4)</a></li>
+  <li><a href='/blog/categories/wsn'>Wsn (1)</a></li>
+</ul>
+</section>
+
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/06/11/uticodebian-ma-ji-lu/">UTICODE编码记录</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/10/osshi-xian-zhi-bao-hu-mo-shi/">OS实现之保护模式</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/10/nasmzhai-yao/">nasm摘要</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/08/octopresszeng-jia-fen-lei-biao-qian/">Octopress增加分类标签</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/08/octopressdai-ma-gao-liang/">Octopress代码高亮</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/07/octopress-add-tag/">Octopress添加标签</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/xiongbupt">@xiongbupt</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'xiongbupt',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("xiongbupt", 0, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/xiongbupt" class="twitter-follow-button" data-show-count="true">Follow @xiongbupt</a>
+  
+</section>
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/110480695522271115757?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Xiongbupt -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'xiongbupt';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://xiongbupt.github.com/blog/2012/06/11/uticodebian-ma-ji-lu/';
+        var disqus_url = 'http://xiongbupt.github.com/blog/2012/06/11/uticodebian-ma-ji-lu/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

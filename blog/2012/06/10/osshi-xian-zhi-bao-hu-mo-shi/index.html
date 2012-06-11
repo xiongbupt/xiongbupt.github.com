@@ -5,15 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>IEEE 802.15.4格式 - Keep Learning</title>
+  <title>OS实现之保护模式 - Keep Learning</title>
   <meta name="author" content="Xiongbupt">
 
   
-  <meta name="description" content="IEEE 802.15.4 MAC帧控制字段中帧类型的数值
-信标帧：000
-数据帧：001
-确认帧：010
-命令帧：011
+  <meta name="description" content="
 ">
   
 
@@ -23,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://xiongbupt.github.com/blog/2012/03/21/ieee802154/">
+  <link rel="canonical" href="http://xiongbupt.github.com/blog/2012/06/10/osshi-xian-zhi-bao-hu-mo-shi/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
@@ -88,7 +84,7 @@
   
   <header>
     
-      <h1 class="entry-title">IEEE 802.15.4格式</h1>
+      <h1 class="entry-title">OS实现之保护模式</h1>
     
     
       <p class="meta">
@@ -104,18 +100,14 @@
   
 
 
-<time datetime="2012-03-21T00:00:00+08:00" pubdate data-updated="true">Mar 21<span>st</span>, 2012</time>
+<time datetime="2012-06-10T20:57:00+08:00" pubdate data-updated="true">Jun 10<span>th</span>, 2012</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>IEEE 802.15.4 MAC帧控制字段中帧类型的数值<br/>
-信标帧：000<br/>
-数据帧：001<br/>
-确认帧：010<br/>
-命令帧：011</p>
+<div class="entry-content">
 </div>
 
 
@@ -138,12 +130,12 @@
   
 
 
-<time datetime="2012-03-21T00:00:00+08:00" pubdate data-updated="true">Mar 21<span>st</span>, 2012</time>
+<time datetime="2012-06-10T20:57:00+08:00" pubdate data-updated="true">Jun 10<span>th</span>, 2012</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/wsn/'>WSN</a>
+    <a class='category' href='/blog/categories/notes/'>Notes</a>
   
 </span>
 
@@ -152,9 +144,9 @@
     Tags:
     <ul id="tags_ul">
 
-        <li><a href="/blog/tags/WSN/">WSN</a></li>
+        <li><a href="/blog/tags/Learning/">Learning</a></li>
 
-        <li><a href="/blog/tags/6LoWPAN/">6LoWPAN</a></li>
+        <li><a href="/blog/tags/OS/">OS</a></li>
 
     </ul>
 </div>
@@ -163,7 +155,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://xiongbupt.github.com/blog/2012/03/21/ieee802154/" data-via="xiongbupt" data-counturl="http://xiongbupt.github.com/blog/2012/03/21/ieee802154/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://xiongbupt.github.com/blog/2012/06/10/osshi-xian-zhi-bao-hu-mo-shi/" data-via="xiongbupt" data-counturl="http://xiongbupt.github.com/blog/2012/06/10/osshi-xian-zhi-bao-hu-mo-shi/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -174,14 +166,20 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2012/03/19/moder_operation_system_process/" title="Previous Post: 现代操作系统：进程（笔记）">&laquo; 现代操作系统：进程（笔记）</a>
+        <a class="basic-alignment left" href="/blog/2012/06/10/nasmzhai-yao/" title="Previous Post: nasm摘要">&laquo; nasm摘要</a>
       
       
-        <a class="basic-alignment right" href="/blog/2012/03/21/linux_inf/" title="Next Post: 取整操作">取整操作 &raquo;</a>
+        <a class="basic-alignment right" href="/blog/2012/06/11/uticodebian-ma-ji-lu/" title="Next Post: UTICODE编码记录">UTICODE编码记录 &raquo;</a>
       
     </p>
   </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -310,7 +308,10 @@
       var disqus_shortname = 'xiongbupt';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://xiongbupt.github.com/blog/2012/06/10/osshi-xian-zhi-bao-hu-mo-shi/';
+        var disqus_url = 'http://xiongbupt.github.com/blog/2012/06/10/osshi-xian-zhi-bao-hu-mo-shi/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

@@ -9,7 +9,10 @@
   <meta name="author" content="Xiongbupt">
 
   
-  <meta name="description" content="CH1 背景知识 术语 术 语 定义 实 体 数据库用户所关注的对象，如顾客、部门、地理等。 列 存储在表中的独立数据片段。 行 所有列的一个集合，完整地描述了一个实体或实体上的某种行为，也称之为记录。 表 行的集合，既可以保存在内存中（未持久化），也可以保存在存储设备中（已持久化）。 结果表 &hellip;">
+  <meta name="description" content="链接 如果需要在页面插入链接，使用尖括号&lt;>括起来便可以了。 如果需要为一段文字加上链接，使用如下方式
+文字,google （ href=&#8221;http://&#8221; 为链接加上标题可如下所示
+文字，google 链接
+按照上述方式，在文章中另起一行，通常是在文章的末尾，添加 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +83,112 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/05/23/markdown-syntax/">Markdown基本使用</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-23T00:00:00+08:00" pubdate data-updated="true">May 23<span>rd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>链接</h2>
+
+<p>如果需要在页面插入链接，使用尖括号&lt;>括起来便可以了。</p>
+
+<p>如果需要为一段文字加上链接，使用如下方式
+<a href="http://www.google.com">文字,google</a> （ <a> href=&#8221;http://&#8221; </a></p>
+
+<p>为链接加上标题可如下所示
+<a href="http://www.google.com" title="对应的标题">文字，google</a></p>
+
+<p><a href="http://www.google.com">链接</a>
+按照上述方式，在文章中另起一行，通常是在文章的末尾，添加</p>
+
+<pre><code>[lable1]:http://www.google.com
+</code></pre>
+
+<p>将对应的链接完成即可。注意使用的是中括号和一个冒号，后面添加对应的链接地址。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/05/23/markdown-syntax/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/05/23/learning-sql/">Learning SQL(ch4-ch6)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-23T00:00:00+08:00" pubdate data-updated="true">May 23<span>rd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>CH4 过滤</h2>
+
+<p>在所有的SQL数据处理语句中（insert语句除外）都包含了可选的where子句，其中的过滤条件限制了SQL语句所需要的行数。select子句中包含的having子句也可以对分组数据进行条件过滤。</p>
+
+<h3>条件评估</h3>
+
+<h4>使用圆括号</h4>
+
+<p>当含有多个条件时，各个条件应该使用圆括号括起来。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/05/23/learning-sql/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -645,78 +754,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/03/22/linux_cc2420_6lowpan/">6LoWPAN记录</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-03-22T00:00:00+08:00" pubdate data-updated="true">Mar 22<span>nd</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>网络字节序为大端序。</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/03/21/linux_tcp_ip/">Linux内核TCP/IP笔记</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-03-21T00:00:00+08:00" pubdate data-updated="true">Mar 21<span>st</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>内核其他模块和用户空间应用程序可能都想知道网络设备注册、注销、打开、关闭的时间，因此提供了两个产生事件通知的途径，即<code>netdev_chain</code>通知链和<code>netlink</code>的<code>RTMGRP_LINK</code>组播组。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/4/">&larr; Older</a>
@@ -736,7 +773,7 @@
   <li><a href='/blog/categories/c语言'>C语言 (1)</a></li>
   <li><a href='/blog/categories/git'>Git (3)</a></li>
   <li><a href='/blog/categories/linux'>Linux (8)</a></li>
-  <li><a href='/blog/categories/notes'>Notes (22)</a></li>
+  <li><a href='/blog/categories/notes'>Notes (24)</a></li>
   <li><a href='/blog/categories/octopress'>Octopress (4)</a></li>
   <li><a href='/blog/categories/others'>Others (1)</a></li>
   <li><a href='/blog/categories/python'>Python (1)</a></li>
@@ -748,6 +785,14 @@
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/06/11/uticodebian-ma-ji-lu/">UTICODE编码记录</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/10/osshi-xian-zhi-bao-hu-mo-shi/">OS实现之保护模式</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/06/10/nasmzhai-yao/">nasm摘要</a>
@@ -763,14 +808,6 @@
     
       <li class="post">
         <a href="/blog/2012/06/07/octopress-add-tag/">Octopress添加标签</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/06/vim_help_read/">VIM用户手册27笔记</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/06/octopress_use/">Octopress尝试记录</a>
       </li>
     
   </ul>

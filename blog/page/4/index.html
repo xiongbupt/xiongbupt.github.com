@@ -9,9 +9,17 @@
   <meta name="author" content="Xiongbupt">
 
   
-  <meta name="description" content="GBD指令 backtrace 在程序出现错误之后，使用它可以看出出错的函数被哪个函数所调用。 查看内存地址存放的值 1
-x 内存地址(examine) 查看代码。 1
-list 如list 1,90用来查看1到90行的代码。 ">
+  <meta name="description" content="不同程序中的regex的使用 grep 表达式
+含义 -E
+扩展正则表达式 -G
+基本正则表达式 -P
+perl基本表达式 -o
+仅仅输出匹配结果 -v
+进行求非操作 -c
+计算匹配的总数 perl 表达式
+含义 m/pattern/
+搜索 s/pattern/pattern/
+替换 qr/ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -82,6 +90,152 @@ list 如list 1,90用来查看1到90行的代码。 ">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/05/14/regex-learning/">正则表达式学习</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-14T00:00:00+08:00" pubdate data-updated="true">May 14<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>不同程序中的regex的使用</h2>
+
+<h3>grep</h3>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="center">表达式</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td align="center">-E</td>
+<td align="center">扩展正则表达式  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">-G</td>
+<td align="center">基本正则表达式  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">-P</td>
+<td align="center">perl基本表达式  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">-o</td>
+<td align="center">仅仅输出匹配结果  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">-v</td>
+<td align="center">进行求非操作  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">-c</td>
+<td align="center">计算匹配的总数  </td>
+</tr>
+</tbody>
+</table>
+
+
+<h3>perl</h3>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="center">表达式</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td align="center">m/pattern/</td>
+<td align="center">搜索  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">s/pattern/pattern/</td>
+<td align="center">替换  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">qr/pattern/</td>
+<td align="center">返回一个regex对象供以后使用  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">split()</td>
+<td align="center">把一个字符串拆分成子字符串  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">\i</td>
+<td align="center">不区分大小写  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">\g</td>
+<td align="center">全局搜索  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">$&#8217;</td>
+<td align="center">匹配前面的所有东西  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">$`</td>
+<td align="center">匹配之后的所有东西  </td>
+</tr>
+<tr>
+<td></td>
+<td align="center">$&amp;</td>
+<td align="center">整个匹配的字符串  </td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/05/14/regex-learning/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -518,46 +672,6 @@ list 如list 1,90用来查看1到90行的代码。 ">
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/03/19/moder_operation_system_process/">现代操作系统：进程（笔记）</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-03-19T00:00:00+08:00" pubdate data-updated="true">Mar 19<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h3>进程</h3>
-
-<h4>进程模型</h4>
-
-<p>一个进程就是一个正在执行的程序实例，包括程序计数器、寄存器和变量的当前值。一个进程就是某种类型的一个活动，它有程序、输入、输出以及状态。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/5/">&larr; Older</a>
@@ -581,7 +695,7 @@ list 如list 1,90用来查看1到90行的代码。 ">
   <li><a href='/blog/categories/octopress'>Octopress (4)</a></li>
   <li><a href='/blog/categories/others'>Others (1)</a></li>
   <li><a href='/blog/categories/python'>Python (1)</a></li>
-  <li><a href='/blog/categories/vim'>Vim (6)</a></li>
+  <li><a href='/blog/categories/vim'>Vim (7)</a></li>
   <li><a href='/blog/categories/wsn'>Wsn (1)</a></li>
 </ul>
 </section>
@@ -589,6 +703,10 @@ list 如list 1,90用来查看1到90行的代码。 ">
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/06/14/vim-tipszhong-wen-ban/">VIM tips中文版</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/06/14/archzhi-ding-dnsfu-wu-qi/">Arch指定DNS服务器</a>
@@ -608,10 +726,6 @@ list 如list 1,90用来查看1到90行的代码。 ">
     
       <li class="post">
         <a href="/blog/2012/06/12/shen-ru-li-jie-ji-suan-ji-xi-tong-bi-ji/">深入理解计算机系统-笔记 Ch1</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/11/uticodebian-ma-ji-lu/">UTICODE编码记录</a>
       </li>
     
   </ul>

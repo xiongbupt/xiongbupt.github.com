@@ -9,11 +9,8 @@
   <meta name="author" content="Xiongbupt">
 
   
-  <meta name="description" content="Linux内核等待队列 wait_queue_head_t
-init_waitqueue_head()
-DECLARE_WAIT_QUEUE_HEAD
-等待队列就是一个进程链表，其中包含了所有等待某个特定事件的进程。
-静态初始化一个等待队列头使用下面的宏 &hellip;">
+  <meta name="description" content="进程 进程模型 一个进程就是一个正在执行的程序实例，包括程序计数器、寄存器和变量的当前值。一个进程就是某种类型的一个活动，它有程序、输入、输出以及状态。
+">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -84,6 +81,46 @@ DECLARE_WAIT_QUEUE_HEAD
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/03/19/moder_operation_system_process/">现代操作系统：进程（笔记）</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-19T00:00:00+08:00" pubdate data-updated="true">Mar 19<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>进程</h3>
+
+<h4>进程模型</h4>
+
+<p>一个进程就是一个正在执行的程序实例，包括程序计数器、寄存器和变量的当前值。一个进程就是某种类型的一个活动，它有程序、输入、输出以及状态。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -555,50 +592,6 @@ stty &#8211;all查看当前终端的所有ctrl配置。<br/>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/02/28/notes/">读书笔记</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-02-28T00:00:00+08:00" pubdate data-updated="true">Feb 28<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>Linux PCI Driver</h2>
-
-<p>PCI的字节序是小头序的。<br/>
-PCI配置空间中每个设备功能由256字节组成，其中前64字节是标准化的，有必需的也有可选的。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/02/28/notes/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/6/">&larr; Older</a>
@@ -622,7 +615,7 @@ PCI配置空间中每个设备功能由256字节组成，其中前64字节是标
   <li><a href='/blog/categories/octopress'>Octopress (4)</a></li>
   <li><a href='/blog/categories/others'>Others (1)</a></li>
   <li><a href='/blog/categories/python'>Python (1)</a></li>
-  <li><a href='/blog/categories/vim'>Vim (6)</a></li>
+  <li><a href='/blog/categories/vim'>Vim (7)</a></li>
   <li><a href='/blog/categories/wsn'>Wsn (1)</a></li>
 </ul>
 </section>
@@ -630,6 +623,10 @@ PCI配置空间中每个设备功能由256字节组成，其中前64字节是标
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/06/14/vim-tipszhong-wen-ban/">VIM tips中文版</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/06/14/archzhi-ding-dnsfu-wu-qi/">Arch指定DNS服务器</a>
@@ -649,10 +646,6 @@ PCI配置空间中每个设备功能由256字节组成，其中前64字节是标
     
       <li class="post">
         <a href="/blog/2012/06/12/shen-ru-li-jie-ji-suan-ji-xi-tong-bi-ji/">深入理解计算机系统-笔记 Ch1</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/11/uticodebian-ma-ji-lu/">UTICODE编码记录</a>
       </li>
     
   </ul>

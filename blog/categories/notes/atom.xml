@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Notes | Keep Learning]]></title>
   <link href="http://xiongbupt.github.com/blog/categories/notes/atom.xml" rel="self"/>
   <link href="http://xiongbupt.github.com/"/>
-  <updated>2012-06-14T08:31:00+08:00</updated>
+  <updated>2012-06-14T08:32:05+08:00</updated>
   <id>http://xiongbupt.github.com/</id>
   <author>
     <name><![CDATA[Xiongbupt]]></name>
@@ -63,10 +63,59 @@
 <h2>附录</h2>
 
 <p>c代码
-{% include_code overflow溢出代码 lang:c c/overflow.c %}
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>overflow溢出代码  (overflow.c)</span> <a href='/downloads/code/c/overflow.c'>download</a></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cp">#include	&lt;stdlib.h&gt;</span>
+</span><span class='line'><span class="cp">#include	&lt;stdio.h&gt;</span>
+</span><span class='line'><span class="kt">int</span> <span class="nf">main</span> <span class="p">(</span> <span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[]</span> <span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="kt">float</span> <span class="n">a</span><span class="p">,</span> <span class="n">c</span><span class="p">;</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">b</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">b</span> <span class="o">=</span> <span class="mi">200</span> <span class="o">*</span> <span class="mi">300</span> <span class="o">*</span> <span class="mi">400</span> <span class="o">*</span> <span class="mi">500</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="mf">3.14</span> <span class="o">+</span> <span class="mf">1e20</span><span class="p">)</span> <span class="o">-</span> <span class="mf">1e20</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">printf</span> <span class="p">(</span> <span class="s">&quot;the b is %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">b</span> <span class="p">);</span>
+</span><span class='line'>    <span class="n">printf</span> <span class="p">(</span> <span class="s">&quot;the a is %f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">a</span> <span class="p">);</span>
+</span><span class='line'>    <span class="n">c</span> <span class="o">=</span> <span class="mf">3.14</span> <span class="o">+</span> <span class="p">(</span><span class="mf">1e20</span> <span class="o">-</span> <span class="mf">1e20</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">printf</span> <span class="p">(</span> <span class="s">&quot;the c is %f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">c</span> <span class="p">);</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">EXIT_SUCCESS</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>				<span class="cm">/* ----------  end of function main  ---------- */</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 perl代码
-{% include_code perl 10进制转16进制脚本 lang:perl perl/d2h %}
-{% include_code perl 16进制转10进制脚本 lang:perl perl/h2d %}</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>perl 10进制转16进制脚本  (d2h)</span> <a href='/downloads/code/perl/d2h'>download</a></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="c1">#!/usr/bin/perl</span>
+</span><span class='line'><span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;</span> <span class="nv">@ARGV</span><span class="p">;</span> <span class="nv">$i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nb">printf</span><span class="p">(</span><span class="s">&quot;%d\t = 0x%x\n&quot;</span><span class="p">,</span> <span class="nv">$ARGV</span><span class="p">[</span><span class="nv">$i</span><span class="p">],</span> <span class="nv">$ARGV</span><span class="p">[</span><span class="nv">$i</span><span class="p">]);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>perl 16进制转10进制脚本  (h2d)</span> <a href='/downloads/code/perl/h2d'>download</a></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="c1">#!/usr/bin/perl</span>
+</span><span class='line'><span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;</span> <span class="nv">@ARGV</span><span class="p">;</span> <span class="nv">$i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nv">$val</span> <span class="o">=</span> <span class="nb">hex</span><span class="p">(</span><span class="nv">$ARGV</span><span class="p">[</span><span class="nv">$i</span><span class="p">]);</span>
+</span><span class='line'>    <span class="nb">printf</span><span class="p">(</span><span class="s">&quot;0x%x\t = %d\n&quot;</span><span class="p">,</span> <span class="nv">$val</span><span class="p">,</span> <span class="nv">$val</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 ]]></content>
   </entry>
   
@@ -395,9 +444,10 @@ nasm -f elf -o myfile.o -MD myfile.dep myfile.asm</p>
 
 <h3>NASM语言的布局</h3>
 
-<p>{% codeblock NASM语言的布局 lang:nasm %}
-label:  instruction     operands        ;comment
-{% endcodeblock %}
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>NASM语言的布局  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='nasm'><span class='line'><span class="nl">label:</span>  <span class="nf">instruction</span>     <span class="nv">operands</span>        <span class="c1">;comment</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 NASM语句中空格是可以任意多的。NASM使用\来作为一行的换行符指示后面还是当前行的继续。</p>
 
 <h3>伪指令</h3>

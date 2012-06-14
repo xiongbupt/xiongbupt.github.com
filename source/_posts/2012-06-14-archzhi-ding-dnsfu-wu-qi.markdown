@@ -10,6 +10,7 @@ tags: [Linux, Arch]
 ##修改/etc/resolv.conf的可修改性
 由于学校使用的是DHCP的方式获取IP地址，Arch上使用的DHCP的客户端是dhcpcd，在默认情况下该服务器将会将获取的DNS服务器的地址填入到/etc/resolv.conf文件中。因此如果指定DNS服务器的方式，可以将该文件的文件设置为不可写。通过使用<kbd>chattr +i /etc/resolv.conf</kbd>的方式可以将该文件设置为不可修改的。  
 如果在网络的环境不变的情况下，使用该种方式便可以解决，但是由于在宿舍和在实验室的环境，这两个网络环境下学校指定的DNS服务器是不一样的，在使用校内提供的服务器时，还是用学校的DNS服务器便可以了，因此这种方法对自己而言还不是很合适。于是出现下面的方法。
+<!--more-->
 ##增加/etc/resolv.conf.head文件
 最想的还是根据适当的情况，将一个不变的DNS服务器增加到/etc/resolv.conf文件中，在打开/etc/resolv.conf文件时，可以看到这样一行：
 
@@ -22,6 +23,7 @@ tags: [Linux, Arch]
 
 ###附录：目前可用IPv6的DNS服务器地址
 根据Google上面提供的IPv6 DNS服务器的地址，目前摘抄如下： 	
+
 * ordns.he.net （最优）  
         2001:470:20::2
         74.82.42.42 

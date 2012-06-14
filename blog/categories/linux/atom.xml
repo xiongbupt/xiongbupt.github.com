@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | Keep Learning]]></title>
   <link href="http://xiongbupt.github.com/blog/categories/linux/atom.xml" rel="self"/>
   <link href="http://xiongbupt.github.com/"/>
-  <updated>2012-06-11T15:16:50+08:00</updated>
+  <updated>2012-06-14T08:31:00+08:00</updated>
   <id>http://xiongbupt.github.com/</id>
   <author>
     <name><![CDATA[Xiongbupt]]></name>
@@ -12,6 +12,64 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Arch指定DNS服务器]]></title>
+    <link href="http://xiongbupt.github.com/blog/2012/06/14/archzhi-ding-dnsfu-wu-qi/"/>
+    <updated>2012-06-14T07:55:00+08:00</updated>
+    <id>http://xiongbupt.github.com/blog/2012/06/14/archzhi-ding-dnsfu-wu-qi</id>
+    <content type="html"><![CDATA[<p>学校里提供了IPv6的接入，但是之前使用的一直是学校提供的DNS服务器，使用的是IPv4的方式。在google上的<a href="https://code.google.com/p/ipv6-hosts/" title="IPv6 Hosts">IPv6的hosts文档</a>上知道有IPv6的DNS服务器的地址，于是上网找了在Arch上设置DNS服务器的地址，简单记录如下。</p>
+
+<h2>修改/etc/resolv.conf的可修改性</h2>
+
+<p>由于学校使用的是DHCP的方式获取IP地址，Arch上使用的DHCP的客户端是dhcpcd，在默认情况下该服务器将会将获取的DNS服务器的地址填入到/etc/resolv.conf文件中。因此如果指定DNS服务器的方式，可以将该文件的文件设置为不可写。通过使用<kbd>chattr +i /etc/resolv.conf</kbd>的方式可以将该文件设置为不可修改的。<br/>
+如果在网络的环境不变的情况下，使用该种方式便可以解决，但是由于在宿舍和在实验室的环境，这两个网络环境下学校指定的DNS服务器是不一样的，在使用校内提供的服务器时，还是用学校的DNS服务器便可以了，因此这种方法对自己而言还不是很合适。于是出现下面的方法。</p>
+
+<!--more-->
+
+
+<h2>增加/etc/resolv.conf.head文件</h2>
+
+<p>最想的还是根据适当的情况，将一个不变的DNS服务器增加到/etc/resolv.conf文件中，在打开/etc/resolv.conf文件时，可以看到这样一行：</p>
+
+<p>```</p>
+
+<h1>/etc/resolv.conf.head can replace this line</h1>
+
+<p>```
+于是上网找了下这个文件的说明，似乎看到的是在/etc目录下新建一个名为resolv.conf.head的，dhcpcd客户端在将DNS服务器地址写入到resolv.conf文件时将会把resolv.conf.head文件的内容添加进入到resolv.conf文件中。因此可以通过在resolv.conf.head文件中添加内容来完成这个功能。</p>
+
+<p>目前在电脑上使用的是第二种方法，完成了指定DNS服务器的方式，目前首选的是Google的IPv6服务器。</p>
+
+<h3>附录：目前可用IPv6的DNS服务器地址</h3>
+
+<p>根据Google上面提供的IPv6 DNS服务器的地址，目前摘抄如下：</p>
+
+<ul>
+<li>ordns.he.net （最优）
+
+<pre><code>  2001:470:20::2
+  74.82.42.42 
+</code></pre></li>
+<li>google-public-dns-a.google.com （推荐）
+
+<pre><code>  2001:4860:4860::8888
+  8.8.8.8（不返回 Google 系列的 AAAA 记录）    
+</code></pre></li>
+<li>google-public-dns-b.google.com （推荐）
+
+<pre><code>  2001:4860:4860::8844
+  8.8.4.4（不返回 Google 系列的 AAAA 记录） 
+</code></pre></li>
+<li>ns.ipv6.uni-leipzig.de （西欧地区适用）
+
+<pre><code>  2001:638:902:1::10
+  139.18.25.34 
+</code></pre></li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Debian安装记录]]></title>
@@ -234,35 +292,6 @@ C-R 搜索历史命令</p>
 别名：alias<br/>
 变量：var=value(等号两侧不能有空格）<br/>
 选项</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Linux进程学习]]></title>
-    <link href="http://xiongbupt.github.com/blog/2012/03/01/linux_process/"/>
-    <updated>2012-03-01T00:00:00+08:00</updated>
-    <id>http://xiongbupt.github.com/blog/2012/03/01/linux_process</id>
-    <content type="html"><![CDATA[<h2>Linux进程调度与管理</h2>
-
-<h3>Linux进程状态</h3>
-
-<p>Linux进程描述符使用的结构体为task_struct，结构体的定义位于include/linux/sched.h文件中。该结构体很复杂，包含了一个进程应该包含的所有信息。</p>
-
-<p>进程可以处于的状态包括：</p>
-
-<p>TASK_RUNNING:进程当前正在运行或者处于待运行的队列中；</p>
-
-<p>TASK_INTERRUPTIBLE:进程处于休眠队列中，可以被中断唤醒或者被信号唤醒。其中被信号唤醒为伪唤醒，每次进程被唤醒时需要对唤醒的条件进行判断，若不符合条件则继续休眠。</p>
-
-<p>TASK_UNINTERRUPTIBLE:进程同样位于休眠队列中，但是只能够被中断所唤醒，忽略信号。这种情况可以用于在驱动程序中，等待硬件初始化中使用，防止对硬件进行其他操作。</p>
-
-<p>TASK_STOPPED:进程被终止，如被调试器缩终止。</p>
-
-<p>TASK_TRACED:进程被追踪了，用来和TASK_STOPPED所区分。</p>
-
-<p>EXIT_ZOMBIE:子进程终止，但是父进程没有调用wait()系列函数，子进程无法正常退出，处于这种状态。</p>
-
-<p>EXIT_DEAD:在适当的wait()调用之后当程序还没有完全从系统中移除时，防止其他线程再次调用wait()系列函数时处的状态。</p>
 ]]></content>
   </entry>
   

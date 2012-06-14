@@ -1,0 +1,400 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>深入理解计算机系统-笔记 Ch1 - Keep Learning</title>
+  <meta name="author" content="Xiongbupt">
+
+  
+  <meta name="description" content="计算机系统漫游 信息就是位加上下文。
+由gcc处理的程序包括四个步骤，这四个步骤的处理程序分别是：预处理器、编译器、汇编器、链接器，对应的四个阶段分别是：预处理阶段（将头文件、预处理指令插入到源代码中），编译阶段（将c文件生成为汇编语言文件），汇编阶段（将汇编语言翻译成为机器文件），链接阶段（ &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://xiongbupt.github.com/blog/2012/06/12/shen-ru-li-jie-ji-suan-ji-xi-tong-bi-ji/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Keep Learning" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Ruge+Boogie|Ruthie|Flavors|Rancho|Galdeano' rel='stylesheet' type='text/css'>
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32449808-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Keep Learning</a></h1>
+  
+    <h2>伪程序员记录点滴</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:xiongbupt.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/blog/tags">Tags</a></li>
+  <li><a href="/about">About me</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">深入理解计算机系统-笔记 Ch1</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-12T03:00:00+08:00" pubdate data-updated="true">Jun 12<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h2>计算机系统漫游</h2>
+
+<p>信息就是<code>位</code>加<code>上下文</code>。<br/>
+由gcc处理的程序包括四个步骤，这四个步骤的处理程序分别是：预处理器、编译器、汇编器、链接器，对应的四个阶段分别是：预处理阶段（将头文件、预处理指令插入到源代码中），编译阶段（将c文件生成为汇编语言文件），汇编阶段（将汇编语言翻译成为机器文件），链接阶段（将各个目标代码合并生成一个可执行程序）。</p>
+
+<p>了解编译系统的工作流程的好处：</p>
+
+<ul>
+<li>优化程序性能；</li>
+<li>理解链接时出现的错误；</li>
+<li>避免安全漏洞。</li>
+</ul>
+
+
+<!--more-->
+
+
+<p>寄存器文件是一个小的存储设备，由一些字长为1的寄存器组成，每个寄存器有唯一的名字。</p>
+
+<p>指令集结构与微体系结构的区别：指令集结构描述的是每条机器代码指令的效果；而微体系结构描述的是处理器实际上是如何实现的。</p>
+
+<p>操作系统通过几个基本抽象概念（进程、虚拟存储器和文件）来实现两个功能：</p>
+
+<ul>
+<li>防止硬件被失控的应用程序滥用；</li>
+<li>向应用程序提供简单一致的机制来控制复杂而又大相径庭的低级硬件设备。</li>
+</ul>
+
+
+<p>文件是对I/O设备的抽象表示，虚拟存储器是对主存储器和磁盘I/O设备的抽象表示，进程则是对处理器、主存和I/O设备的抽象表示。</p>
+
+<p>进程是操作系统对一个正在运行的程序的一种抽象。操作系统在多个进程间进行交错执行的机制称为上下文切换；而操作系统保持跟踪进程运行所需要的所有状态信息，这些状态信息便是上下文。</p>
+
+<p>虚拟存储器抽象中，每个进程看到的是一致的存储器，称为虚拟地址空间。对Linux系统来说，地址空间最上面的区域是为操作系统中的代码和数据保留的。地址空间的底部存放的是用户进程的代码和数据。</p>
+
+<p>每个进程看到的虚拟地址空间是由大量准确重复定义的区构成的，每个区有专门的功能。从地址的最下到最上分别是：程序代码和数据区，堆，共享库，栈，内核虚拟存储器。对于所有的进程来说，代码是从同一个固定的地址开始，在程序一开始运行时，程序代码和数据区的大小便是固定的，但是堆和栈的大小是可变的，内核虚拟存储器总是常驻内存中，是操作系统的一部分。</p>
+
+<p>文件就是字节序列，它向应用程序提供了一个统一的视角来看待系统中可能含有的所有的各式各样的I/O设备。</p>
+
+<p>系统是硬件和系统软件互相交织的集合体，它们必须共同协作以达到运行应用程序的最终目的。</p>
+
+<p>并发（concurrency）是一个通用的概念，指一个同时具有多个活动的系统；并行（parallelism）指的是用并发使一个系统运行的更快。并发一共有三个层级：</p>
+
+<ul>
+<li>线程即并发；</li>
+<li>指令集并发；</li>
+<li>单指令、多数据并发。</li>
+</ul>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Xiongbupt</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-12T03:00:00+08:00" pubdate data-updated="true">Jun 12<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/notes/'>Notes</a>
+  
+</span>
+
+
+      <div id="tag_list">
+    Tags:
+    <ul id="tags_ul">
+
+        <li><a href="/blog/tags/Learning/">Learning</a></li>
+
+        <li><a href="/blog/tags/OS/">OS</a></li>
+
+    </ul>
+</div>
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://xiongbupt.github.com/blog/2012/06/12/shen-ru-li-jie-ji-suan-ji-xi-tong-bi-ji/" data-via="xiongbupt" data-counturl="http://xiongbupt.github.com/blog/2012/06/12/shen-ru-li-jie-ji-suan-ji-xi-tong-bi-ji/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/06/11/uticodebian-ma-ji-lu/" title="Previous Post: UTICODE编码记录">&laquo; UTICODE编码记录</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/06/12/shen-ru-li-jie-ji-suan-ji-xi-tong-bi-ji-2/" title="Next Post: 深入理解计算机系统-笔记 Ch2">深入理解计算机系统-笔记 Ch2 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    
+<section>
+<h1>分类</h1>
+<ul>
+  <li><a href='/blog/categories/c语言'>C语言 (1)</a></li>
+  <li><a href='/blog/categories/git'>Git (3)</a></li>
+  <li><a href='/blog/categories/linux'>Linux (9)</a></li>
+  <li><a href='/blog/categories/notes'>Notes (26)</a></li>
+  <li><a href='/blog/categories/octopress'>Octopress (4)</a></li>
+  <li><a href='/blog/categories/others'>Others (1)</a></li>
+  <li><a href='/blog/categories/python'>Python (1)</a></li>
+  <li><a href='/blog/categories/vim'>Vim (6)</a></li>
+  <li><a href='/blog/categories/wsn'>Wsn (1)</a></li>
+</ul>
+</section>
+
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/06/14/archzhi-ding-dnsfu-wu-qi/">Arch指定DNS服务器</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/13/vimshi-yong-pathogen/">VIM使用pathogen</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/12/vim-undoji-lu/">VIM undo记录</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/12/shen-ru-li-jie-ji-suan-ji-xi-tong-bi-ji-2/">深入理解计算机系统-笔记 Ch2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/12/shen-ru-li-jie-ji-suan-ji-xi-tong-bi-ji/">深入理解计算机系统-笔记 Ch1</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/11/uticodebian-ma-ji-lu/">UTICODE编码记录</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/xiongbupt">@xiongbupt</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'xiongbupt',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("xiongbupt", 0, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/xiongbupt" class="twitter-follow-button" data-show-count="true">Follow @xiongbupt</a>
+  
+</section>
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/110480695522271115757?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Xiongbupt -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'xiongbupt';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://xiongbupt.github.com/blog/2012/06/12/shen-ru-li-jie-ji-suan-ji-xi-tong-bi-ji/';
+        var disqus_url = 'http://xiongbupt.github.com/blog/2012/06/12/shen-ru-li-jie-ji-suan-ji-xi-tong-bi-ji/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

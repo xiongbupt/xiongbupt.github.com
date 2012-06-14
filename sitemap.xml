@@ -191,48 +191,76 @@
         <lastmod>2012-06-11T15:15:42+08:00</lastmod>
     </url>
     <url>
+        <loc>
+            http://xiongbupt.github.com/blog/2012/06/12/shen-ru-li-jie-ji-suan-ji-xi-tong-bi-ji/
+        </loc>
+        <lastmod>2012-06-11T20:59:13+08:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://xiongbupt.github.com/blog/2012/06/12/shen-ru-li-jie-ji-suan-ji-xi-tong-bi-ji-2/
+        </loc>
+        <lastmod>2012-06-11T21:43:14+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://xiongbupt.github.com/blog/2012/06/12/vim-undoji-lu/</loc>
+        <lastmod>2012-06-12T21:32:29+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://xiongbupt.github.com/blog/2012/06/13/vimshi-yong-pathogen/</loc>
+        <lastmod>2012-06-13T18:58:11+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://xiongbupt.github.com/blog/2012/06/14/archzhi-ding-dnsfu-wu-qi/</loc>
+        <lastmod>2012-06-14T08:28:39+08:00</lastmod>
+    </url>
+    <url>
         <loc>http://xiongbupt.github.com/blog/tags/Socket/</loc>
-        <lastmod>2012-06-11T14:32:03+08:00</lastmod>
+        <lastmod>2012-06-14T08:24:15+08:00</lastmod>
     </url>
     <url>
         <loc>http://xiongbupt.github.com/blog/tags/6LoWPAN/</loc>
-        <lastmod>2012-06-11T14:32:03+08:00</lastmod>
+        <lastmod>2012-06-14T08:24:15+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://xiongbupt.github.com/blog/tags/C/</loc>
+        <lastmod>2012-06-14T08:24:15+08:00</lastmod>
     </url>
     <url>
         <loc>http://xiongbupt.github.com/blog/tags/Markdown/</loc>
-        <lastmod>2012-06-11T14:32:03+08:00</lastmod>
+        <lastmod>2012-06-14T08:24:15+08:00</lastmod>
     </url>
     <url>
         <loc>http://xiongbupt.github.com/blog/tags/jekyll/</loc>
-        <lastmod>2012-06-11T14:32:03+08:00</lastmod>
+        <lastmod>2012-06-14T08:24:15+08:00</lastmod>
     </url>
     <url>
         <loc>http://xiongbupt.github.com/blog/tags/WSN/</loc>
-        <lastmod>2012-06-11T14:32:03+08:00</lastmod>
+        <lastmod>2012-06-14T08:24:15+08:00</lastmod>
     </url>
     <url>
         <loc>http://xiongbupt.github.com/blog/tags/Tomcat/</loc>
-        <lastmod>2012-06-11T14:32:03+08:00</lastmod>
+        <lastmod>2012-06-14T08:24:15+08:00</lastmod>
     </url>
     <url>
         <loc>http://xiongbupt.github.com/blog/tags/Python/</loc>
-        <lastmod>2012-06-11T14:32:03+08:00</lastmod>
+        <lastmod>2012-06-14T08:24:15+08:00</lastmod>
     </url>
     <url>
         <loc>http://xiongbupt.github.com/blog/tags/UTF-8/</loc>
-        <lastmod>2012-06-11T14:32:03+08:00</lastmod>
+        <lastmod>2012-06-14T08:24:15+08:00</lastmod>
     </url>
     <url>
         <loc>http://xiongbupt.github.com/blog/tags/Learning/</loc>
-        <lastmod>2012-06-11T14:32:03+08:00</lastmod>
+        <lastmod>2012-06-14T08:24:15+08:00</lastmod>
     </url>
     <url>
         <loc>http://xiongbupt.github.com/blog/tags/Git/</loc>
-        <lastmod>2012-06-11T14:32:03+08:00</lastmod>
+        <lastmod>2012-06-14T08:24:15+08:00</lastmod>
     </url>
     <url>
         <loc>http://xiongbupt.github.com/blog/tags/OS/</loc>
-        <lastmod>2012-06-11T14:32:03+08:00</lastmod>
+        <lastmod>2012-06-14T08:24:15+08:00</lastmod>
     </url>
     <url>
         <loc>http://xiongbupt.github.com/blog/tags/</loc>
@@ -240,55 +268,59 @@
     </url>
     <url>
         <loc>http://xiongbupt.github.com/blog/tags/MySQL/</loc>
-        <lastmod>2012-06-11T14:32:03+08:00</lastmod>
+        <lastmod>2012-06-14T08:24:15+08:00</lastmod>
     </url>
     <url>
         <loc>http://xiongbupt.github.com/blog/tags/C Language/</loc>
-        <lastmod>2012-06-11T14:32:03+08:00</lastmod>
+        <lastmod>2012-06-14T08:24:15+08:00</lastmod>
     </url>
     <url>
         <loc>http://xiongbupt.github.com/blog/tags/Github/</loc>
-        <lastmod>2012-06-11T14:32:03+08:00</lastmod>
+        <lastmod>2012-06-14T08:24:15+08:00</lastmod>
     </url>
     <url>
         <loc>http://xiongbupt.github.com/blog/tags/Shell/</loc>
-        <lastmod>2012-06-11T14:32:03+08:00</lastmod>
+        <lastmod>2012-06-14T08:24:15+08:00</lastmod>
     </url>
     <url>
         <loc>http://xiongbupt.github.com/blog/tags/Arch/</loc>
-        <lastmod>2012-06-11T14:32:03+08:00</lastmod>
+        <lastmod>2012-06-14T08:24:15+08:00</lastmod>
     </url>
     <url>
         <loc>http://xiongbupt.github.com/blog/tags/Regex/</loc>
-        <lastmod>2012-06-11T14:32:03+08:00</lastmod>
+        <lastmod>2012-06-14T08:24:15+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://xiongbupt.github.com/blog/tags/Perl/</loc>
+        <lastmod>2012-06-14T08:24:15+08:00</lastmod>
     </url>
     <url>
         <loc>http://xiongbupt.github.com/blog/tags/Linux/</loc>
-        <lastmod>2012-06-11T14:32:03+08:00</lastmod>
+        <lastmod>2012-06-14T08:24:15+08:00</lastmod>
     </url>
     <url>
         <loc>http://xiongbupt.github.com/blog/tags/汇编/</loc>
-        <lastmod>2012-06-11T14:32:03+08:00</lastmod>
+        <lastmod>2012-06-14T08:24:15+08:00</lastmod>
     </url>
     <url>
         <loc>http://xiongbupt.github.com/blog/tags/Octopress/</loc>
-        <lastmod>2012-06-11T14:32:03+08:00</lastmod>
+        <lastmod>2012-06-14T08:24:15+08:00</lastmod>
     </url>
     <url>
         <loc>http://xiongbupt.github.com/blog/tags/AWK/</loc>
-        <lastmod>2012-06-11T14:32:03+08:00</lastmod>
+        <lastmod>2012-06-14T08:24:15+08:00</lastmod>
     </url>
     <url>
         <loc>http://xiongbupt.github.com/blog/tags/NASM/</loc>
-        <lastmod>2012-06-11T14:32:03+08:00</lastmod>
+        <lastmod>2012-06-14T08:24:15+08:00</lastmod>
     </url>
     <url>
         <loc>http://xiongbupt.github.com/blog/tags/VIM/</loc>
-        <lastmod>2012-06-11T14:32:03+08:00</lastmod>
+        <lastmod>2012-06-14T08:24:15+08:00</lastmod>
     </url>
     <url>
         <loc>http://xiongbupt.github.com/blog/archives/</loc>
-        <lastmod>2012-06-11T15:15:42+08:00</lastmod>
+        <lastmod>2012-06-14T08:28:39+08:00</lastmod>
     </url>
     <url>
         <loc>http://xiongbupt.github.com/404.html</loc>
@@ -300,6 +332,6 @@
     </url>
     <url>
         <loc>http://xiongbupt.github.com/</loc>
-        <lastmod>2012-06-11T15:15:42+08:00</lastmod>
+        <lastmod>2012-06-14T08:28:39+08:00</lastmod>
     </url>
 </urlset>

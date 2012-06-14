@@ -1,0 +1,459 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>深入理解计算机系统-笔记 Ch2 - Keep Learning</title>
+  <meta name="author" content="Xiongbupt">
+
+  
+  <meta name="description" content="计算机的表示法是用有限数量的位来完成对一个数字的编码，因此当结果太大时，将会溢出（overflow），整数运算具有结合性但是浮点数的运算是不可结合的。附录中有演示了书中提到的溢出和浮点数结合的c源代码。 gcc编译选项指定c语言的版本： c版本 GCC命令行选项 GNU89 无， -std= &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://xiongbupt.github.com/blog/2012/06/12/shen-ru-li-jie-ji-suan-ji-xi-tong-bi-ji-2/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Keep Learning" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Ruge+Boogie|Ruthie|Flavors|Rancho|Galdeano' rel='stylesheet' type='text/css'>
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32449808-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Keep Learning</a></h1>
+  
+    <h2>伪程序员记录点滴</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:xiongbupt.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/blog/tags">Tags</a></li>
+  <li><a href="/about">About me</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">深入理解计算机系统-笔记 Ch2</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-12T03:00:00+08:00" pubdate data-updated="true">Jun 12<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>计算机的表示法是用有限数量的位来完成对一个数字的编码，因此当结果太大时，将会溢出（overflow），整数运算具有结合性但是浮点数的运算是不可结合的。附录中有演示了书中提到的溢出和浮点数结合的c源代码。</p>
+
+<p>gcc编译选项指定c语言的版本：</p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="center">c版本      </th>
+<th align="center">GCC命令行选项  </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td align="center">GNU89      </td>
+<td align="center">无， -std=gnu89</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">ANSI, ISO C90</td>
+<td align="center"> -ansi, -std=c89</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">ISO C99    </td>
+<td align="center">-std=c99</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">GNU 99     </td>
+<td align="center">-std=gnu99</td>
+</tr>
+</tbody>
+</table>
+
+
+<!--more-->
+
+
+<h2>信息存储</h2>
+
+<h2>附录</h2>
+
+<p>c代码</p>
+
+<figure class='code'><figcaption><span>overflow溢出代码  (overflow.c)</span> <a href='/downloads/code/c/overflow.c'>download</a></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cp">#include   &lt;stdlib.h&gt;</span>
+</span><span class='line'><span class="cp">#include &lt;stdio.h&gt;</span>
+</span><span class='line'><span class="kt">int</span> <span class="nf">main</span> <span class="p">(</span> <span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[]</span> <span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="kt">float</span> <span class="n">a</span><span class="p">,</span> <span class="n">c</span><span class="p">;</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">b</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">b</span> <span class="o">=</span> <span class="mi">200</span> <span class="o">*</span> <span class="mi">300</span> <span class="o">*</span> <span class="mi">400</span> <span class="o">*</span> <span class="mi">500</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="mf">3.14</span> <span class="o">+</span> <span class="mf">1e20</span><span class="p">)</span> <span class="o">-</span> <span class="mf">1e20</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">printf</span> <span class="p">(</span> <span class="s">&quot;the b is %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">b</span> <span class="p">);</span>
+</span><span class='line'>    <span class="n">printf</span> <span class="p">(</span> <span class="s">&quot;the a is %f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">a</span> <span class="p">);</span>
+</span><span class='line'>    <span class="n">c</span> <span class="o">=</span> <span class="mf">3.14</span> <span class="o">+</span> <span class="p">(</span><span class="mf">1e20</span> <span class="o">-</span> <span class="mf">1e20</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">printf</span> <span class="p">(</span> <span class="s">&quot;the c is %f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">c</span> <span class="p">);</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">EXIT_SUCCESS</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>              <span class="cm">/* ----------  end of function main  ---------- */</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>perl代码</p>
+
+<figure class='code'><figcaption><span>perl 10进制转16进制脚本  (d2h)</span> <a href='/downloads/code/perl/d2h'>download</a></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="c1">#!/usr/bin/perl</span>
+</span><span class='line'><span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;</span> <span class="nv">@ARGV</span><span class="p">;</span> <span class="nv">$i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nb">printf</span><span class="p">(</span><span class="s">&quot;%d\t = 0x%x\n&quot;</span><span class="p">,</span> <span class="nv">$ARGV</span><span class="p">[</span><span class="nv">$i</span><span class="p">],</span> <span class="nv">$ARGV</span><span class="p">[</span><span class="nv">$i</span><span class="p">]);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><figcaption><span>perl 16进制转10进制脚本  (h2d)</span> <a href='/downloads/code/perl/h2d'>download</a></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="c1">#!/usr/bin/perl</span>
+</span><span class='line'><span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;</span> <span class="nv">@ARGV</span><span class="p">;</span> <span class="nv">$i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nv">$val</span> <span class="o">=</span> <span class="nb">hex</span><span class="p">(</span><span class="nv">$ARGV</span><span class="p">[</span><span class="nv">$i</span><span class="p">]);</span>
+</span><span class='line'>    <span class="nb">printf</span><span class="p">(</span><span class="s">&quot;0x%x\t = %d\n&quot;</span><span class="p">,</span> <span class="nv">$val</span><span class="p">,</span> <span class="nv">$val</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Xiongbupt</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-12T03:00:00+08:00" pubdate data-updated="true">Jun 12<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/notes/'>Notes</a>
+  
+</span>
+
+
+      <div id="tag_list">
+    Tags:
+    <ul id="tags_ul">
+
+        <li><a href="/blog/tags/Learning/">Learning</a></li>
+
+        <li><a href="/blog/tags/OS/">OS</a></li>
+
+        <li><a href="/blog/tags/C/">C</a></li>
+
+        <li><a href="/blog/tags/Perl/">Perl</a></li>
+
+    </ul>
+</div>
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://xiongbupt.github.com/blog/2012/06/12/shen-ru-li-jie-ji-suan-ji-xi-tong-bi-ji-2/" data-via="xiongbupt" data-counturl="http://xiongbupt.github.com/blog/2012/06/12/shen-ru-li-jie-ji-suan-ji-xi-tong-bi-ji-2/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/06/12/shen-ru-li-jie-ji-suan-ji-xi-tong-bi-ji/" title="Previous Post: 深入理解计算机系统-笔记 Ch1">&laquo; 深入理解计算机系统-笔记 Ch1</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/06/12/vim-undoji-lu/" title="Next Post: VIM undo记录">VIM undo记录 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    
+<section>
+<h1>分类</h1>
+<ul>
+  <li><a href='/blog/categories/c语言'>C语言 (1)</a></li>
+  <li><a href='/blog/categories/git'>Git (3)</a></li>
+  <li><a href='/blog/categories/linux'>Linux (9)</a></li>
+  <li><a href='/blog/categories/notes'>Notes (26)</a></li>
+  <li><a href='/blog/categories/octopress'>Octopress (4)</a></li>
+  <li><a href='/blog/categories/others'>Others (1)</a></li>
+  <li><a href='/blog/categories/python'>Python (1)</a></li>
+  <li><a href='/blog/categories/vim'>Vim (6)</a></li>
+  <li><a href='/blog/categories/wsn'>Wsn (1)</a></li>
+</ul>
+</section>
+
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/06/14/archzhi-ding-dnsfu-wu-qi/">Arch指定DNS服务器</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/13/vimshi-yong-pathogen/">VIM使用pathogen</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/12/vim-undoji-lu/">VIM undo记录</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/12/shen-ru-li-jie-ji-suan-ji-xi-tong-bi-ji-2/">深入理解计算机系统-笔记 Ch2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/12/shen-ru-li-jie-ji-suan-ji-xi-tong-bi-ji/">深入理解计算机系统-笔记 Ch1</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/11/uticodebian-ma-ji-lu/">UTICODE编码记录</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/xiongbupt">@xiongbupt</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'xiongbupt',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("xiongbupt", 0, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/xiongbupt" class="twitter-follow-button" data-show-count="true">Follow @xiongbupt</a>
+  
+</section>
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/110480695522271115757?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Xiongbupt -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'xiongbupt';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://xiongbupt.github.com/blog/2012/06/12/shen-ru-li-jie-ji-suan-ji-xi-tong-bi-ji-2/';
+        var disqus_url = 'http://xiongbupt.github.com/blog/2012/06/12/shen-ru-li-jie-ji-suan-ji-xi-tong-bi-ji-2/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

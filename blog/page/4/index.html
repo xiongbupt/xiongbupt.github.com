@@ -9,8 +9,9 @@
   <meta name="author" content="Xiongbupt">
 
   
-  <meta name="description" content="网络字节序为大端序。
-">
+  <meta name="description" content="GBD指令 backtrace 在程序出现错误之后，使用它可以看出出错的函数被哪个函数所调用。 查看内存地址存放的值 1
+x 内存地址(examine) 查看代码。 1
+list 如list 1,90用来查看1到90行的代码。 ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -81,6 +82,280 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/04/19/gdb-learning/">Gdb 学习</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-19T00:00:00+08:00" pubdate data-updated="true">Apr 19<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>GBD指令</h2>
+
+<p>backtrace 在程序出现错误之后，使用它可以看出出错的函数被哪个函数所调用。</p>
+
+<p>查看内存地址存放的值</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>x 内存地址<span class="o">(</span>examine<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>查看代码。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>list
+</span></code></pre></td></tr></table></div></figure>
+
+
+<pre><code>如list 1,90用来查看1到90行的代码。
+</code></pre>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/04/19/gdb-learning/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/04/09/cpp-primer/">Cpp Primer</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-09T00:00:00+08:00" pubdate data-updated="true">Apr 9<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/04/01/debian/">Debian安装记录</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-01T00:00:00+08:00" pubdate data-updated="true">Apr 1<span>st</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>添加用户至sudo用户组并去除密码</h2>
+
+<p>visudo修改为不需要密码，将</p>
+
+<blockquote><p>%sudo ALL=(ALL):ALL<br/>
+修改为
+%sudo ALL=(ALL) NOPASSWD: ALL<br/>
+将用户user_name添加至sudo用户组</p></blockquote>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>adduser user_name sudo
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>重新登录后，user_name用户即已经位于sudo用户组中。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/04/01/debian/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/03/30/vim-cookbook/">VIM使用便签</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-30T00:00:00+08:00" pubdate data-updated="true">Mar 30<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>转载自<a href="http://www.oualline.com/vim-cook.html" title="vim_cook_book">vim_cook_book</a></p>
+
+<p>字符翻转</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>xp
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>可交换的替换单词</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>1G              <span class="c">#到第一行</span>
+</span><span class='line'>/idiot&lt;enter&gt;   <span class="c">#搜索单词idiot</span>
+</span><span class='line'>cwmanager       <span class="c">#将idiot替换为manager</span>
+</span><span class='line'>n               <span class="c">#搜索下一个idiot</span>
+</span><span class='line'>.               <span class="c">#重复上面的替换操作</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>%s/<span class="se">\&lt;</span>idiot<span class="se">\&gt;</span>/manager/gc <span class="c">#直接在命令行模式下进行输入，使用全局替换的方式</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>/\&lt;idiot\>/</p>
+
+<blockquote><p>This text specifies the text we are looking for wand want. The &lt; tells Vim to match a word start and the > tells Vim to match the end of a word.<br/>
+\&lt;表明匹配的是一个单词的开始，\>表明匹配的是一个单词的结束。</p></blockquote>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/03/30/vim-cookbook/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/03/26/linux_timer/">Linux定时器</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-26T00:00:00+08:00" pubdate data-updated="true">Mar 26<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="kt">int</span> <span class="n">mod_timer</span><span class="p">(</span><span class="k">struct</span> <span class="n">timer_list</span> <span class="o">*</span><span class="n">timer</span><span class="err">，</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">expires</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>该函数负责修改内核定时器timer的超时字段expires。该函数可以修改激活和没有激活的内核定时器的超时时间，并把它们都设置为激活状态；返回值为0表示修改的内核定时器在修改之前处于未激活状态，返回值为1表示修改的内核定时器在修改之前处于已激活状态。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/03/26/linux_timer/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -283,288 +558,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/03/19/linux_kernel_notes/">Linux内核设计与实现笔记</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-03-19T00:00:00+08:00" pubdate data-updated="true">Mar 19<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h3>Linux内核等待队列</h3>
-
-<p>wait_queue_head_t<br/>
-init_waitqueue_head()<br/>
-DECLARE_WAIT_QUEUE_HEAD<br/>
-等待队列就是一个进程链表，其中包含了所有等待某个特定事件的进程。<br/>
-静态初始化一个等待队列头使用下面的宏</p>
-
-<blockquote><p>DECLARE_WAIT_QUEUE_HEAD(name)</p></blockquote>
-
-<p>动态初始化一个等待队列</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">wait_queue_head_t</span> <span class="n">name</span><span class="p">;</span>
-</span><span class='line'><span class="n">init_waitqueue_head</span><span class="p">(</span><span class="o">&amp;</span><span class="n">name</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<blockquote><p>add_wait_queue() <br/>
-用来将一个进程添加到等待队列，该函数在获得必要的自旋锁后，使用<code>__add_wait_queue()</code>函数来完成队列添加工作</p></blockquote>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/03/19/c_language_notes/">C语言笔记</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-03-19T00:00:00+08:00" pubdate data-updated="true">Mar 19<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content">
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">__attribute__</span><span class="p">((</span><span class="n">packed</span><span class="p">))</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>取消编译器的默认优化，按照字节的方式进行对齐</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">memset</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">ptr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">value</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">num</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>注意第二个和第三个参数的顺序，首先是设置的值然后才是设置的位数</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/03/18/learningpythonthehardway/">Learning Python the Hard Way笔记</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-03-18T00:00:00+08:00" pubdate data-updated="true">Mar 18<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>python函数</h2>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="nb">raw_input</span><span class="p">([</span><span class="n">prompt</span><span class="p">])</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>在终端上显示prompt的提示符，在界面上输入东西之后，将输入的东西以string的形式返回到对应的变量中</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="nb">open</span><span class="p">()</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>打开文件，括号中的文件应该使用引号来表达，使用字符串，不能单单的使用名字。open返回的是文件描述符，对文件描述符的操作可以使用pydoc2 file来查看对应的操作。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/03/18/learningpythonthehardway/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/03/07/linux_kernel_activity/">Linux内核活动</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-03-07T00:00:00+08:00" pubdate data-updated="true">Mar 7<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h3>中断</h3>
-
-<h4>中断类型</h4>
-
-<p>同步中断和异常<br/>
-异步中断：一般由硬件产生<br/>
-硬件IRQ，中断控制器</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/03/06/vim_tips/">Vim_tips摘抄</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-03-06T00:00:00+08:00" pubdate data-updated="true">Mar 6<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>:w<br/>
-:wq<br/>
-:q<br/>
-:q!<br/>
-ZZ<br/>
-:10,20w filename<br/>
-:x</p>
-
-<h3>光标移动</h3>
-
-<p>h : Move left</p>
-
-<p>i : Move right</p>
-
-<p>j : Move down</p>
-
-<p>k : Move up</p>
-
-<ul>
-<li><p>: act as j in command mode</p></li>
-<li><p>: act as k in command mode</p></li>
-</ul>
-
-
-<p>w : Move to next word</p>
-
-<p>W : Move to next blank delimited word</p>
-
-<p>b : Move to the beginning of the word</p>
-
-<p>B : Move to the beginning of blank delimiter word</p>
-
-<p>e : Move to the end of the word</p>
-
-<p>E : Move to the end of Blank delimited word</p>
-
-<p>ge : jump to previous word-ending</p>
-
-<p>gE : jump to previous word-ending, ignore punctuation(忽略标点符号）</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/03/06/vim_tips/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/5/">&larr; Older</a>
@@ -583,12 +576,12 @@ ZZ<br/>
 <ul>
   <li><a href='/blog/categories/c语言'>C语言 (1)</a></li>
   <li><a href='/blog/categories/git'>Git (3)</a></li>
-  <li><a href='/blog/categories/linux'>Linux (8)</a></li>
-  <li><a href='/blog/categories/notes'>Notes (24)</a></li>
+  <li><a href='/blog/categories/linux'>Linux (9)</a></li>
+  <li><a href='/blog/categories/notes'>Notes (26)</a></li>
   <li><a href='/blog/categories/octopress'>Octopress (4)</a></li>
   <li><a href='/blog/categories/others'>Others (1)</a></li>
   <li><a href='/blog/categories/python'>Python (1)</a></li>
-  <li><a href='/blog/categories/vim'>Vim (4)</a></li>
+  <li><a href='/blog/categories/vim'>Vim (6)</a></li>
   <li><a href='/blog/categories/wsn'>Wsn (1)</a></li>
 </ul>
 </section>
@@ -598,27 +591,27 @@ ZZ<br/>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/06/14/archzhi-ding-dnsfu-wu-qi/">Arch指定DNS服务器</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/13/vimshi-yong-pathogen/">VIM使用pathogen</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/12/vim-undoji-lu/">VIM undo记录</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/12/shen-ru-li-jie-ji-suan-ji-xi-tong-bi-ji-2/">深入理解计算机系统-笔记 Ch2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/12/shen-ru-li-jie-ji-suan-ji-xi-tong-bi-ji/">深入理解计算机系统-笔记 Ch1</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/06/11/uticodebian-ma-ji-lu/">UTICODE编码记录</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/10/osshi-xian-zhi-bao-hu-mo-shi/">OS实现之保护模式</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/10/nasmzhai-yao/">nasm摘要</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/08/octopresszeng-jia-fen-lei-biao-qian/">Octopress增加分类标签</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/08/octopressdai-ma-gao-liang/">Octopress代码高亮</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/07/octopress-add-tag/">Octopress添加标签</a>
       </li>
     
   </ul>

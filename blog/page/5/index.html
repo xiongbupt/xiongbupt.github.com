@@ -9,8 +9,11 @@
   <meta name="author" content="Xiongbupt">
 
   
-  <meta name="description" content="第一章 cd - ：返回到之前的文件夹。用于工作路径的跳转。
-\ &#8217; &#8220;引用键，可以取消特殊字符的含义，各个功能有强弱，其中&#8217;为强取消.&#8221;为若取消，\仅仅取消一个字符的含义。使用上面这三个可以在命令过长时取消回车的含义，一般终端会提示>作为提示符号 &hellip;">
+  <meta name="description" content="Linux内核等待队列 wait_queue_head_t
+init_waitqueue_head()
+DECLARE_WAIT_QUEUE_HEAD
+等待队列就是一个进程链表，其中包含了所有等待某个特定事件的进程。
+静态初始化一个等待队列头使用下面的宏 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -81,6 +84,288 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/03/19/linux_kernel_notes/">Linux内核设计与实现笔记</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-19T00:00:00+08:00" pubdate data-updated="true">Mar 19<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>Linux内核等待队列</h3>
+
+<p>wait_queue_head_t<br/>
+init_waitqueue_head()<br/>
+DECLARE_WAIT_QUEUE_HEAD<br/>
+等待队列就是一个进程链表，其中包含了所有等待某个特定事件的进程。<br/>
+静态初始化一个等待队列头使用下面的宏</p>
+
+<blockquote><p>DECLARE_WAIT_QUEUE_HEAD(name)</p></blockquote>
+
+<p>动态初始化一个等待队列</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">wait_queue_head_t</span> <span class="n">name</span><span class="p">;</span>
+</span><span class='line'><span class="n">init_waitqueue_head</span><span class="p">(</span><span class="o">&amp;</span><span class="n">name</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<blockquote><p>add_wait_queue() <br/>
+用来将一个进程添加到等待队列，该函数在获得必要的自旋锁后，使用<code>__add_wait_queue()</code>函数来完成队列添加工作</p></blockquote>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/03/19/c_language_notes/">C语言笔记</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-19T00:00:00+08:00" pubdate data-updated="true">Mar 19<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">__attribute__</span><span class="p">((</span><span class="n">packed</span><span class="p">))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>取消编译器的默认优化，按照字节的方式进行对齐</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">memset</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">ptr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">value</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">num</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>注意第二个和第三个参数的顺序，首先是设置的值然后才是设置的位数</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/03/18/learningpythonthehardway/">Learning Python the Hard Way笔记</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-18T00:00:00+08:00" pubdate data-updated="true">Mar 18<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>python函数</h2>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="nb">raw_input</span><span class="p">([</span><span class="n">prompt</span><span class="p">])</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在终端上显示prompt的提示符，在界面上输入东西之后，将输入的东西以string的形式返回到对应的变量中</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="nb">open</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>打开文件，括号中的文件应该使用引号来表达，使用字符串，不能单单的使用名字。open返回的是文件描述符，对文件描述符的操作可以使用pydoc2 file来查看对应的操作。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/03/18/learningpythonthehardway/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/03/07/linux_kernel_activity/">Linux内核活动</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-07T00:00:00+08:00" pubdate data-updated="true">Mar 7<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>中断</h3>
+
+<h4>中断类型</h4>
+
+<p>同步中断和异常<br/>
+异步中断：一般由硬件产生<br/>
+硬件IRQ，中断控制器</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/03/06/vim_tips/">Vim_tips摘抄</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-06T00:00:00+08:00" pubdate data-updated="true">Mar 6<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>:w<br/>
+:wq<br/>
+:q<br/>
+:q!<br/>
+ZZ<br/>
+:10,20w filename<br/>
+:x</p>
+
+<h3>光标移动</h3>
+
+<p>h : Move left</p>
+
+<p>i : Move right</p>
+
+<p>j : Move down</p>
+
+<p>k : Move up</p>
+
+<ul>
+<li><p>: act as j in command mode</p></li>
+<li><p>: act as k in command mode</p></li>
+</ul>
+
+
+<p>w : Move to next word</p>
+
+<p>W : Move to next blank delimited word</p>
+
+<p>b : Move to the beginning of the word</p>
+
+<p>B : Move to the beginning of blank delimiter word</p>
+
+<p>e : Move to the end of the word</p>
+
+<p>E : Move to the end of Blank delimited word</p>
+
+<p>ge : jump to previous word-ending</p>
+
+<p>gE : jump to previous word-ending, ignore punctuation(忽略标点符号）</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/03/06/vim_tips/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -314,102 +599,9 @@ PCI配置空间中每个设备功能由256字节组成，其中前64字节是标
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/02/28/linux-system-call/">Linux系统调用分类</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-02-28T00:00:00+08:00" pubdate data-updated="true">Feb 28<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>进程管理</h2>
-
-<p>进程管理包括创建进程，查询进程信息，修改进程信息等。fork，vfork将一个进程创建为两个进程。clone是fork的增强版，还可以创建线程。</p>
-
-<p>exit结束一个进程并释放其占用的资源。</p>
-
-<p>personlity定义应用程序的执行环境。</p>
-
-<p>ptrace使得能跟踪系统调用，是strace的分支。（strace的使用方法 strace -o a.txt program，将program调用的系统调用输出到文件a.txt中）</p>
-
-<p>nice设置普通进程的优先级，从-20到19之间。数值越低，优先级越高。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/02/28/linux-system-call/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/02/22/try-github-blog/">在github上使用blog</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-02-22T00:00:00+08:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>在Linux上使用git</h2>
-
-<p>git作为一款分布式版本控制软件，在Linux上的安装相当容易。各个不同的发行版使用源更新工具安装git即可。具体步骤可以使用google搜索对应版本的git的安装。<br/>
-在git安装完成之后，对git全局用户进行初始化设置。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/02/22/try-github-blog/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
+    
+      <a class="prev" href="/blog/page/6/">&larr; Older</a>
     
     <a href="/blog/archives">Blog Archives</a>
     
@@ -425,12 +617,12 @@ PCI配置空间中每个设备功能由256字节组成，其中前64字节是标
 <ul>
   <li><a href='/blog/categories/c语言'>C语言 (1)</a></li>
   <li><a href='/blog/categories/git'>Git (3)</a></li>
-  <li><a href='/blog/categories/linux'>Linux (8)</a></li>
-  <li><a href='/blog/categories/notes'>Notes (24)</a></li>
+  <li><a href='/blog/categories/linux'>Linux (9)</a></li>
+  <li><a href='/blog/categories/notes'>Notes (26)</a></li>
   <li><a href='/blog/categories/octopress'>Octopress (4)</a></li>
   <li><a href='/blog/categories/others'>Others (1)</a></li>
   <li><a href='/blog/categories/python'>Python (1)</a></li>
-  <li><a href='/blog/categories/vim'>Vim (4)</a></li>
+  <li><a href='/blog/categories/vim'>Vim (6)</a></li>
   <li><a href='/blog/categories/wsn'>Wsn (1)</a></li>
 </ul>
 </section>
@@ -440,27 +632,27 @@ PCI配置空间中每个设备功能由256字节组成，其中前64字节是标
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/06/14/archzhi-ding-dnsfu-wu-qi/">Arch指定DNS服务器</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/13/vimshi-yong-pathogen/">VIM使用pathogen</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/12/vim-undoji-lu/">VIM undo记录</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/12/shen-ru-li-jie-ji-suan-ji-xi-tong-bi-ji-2/">深入理解计算机系统-笔记 Ch2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/12/shen-ru-li-jie-ji-suan-ji-xi-tong-bi-ji/">深入理解计算机系统-笔记 Ch1</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/06/11/uticodebian-ma-ji-lu/">UTICODE编码记录</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/10/osshi-xian-zhi-bao-hu-mo-shi/">OS实现之保护模式</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/10/nasmzhai-yao/">nasm摘要</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/08/octopresszeng-jia-fen-lei-biao-qian/">Octopress增加分类标签</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/08/octopressdai-ma-gao-liang/">Octopress代码高亮</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/07/octopress-add-tag/">Octopress添加标签</a>
       </li>
     
   </ul>

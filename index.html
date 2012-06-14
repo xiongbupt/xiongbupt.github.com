@@ -9,7 +9,7 @@
   <meta name="author" content="Xiongbupt">
 
   
-  <meta name="description" content="今天查看师兄以前写的笔记，中间看到一个UNICODE和UTF-8编码的内容，于是在网上找了下资料，现在对这点有一点点了解，主要参考了阮老师的这篇文章，先记录下笔记吧。 UNICODE编码由来 在20世纪60年代，美国指定了ASCII编码体系，将英语字符与二进制位的关系做了统一的规定， &hellip;">
+  <meta name="description" content="学校里提供了IPv6的接入，但是之前使用的一直是学校提供的DNS服务器，使用的是IPv4的方式。在google上的IPv6的hosts文档上知道有IPv6的DNS服务器的地址，于是上网找了在Arch上设置DNS服务器的地址，简单记录如下。 修改/etc/resolv.conf的可修改性 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,253 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/06/14/archzhi-ding-dnsfu-wu-qi/">Arch指定DNS服务器</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-14T07:55:00+08:00" pubdate data-updated="true">Jun 14<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>学校里提供了IPv6的接入，但是之前使用的一直是学校提供的DNS服务器，使用的是IPv4的方式。在google上的<a href="https://code.google.com/p/ipv6-hosts/" title="IPv6 Hosts">IPv6的hosts文档</a>上知道有IPv6的DNS服务器的地址，于是上网找了在Arch上设置DNS服务器的地址，简单记录如下。</p>
+
+<h2>修改/etc/resolv.conf的可修改性</h2>
+
+<p>由于学校使用的是DHCP的方式获取IP地址，Arch上使用的DHCP的客户端是dhcpcd，在默认情况下该服务器将会将获取的DNS服务器的地址填入到/etc/resolv.conf文件中。因此如果指定DNS服务器的方式，可以将该文件的文件设置为不可写。通过使用<kbd>chattr +i /etc/resolv.conf</kbd>的方式可以将该文件设置为不可修改的。<br/>
+如果在网络的环境不变的情况下，使用该种方式便可以解决，但是由于在宿舍和在实验室的环境，这两个网络环境下学校指定的DNS服务器是不一样的，在使用校内提供的服务器时，还是用学校的DNS服务器便可以了，因此这种方法对自己而言还不是很合适。于是出现下面的方法。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/06/14/archzhi-ding-dnsfu-wu-qi/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/06/13/vimshi-yong-pathogen/">VIM使用pathogen</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-13T18:56:00+08:00" pubdate data-updated="true">Jun 13<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/06/12/vim-undoji-lu/">VIM Undo记录</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-12T21:31:00+08:00" pubdate data-updated="true">Jun 12<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/06/12/shen-ru-li-jie-ji-suan-ji-xi-tong-bi-ji-2/">深入理解计算机系统-笔记 Ch2</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-12T03:00:00+08:00" pubdate data-updated="true">Jun 12<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>计算机的表示法是用有限数量的位来完成对一个数字的编码，因此当结果太大时，将会溢出（overflow），整数运算具有结合性但是浮点数的运算是不可结合的。附录中有演示了书中提到的溢出和浮点数结合的c源代码。</p>
+
+<p>gcc编译选项指定c语言的版本：</p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="center">c版本      </th>
+<th align="center">GCC命令行选项  </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td align="center">GNU89      </td>
+<td align="center">无， -std=gnu89</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">ANSI, ISO C90</td>
+<td align="center"> -ansi, -std=c89</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">ISO C99    </td>
+<td align="center">-std=c99</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">GNU 99     </td>
+<td align="center">-std=gnu99</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/06/12/shen-ru-li-jie-ji-suan-ji-xi-tong-bi-ji-2/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/06/12/shen-ru-li-jie-ji-suan-ji-xi-tong-bi-ji/">深入理解计算机系统-笔记 Ch1</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-12T03:00:00+08:00" pubdate data-updated="true">Jun 12<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>计算机系统漫游</h2>
+
+<p>信息就是<code>位</code>加<code>上下文</code>。<br/>
+由gcc处理的程序包括四个步骤，这四个步骤的处理程序分别是：预处理器、编译器、汇编器、链接器，对应的四个阶段分别是：预处理阶段（将头文件、预处理指令插入到源代码中），编译阶段（将c文件生成为汇编语言文件），汇编阶段（将汇编语言翻译成为机器文件），链接阶段（将各个目标代码合并生成一个可执行程序）。</p>
+
+<p>了解编译系统的工作流程的好处：</p>
+
+<ul>
+<li>优化程序性能；</li>
+<li>理解链接时出现的错误；</li>
+<li>避免安全漏洞。</li>
+</ul>
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/06/12/shen-ru-li-jie-ji-suan-ji-xi-tong-bi-ji/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -303,244 +550,6 @@ UNICODE目前可以容纳100多万个符号，每个符号的编码都不一样�
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/06/07/octopress-add-tag/">Octopress添加标签</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-06-07T00:00:00+08:00" pubdate data-updated="true">Jun 7<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>前因</h2>
-
-<p>由于之前参考中文的搜索，结果都不理想，推翻重来，直接使用<a href="http://www.google.com/">google</a>使用<code>octopress tag</code>关键词搜索到的<a href="http://aijazansari.com/2012/01/07/tag-clouds-with-octopress/">第一个返回结果</a>来修改，下面记录如下。</p>
-
-<h3>显示所有的便签列表</h3>
-
-<p>修改<code>source/_layouts/post.html</code>文件，使它们include一个名字为<code>tags.html</code>的新文件。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/06/07/octopress-add-tag/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/06/06/vim_help_read/">VIM用户手册27笔记</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-06-06T00:00:00+08:00" pubdate data-updated="true">Jun 6<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>VIM的查找命令与模式，这章节和正则表达式相关，可以重点查阅下。</p>
-
-<h2>大小写忽略</h2>
-
-<p>ignorecase  忽视大小写<br/>
-smartcase   若只有小写，可匹配大小写；若含有大写，则严格匹配  <br/>
-特定模式中的大小写可以使用\C来严格匹配，\c可以用来通用匹配，不区分大小写</p>
-
-<h2>无折返查找</h2>
-
-<p><code>:set nowrapscan</code>简单的说就是在查找到文件结束处后不再返回文件开始处重新查找。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/06/06/vim_help_read/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/06/06/octopress_use/">Octopress尝试记录</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-06-06T00:00:00+08:00" pubdate data-updated="true">Jun 6<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>本文主要是参考Octopress的<a href="http://octopress.org/" title="OCTOPRESS 手册">官方网址</a>进行操作，之前使用了<a href="http://www.google.com/" title="GOOGLE">google</a>搜索了若干参考，但是操作之后出现了错误，推翻重来之后，写下这篇记录，方便自己以后使用。<br/>
-首先介绍下自己的环境Arch，由于之前已经使用了github的个人博客，但是之前使用的是jekyll的方式，自己不会调整那些主题，感觉有些不方便，上网找了下，发现似乎Octopress相对来说比较简单，于是在这种情况下尝试使用Octopress。至于在github上创建个人博客主页，在这里不做说明，在Octopress环境下，自己相当不清楚。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/06/06/octopress_use/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/06/06/assemble_language_learn/">汇编语言学习</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-06-06T00:00:00+08:00" pubdate data-updated="true">Jun 6<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>本书主要记录的在学习王爽编著的<a href="http://book.douban.com/subject/3037562/" title="汇编语言">《汇编语言》</a>中的一些记录。</p>
-
-<h2>第二章 寄存器（CPU原理）</h2>
-
-<p>8086中内存地址的访问是由基地址加上偏移地址组成的物理地址，而这个基地址主要是由段寄存器提供的，在8086中有4个段寄存器，分别是CS，DS，SS和ES。<br/>
-<kbd>CS</kbd>为代码段寄存器，<kbd>IP</kbd>为指令指针寄存器，在8086机中，任意时刻，CPU将CS：IP指向的内容当做指令执行。<br/>
-8086CPU的工作过程如下所示：</p>
-
-<ol>
-<li>从CS：IP指向的内存单元读取指令，读取的指令进入指令缓冲器；</li>
-<li>IP=IP+所读取的指令长度，从而指向下一条指令；</li>
-<li>执行指令，转到步骤1，重复这个过程。</li>
-</ol>
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/06/06/assemble_language_learn/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/06/05/vim_regex_learning/">VIM正则表达式学习</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-06-05T00:00:00+08:00" pubdate data-updated="true">Jun 5<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>VIM正则表达式</h2>
-
-<p>之前粗略的看了正则表达式的一些内容，但是在VIM中一直用的很少，刚才无意间看到了使用VIM对词进行大小写转换，中间出现了一些正则表达式的内容，从网上找了些内容，觉得可以留下来做个笔记，供以后自己参考。<br/>
-文章的主要内容参考<a href="http://qianjigui.iteye.com/blog/368449" title="VIM中的正则表达式">该博客</a>。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/06/05/vim_regex_learning/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -557,12 +566,12 @@ smartcase   若只有小写，可匹配大小写；若含有大写，则严格�
 <ul>
   <li><a href='/blog/categories/c语言'>C语言 (1)</a></li>
   <li><a href='/blog/categories/git'>Git (3)</a></li>
-  <li><a href='/blog/categories/linux'>Linux (8)</a></li>
-  <li><a href='/blog/categories/notes'>Notes (24)</a></li>
+  <li><a href='/blog/categories/linux'>Linux (9)</a></li>
+  <li><a href='/blog/categories/notes'>Notes (26)</a></li>
   <li><a href='/blog/categories/octopress'>Octopress (4)</a></li>
   <li><a href='/blog/categories/others'>Others (1)</a></li>
   <li><a href='/blog/categories/python'>Python (1)</a></li>
-  <li><a href='/blog/categories/vim'>Vim (4)</a></li>
+  <li><a href='/blog/categories/vim'>Vim (6)</a></li>
   <li><a href='/blog/categories/wsn'>Wsn (1)</a></li>
 </ul>
 </section>
@@ -572,27 +581,27 @@ smartcase   若只有小写，可匹配大小写；若含有大写，则严格�
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/06/14/archzhi-ding-dnsfu-wu-qi/">Arch指定DNS服务器</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/13/vimshi-yong-pathogen/">VIM使用pathogen</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/12/vim-undoji-lu/">VIM undo记录</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/12/shen-ru-li-jie-ji-suan-ji-xi-tong-bi-ji-2/">深入理解计算机系统-笔记 Ch2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/12/shen-ru-li-jie-ji-suan-ji-xi-tong-bi-ji/">深入理解计算机系统-笔记 Ch1</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/06/11/uticodebian-ma-ji-lu/">UTICODE编码记录</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/10/osshi-xian-zhi-bao-hu-mo-shi/">OS实现之保护模式</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/10/nasmzhai-yao/">nasm摘要</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/08/octopresszeng-jia-fen-lei-biao-qian/">Octopress增加分类标签</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/08/octopressdai-ma-gao-liang/">Octopress代码高亮</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/07/octopress-add-tag/">Octopress添加标签</a>
       </li>
     
   </ul>

@@ -8,6 +8,33 @@ footer: false
 <h2>2012</h2>
 
 <article>
+<h1><a href="/blog/2012/06/13/vimshi-yong-pathogen/index.html">VIM使用pathogen</a></h1>
+<time datetime="2012-06-13T00:00:00-06:00" pubdate><span class='month'>Jun</span> <span class='day'>13</span> <span class='year'>2012</span></time>
+<footer>
+<span class="categories">posted in 
+<a href='/blog/categories/vim/'>VIM</a></span>
+</footer>
+</article>
+
+<article>
+<h1><a href="/blog/2012/06/12/vim-undoji-lu/index.html">VIM Undo记录</a></h1>
+<time datetime="2012-06-12T00:00:00-06:00" pubdate><span class='month'>Jun</span> <span class='day'>12</span> <span class='year'>2012</span></time>
+<footer>
+<span class="categories">posted in 
+<a href='/blog/categories/vim/'>VIM</a></span>
+</footer>
+</article>
+
+<article>
+<h1><a href="/blog/2012/06/11/uticodebian-ma-ji-lu/index.html">UTICODE编码记录</a></h1>
+<time datetime="2012-06-11T00:00:00-06:00" pubdate><span class='month'>Jun</span> <span class='day'>11</span> <span class='year'>2012</span></time>
+<footer>
+<span class="categories">posted in 
+<a href='/blog/categories/notes/'>Notes</a></span>
+</footer>
+</article>
+
+<article>
 <h1><a href="/blog/2012/06/06/vim_help_read/index.html">VIM用户手册27笔记</a></h1>
 <time datetime="2012-06-06T00:00:00-06:00" pubdate><span class='month'>Jun</span> <span class='day'>06</span> <span class='year'>2012</span></time>
 <footer>

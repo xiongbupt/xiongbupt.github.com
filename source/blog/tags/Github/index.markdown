@@ -8,6 +8,15 @@ footer: false
 <h2>2012</h2>
 
 <article>
+<h1><a href="/blog/2012/06/13/vimshi-yong-pathogen/index.html">VIM使用pathogen</a></h1>
+<time datetime="2012-06-13T00:00:00-06:00" pubdate><span class='month'>Jun</span> <span class='day'>13</span> <span class='year'>2012</span></time>
+<footer>
+<span class="categories">posted in 
+<a href='/blog/categories/vim/'>VIM</a></span>
+</footer>
+</article>
+
+<article>
 <h1><a href="/blog/2012/06/08/octopresszeng-jia-fen-lei-biao-qian/index.html">Octopress增加分类标签</a></h1>
 <time datetime="2012-06-08T00:00:00-06:00" pubdate><span class='month'>Jun</span> <span class='day'>08</span> <span class='year'>2012</span></time>
 <footer>

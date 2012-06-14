@@ -8,6 +8,33 @@ footer: false
 <h2>2012</h2>
 
 <article>
+<h1><a href="/blog/2012/06/12/shen-ru-li-jie-ji-suan-ji-xi-tong-bi-ji/index.html">深入理解计算机系统-笔记 Ch1</a></h1>
+<time datetime="2012-06-12T00:00:00-06:00" pubdate><span class='month'>Jun</span> <span class='day'>12</span> <span class='year'>2012</span></time>
+<footer>
+<span class="categories">posted in 
+<a href='/blog/categories/notes/'>Notes</a></span>
+</footer>
+</article>
+
+<article>
+<h1><a href="/blog/2012/06/12/shen-ru-li-jie-ji-suan-ji-xi-tong-bi-ji-2/index.html">深入理解计算机系统-笔记 Ch2</a></h1>
+<time datetime="2012-06-12T00:00:00-06:00" pubdate><span class='month'>Jun</span> <span class='day'>12</span> <span class='year'>2012</span></time>
+<footer>
+<span class="categories">posted in 
+<a href='/blog/categories/notes/'>Notes</a></span>
+</footer>
+</article>
+
+<article>
+<h1><a href="/blog/2012/06/10/osshi-xian-zhi-bao-hu-mo-shi/index.html">OS实现之保护模式</a></h1>
+<time datetime="2012-06-10T00:00:00-06:00" pubdate><span class='month'>Jun</span> <span class='day'>10</span> <span class='year'>2012</span></time>
+<footer>
+<span class="categories">posted in 
+<a href='/blog/categories/notes/'>Notes</a></span>
+</footer>
+</article>
+
+<article>
 <h1><a href="/blog/2012/06/05/os_impletion/index.html">一个操作系统的实现笔记</a></h1>
 <time datetime="2012-06-05T00:00:00-06:00" pubdate><span class='month'>Jun</span> <span class='day'>05</span> <span class='year'>2012</span></time>
 <footer>

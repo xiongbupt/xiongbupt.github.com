@@ -1,0 +1,32 @@
+baseURL = "https://xiongbupt.github.io/"
+title = "杂牌程序员的点点滴滴"
+theme = "PaperMod"
+
+# 设置语言为中文
+languageCode = "zh-cn"
+hasCJKLanguage = true  # 必须！这会让 Hugo 正确处理中文字数统计和摘要
+
+[params]
+    env = "production"
+    title = "点滴记录"
+    description = "记录日常"
+    author = "dennis"
+    # 允许在首页显示中文字数
+    ShowReadingTime = true
+    ShowWordCount = true
+
+[author]
+    name = "dennis"
+
+# 如果你希望菜单也是中文
+[[menu.main]]
+    identifier = "posts"
+    name = "文章"
+    url = "/posts/"
+    weight = 10
+
+[[menu.main]]
+    identifier = "tags"
+    name = "标签"
+    url = "/tags/"
+    weight = 20
